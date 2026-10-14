@@ -5,7 +5,15 @@ import fs from 'fs'; import path from 'path'; import { ImageResponse } from '@ve
 const [,, file, outDir, iconPath] = process.argv;
 const icon = 'data:image/png;base64,' + fs.readFileSync(iconPath).toString('base64');
 const tmp = path.resolve('_tmp_' + path.basename(file));
-fs.writeFileSync(tmp, fs.readFileSync(file, 'utf8').replace('https://www.jarvys.com.br/icon-512.png', icon));
+const RAW = 'https://raw.githubusercontent.com/JarvysIA/jarvys-instagram/main/';
+const repo = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+let src = fs.readFileSync(file, 'utf8').replace('https://www.jarvys.com.br/icon-512.png', icon);
+// links raw deste repositorio viram arquivo local (para renderizar antes do push)
+src = src.replace(/'https:\/\/raw\.githubusercontent\.com\/JarvysIA\/jarvys-instagram\/main\/([^']+)'/g, (m, rel) => {
+  const ext = rel.split('.').pop().toLowerCase(); const mime = ext === 'png' ? 'image/png' : 'image/jpeg';
+  return `'data:${mime};base64,${fs.readFileSync(path.join(repo, rel)).toString('base64')}'`;
+});
+fs.writeFileSync(tmp, src);
 const { SLIDES } = await import(tmp);
 const f = (w) => fs.readFileSync(`node_modules/@fontsource/inter/files/inter-latin-${w}-normal.woff`);
 const fonts = [400, 500, 600, 700, 800].map((w) => ({ name: 'Inter', data: f(w), weight: w, style: 'normal' }))
