@@ -1,0 +1,13 @@
+import { chromium } from '/opt/npm-tools/node_modules/playwright/index.mjs';
+import fs from 'fs';
+const [,, html, out, secs] = process.argv; const fps = 30, n = Math.round(secs * fps);
+fs.mkdirSync(out, { recursive: true });
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' }).catch(() => chromium.launch());
+const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+await p.goto('file://' + process.cwd() + '/' + html); await p.evaluate(() => document.fonts.ready);
+await p.evaluate(() => document.getAnimations().forEach(a => a.pause()));
+for (let i = 0; i < n; i++) {
+  await p.evaluate((ms) => document.getAnimations().forEach(a => { a.currentTime = ms; }), i * 1000 / fps);
+  await p.screenshot({ path: `${out}/f${String(i).padStart(4, '0')}.jpg`, type: 'jpeg', quality: 92 });
+}
+await b.close(); console.log('frames', n);

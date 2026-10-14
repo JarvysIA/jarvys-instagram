@@ -1,0 +1,137 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(inter-latin-400-normal.woff);font-weight:400}
+@font-face{font-family:Inter;src:url(inter-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:Inter;src:url(inter-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:Inter;src:url(inter-latin-700-normal.woff);font-weight:700}
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+@font-face{font-family:Orbitron;src:url(orbitron-latin-700-normal.woff);font-weight:700}
+:root{--bg:#0c192a;--card:#172537;--fg:#f0f6fc;--muted:#97a7b7;--neon:#3ac7ff;--on:#061223;--soft:rgba(58,199,255,.15);--border:rgba(40,61,78,.9);--ok:#41d686;--warn:#f9c718;--bad:#f94144}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter;color:var(--fg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+  background:radial-gradient(circle at 50% 38%,rgba(58,199,255,.20),rgba(12,25,42,0) 55%),var(--bg)}
+.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(58,199,255,.18) 2px,transparent 2.5px);background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(circle at 50% 40%,#000 0,transparent 70%);animation:drift 12s linear both}
+@keyframes drift{from{background-position:0 0}to{background-position:0 -96px}}
+.layer{position:absolute;inset:0}
+.abs{position:absolute}
+/* entradas e saidas */
+@keyframes in{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes out{to{opacity:0;transform:translateY(-30px)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes fadeout{to{opacity:0}}
+@keyframes pop{0%{opacity:0;transform:scale(0)}70%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@keyframes popc{0%{opacity:0;transform:translate(-50%,-50%) scale(0)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes word{from{opacity:0;transform:translateY(60%)}to{opacity:1;transform:none}}
+@keyframes dash{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+@keyframes travel{from{offset-distance:0%;opacity:1}90%{opacity:1}to{offset-distance:100%;opacity:0}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(58,199,255,.55)}100%{box-shadow:0 0 0 60px rgba(58,199,255,0)}}
+.hd{position:absolute;left:84px;top:210px;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-3px}
+.hd .w{display:inline-block;margin-right:22px;animation:word .45s cubic-bezier(.2,.8,.2,1) both}
+.neon{color:var(--neon);text-shadow:0 0 28px rgba(58,199,255,.55)}
+.eyebrow{font-family:Orbitron;font-size:28px;letter-spacing:7px;color:var(--neon);margin-bottom:22px}
+.cap{position:absolute;left:0;right:0;top:1470px;text-align:center;font-size:46px;font-weight:600;line-height:1.3;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.cap span{background:rgba(6,18,35,.55);padding:8px 22px;border-radius:18px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* icone central */
+.hub{position:absolute;left:540px;top:860px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#13304a,#0c1d30);
+  border:5px solid var(--neon);box-shadow:0 0 80px rgba(58,199,255,.55);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)}
+.hub img{width:230px;height:230px;border-radius:50%}
+.chip{position:absolute;width:150px;height:150px;border-radius:50%;background:var(--card);border:3px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translate(-50%,-50%)}
+.chip svg{width:62px;height:62px;stroke:var(--neon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chip b{font-size:22px;font-weight:600;color:var(--muted)}
+.tag{position:absolute;padding:20px 30px;border-radius:999px;font-size:34px;font-weight:700;display:flex;align-items:center;gap:16px;background:var(--card);border:3px solid var(--border)}
+.tag i{width:22px;height:22px;border-radius:50%;display:block}
+.in{position:absolute;padding:18px 28px;border-radius:26px;font-size:32px;font-weight:600;background:var(--soft);color:var(--neon);display:flex;align-items:center;gap:14px}
+.in svg{width:40px;height:40px;stroke:var(--neon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* chat */
+.chat{position:absolute;left:90px;right:90px;top:520px;background:var(--card);border:3px solid var(--border);border-radius:48px;padding:40px;box-shadow:0 40px 120px -30px rgba(58,199,255,.45)}
+.chead{display:flex;align-items:center;gap:22px;padding-bottom:26px;border-bottom:3px solid var(--border)}
+.chead img{width:84px;height:84px;border-radius:50%}
+.chead b{font-size:36px;display:block}.chead small{font-size:26px;color:var(--muted)}
+.msgs{display:flex;flex-direction:column;gap:22px;margin-top:30px}
+.m{max-width:760px;padding:22px 30px;font-size:40px;line-height:1.4;border-radius:36px}
+.u{align-self:flex-end;background:var(--soft);border-bottom-right-radius:8px}
+.b{align-self:flex-start;background:rgba(12,25,42,.75);border:3px solid var(--border);border-bottom-left-radius:8px}
+.m{animation:pop .4s cubic-bezier(.34,1.56,.64,1) both;transform-origin:bottom}
+.u{transform-origin:bottom right}.b{transform-origin:bottom left}
+.btn{display:inline-block;background:var(--neon);color:var(--on);font-size:50px;font-weight:800;padding:34px 70px;border-radius:999px;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 24px 80px -10px rgba(58,199,255,.7)}
+</style></head>
+<body><div id="stage">
+<div class="grid"></div>
+
+<!-- CENA 1 (0 a 3,2 s): uma conversa pra tudo -->
+<div class="layer" style="animation:fadeout .35s 3.0s forwards">
+  <div class="hd"><div class="eyebrow" style="animation:fadein .4s .1s both">JARVYS</div>
+    <span class="w" style="animation-delay:.2s">Tudo</span><span class="w" style="animation-delay:.32s">do</span><span class="w" style="animation-delay:.44s">seu</span><span class="w" style="animation-delay:.56s">carro</span><br>
+    <span class="w neon" style="animation-delay:.75s">numa</span><span class="w neon" style="animation-delay:.87s">conversa.</span></div>
+  <div class="hub" style="animation:popc .6s cubic-bezier(.34,1.56,.64,1) .5s both"><img src="icon-512.png"></div>
+  <div class="hub" style="animation:popc .6s .5s both, pulse 1.4s 1.1s 2;background:transparent;border-color:transparent;box-shadow:none"></div>
+  <div class="chip" style="left:230px;top:700px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 1.0s both"><svg viewBox="0 0 24 24"><path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17"/><path d="M3 11h12"/><path d="M15 8h2a2 2 0 0 1 2 2v7a2 2 0 0 0 4 0V9l-3-3"/></svg><b>gasolina</b></div>
+  <div class="chip" style="left:860px;top:690px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 1.15s both"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><b>nota</b></div>
+  <div class="chip" style="left:200px;top:1060px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 1.3s both"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 13l4-3M5 13h1M18 13h1M12 6v1"/></svg><b>painel</b></div>
+  <div class="chip" style="left:880px;top:1050px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 1.45s both"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><b>revisão</b></div>
+  <div class="chip" style="left:540px;top:1230px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 1.6s both"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><b>dúvidas</b></div>
+  <div class="cap" style="animation:in .4s .4s both"><span>Gasto, nota, km, revisão e dúvidas:</span><br><span>tudo no WhatsApp</span></div>
+</div>
+
+<!-- CENA 2 (3,2 a 6,6 s): manda do seu jeito, eu organizo -->
+<div class="layer" style="animation:fadein .35s 3.2s both, fadeout .35s 6.4s forwards">
+  <div class="hd"><div class="eyebrow">DO SEU JEITO</div>
+    <span class="w" style="animation-delay:3.3s">Você</span><span class="w" style="animation-delay:3.42s">manda,</span><br>
+    <span class="w neon" style="animation-delay:3.6s">eu</span><span class="w neon" style="animation-delay:3.72s">organizo.</span></div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="#3ac7ff" stroke-width="4" stroke-linecap="round" opacity=".7">
+    <path d="M250 700 C330 760 380 830 430 860" stroke-dasharray="400" style="animation:dash .5s 3.7s both"/>
+    <path d="M250 900 L420 900" stroke-dasharray="400" style="animation:dash .5s 3.85s both"/>
+    <path d="M250 1100 C330 1040 380 970 430 940" stroke-dasharray="400" style="animation:dash .5s 4.0s both"/>
+    <path d="M650 860 C700 820 740 760 800 720" stroke-dasharray="400" style="animation:dash .5s 4.6s both"/>
+    <path d="M660 880 C720 870 760 850 800 840" stroke-dasharray="400" style="animation:dash .5s 4.75s both"/>
+    <path d="M660 920 C720 930 760 950 800 960" stroke-dasharray="400" style="animation:dash .5s 4.9s both"/>
+    <path d="M650 940 C700 980 740 1040 800 1080" stroke-dasharray="400" style="animation:dash .5s 5.05s both"/>
+  </svg>
+  <div class="abs" style="left:250px;top:700px;width:16px;height:16px;border-radius:50%;background:#3ac7ff;box-shadow:0 0 18px #3ac7ff;offset-path:path('M0 0 C80 60 130 130 180 160');animation:travel .7s 4.2s both"></div>
+  <div class="abs" style="left:250px;top:900px;width:16px;height:16px;border-radius:50%;background:#3ac7ff;box-shadow:0 0 18px #3ac7ff;offset-path:path('M0 0 L170 0');animation:travel .7s 4.35s both"></div>
+  <div class="abs" style="left:250px;top:1100px;width:16px;height:16px;border-radius:50%;background:#3ac7ff;box-shadow:0 0 18px #3ac7ff;offset-path:path('M0 0 C80 -60 130 -130 180 -160');animation:travel .7s 4.5s both"></div>
+  <div class="in" style="left:40px;top:660px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 3.5s both"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>texto</div>
+  <div class="in" style="left:40px;top:860px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 3.65s both"><svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg>foto</div>
+  <div class="in" style="left:40px;top:1060px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 3.8s both"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4"/></svg>áudio</div>
+  <div class="hub" style="left:540px;top:900px;width:240px;height:240px;animation:popc .5s cubic-bezier(.34,1.56,.64,1) 3.3s both"><img src="icon-512.png" style="width:184px;height:184px"></div>
+  <div class="tag" style="left:800px;top:680px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 4.9s both"><i style="background:var(--neon)"></i>Gastos</div>
+  <div class="tag" style="left:800px;top:800px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 5.05s both"><i style="background:var(--ok)"></i>Notas</div>
+  <div class="tag" style="left:800px;top:920px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 5.2s both"><i style="background:var(--warn)"></i>Revisão</div>
+  <div class="tag" style="left:800px;top:1040px;animation:pop .45s cubic-bezier(.34,1.56,.64,1) 5.35s both"><i style="background:var(--bad)"></i>Saúde</div>
+  <div class="cap" style="animation:in .4s 3.4s both, out .3s 4.75s forwards"><span>Você manda texto, foto ou áudio</span></div>
+  <div class="cap" style="animation:in .4s 5.05s both"><span>e eu organizo tudo pra você</span></div>
+</div>
+
+<!-- CENA 3 (6,6 a 10,4 s): a conversa de verdade -->
+<div class="layer" style="animation:fadein .35s 6.6s both, fadeout .35s 10.2s forwards">
+  <div class="hd" style="top:200px"><div class="eyebrow">NO WHATSAPP</div>
+    <span class="w" style="animation-delay:6.7s">Anotado</span><span class="w neon" style="animation-delay:6.85s">na</span><span class="w neon" style="animation-delay:6.97s">hora.</span></div>
+  <div class="chat" style="animation:in .5s cubic-bezier(.2,.8,.2,1) 6.8s both">
+    <div class="chead"><img src="icon-512.png"><div><b>Jarvys</b><small>WhatsApp · online</small></div></div>
+    <div class="msgs">
+      <div class="m u" style="animation-delay:7.3s">gastei 150 de gasolina</div>
+      <div class="m b" style="animation-delay:8.0s">Anotar <b>R$&nbsp;150,00</b> em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+      <div class="m u" style="animation-delay:8.9s">sim</div>
+      <div class="m b" style="animation-delay:9.4s">Anotado!</div>
+    </div>
+  </div>
+  <div class="cap" style="animation:in .4s 7.0s both, out .3s 8.75s forwards"><span>Eu confirmo o valor com você</span></div>
+  <div class="cap" style="animation:in .4s 8.95s both"><span>e anoto no carro certo</span></div>
+  <div class="abs" style="left:0;right:0;top:1640px;text-align:center;font-size:24px;color:var(--muted);animation:fadein .4s 8.2s both">Valores de exemplo.</div>
+</div>
+
+<!-- CENA 4 (10,4 a 14 s): fecho -->
+<div class="layer" style="animation:fadein .4s 10.4s both">
+  <div class="hub" style="top:600px;width:260px;height:260px;animation:popc .6s cubic-bezier(.34,1.56,.64,1) 10.5s both"><img src="icon-512.png" style="width:200px;height:200px"></div>
+  <div class="abs" style="left:84px;right:84px;top:800px;text-align:center;font-weight:800;font-size:80px;line-height:1.05;letter-spacing:-3px">
+    <span class="w" style="display:inline-block;margin-right:20px;animation:word .45s 10.8s both">O</span><span class="w" style="display:inline-block;margin-right:20px;animation:word .45s 10.9s both">cuidado</span><span class="w" style="display:inline-block;margin-right:20px;animation:word .45s 11.0s both">do</span><span class="w" style="display:inline-block;margin-right:20px;animation:word .45s 11.1s both">seu</span><span class="w" style="display:inline-block;animation:word .45s 11.2s both">carro</span><br>
+    <span class="neon" style="display:inline-block;margin-right:20px;animation:word .45s 11.4s both">começa</span><span class="neon" style="display:inline-block;margin-right:20px;animation:word .45s 11.5s both">numa</span><span class="neon" style="display:inline-block;animation:word .45s 11.6s both">conversa.</span></div>
+  <div class="abs" style="left:0;right:0;top:1250px;text-align:center;animation:pop .5s cubic-bezier(.34,1.56,.64,1) 12.1s both"><span class="btn">Teste 30 dias grátis</span></div>
+  <div class="abs" style="left:0;right:0;top:1440px;text-align:center;font-size:52px;font-weight:700;color:var(--neon);animation:fadein .4s 12.4s both">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1520px;text-align:center;font-size:32px;color:var(--muted);animation:fadein .4s 12.6s both">Sem cartão. Depois, R$&nbsp;29,90 por carro, uma vez só.</div>
+</div>
+</div></body></html>
