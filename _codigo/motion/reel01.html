@@ -1,0 +1,226 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(inter-latin-400-normal.woff);font-weight:400}
+@font-face{font-family:Inter;src:url(inter-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:Inter;src:url(inter-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:Inter;src:url(inter-latin-700-normal.woff);font-weight:700}
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+@font-face{font-family:Orbitron;src:url(orbitron-latin-700-normal.woff);font-weight:700}
+:root{--bg:#0c192a;--card:#172537;--fg:#f0f6fc;--muted:#97a7b7;--neon:#3ac7ff;--on:#061223;--soft:rgba(58,199,255,.15);--border:rgba(40,61,78,.95);--ok:#41d686;--warn:#f9c718;--bad:#f94144}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter;color:var(--fg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+.glow{position:absolute;left:-200px;top:300px;width:1480px;height:1480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(58,199,255,.22),rgba(58,199,255,.06) 40%,rgba(12,25,42,0) 65%);animation:breath 6s ease-in-out infinite alternate}
+@keyframes breath{from{transform:scale(1);opacity:.85}to{transform:scale(1.08);opacity:1}}
+.grid{position:absolute;inset:-100px;background-image:radial-gradient(rgba(58,199,255,.20) 2px,transparent 2.6px);background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(circle at 50% 48%,#000 0,transparent 62%);animation:drift 32s linear both}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-162px)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(3,8,16,.65) 100%);pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0}
+.cam{position:absolute;inset:0}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.07);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes sceneOut{from{opacity:1;transform:none;filter:blur(0)}to{opacity:0;transform:scale(.94);filter:blur(12px)}}
+@keyframes ken{from{transform:scale(1)}to{transform:scale(1.045)}}
+@keyframes up{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes word{from{opacity:0;transform:translateY(70%) rotate(3deg);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(var(--r,0deg))}60%{opacity:1;transform:translate(-50%,-50%) scale(1.1) rotate(var(--r,0deg))}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg))}}
+@keyframes popb{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes fly{to{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.15) rotate(0deg)}}
+@keyframes wob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes ring{from{transform:translate(-50%,-50%) scale(.9);opacity:.8}to{transform:translate(-50%,-50%) scale(2.1);opacity:0}}
+@keyframes dash{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes sweep{from{transform:translateX(-120%) skewX(-20deg)}to{transform:translateX(220%) skewX(-20deg)}}
+@keyframes dots{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+@keyframes hide{to{opacity:0}}
+@keyframes check{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+.hd{position:absolute;left:80px;right:80px;top:250px;font-weight:800;font-size:100px;line-height:1.02;letter-spacing:-3px}
+.hd .w{display:inline-block;margin-right:24px;opacity:0}
+.c{text-align:center}
+.neon{color:var(--neon);text-shadow:0 0 30px rgba(58,199,255,.6)}
+.eyebrow{font-family:Orbitron;font-size:28px;letter-spacing:8px;color:var(--neon);margin-bottom:26px;opacity:0}
+.abs{position:absolute}
+.prob{position:absolute;display:flex;align-items:center;gap:24px;padding:30px 40px;border-radius:34px;background:rgba(23,37,55,.92);border:3px solid var(--border);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);opacity:0;font-size:46px;font-weight:700;white-space:nowrap}
+.prob .ic{width:88px;height:88px;border-radius:24px;background:rgba(249,199,24,.14);display:flex;align-items:center;justify-content:center}
+.prob svg{width:52px;height:52px;stroke:var(--warn);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.prob small{display:block;font-size:29px;font-weight:500;color:var(--muted);margin-top:2px}
+.hub{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);
+  box-shadow:0 0 90px rgba(58,199,255,.6),inset 0 0 40px rgba(58,199,255,.25);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);opacity:0}
+.hub img{width:232px;height:232px;border-radius:50%}
+.ringx{position:absolute;width:300px;height:300px;border-radius:50%;border:4px solid var(--neon);opacity:0}
+.pill{display:flex;align-items:center;gap:18px;padding:24px 40px;border-radius:999px;font-size:44px;font-weight:700;background:var(--card);border:3px solid var(--border);opacity:0;white-space:nowrap}
+.pill i{width:22px;height:22px;border-radius:50%;display:block;box-shadow:0 0 14px currentColor}
+.inp{position:absolute;display:flex;align-items:center;gap:16px;padding:22px 30px;border-radius:28px;font-size:36px;font-weight:700;background:var(--soft);color:var(--neon);border:3px solid rgba(58,199,255,.35);opacity:0}
+.inp svg,.wa svg{width:44px;height:44px;stroke:var(--neon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wa{position:absolute;left:50%;top:1300px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:20px 36px;border-radius:999px;background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:38px;font-weight:700;opacity:0}
+.wa svg{stroke:#7ff0b3}
+.chat{position:absolute;left:80px;right:80px;top:470px;background:var(--card);border:3px solid var(--border);border-radius:52px;padding:42px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.chead{display:flex;align-items:center;gap:22px;padding-bottom:28px;border-bottom:3px solid var(--border)}
+.chead img{width:90px;height:90px;border-radius:50%}
+.chead b{font-size:38px;display:block}.chead small{font-size:27px;color:var(--ok)}
+.msgs{display:flex;flex-direction:column;gap:24px;margin-top:32px;min-height:600px}
+.m{max-width:780px;padding:24px 32px;font-size:42px;line-height:1.38;border-radius:38px;opacity:0}
+.u{align-self:flex-end;background:rgba(58,199,255,.2);border-bottom-right-radius:8px;transform-origin:bottom right}
+.b{align-self:flex-start;background:rgba(12,25,42,.8);border:3px solid var(--border);border-bottom-left-radius:8px;transform-origin:bottom left}
+.typing{display:flex;gap:12px;align-items:center;height:56px}
+.typing span{width:16px;height:16px;border-radius:50%;background:var(--muted);animation:dots 1s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.btn{display:inline-block;position:relative;overflow:hidden;background:var(--neon);color:var(--on);font-size:52px;font-weight:800;padding:36px 76px;border-radius:999px;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 26px 90px -10px rgba(58,199,255,.75)}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-120%) skewX(-20deg);animation:sweep 1.4s ease-in-out var(--sw,0s) 2}
+/* legenda */
+#cap{position:absolute;left:70px;right:70px;top:1445px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px;font-size:54px;font-weight:800;line-height:1.25;letter-spacing:-.5px;text-align:center}
+#cap span{color:#fff;opacity:.98;text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 24px rgba(0,0,0,.55);transition:none}
+#cap span.on{color:var(--neon);text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 26px rgba(58,199,255,.6)}
+#cap span.off{opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+// ======= LINHA DO TEMPO (segundos). Ajustar aqui quando a narração chegar. =======
+const T = window.T || {
+  total: 31,
+  s1: [0, 5.3],      // gancho: seu carro te dá trabalho?
+  probs: [2.1, 2.75, 3.55, 4.35],
+  s2: [5.3, 10.0],   // tudo numa conversa so, no WhatsApp
+  wa: 8.7,
+  s3: [10.0, 13.7],  // texto, foto ou audio
+  ins: [11.55, 12.25, 12.95],
+  s4: [13.7, 16.3],  // eu organizo
+  outs: [14.25, 14.6, 14.95, 15.3],
+  s5: [16.3, 22.5],  // conversa
+  msgs: {u1: 16.7, typing: 18.0, b1: 18.7, u2: 20.4, b2: 21.2},
+  s6: [22.5, 31],    // fecho
+  end: {words: 22.7, btn: 25.9, url: 26.9},
+  // legendas: [inicio, fim, texto]
+  caps: [
+    [0.3, 1.9, 'Seu carro te dá trabalho?'],
+    [2.0, 4.0, 'Gasto, nota da oficina,'],
+    [4.0, 5.2, 'quilometragem, revisão...'],
+    [5.6, 7.9, 'Com o Jarvys, tudo isso fica'],
+    [7.9, 9.7, 'numa conversa só. No WhatsApp.'],
+    [10.2, 11.4, 'Você manda do seu jeito:'],
+    [11.4, 13.4, 'texto, foto ou áudio.'],
+    [13.8, 15.9, 'E eu organizo tudo pra você.'],
+    [16.4, 18.4, 'Mandou "gastei 150 de gasolina"?'],
+    [18.6, 20.0, 'Eu confirmo o valor...'],
+    [20.1, 22.2, 'e anoto no carro certo.'],
+  ],
+};
+window.T = T;
+const ICON = 'icon-512.png';
+const S = (p) => `<svg viewBox="0 0 24 24">${p}</svg>`;
+const IC = {
+  fuel: S('<path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17"/><path d="M3 11h12"/><path d="M15 8h2a2 2 0 0 1 2 2v7a2 2 0 0 0 4 0V9l-3-3"/>'),
+  doc: S('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>'),
+  gauge: S('<circle cx="12" cy="13" r="8"/><path d="M12 13l4-3M5 13h1M18 13h1M12 6v1"/>'),
+  wrench: S('<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/>'),
+  msg: S('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),
+  cam: S('<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>'),
+  mic: S('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4"/>'),
+  chat: S('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>'),
+};
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+let h = '';
+
+// ---------- CENA 1: gancho
+const P = [
+  {x: 330, y: 700, r: '-6deg', ic: IC.fuel, t: 'Gasto', s: 'onde anotei?'},
+  {x: 720, y: 900, r: '5deg', ic: IC.doc, t: 'Nota da oficina', s: 'sumiu...'},
+  {x: 360, y: 1100, r: '4deg', ic: IC.gauge, t: 'Quilometragem', s: 'quanto tá?'},
+  {x: 730, y: 1290, r: '-5deg', ic: IC.wrench, t: 'Revisão', s: 'passou?'},
+];
+const HUBX = 540, HUBY = 1000;
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="hd c" style="top:250px">${words('Seu carro te', 0, .09)}<br>${neonWords('dá trabalho?', .27, .09)}</div>
+  ${P.map((p, i) => `<div class="prob" style="left:${p.x}px;top:${p.y}px;--r:${p.r};--dx:${HUBX - p.x}px;--dy:${HUBY - p.y}px;animation:${an([A('pop', .5, T.probs[i], BOUNCE), A('fly', .55, T.s1[1] - .35 + i * .04, 'cubic-bezier(.6,0,.8,.4)', 'forwards')])}">
+     <div class="ic">${p.ic}</div><div>${p.t}<small>${p.s}</small></div></div>`).join('')}
+</div></div>`;
+
+// ---------- CENA 2: tudo numa conversa
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:250px"><div class="eyebrow" style="animation:${A('fade', .5, T.s2[0] + .2)}">COM O JARVYS</div>${words('Tudo numa', T.s2[0] + .35, .1)}<br>${neonWords('conversa só.', T.s2[0] + .6, .1)}</div>
+  <div class="ringx" style="left:${HUBX}px;top:${HUBY}px;animation:${A('ring', 1.4, T.s2[0] + .35, 'ease-out')}"></div>
+  <div class="ringx" style="left:${HUBX}px;top:${HUBY}px;animation:${A('ring', 1.4, T.s2[0] + .85, 'ease-out')}"></div>
+  <div class="hub" style="left:${HUBX}px;top:${HUBY}px;animation:${A('pop', .7, T.s2[0] + .1, BOUNCE)}"><img src="${ICON}"></div>
+  <div class="wa" style="animation:${A('up', .5, T.wa)}">${IC.chat}No WhatsApp</div>
+</div></div>`;
+
+// ---------- CENA 3: texto, foto ou audio
+const INS = [{y: 760, ic: IC.msg, t: 'texto'}, {y: 1000, ic: IC.cam, t: 'foto'}, {y: 1240, ic: IC.mic, t: 'áudio'}];
+const H3X = 690;
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd" style="top:250px"><div class="eyebrow" style="animation:${A('fade', .5, T.s3[0] + .2)}">DO SEU JEITO</div>${words('Você manda', T.s3[0] + .3, .1)}<br>${neonWords('como quiser.', T.s3[0] + .55, .1)}</div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920" fill="none" stroke="#3ac7ff" stroke-width="5" stroke-linecap="round" opacity=".75">
+    ${INS.map((p, i) => `<path d="M330 ${p.y} C450 ${p.y} 480 1000 ${H3X - 150} 1000" stroke-dasharray="500" style="animation:${A('dash', .6, T.ins[i] + .15)}"/>`).join('')}
+  </svg>
+  ${INS.map((p, i) => `<div class="abs" style="left:330px;top:${p.y}px;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#bff0ff;box-shadow:0 0 22px #3ac7ff;offset-path:path('M0 0 C120 0 150 ${1000 - p.y} ${H3X - 480} ${1000 - p.y}');animation:${A('travel', .8, T.ins[i] + .45, 'ease-in-out')}"></div>`).join('')}
+  ${INS.map((p, i) => `<div class="inp" style="left:70px;top:${p.y - 50}px;animation:${A('popb', .5, T.ins[i], BOUNCE)}">${p.ic}${p.t}</div>`).join('')}
+  <div class="hub" style="left:${H3X}px;top:1000px;width:260px;height:260px;animation:${A('pop', .6, T.s3[0] + .15, BOUNCE)}"><img src="${ICON}" style="width:200px;height:200px"></div>
+</div></div>`;
+
+// ---------- CENA 4: eu organizo
+const OUTS = [{t: 'Gastos', c: 'var(--neon)'}, {t: 'Notas', c: 'var(--ok)'}, {t: 'Revisão', c: 'var(--warn)'}, {t: 'Saúde do carro', c: 'var(--bad)'}];
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:250px"><div class="eyebrow" style="animation:${A('fade', .5, T.s4[0] + .15)}">E EU ORGANIZO</div>${words('Tudo no', T.s4[0] + .25, .1)}<br>${neonWords('lugar certo.', T.s4[0] + .45, .1)}</div>
+  <div class="hub" style="left:540px;top:720px;width:220px;height:220px;animation:${A('pop', .5, T.s4[0] + .1, BOUNCE)}"><img src="${ICON}" style="width:170px;height:170px"></div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920" fill="none" stroke="#3ac7ff" stroke-width="4" stroke-linecap="round" opacity=".55">
+    ${OUTS.map((o, i) => `<path d="M540 830 L540 ${900 + i * 130}" stroke-dasharray="500" style="animation:${A('dash', .4, T.outs[i] - .15)}"/>`).join('')}
+  </svg>
+  ${OUTS.map((o, i) => `<div class="abs" style="left:0;right:0;top:${885 + i * 130}px;display:flex;justify-content:center"><div class="pill" style="animation:${A('popb', .45, T.outs[i], BOUNCE)}"><i style="background:${o.c};color:${o.c}"></i>${o.t}</div></div>`).join('')}
+</div></div>`;
+
+// ---------- CENA 5: conversa real
+const M = T.msgs;
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd" style="top:220px;font-size:84px"><div class="eyebrow" style="animation:${A('fade', .5, T.s5[0] + .15)}">NO WHATSAPP</div>${words('Anotado', T.s5[0] + .25, .1)}${neonWords('na hora.', T.s5[0] + .4, .1)}</div>
+  <div class="chat" style="animation:${A('up', .6, T.s5[0] + .1)}">
+    <div class="chead"><img src="${ICON}"><div><b>Jarvys</b><small>online</small></div></div>
+    <div class="msgs">
+      <div class="m u" style="animation:${A('popb', .45, M.u1, BOUNCE)}">gastei 150 de gasolina</div>
+      <div class="m b typing" style="position:absolute;left:42px;top:325px;animation:${an([A('popb', .3, M.typing, BOUNCE), A('hide', .05, M.b1, 'linear', 'forwards')])}"><span></span><span></span><span></span></div>
+      <div class="m b" style="animation:${A('popb', .45, M.b1, BOUNCE)}">Anotar <b>R$&nbsp;150,00</b> em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+      <div class="m u" style="animation:${A('popb', .45, M.u2, BOUNCE)}">sim</div>
+      <div class="m b" style="display:flex;align-items:center;gap:18px;animation:${A('popb', .45, M.b2, BOUNCE)}">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#41d686"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#061223" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" style="animation:${A('check', .4, M.b2 + .2)}"/></svg>Anotado!</div>
+    </div>
+  </div>
+  <div class="abs" style="left:0;right:0;top:1360px;text-align:center;font-size:26px;color:var(--muted);animation:${A('fade', .4, M.b1)}">Valores de exemplo.</div>
+</div></div>`;
+
+// ---------- CENA 6: fecho
+const E = T.end;
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="ringx" style="left:540px;top:560px;width:260px;height:260px;animation:${A('ring', 1.6, T.s6[0] + .3, 'ease-out')}"></div>
+  <div class="hub" style="left:540px;top:560px;width:260px;height:260px;animation:${A('pop', .7, T.s6[0] + .1, BOUNCE)}"><img src="${ICON}" style="width:200px;height:200px"></div>
+  <div class="hd c" style="top:780px;font-size:74px;line-height:1.12">${words('O cuidado do seu carro', E.words, .16)}<br>${neonWords('começa numa conversa.', E.words + 1.2, .2)}</div>
+  <div class="abs" style="left:0;right:0;top:1130px;text-align:center;animation:${A('popb', .55, E.btn, BOUNCE)}"><span class="btn" style="--sw:${E.btn + .6}s">Teste 30 dias grátis</span></div>
+  <div class="abs" style="left:0;right:0;top:1320px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, E.url)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1415px;text-align:center;font-size:32px;color:var(--muted);animation:${A('fade', .5, E.url + .4)}">Sem cartão. Depois, R$&nbsp;29,90 por carro, uma vez só.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+// legendas: palavra ativa em neon, tempo proporcional ao tamanho da palavra
+const capEl = document.getElementById('cap');
+window.setT = (t) => {
+  const c = T.caps.find(([a, b]) => t >= a && t < b);
+  if (!c) { capEl.innerHTML = ''; return; }
+  const [a, b, txt] = c; const ws = txt.split(' ');
+  const tot = ws.reduce((s, w) => s + w.length + 2, 0); let acc = a; const speak = (b - a) * .92;
+  capEl.innerHTML = ws.map((w) => { const d = speak * (w.length + 2) / tot; const st = acc; acc += d;
+    const cls = t < st ? 'off' : (t < st + d ? 'on' : ''); return `<span class="${cls}">${w}</span>`; }).join('');
+};
+</script></body></html>
