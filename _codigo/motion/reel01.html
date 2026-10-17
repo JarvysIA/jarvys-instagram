@@ -85,35 +85,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-f
 </div>
 <script>
 // ======= LINHA DO TEMPO (segundos). Ajustar aqui quando a narração chegar. =======
-const T = window.T || {
-  total: 31,
-  s1: [0, 5.3],      // gancho: seu carro te dá trabalho?
-  probs: [2.1, 2.75, 3.55, 4.35],
-  s2: [5.3, 10.0],   // tudo numa conversa so, no WhatsApp
-  wa: 8.7,
-  s3: [10.0, 13.7],  // texto, foto ou audio
-  ins: [11.55, 12.25, 12.95],
-  s4: [13.7, 16.3],  // eu organizo
-  outs: [14.25, 14.6, 14.95, 15.3],
-  s5: [16.3, 22.5],  // conversa
-  msgs: {u1: 16.7, typing: 18.0, b1: 18.7, u2: 20.4, b2: 21.2},
-  s6: [22.5, 31],    // fecho
-  end: {words: 22.7, btn: 25.9, url: 26.9},
-  // legendas: [inicio, fim, texto]
-  caps: [
-    [0.3, 1.9, 'Seu carro te dá trabalho?'],
-    [2.0, 4.0, 'Gasto, nota da oficina,'],
-    [4.0, 5.2, 'quilometragem, revisão...'],
-    [5.6, 7.9, 'Com o Jarvys, tudo isso fica'],
-    [7.9, 9.7, 'numa conversa só. No WhatsApp.'],
-    [10.2, 11.4, 'Você manda do seu jeito:'],
-    [11.4, 13.4, 'texto, foto ou áudio.'],
-    [13.8, 15.9, 'E eu organizo tudo pra você.'],
-    [16.4, 18.4, 'Mandou "gastei 150 de gasolina"?'],
-    [18.6, 20.0, 'Eu confirmo o valor...'],
-    [20.1, 22.2, 'e anoto no carro certo.'],
-  ],
-};
+const T = window.T || {"total": 33.0, "voiceOffset": 0.15, "s1": [0, 5.6], "probs": [1.99, 2.47, 3.43, 4.39], "s2": [5.6, 10.7], "wa": 9.25, "s3": [10.7, 15.0], "ins": [12.87, 13.35, 13.87], "s4": [15.0, 17.6], "outs": [15.55, 15.9, 16.25, 16.6], "s5": [17.6, 24.2], "msgs": {"u1": 18.0, "typing": 19.65, "b1": 20.45, "u2": 21.65, "b2": 22.4}, "s6": [24.2, 33.0], "end": {"w1": 24.54, "w1step": 0.2, "w2": 25.59, "w2step": 0.32, "btn": 27.75, "url": 29.5}, "words": [["Seu", 0.23, 0.39], ["carro", 0.47, 0.59], ["te", 0.63, 0.71], ["dá", 0.75, 0.87], ["trabalho?", 0.91, 1.45], ["Gasto,", 1.99, 2.43], ["nota", 2.47, 2.71], ["da", 2.75, 2.79], ["oficina,", 2.87, 3.39], ["quilometragem,", 3.43, 4.35], ["revisão...", 4.39, 5.1], ["Com", 6.07, 6.23], ["o", 6.27, 6.31], ["Jarvys,", 6.39, 7.11], ["tudo", 7.35, 7.51], ["isso", 7.55, 7.67], ["fica", 7.75, 7.91], ["numa", 7.99, 8.11], ["conversa", 8.15, 8.55], ["só.", 8.63, 8.95], ["No", 9.35, 9.43], ["WhatsApp.", 9.75, 10.11], ["Você", 11.27, 11.51], ["manda", 11.63, 11.75], ["do", 11.83, 11.91], ["seu", 11.95, 12.07], ["jeito:", 12.15, 12.71], ["texto,", 12.87, 13.31], ["foto", 13.35, 13.67], ["ou", 13.75, 13.83], ["áudio.", 13.87, 14.36], ["E", 15.27, 15.35], ["eu", 15.39, 15.43], ["organizo", 15.59, 15.91], ["tudo", 15.99, 16.23], ["pra", 16.31, 16.39], ["você.", 16.43, 16.9], ["Mandou", 17.99, 18.31], ["\"gastei", 18.35, 18.67], ["150", 18.71, 18.87], ["de", 18.9, 19.35], ["gasolina\"?", 19.43, 19.99], ["Eu", 20.39, 20.55], ["confirmo", 20.75, 20.98], ["o", 21.0, 21.03], ["valor...", 21.27, 21.83], ["e", 22.15, 22.19], ["anoto", 22.23, 22.47], ["no", 22.55, 22.63], ["carro", 22.71, 22.87], ["certo.", 22.95, 23.35]], "breaks": [0, 5, 9, 11, 17, 22, 27, 31, 37, 42, 46]};
 window.T = T;
 const ICON = 'icon-512.png';
 const S = (p) => `<svg viewBox="0 0 24 24">${p}</svg>`;
@@ -206,21 +178,24 @@ const E = T.end;
 h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
   <div class="ringx" style="left:540px;top:560px;width:260px;height:260px;animation:${A('ring', 1.6, T.s6[0] + .3, 'ease-out')}"></div>
   <div class="hub" style="left:540px;top:560px;width:260px;height:260px;animation:${A('pop', .7, T.s6[0] + .1, BOUNCE)}"><img src="${ICON}" style="width:200px;height:200px"></div>
-  <div class="hd c" style="top:780px;font-size:74px;line-height:1.12">${words('O cuidado do seu carro', E.words, .16)}<br>${neonWords('começa numa conversa.', E.words + 1.2, .2)}</div>
+  <div class="hd c" style="top:780px;font-size:74px;line-height:1.12">${words('O cuidado do seu carro', E.w1, E.w1step)}<br>${neonWords('começa numa conversa.', E.w2, E.w2step)}</div>
   <div class="abs" style="left:0;right:0;top:1130px;text-align:center;animation:${A('popb', .55, E.btn, BOUNCE)}"><span class="btn" style="--sw:${E.btn + .6}s">Teste 30 dias grátis</span></div>
   <div class="abs" style="left:0;right:0;top:1320px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, E.url)}">jarvys.com.br</div>
   <div class="abs" style="left:0;right:0;top:1415px;text-align:center;font-size:32px;color:var(--muted);animation:${A('fade', .5, E.url + .4)}">Sem cartão. Depois, R$&nbsp;29,90 por carro, uma vez só.</div>
 </div></div>`;
 document.getElementById('scenes').innerHTML = h;
 
-// legendas: palavra ativa em neon, tempo proporcional ao tamanho da palavra
+// legendas: cada palavra aparece quando ele fala e fica neon enquanto fala
 const capEl = document.getElementById('cap');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
 window.setT = (t) => {
-  const c = T.caps.find(([a, b]) => t >= a && t < b);
-  if (!c) { capEl.innerHTML = ''; return; }
-  const [a, b, txt] = c; const ws = txt.split(' ');
-  const tot = ws.reduce((s, w) => s + w.length + 2, 0); let acc = a; const speak = (b - a) * .92;
-  capEl.innerHTML = ws.map((w) => { const d = speak * (w.length + 2) / tot; const st = acc; acc += d;
-    const cls = t < st ? 'off' : (t < st + d ? 'on' : ''); return `<span class="${cls}">${w}</span>`; }).join('');
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t >= T.s6[0]) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
 };
 </script></body></html>
