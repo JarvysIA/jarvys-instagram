@@ -6,3 +6,4 @@
 - Captura com transparência: `node cap_png.mjs realista.html fr_r 24`.
 - Efeitos: `python3 sfx_real.py timeline.json sfx.wav`. Trilha: trilha-01 (já paga).
 - Montagem: clipe convertido para 30 fps e esticado com o último quadro até 24 s, depois overlay dos PNG.
+- Voz do personagem: a voz gerada pelo Kling soou gringa. Trocada por TTS da voz Talis (E9a8LlXPNWtyvvSoZzrb, eleven_v4, 88 créditos) em `fala-personagem-talis.mp3`, encaixada nos tempos da boca ("Jarvys" em 4,30 s; resto em 5,50 s com atempo 0,88) e com a ambiência do próprio clipe por baixo (trecho 2,0 a 3,8 s em loop). Regra: nos próximos vídeos realistas, gerar a fala sempre com voz brasileira da ElevenLabs (nunca a do Jhony, que é o narrador) e não confiar no áudio do modelo de vídeo.
