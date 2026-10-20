@@ -1,0 +1,195 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(inter-latin-400-normal.woff);font-weight:400}
+@font-face{font-family:Inter;src:url(inter-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:Inter;src:url(inter-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:Inter;src:url(inter-latin-700-normal.woff);font-weight:700}
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+@font-face{font-family:Orbitron;src:url(orbitron-latin-700-normal.woff);font-weight:700}
+:root{--bg:#0c192a;--card:#172537;--fg:#f0f6fc;--muted:#97a7b7;--neon:#3ac7ff;--on:#061223;--soft:rgba(58,199,255,.15);--border:rgba(40,61,78,.95);--ok:#41d686;--warn:#f9c718;--bad:#f94144}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter;color:var(--fg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+.glow{position:absolute;left:-200px;top:300px;width:1480px;height:1480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(58,199,255,.22),rgba(58,199,255,.06) 40%,rgba(12,25,42,0) 65%);animation:breath 6s ease-in-out infinite alternate}
+@keyframes breath{from{transform:scale(1);opacity:.85}to{transform:scale(1.08);opacity:1}}
+.grid{position:absolute;inset:-100px;background-image:radial-gradient(rgba(58,199,255,.20) 2px,transparent 2.6px);background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(circle at 50% 48%,#000 0,transparent 62%);animation:drift 32s linear both}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-162px)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(3,8,16,.65) 100%);pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0}
+.cam{position:absolute;inset:0}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.07);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes sceneOut{from{opacity:1;transform:none;filter:blur(0)}to{opacity:0;transform:scale(.94);filter:blur(12px)}}
+@keyframes ken{from{transform:scale(1)}to{transform:scale(1.045)}}
+@keyframes up{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes word{from{opacity:0;transform:translateY(70%) rotate(3deg);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(var(--r,0deg))}60%{opacity:1;transform:translate(-50%,-50%) scale(1.1) rotate(var(--r,0deg))}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg))}}
+@keyframes popb{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes fly{to{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.15) rotate(0deg)}}
+@keyframes wob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes ring{from{transform:translate(-50%,-50%) scale(.9);opacity:.8}to{transform:translate(-50%,-50%) scale(2.1);opacity:0}}
+@keyframes dash{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes sweep{from{transform:translateX(-120%) skewX(-20deg)}to{transform:translateX(220%) skewX(-20deg)}}
+@keyframes dots{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+@keyframes hide{to{opacity:0}}
+@keyframes check{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+.hd{position:absolute;left:80px;right:80px;top:250px;font-weight:800;font-size:100px;line-height:1.02;letter-spacing:-3px}
+.hd .w{display:inline-block;margin-right:24px;opacity:0}
+.c{text-align:center}
+.neon{color:var(--neon);text-shadow:0 0 30px rgba(58,199,255,.6)}
+.eyebrow{font-family:Orbitron;font-size:28px;letter-spacing:8px;color:var(--neon);margin-bottom:26px;opacity:0}
+.abs{position:absolute}
+.prob{position:absolute;display:flex;align-items:center;gap:24px;padding:30px 40px;border-radius:34px;background:rgba(23,37,55,.92);border:3px solid var(--border);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);opacity:0;font-size:46px;font-weight:700;white-space:nowrap}
+.prob .ic{width:88px;height:88px;border-radius:24px;background:rgba(249,199,24,.14);display:flex;align-items:center;justify-content:center}
+.prob svg{width:52px;height:52px;stroke:var(--warn);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.prob small{display:block;font-size:29px;font-weight:500;color:var(--muted);margin-top:2px}
+.hub{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);
+  box-shadow:0 0 90px rgba(58,199,255,.6),inset 0 0 40px rgba(58,199,255,.25);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);opacity:0}
+.hub img{width:232px;height:232px;border-radius:50%}
+.ringx{position:absolute;width:300px;height:300px;border-radius:50%;border:4px solid var(--neon);opacity:0}
+.pill{display:flex;align-items:center;gap:18px;padding:24px 40px;border-radius:999px;font-size:44px;font-weight:700;background:var(--card);border:3px solid var(--border);opacity:0;white-space:nowrap}
+.pill i{width:22px;height:22px;border-radius:50%;display:block;box-shadow:0 0 14px currentColor}
+.inp{position:absolute;display:flex;align-items:center;gap:16px;padding:22px 30px;border-radius:28px;font-size:36px;font-weight:700;background:var(--soft);color:var(--neon);border:3px solid rgba(58,199,255,.35);opacity:0}
+.inp svg,.wa svg{width:44px;height:44px;stroke:var(--neon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wa{position:absolute;left:50%;top:1300px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:20px 36px;border-radius:999px;background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:38px;font-weight:700;opacity:0}
+.wa svg{stroke:#7ff0b3}
+.chat{position:absolute;left:80px;right:80px;top:470px;background:var(--card);border:3px solid var(--border);border-radius:52px;padding:42px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.chead{display:flex;align-items:center;gap:22px;padding-bottom:28px;border-bottom:3px solid var(--border)}
+.chead img{width:90px;height:90px;border-radius:50%}
+.chead b{font-size:38px;display:block}.chead small{font-size:27px;color:var(--ok)}
+.msgs{display:flex;flex-direction:column;gap:24px;margin-top:32px;min-height:600px}
+.m{max-width:780px;padding:24px 32px;font-size:42px;line-height:1.38;border-radius:38px;opacity:0}
+.u{align-self:flex-end;background:rgba(58,199,255,.2);border-bottom-right-radius:8px;transform-origin:bottom right}
+.b{align-self:flex-start;background:rgba(12,25,42,.8);border:3px solid var(--border);border-bottom-left-radius:8px;transform-origin:bottom left}
+.typing{display:flex;gap:12px;align-items:center;height:56px}
+.typing span{width:16px;height:16px;border-radius:50%;background:var(--muted);animation:dots 1s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.btn{display:inline-block;position:relative;overflow:hidden;background:var(--neon);color:var(--on);font-size:52px;font-weight:800;padding:36px 76px;border-radius:999px;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 26px 90px -10px rgba(58,199,255,.75)}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-120%) skewX(-20deg);animation:sweep 1.4s ease-in-out var(--sw,0s) 2}
+/* legenda */
+#cap{position:absolute;left:70px;right:70px;top:1445px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px;font-size:54px;font-weight:800;line-height:1.25;letter-spacing:-.5px;text-align:center}
+#cap span{color:#fff;opacity:.98;text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 24px rgba(0,0,0,.55);transition:none}
+#cap span.on{color:var(--neon);text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 26px rgba(58,199,255,.6)}
+#cap span.off{opacity:0}
+
+.phone{position:absolute;left:50%;transform:translateX(-50%);width:600px;border-radius:56px;border:10px solid #22344a;background:#000;overflow:hidden;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 60px 160px -30px rgba(58,199,255,.55);opacity:0}
+.crop{position:relative;background-image:url(prova-uno.jpg);background-repeat:no-repeat;border-radius:28px;box-shadow:0 30px 90px -20px rgba(0,0,0,.7)}
+.real{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:rgba(249,65,68,.14);border:3px solid rgba(249,65,68,.65);color:#ff8a8c;font-family:Orbitron;font-size:28px;letter-spacing:5px;font-weight:700}
+.real i{width:18px;height:18px;border-radius:50%;background:#f94144;box-shadow:0 0 16px #f94144;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+@keyframes scan{from{top:0}to{top:100%}}
+@keyframes zoomIn{from{transform:scale(.55);opacity:0;filter:blur(10px)}to{transform:none;opacity:1;filter:blur(0)}}
+@keyframes slideUp{from{opacity:0;transform:translate(-50%,180px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes grow{from{width:0}to{width:var(--w)}}
+.km{font-family:Orbitron;font-weight:700;font-size:118px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.7);letter-spacing:2px}
+.lbl{font-family:Orbitron;font-size:26px;letter-spacing:6px;color:var(--muted)}
+.notif{position:absolute;left:90px;right:90px;display:flex;gap:26px;align-items:center;padding:30px 34px;border-radius:36px;background:rgba(23,37,55,.96);border:3px solid rgba(58,199,255,.55);box-shadow:0 40px 110px -20px rgba(58,199,255,.5);opacity:0}
+.notif img{width:96px;height:96px;border-radius:24px}
+.notif b{font-size:38px;display:block}.notif span{font-size:31px;color:var(--muted)}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+// ======= LINHA DO TEMPO (segundos, já com o atraso da voz de 0,4 s) =======
+const VO = 0.4;
+const W0 = [["Sem",0,0.24],["filtro:",0.32,1.12],["essa",1.24,1.36],["conversa",1.44,1.88],["é",1.92,1.96],["real.",2,2.68],["Um",2.96,3.04],["usuário",3.12,3.52],["com",3.6,3.68],["um",3.72,3.76],["Fiat",3.84,4.16],["Uno",4.24,4.56],["mandou",4.64,5.04],["só",5.12,5.28],["a",5.36,5.44],["foto",5.56,5.68],["do",5.76,5.8],["painel.",5.84,6.32],["Eu",6.8,6.88],["li",6.96,7.04],["a",7.08,7.12],["quilometragem",7.2,7.76],["na",7.84,7.92],["foto...",8,8.8],["e",8.84,8.88],["perguntei",8.96,9.52],["antes",9.64,9.76],["de",9.8,9.84],["anotar.",9.88,10.56],["Ele",10.8,10.88],["respondeu",10.96,11.44],["\"sim\".",11.76,12.16],["E",12.56,12.6],["pronto:",12.64,13.28],["quilometragem",13.36,14],["em",14.08,14.16],["dia.",14.28,14.48],["Quando",14.88,15.04],["a",15.067,15.093],["revisão",15.12,15.44],["chegar",15.48,15.68],["perto,",15.76,16.24],["eu",16.32,16.4],["aviso.",16.48,16.88],["Faz",17.44,17.6],["o",17.68,17.72],["teste",17.76,18],["com",18.04,18.08],["o",18.12,18.16],["seu",18.2,18.32],["carro:",18.4,18.88],["são",19,19.12],["trinta",19.2,19.44],["dias",19.52,19.76],["grátis.",19.84,20.56]];
+const T = {total: 24.5, s1:[0,3.3], s2:[3.3,7.0], s3:[7.0,11.1], s4:[11.1,15.2], s5:[15.2,17.7], s6:[17.7,24.5],
+  words: W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]),
+  breaks: [0, 6, 13, 18, 24, 29, 32, 37, 44, 51]};
+T.km0 = 7.6; T.km1 = 9.0; T.ask = 9.35; T.sim = 11.9; T.ok = 13.0; T.bell = 15.5; T.btn = 21.2; T.url = 22.2;
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+// recorte do print real (591x1280): x,y,w,h em px do print, escala s
+const crop = (x, y, w, h, s, st='') => `<div class="crop" style="width:${w*s}px;height:${h*s}px;background-size:${591*s}px ${1280*s}px;background-position:${-x*s}px ${-y*s}px;${st}"></div>`;
+let h = '';
+
+// ---------- CENA 1: gancho (escrito desde o primeiro quadro)
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="abs" style="left:0;right:0;top:250px;text-align:center"><span class="real"><i></i>PRINT REAL</span></div>
+  <div class="hd c" style="top:400px;font-size:150px;letter-spacing:-5px">${still('Sem')} ${still('filtro.','neon')}</div>
+  <div class="hd c" style="top:600px;font-size:74px;letter-spacing:-2px">${words('Essa conversa', 1.55, .12)}<br>${neonWords('aconteceu de verdade.', 2.1, .12)}</div>
+  <div class="phone" style="top:900px;height:470px;animation:${A('slideUp', .8, .5)}">${crop(0, 0, 591, 452, 1.0, 'border-radius:0')}</div>
+</div></div>`;
+
+// ---------- CENA 2: o print, a foto do painel
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:240px;font-size:84px"><div class="eyebrow" style="animation:${A('fade', .5, T.s2[0] + .15)}">FIAT UNO · USUÁRIO REAL</div>${words('Ele mandou só', T.s2[0] + .25, .1)}<br>${neonWords('a foto do painel.', T.s2[0] + .55, .1)}</div>
+  <div class="phone" style="top:560px;height:800px;animation:${A('slideUp', .7, T.s2[0] + .1)}">${crop(0, 30, 591, 740, 1.0, 'border-radius:0')}</div>
+</div></div>`;
+
+// ---------- CENA 3: li a km e perguntei
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:230px;font-size:84px"><div class="eyebrow" style="animation:${A('fade', .5, T.s3[0] + .15)}">EU LI NA FOTO</div>${words('E perguntei', T.s3[0] + .25, .1)}<br>${neonWords('antes de anotar.', T.s3[0] + .5, .1)}</div>
+  <div class="abs" style="left:0;right:0;top:500px;display:flex;justify-content:center">
+    <div style="animation:${A('zoomIn', .7, T.s3[0] + .2)};position:relative">${crop(355, 415, 130, 100, 4.2, 'border:4px solid rgba(58,199,255,.7)')}
+      <div class="abs" style="left:0;right:0;height:6px;background:linear-gradient(90deg,transparent,#3ac7ff,transparent);box-shadow:0 0 24px #3ac7ff;animation:${A('scan', .9, T.km0 - .5, 'ease-in-out')},${A('hide', .2, T.km1, 'linear', 'forwards')}"></div>
+    </div>
+  </div>
+  <div class="abs" style="left:0;right:0;top:960px;text-align:center;animation:${A('up', .5, T.km0)}"><div class="lbl">LI NO PAINEL</div><div class="km" id="kmv">127.000</div></div>
+  <div class="abs" style="left:0;right:0;top:1170px;display:flex;justify-content:center"><div style="animation:${A('popb', .5, T.ask, BOUNCE)}">${crop(15, 762, 463, 156, 1.75)}</div></div>
+</div></div>`;
+
+// ---------- CENA 4: sim, pronto
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:230px;font-size:84px"><div class="eyebrow" style="animation:${A('fade', .5, T.s4[0] + .15)}">ELE DISSE SIM</div>${words('E pronto:', T.s4[0] + .25, .1)}<br>${neonWords('km em dia.', T.s4[0] + .5, .1)}</div>
+  <div class="abs" style="right:90px;top:560px;animation:${A('popb', .45, T.sim, BOUNCE)}">${crop(400, 925, 175, 65, 2.2)}</div>
+  <div class="abs" style="left:0;right:0;top:760px;display:flex;justify-content:center"><div style="animation:${A('popb', .5, T.ok, BOUNCE)}">${crop(15, 998, 425, 92, 2.05)}</div></div>
+  <div class="abs" style="left:0;right:0;top:1050px;display:flex;justify-content:center;animation:${A('popb', .5, T.ok + .7, BOUNCE)}">
+   <div class="pill" style="opacity:1;font-size:46px"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#41d686"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#061223" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" style="animation:${A('check', .4, T.ok + 1.0)}"/></svg>Fiat Uno · 129.421 km</div></div>
+  <div class="abs" style="left:0;right:0;top:1180px;text-align:center;font-size:28px;color:var(--muted);animation:${A('fade', .4, T.ok + .9)}">Print real, sem edição na conversa.</div>
+</div></div>`;
+
+// ---------- CENA 5: revisão, eu aviso
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:230px;font-size:84px"><div class="eyebrow" style="animation:${A('fade', .5, T.s5[0] + .15)}">E DEPOIS?</div>${words('Revisão chegando?', T.s5[0] + .2, .1)}<br>${neonWords('Eu aviso.', T.s5[0] + .45, .12)}</div>
+  <div class="abs" style="left:110px;right:110px;top:640px"><div class="lbl" style="display:flex;justify-content:space-between"><span>KM ATUAL</span><span>PRÓXIMA REVISÃO</span></div>
+    <div style="margin-top:22px;height:30px;border-radius:99px;background:var(--card);border:3px solid var(--border);overflow:hidden"><div style="--w:86%;height:100%;border-radius:99px;background:linear-gradient(90deg,#41d686,#f9c718);box-shadow:0 0 24px rgba(249,199,24,.6);animation:${A('grow', 1.4, T.s5[0] + .3)}"></div></div></div>
+  <div class="notif" style="top:830px;animation:${A('popb', .55, T.bell, BOUNCE)}"><img src="${ICON}"><div><b>Jarvys</b><span>Sua revisão está chegando. Quer ver o que trocar? 🔧</span></div></div>
+  <div class="abs" style="left:0;right:0;top:1100px;text-align:center;font-size:26px;color:var(--muted);animation:${A('fade', .4, T.bell + .3)}">Imagem ilustrativa.</div>
+</div></div>`;
+
+// ---------- CENA 6: fecho
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="ringx" style="left:540px;top:540px;width:260px;height:260px;animation:${A('ring', 1.6, T.s6[0] + .3, 'ease-out')}"></div>
+  <div class="hub" style="left:540px;top:540px;width:260px;height:260px;animation:${A('pop', .7, T.s6[0] + .1, BOUNCE)}"><img src="${ICON}" style="width:200px;height:200px"></div>
+  <div class="hd c" style="top:760px;font-size:78px;line-height:1.1">${words('Faz o teste', T.s6[0] + .2, .12)}<br>${neonWords('com o seu carro.', T.s6[0] + .6, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1060px;text-align:center;animation:${A('popb', .55, T.btn, BOUNCE)}"><span class="btn" style="--sw:${T.btn + .6}s">Teste 30 dias grátis</span></div>
+  <div class="abs" style="left:0;right:0;top:1250px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, T.url)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1345px;text-align:center;font-size:32px;color:var(--muted);animation:${A('fade', .5, T.url + .4)}">Sem cartão. A IA que cuida do seu carro.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+const capEl = document.getElementById('cap');
+const kmEl = document.getElementById('kmv');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
+const fmt = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+window.setT = (t) => {
+  const p = Math.min(1, Math.max(0, (t - T.km0) / (T.km1 - T.km0)));
+  kmEl.textContent = fmt(127000 + (129421 - 127000) * (1 - Math.pow(1 - p, 3)));
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t < 0.3) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+</script></body></html>
