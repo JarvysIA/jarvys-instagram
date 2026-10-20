@@ -1,0 +1,228 @@
+<style>
+.step{display:flex;gap:28px;align-items:center;background:var(--card);border:3px solid var(--border);border-radius:34px;padding:30px 34px;margin-top:22px}
+.num{flex:none;width:90px;height:90px;border-radius:50%;background:var(--neon);color:var(--on);font-family:Orbitron;font-weight:700;font-size:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(58,199,255,.6)}
+.step b{font-size:40px;display:block}.step span{font-size:31px;color:var(--muted);display:block;margin-top:6px;line-height:1.35}
+/* feed 1080x1350 */
+.fd{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);padding:90px 90px 80px;display:flex;flex-direction:column}
+.fd .h{font-size:92px}
+.pg{font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:5px;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.wm.s{font-size:24px;letter-spacing:6px}.wm.s img{width:52px;height:52px}
+.big{font-family:Orbitron;font-weight:700;font-size:150px;color:var(--neon);text-shadow:0 0 50px rgba(58,199,255,.6);line-height:1}
+.box{background:var(--card);border:3px solid var(--border);border-radius:36px;padding:38px 42px}
+.box.ok{border-color:rgba(65,214,134,.7);background:rgba(65,214,134,.08)}
+.box.bad{border-color:rgba(249,65,68,.7);background:rgba(249,65,68,.08)}
+.k{font-size:30px;font-weight:700;letter-spacing:4px;font-family:Orbitron}
+.t2{font-size:40px;line-height:1.4;color:var(--fg)}
+.t3{font-size:34px;line-height:1.45;color:var(--muted)}
+.swipe{font-size:32px;font-weight:600;color:var(--neon);display:flex;align-items:center;gap:14px}
+.x{color:var(--bad)}.v{color:var(--ok)}
+.foot{font-size:26px;color:var(--muted)}
+</style>
+
+<!-- ============ 23/10 08h30 STORY 1 · Como usar ============ -->
+<div class="st" id="s23a">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">VOCÊ SABIA?</div>
+ <div class="z h" style="margin-top:26px">Antes de ir<br>na oficina,<br><span class="neon">me pergunta.</span></div>
+ <div class="z chat" style="margin-top:50px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">quanto custa a revisão?</div>
+   <div class="m b">Eu te passo uma estimativa de preço da próxima revisão do seu carro e mostro os itens que mais pesam na conta. 🔧</div>
+   <div class="m u">boa, assim eu chego sabendo</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Chegue na oficina sabendo o que é justo</div>
+</div>
+
+<!-- ============ 23/10 15h30 STORY 2 · Comece (link) ============ -->
+<div class="st" id="s23b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">HOJE ÀS 19H30</div>
+ <div class="z h" style="margin-top:26px">Sabe mandar<br>mensagem?<br><span class="neon">Já sabe me usar.</span></div>
+ <div class="z chips" style="margin-top:56px">
+  <div class="chip">⛽ "gastei 150 de gasolina"</div>
+  <div class="chip">📸 foto do painel</div>
+  <div class="chip">📄 foto da nota</div>
+  <div class="chip">🔧 "próxima revisão"</div>
+  <div class="chip">🎤 um áudio</div>
+ </div>
+ <div class="z" style="margin-top:70px;display:flex;justify-content:center"><div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div></div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 24/10 08h30 STORY 1 · Dr. Jarvys ============ -->
+<div class="st" id="s24a">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">DR. JARVYS</div>
+ <div class="z h" style="margin-top:26px">Qual óleo<br>o seu carro<br><span class="neon">usa mesmo?</span></div>
+ <div class="z chat" style="margin-top:50px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">qual óleo meu carro usa?</div>
+   <div class="m b">Eu olho a ficha técnica do seu carro e te digo o tipo de óleo indicado e quantos litros vão na troca. Sem chute. 🔧</div>
+  </div>
+ </div>
+ <div class="z p" style="margin-top:44px">Dúvida de carro? Pergunta do seu jeito, por texto, áudio ou foto.</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">No app, o Dr. Jarvys é grátis para sempre</div>
+</div>
+
+<!-- ============ 24/10 15h30 STORY 2 · Como usar (link) ============ -->
+<div class="st" id="s24b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">HOJE ÀS 19H30</div>
+ <div class="z h" style="margin-top:22px;font-size:84px">Digitou o<br>valor errado?<br><span class="neon">Relaxa.</span></div>
+ <div class="z chat" style="margin-top:36px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">errei, era 150</div>
+   <div class="m b">Corrigir o último gasto de R$ 105,00 para R$ 150,00? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b">Pronto, corrigido. ✅</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 23/10 12h15 CARROSSEL · 5 erros com o óleo ============ -->
+<div class="fd" id="c23-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">SALVE ESTE POST</div></div>
+ <div class="z big" style="margin-top:120px">5</div>
+ <div class="z h" style="margin-top:20px">erros com o óleo<br>que <span class="neon">saem caro.</span></div>
+ <div class="z t3" style="margin-top:40px">O óleo é o sangue do motor. Esses deslizes são comuns e fáceis de evitar.</div>
+ <div class="z swipe" style="margin-top:auto">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c23-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/5</div></div>
+ <div class="z box bad" style="margin-top:auto"><div class="k x">ERRO</div><div class="t2" style="margin-top:16px;font-size:64px;font-weight:800;line-height:1.15">Esperar a luz do óleo acender.</div></div>
+ <div class="z box ok" style="margin-top:34px"><div class="k v">O CERTO</div><div class="t2" style="margin-top:16px;font-size:46px">A luz do óleo avisa <b>falta de pressão</b>, não que chegou a hora da troca. Se ela acender rodando, pare em lugar seguro. A troca segue a km e o prazo do manual.</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c23-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/5</div></div>
+ <div class="z box bad" style="margin-top:auto"><div class="k x">ERRO</div><div class="t2" style="margin-top:16px;font-size:64px;font-weight:800;line-height:1.15">Olhar só a km e esquecer o tempo.</div></div>
+ <div class="z box ok" style="margin-top:34px"><div class="k v">O CERTO</div><div class="t2" style="margin-top:16px;font-size:46px">Carro que roda pouco também precisa trocar. O manual traz <b>dois limites</b>, km e meses: vale o que chegar primeiro.</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c23-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/5</div></div>
+ <div class="z box bad" style="margin-top:auto"><div class="k x">ERRO</div><div class="t2" style="margin-top:16px;font-size:64px;font-weight:800;line-height:1.15">Colocar o óleo que estiver na promoção.</div></div>
+ <div class="z box ok" style="margin-top:34px"><div class="k v">O CERTO</div><div class="t2" style="margin-top:16px;font-size:46px">Cada motor pede um tipo e uma viscosidade (aquele número tipo 5W30). Use o que a <b>ficha técnica</b> do seu carro indica.</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c23-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/5</div></div>
+ <div class="z box bad" style="margin-top:auto"><div class="k x">ERRO</div><div class="t2" style="margin-top:16px;font-size:64px;font-weight:800;line-height:1.15">Nunca conferir o nível entre as trocas.</div></div>
+ <div class="z box ok" style="margin-top:34px"><div class="k v">O CERTO</div><div class="t2" style="margin-top:16px;font-size:46px">De vez em quando, com o carro plano e o motor frio, puxe a vareta. O nível tem que ficar <b>entre o mínimo e o máximo</b>.</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c23-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/5</div></div>
+ <div class="z box bad" style="margin-top:auto"><div class="k x">ERRO</div><div class="t2" style="margin-top:16px;font-size:64px;font-weight:800;line-height:1.15">Perder a nota e não lembrar quando trocou.</div></div>
+ <div class="z box ok" style="margin-top:34px"><div class="k v">O CERTO</div><div class="t2" style="margin-top:16px;font-size:46px">Guarde a nota e anote a km da troca. Sem histórico, você não sabe quando é a próxima e o carro <b>vale menos</b> na venda.</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c23-7">
+ <div class="dots"></div><div class="g" style="left:-400px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">E EU AJUDO</div></div>
+ <div class="z h" style="margin-top:80px;font-size:84px">Deixa que<br><span class="neon">eu lembro.</span></div>
+ <div class="z" style="margin-top:30px">
+  <div class="step"><div class="num">📸</div><div><b>Foto da nota</b><span>eu leio, anoto e guardo</span></div></div>
+  <div class="step"><div class="num">🔧</div><div><b>"qual óleo meu carro usa?"</b><span>respondo pela ficha técnica</span></div></div>
+  <div class="step"><div class="num">⏰</div><div><b>Aviso da revisão</b><span>quando a km chega perto</span></div></div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700">Teste 30 dias grátis: <span class="neon">jarvys.com.br</span></div>
+</div>
+
+<!-- ============ 23/10 18h00 POST · argumento de preço ============ -->
+<div class="fd" id="p23">
+ <div class="dots"></div><div class="g" style="left:-300px;top:500px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div></div>
+ <div class="z lab" style="margin-top:90px;font-size:28px">FAZ A CONTA</div>
+ <div class="z box bad" style="margin-top:34px;display:flex;justify-content:space-between;align-items:center">
+  <div><div class="t2" style="font-weight:700">Esquecer de trocar o óleo</div><div class="t3" style="font-size:30px">motor batido</div></div>
+  <div style="font-size:72px;font-weight:800;white-space:nowrap" class="x">R$&nbsp;5.000</div>
+ </div>
+ <div class="z box ok" style="margin-top:28px;display:flex;justify-content:space-between;align-items:center;border-color:var(--neon);background:var(--soft);box-shadow:0 0 70px -10px rgba(58,199,255,.55)">
+  <div><div class="t2" style="font-weight:700">Jarvys Completo</div><div class="t3" style="font-size:30px">por carro, uma vez só</div></div>
+  <div style="font-size:72px;font-weight:800;white-space:nowrap" class="neon">R$&nbsp;29,90</div>
+ </div>
+ <div class="z h" style="margin-top:70px;font-size:76px">Eu te aviso antes<br>de virar <span class="neon">prejuízo.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="font-size:34px;font-weight:700">jarvys.com.br</div>
+  <div class="foot">Sem mensalidade · 30 dias grátis</div>
+ </div>
+</div>
+
+<!-- ============ 24/10 12h15 CARROSSEL · Tá caro? 5 perguntas ============ -->
+<div class="fd" id="c24-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">TÁ CARO?</div></div>
+ <div class="z big" style="margin-top:120px;font-size:120px">R$ ???</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">5 perguntas antes<br>de aprovar o<br><span class="neon">orçamento.</span></div>
+ <div class="z t3" style="margin-top:36px">Pra não pagar por peça que nem precisava trocar.</div>
+ <div class="z swipe" style="margin-top:auto">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c24-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">01</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">"Pode me passar<br>por escrito?"</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Orçamento no papel ou no WhatsApp, com cada peça e a mão de obra separadas. Fica fácil comparar e conferir depois.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c24-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">02</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">"Isso é da revisão<br>ou é extra?"</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">O manual diz o que trocar em cada revisão. O que passar disso é extra: pode ser necessário, mas merece explicação.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c24-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">03</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">"Me mostra o<br>desgaste?"</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Peça para ver a peça gasta ou uma foto dela. Mecânico de confiança mostra sem problema.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c24-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">04</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">"Dá pra esperar<br>a próxima?"</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Nem tudo é urgente. Pergunte o que precisa ser feito hoje e o que pode ficar para depois, sem risco.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c24-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">05</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">"Vai sair com<br>nota?"</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">A nota é sua garantia e o histórico do carro. Sem ela, fica difícil reclamar e o carro vale menos na venda.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c24-7">
+ <div class="dots"></div><div class="g" style="left:-400px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">E EU AJUDO</div></div>
+ <div class="z h" style="margin-top:70px;font-size:80px">Chegue na oficina<br><span class="neon">sabendo.</span></div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m u">próxima revisão</div>
+   <div class="m b">Eu mostro o que trocar nessa revisão do seu carro, com os links das peças. E se perguntar "quanto custa a revisão?", te passo uma estimativa. 🔧</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700">Teste 30 dias grátis: <span class="neon">jarvys.com.br</span></div>
+</div>
