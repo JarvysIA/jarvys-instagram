@@ -1,0 +1,229 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(inter-latin-400-normal.woff);font-weight:400}
+@font-face{font-family:Inter;src:url(inter-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:Inter;src:url(inter-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:Inter;src:url(inter-latin-700-normal.woff);font-weight:700}
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+@font-face{font-family:Orbitron;src:url(orbitron-latin-700-normal.woff);font-weight:700}
+:root{--bg:#0c192a;--card:#172537;--fg:#f0f6fc;--muted:#97a7b7;--neon:#3ac7ff;--on:#061223;--soft:rgba(58,199,255,.15);--border:rgba(40,61,78,.95);--ok:#41d686;--warn:#f9c718;--bad:#f94144}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter;color:var(--fg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.abs{position:absolute}
+/* fundo da parte animada: ultimo quadro do clipe, desfocado */
+#bgwrap{position:absolute;inset:0;opacity:0;overflow:hidden}
+#bgimg{position:absolute;inset:-60px;width:1200px;height:2040px;object-fit:cover}
+#bgtint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,25,42,.55),rgba(12,25,42,.88) 60%,rgba(12,25,42,.96));opacity:0}
+.glow{position:absolute;left:-200px;top:300px;width:1480px;height:1480px;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,rgba(58,199,255,.22),rgba(58,199,255,.06) 40%,rgba(12,25,42,0) 65%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(3,8,16,.55) 100%);pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0}
+.cam{position:absolute;inset:0}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.07);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes sceneOut{from{opacity:1;transform:none;filter:blur(0)}to{opacity:0;transform:scale(.94);filter:blur(12px)}}
+@keyframes ken{from{transform:scale(1)}to{transform:scale(1.04)}}
+@keyframes up{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes upbig{from{opacity:0;transform:translateY(420px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes fadeout{from{opacity:1}to{opacity:0}}
+@keyframes word{from{opacity:0;transform:translateY(70%) rotate(3deg);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}60%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes popb{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes ring{from{transform:translate(-50%,-50%) scale(.9);opacity:.8}to{transform:translate(-50%,-50%) scale(2.1);opacity:0}}
+@keyframes sweep{from{transform:translateX(-120%) skewX(-20deg)}to{transform:translateX(220%) skewX(-20deg)}}
+@keyframes dots{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+@keyframes hide{to{opacity:0}}
+@keyframes check{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+@keyframes bgIn{from{opacity:1;filter:blur(0) brightness(1);transform:scale(1)}to{opacity:1;filter:blur(26px) brightness(.75);transform:scale(1.08)}}
+@keyframes wave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes rowIn{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
+@keyframes flash{0%{background:rgba(58,199,255,.35)}100%{background:rgba(58,199,255,.10)}}
+.hd{position:absolute;left:80px;right:80px;top:250px;font-weight:800;font-size:96px;line-height:1.04;letter-spacing:-3px}
+.hd .w{display:inline-block;margin-right:22px;opacity:0}
+.c{text-align:center}
+.neon{color:var(--neon);text-shadow:0 0 30px rgba(58,199,255,.6)}
+.eyebrow{font-family:Orbitron;font-size:28px;letter-spacing:8px;color:var(--neon);margin-bottom:26px;opacity:0}
+/* selo da cena ilustrativa */
+.tag{position:absolute;left:56px;top:96px;display:flex;align-items:center;gap:14px;padding:14px 24px;border-radius:999px;background:rgba(6,18,35,.62);
+  border:2px solid rgba(255,255,255,.18);font-family:Orbitron;font-size:22px;letter-spacing:4px;color:#e8f4ff;backdrop-filter:blur(6px)}
+.tag i{width:12px;height:12px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon)}
+/* gancho em cima do clipe */
+.hook{position:absolute;left:70px;right:70px;top:1330px;font-weight:800;font-size:92px;line-height:1.04;letter-spacing:-3px;text-align:center;
+  text-shadow:0 4px 0 rgba(0,0,0,.25),0 0 40px rgba(0,0,0,.65)}
+.hook .w{display:inline-block;margin-right:20px;opacity:0}
+.hook .neon{text-shadow:0 0 30px rgba(58,199,255,.7),0 0 40px rgba(0,0,0,.6)}
+/* chat */
+.chat{position:absolute;left:70px;right:70px;top:430px;background:var(--card);border:3px solid var(--border);border-radius:52px;padding:42px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.chead{display:flex;align-items:center;gap:22px;padding-bottom:28px;border-bottom:3px solid var(--border)}
+.chead img{width:90px;height:90px;border-radius:50%}
+.chead b{font-size:38px;display:block}.chead small{font-size:27px;color:var(--ok)}
+.msgs{position:relative;display:flex;flex-direction:column;gap:24px;margin-top:32px;min-height:560px}
+.m{max-width:800px;padding:24px 32px;font-size:42px;line-height:1.38;border-radius:38px;opacity:0}
+.u{align-self:flex-end;background:rgba(58,199,255,.2);border-bottom-right-radius:8px;transform-origin:bottom right}
+.b{align-self:flex-start;background:rgba(12,25,42,.8);border:3px solid var(--border);border-bottom-left-radius:8px;transform-origin:bottom left}
+.typing{display:flex;gap:12px;align-items:center;height:56px}
+.typing span{width:16px;height:16px;border-radius:50%;background:var(--muted);animation:dots 1s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.audio{display:flex;align-items:center;gap:22px;padding:22px 30px}
+.audio .play{width:70px;height:70px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center;flex:none}
+.audio .bars{display:flex;align-items:center;gap:7px;height:60px}
+.audio .bars i{display:block;width:7px;border-radius:4px;background:#bfeeff;transform-origin:center}
+.audio small{font-size:30px;color:#cfe9f7;margin-left:6px}
+/* historico */
+.hist{position:absolute;left:70px;right:70px;top:640px;background:var(--card);border:3px solid var(--border);border-radius:48px;padding:38px 40px;box-shadow:0 50px 140px -30px rgba(58,199,255,.45);opacity:0}
+.hist h4{font-size:36px;font-weight:700;display:flex;justify-content:space-between;align-items:center;padding-bottom:22px;border-bottom:3px solid var(--border)}
+.hist h4 small{font-family:Orbitron;font-size:22px;letter-spacing:4px;color:var(--muted);font-weight:700}
+.row{display:flex;align-items:center;gap:22px;padding:24px 18px;border-radius:26px;margin-top:10px;opacity:0}
+.row .dot{width:64px;height:64px;border-radius:20px;display:flex;align-items:center;justify-content:center;flex:none}
+.row .dot svg{width:38px;height:38px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.row .t{flex:1;font-size:36px;font-weight:700}.row .t small{display:block;font-size:26px;color:var(--muted);font-weight:500;margin-top:2px}
+.row .v{font-size:36px;font-weight:800}
+.row.new{background:rgba(58,199,255,.12);box-shadow:inset 0 0 0 3px rgba(58,199,255,.45)}
+.chip{font-size:22px;font-weight:700;padding:6px 14px;border-radius:999px;margin-left:12px;vertical-align:middle}
+/* fecho */
+.hub{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);
+  box-shadow:0 0 90px rgba(58,199,255,.6),inset 0 0 40px rgba(58,199,255,.25);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);opacity:0}
+.hub img{width:232px;height:232px;border-radius:50%}
+.ringx{position:absolute;width:300px;height:300px;border-radius:50%;border:4px solid var(--neon);opacity:0}
+.btn{display:inline-block;position:relative;overflow:hidden;background:var(--neon);color:var(--on);font-size:52px;font-weight:800;padding:36px 76px;border-radius:999px;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 26px 90px -10px rgba(58,199,255,.75)}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-120%) skewX(-20deg);animation:sweep 1.4s ease-in-out var(--sw,0s) 2}
+/* legenda */
+#cap{position:absolute;left:70px;right:70px;top:1500px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px;font-size:56px;font-weight:800;line-height:1.25;letter-spacing:-.5px;text-align:center}
+#cap span{color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.4),0 0 26px rgba(0,0,0,.75)}
+#cap span.on{color:var(--neon);text-shadow:0 3px 0 rgba(0,0,0,.4),0 0 26px rgba(58,199,255,.6)}
+#cap span.off{opacity:0}
+#cap.him span.on{color:#ffe27a;text-shadow:0 3px 0 rgba(0,0,0,.4),0 0 26px rgba(0,0,0,.7)}
+</style></head>
+<body><div id="stage">
+<div id="bgwrap"><img id="bgimg" src="real/last.jpg"><div id="bgtint"></div><div class="glow"></div></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig" id="vig" style="opacity:0"></div>
+</div>
+<script>
+// ======= LINHA DO TEMPO (segundos) =======
+const T = window.T || {
+  total: 24.0,
+  clip: 9.0,                     // fim do clipe realista
+  him: [["Jarvys,", 4.34, 5.16], ["anota", 5.52, 5.9], ["200", 6.1, 6.62], ["de", 6.66, 6.74], ["gasolina.", 6.82, 7.62]],
+  hook: 0.25,
+  s2: [9.0, 14.9],              // chat
+  msgs: {u1: 9.55, typing: 10.75, b1: 11.75, u2: 13.0, b2: 13.75},
+  s3: [14.9, 17.65],            // historico
+  rows: [15.35, 15.6, 15.85, 16.1],
+  s4: [17.65, 24.0],            // fecho
+  end: {w1: 17.9, w1step: .12, w2: 18.35, w2step: .12, btn: 18.0, url: 19.4},
+  voiceOffset: 10.0,
+  words: [["Abasteceu?",0,0.92],["Manda",1.12,1.28],["um",1.32,1.36],["áudio.",1.44,2.08],["O",2.471,2.48],["Jarvys",2.56,2.88],["anota",2.96,3.28],["pra",3.36,3.44],["você,",3.48,4.08],["separa",4.16,4.64],["por",4.68,4.72],["categoria",4.8,5.36],["e",5.52,5.68],["guarda",5.8,6],["o",6.06,6.12],["histórico",6.18,6.48],["do",6.52,6.56],["seu",6.64,6.8],["carro.",6.92,7.52]],
+  breaks: [0, 4, 9, 12]
+};
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last) => `animation:${an([A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const S = (p, c) => `<svg viewBox="0 0 24 24" style="stroke:${c}">${p}</svg>`;
+const IC = {
+  fuel: '<path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17"/><path d="M3 11h12"/><path d="M15 8h2a2 2 0 0 1 2 2v7a2 2 0 0 0 4 0V9l-3-3"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/>',
+  drop: '<path d="M12 2.7l5.7 5.6a8 8 0 1 1-11.4 0z"/>',
+  doc: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
+};
+let h = '';
+
+// fundo: o ultimo quadro do clipe vira o fundo desfocado (transicao sem corte)
+const C = T.clip;
+document.getElementById('bgwrap').style.animation = A('bgIn', .7, C - .05, 'cubic-bezier(.4,0,.2,1)', 'forwards');
+document.getElementById('bgtint').style.animation = A('fade', .7, C + .05);
+document.querySelector('.glow').style.animation = A('fade', 1, C + .3);
+document.getElementById('vig').style.animation = A('fade', .6, C);
+
+// ---------- CENA 1: por cima do clipe
+h += `<div class="scene" style="opacity:1;animation:${A('fadeout', .35, C - .3, 'ease-in', 'forwards')}">
+  <div class="abs" style="left:0;right:0;top:0;height:640px;background:linear-gradient(180deg,rgba(6,14,26,.62),rgba(6,14,26,.25) 60%,rgba(6,14,26,0));animation:${A('fadeout', .6, 3.7, 'ease-in', 'forwards')}"></div>
+  <div class="abs" style="left:0;right:0;bottom:0;height:640px;background:linear-gradient(0deg,rgba(6,14,26,.55),rgba(6,14,26,0))"></div>
+  <div class="tag" style="animation:${A('fade', .4, .1)}"><i></i>CENA ILUSTRATIVA</div>
+  <div class="hook" style="animation:${A('fadeout', .4, 3.6, 'ease-in', 'forwards')}">${words('Abasteceu?', T.hook, .1)}<br>${neonWords('Fala com o Jarvys.', T.hook + .45, .11)}</div>
+</div>`;
+
+// ---------- CENA 2: chat
+const M = T.msgs;
+const bars = [.5, .8, .4, 1, .7, .9, .45, .75, 1, .55, .85, .4, .7, .95, .5, .65, .35, .8, .6, .45];
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:80px"><div class="eyebrow" style="animation:${A('fade', .5, T.s2[0] + .15)}">NO WHATSAPP DO JARVYS</div>${words('Anotado', T.s2[0] + .3, .1)}${neonWords('na hora.', T.s2[0] + .45, .1)}</div>
+  <div class="chat" style="animation:${A('upbig', .7, T.s2[0] + .05)}">
+    <div class="chead"><img src="${ICON}"><div><b>Jarvys</b><small>online</small></div></div>
+    <div class="msgs">
+      <div class="m u audio" style="animation:${A('popb', .45, M.u1, BOUNCE)}">
+        <div class="play"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#061223"/></svg></div>
+        <div class="bars">${bars.map((v, i) => `<i style="height:${Math.round(v * 56)}px;animation:wave .7s ease-in-out ${(M.u1 + i * .05).toFixed(2)}s 3 both"></i>`).join('')}</div>
+        <small>0:03</small>
+      </div>
+      <div class="m b typing" style="position:absolute;left:0;top:150px;animation:${an([A('popb', .3, M.typing, BOUNCE), A('hide', .05, M.b1, 'linear', 'forwards')])}"><span></span><span></span><span></span></div>
+      <div class="m b" style="animation:${A('popb', .45, M.b1, BOUNCE)}">Anotar <b>R$&nbsp;200,00</b> em Combustível no Fiat Argo? Responda sim para confirmar.</div>
+      <div class="m u" style="animation:${A('popb', .45, M.u2, BOUNCE)}">sim</div>
+      <div class="m b" style="display:flex;align-items:center;gap:18px;animation:${A('popb', .45, M.b2, BOUNCE)}">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#41d686"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#061223" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" style="animation:${A('check', .4, M.b2 + .2)}"/></svg>Anotado!</div>
+    </div>
+  </div>
+  <div class="abs" style="left:0;right:0;top:1420px;text-align:center;font-size:26px;color:var(--muted);animation:${A('fade', .4, M.b1)}">Valores de exemplo.</div>
+</div></div>`;
+
+// ---------- CENA 3: separa por categoria e guarda o historico
+const R = [
+  {ic: IC.fuel, c: '#3ac7ff', t: 'Combustível', s: 'hoje, por áudio', v: 'R$ 200,00', chip: ['Gastos', '#3ac7ff'], nw: 1},
+  {ic: IC.drop, c: '#41d686', t: 'Troca de óleo', s: '12/10, por foto da nota', v: 'R$ 260,00', chip: ['Notas', '#41d686']},
+  {ic: IC.fuel, c: '#3ac7ff', t: 'Combustível', s: '04/10, por texto', v: 'R$ 180,00', chip: ['Gastos', '#3ac7ff']},
+  {ic: IC.wrench, c: '#f9c718', t: 'Revisão dos 40 mil', s: 'daqui 1.200 km', v: 'em breve', chip: ['Revisão', '#f9c718']},
+];
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:250px;font-size:88px"><div class="eyebrow" style="animation:${A('fade', .5, T.s3[0] + .15)}">HISTÓRICO DO CARRO</div>${words('Tudo separado', T.s3[0] + .25, .1)}<br>${neonWords('e guardado.', T.s3[0] + .45, .1)}</div>
+  <div class="hist" style="animation:${A('up', .55, T.s3[0] + .1)}">
+    <h4>Fiat Argo<small>OUTUBRO</small></h4>
+    ${R.map((r, i) => `<div class="row ${r.nw ? 'new' : ''}" style="animation:${A('rowIn', .45, T.rows[i])}">
+      <div class="dot" style="background:${r.c}22">${S(r.ic, r.c)}</div>
+      <div class="t">${r.t}<span class="chip" style="background:${r.chip[1]}22;color:${r.chip[1]}">${r.chip[0]}</span><small>${r.s}</small></div>
+      <div class="v" style="${r.v === 'em breve' ? 'color:var(--warn);font-size:30px' : ''}">${r.v.replace(' ', '&nbsp;')}</div></div>`).join('')}
+  </div>
+  <div class="abs" style="left:0;right:0;top:1420px;text-align:center;font-size:26px;color:var(--muted);animation:${A('fade', .4, T.s3[0] + .6)}">Valores de exemplo.</div>
+</div></div>`;
+
+// ---------- CENA 4: fecho
+const E = T.end;
+h += `<div class="scene" style="${sceneStyle(T.s4, true)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="ringx" style="left:540px;top:520px;width:260px;height:260px;animation:${A('ring', 1.6, T.s4[0] + .3, 'ease-out')}"></div>
+  <div class="hub" style="left:540px;top:520px;width:260px;height:260px;animation:${A('pop', .7, T.s4[0] + .1, BOUNCE)}"><img src="${ICON}" style="width:200px;height:200px"></div>
+  <div class="hd c" style="top:730px;font-size:78px;line-height:1.1">${words('Abasteceu?', E.w1, E.w1step)}<br>${neonWords('Manda um áudio.', E.w2, E.w2step)}</div>
+  <div class="abs" style="left:0;right:0;top:1060px;text-align:center;animation:${A('popb', .55, E.btn, BOUNCE)}"><span class="btn" style="--sw:${E.btn + .6}s">Teste 30 dias grátis</span></div>
+  <div class="abs" style="left:0;right:0;top:1250px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, E.url)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1345px;text-align:center;font-size:32px;color:var(--muted);animation:${A('fade', .5, E.url + .4)}">Sem cartão. Depois, R$&nbsp;29,90 por carro, uma vez só.</div>
+  <div class="abs" style="left:0;right:0;top:1790px;text-align:center;font-size:24px;color:rgba(151,167,183,.75);animation:${A('fade', .5, E.url + .6)}">Cena inicial ilustrativa, criada com IA.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+// legendas: fala do motorista (amarelo) e narracao (neon), palavra por palavra
+const capEl = document.getElementById('cap');
+const VW = T.words.map(([w, a, b]) => [w, a + T.voiceOffset, b + T.voiceOffset]);
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? VW.length)]);
+const show = (list, t, cls) => {
+  capEl.className = cls;
+  capEl.innerHTML = list.map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+window.setT = (t) => {
+  const hm = T.him;
+  if (t >= hm[0][1] - 0.12 && t < Math.min(T.clip - .3, hm[hm.length - 1][2] + 0.9)) return show(hm, t, 'him');
+  if (t >= T.s4[0]) { capEl.innerHTML = ''; return; }
+  for (const [i0, i1] of CH) {
+    const st = VW[i0][1] - 0.12, nx = (i1 < VW.length ? VW[i1][1] - 0.12 : VW[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, VW[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) return show(VW.slice(i0, i1), t, '');
+  }
+  capEl.innerHTML = '';
+};
+</script></body></html>
