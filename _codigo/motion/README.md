@@ -21,3 +21,10 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Narração: `audio/reel02-voz.mp3` (Jhony Tygas, eleven_v4, 1 take, 297 créditos), entra com 0,4 s de atraso (VO no HTML). Tempo das palavras já está no `W0` do HTML.
 - Efeitos: `python3 audio2.py aud2`. Trilha: `trilha-01.mp3` cortada em 24,5 s com fade. Voz: `adelay=400,loudnorm -16`.
 - Quadros: `node cap2.mjs reel02.html fr 24.5`. Mix: `AUD=aud2 ./mix2.sh fr saida.mp4 aud2/voz.wav` (final -14,2 LUFS).
+
+## Reel 03 "Você esquece, eu lembro" (21/10/2026, sai em 27/10 19h30)
+- `reel03.html`: personagem original em SVG (o motorista que esquece tudo, função `guy(happy)`), interrogações e folhas de calendário no gancho, nota de serviço ilustrativa com scanner, contador de km 47.900 → 48.320, barra até a revisão, pedido da nota com documento de volta, troca de expressão do personagem no "eu lembro". `icon-512.png` = cópia de `_codigo/stories/icon.png`.
+- Narração: `audio/reel03-voz.mp3` (Jhony Tygas, eleven_v4, 1 take, 18,3 s, 274 créditos; flow tObS1pmiWZvdM245l3cz), entra com 0,5 s de atraso. Tempo das palavras no `W0`.
+- Efeitos: `python3 audio3.py aud3`. Trilha: `trilha-01.mp3` a partir de 5 s (`-ss 5 -t 23`, fade in 0,6 s e out 2,5 s) para não soar igual ao reel 02. Voz: `adelay=500,loudnorm -16`.
+- Quadros: `node cap2.mjs reel03.html fr 23` (2 min). Mix: `AUD=aud3 ./mix2.sh fr saida.mp4 aud3/voz.wav` (final -13,9 LUFS).
+- Trilha nova em 21/10 custaria 1.650 créditos (eleven_music v1 e v2), acima do que resta da reserva de trilhas (900): não gerada.
