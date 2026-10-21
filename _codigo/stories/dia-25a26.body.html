@@ -1,0 +1,272 @@
+<style>
+.step{display:flex;gap:28px;align-items:center;background:var(--card);border:3px solid var(--border);border-radius:34px;padding:30px 34px;margin-top:22px}
+.num{flex:none;width:90px;height:90px;border-radius:50%;background:var(--neon);color:var(--on);font-family:Orbitron;font-weight:700;font-size:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(58,199,255,.6)}
+.step b{font-size:40px;display:block}.step span{font-size:31px;color:var(--muted);display:block;margin-top:6px;line-height:1.35}
+.fd{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);padding:90px 90px 80px;display:flex;flex-direction:column}
+.fd .h{font-size:92px}
+.pg{font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:5px;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.wm.s{font-size:24px;letter-spacing:6px}.wm.s img{width:52px;height:52px}
+.big{font-family:Orbitron;font-weight:700;font-size:150px;color:var(--neon);text-shadow:0 0 50px rgba(58,199,255,.6);line-height:1}
+.box{background:var(--card);border:3px solid var(--border);border-radius:36px;padding:38px 42px}
+.t2{font-size:40px;line-height:1.4;color:var(--fg)}
+.t3{font-size:34px;line-height:1.45;color:var(--muted)}
+.swipe{font-size:32px;font-weight:600;color:var(--neon);display:flex;align-items:center;gap:14px}
+.foot{font-size:26px;color:var(--muted)}
+.tl{position:relative;padding-left:70px}
+.tl:before{content:"";position:absolute;left:24px;top:20px;bottom:20px;width:4px;background:linear-gradient(var(--neon),rgba(58,199,255,.15))}
+.ti{position:relative;margin-bottom:26px}
+.ti:before{content:"";position:absolute;left:-58px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--ok);box-shadow:0 0 22px rgba(65,214,134,.8)}
+.ti b{font-size:38px;display:block}.ti span{font-size:29px;color:var(--muted)}
+.cert{display:flex;align-items:center;gap:26px;border:3px solid var(--neon);background:var(--soft);border-radius:30px;padding:28px 32px;box-shadow:0 0 70px -10px rgba(58,199,255,.6)}
+.seal{flex:none;width:110px;height:110px;border-radius:50%;border:5px solid var(--neon);display:flex;align-items:center;justify-content:center;font-family:Orbitron;font-weight:700;font-size:44px;color:var(--neon);box-shadow:inset 0 0 30px rgba(58,199,255,.35)}
+.lamp{flex:none;width:200px;height:200px;border-radius:40px;display:flex;align-items:center;justify-content:center;background:#08121f;border:3px solid var(--border)}
+.lamp svg{width:130px;height:130px}
+.lamp.r svg{filter:drop-shadow(0 0 22px rgba(249,65,68,.9))}
+.lamp.y svg{filter:drop-shadow(0 0 22px rgba(249,199,24,.9))}
+.sev{display:inline-block;padding:10px 24px;border-radius:999px;font-size:28px;font-weight:700;letter-spacing:2px}
+.sev.r{background:rgba(249,65,68,.18);color:var(--bad);border:2px solid rgba(249,65,68,.6)}
+.sev.y{background:rgba(249,199,24,.15);color:var(--warn);border:2px solid rgba(249,199,24,.6)}
+.lrow{display:flex;gap:40px;align-items:center}
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+</style>
+
+<!-- ============ 25/10 08h30 STORY 1 · Comece ============ -->
+<div class="st" id="s25a">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">VOCÊ SABIA?</div>
+ <div class="z h" style="margin-top:26px;font-size:90px">Carro com<br>histórico<br><span class="neon">vende melhor.</span></div>
+ <div class="z chat" style="margin-top:46px;padding:40px 40px 30px">
+  <div class="tl">
+   <div class="ti"><b>Revisão dos 40.000 km</b><span>nota guardada</span></div>
+   <div class="ti"><b>Troca de óleo e filtro</b><span>nota guardada</span></div>
+   <div class="ti" style="margin-bottom:6px"><b>Pastilhas de freio</b><span>nota guardada</span></div>
+  </div>
+  <div class="cert" style="margin-top:26px"><div class="seal">J</div><div><b style="font-size:36px;display:block">Certificado Jarvys</b><span style="font-size:28px;color:var(--muted)">o histórico do carro pra mostrar na venda</span></div></div>
+ </div>
+ <div class="z ex" style="margin-top:16px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">No app: timeline de revisões e certificado</div>
+</div>
+
+<!-- ============ 25/10 15h30 STORY 2 · Provas (link) ============ -->
+<div class="st" id="s25b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">HOJE ÀS 19H30</div>
+ <div class="z h" style="margin-top:26px">Sem filtro.<br><span class="neon">Aconteceu<br>de verdade.</span></div>
+ <div class="z p" style="margin-top:36px">Um usuário com Fiat Uno mandou só a foto do painel. O resto você vê no reel.</div>
+ <div class="z" style="margin-top:50px;display:flex;justify-content:center;position:relative">
+  <div style="width:340px;height:560px;border-radius:40px;overflow:hidden;border:4px solid var(--border);transform:rotate(-4deg);box-shadow:0 40px 120px -20px rgba(58,199,255,.55)"><img src="prova-uno.jpg" style="width:100%;filter:blur(3px) brightness(.55)"></div>
+  <div class="play" style="position:absolute;top:180px"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+ </div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 26/10 08h30 STORY 1 · Como usar ============ -->
+<div class="st" id="s26a">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">SEGUNDA-FEIRA</div>
+ <div class="z h" style="margin-top:26px">Começou<br>a semana?<br><span class="neon">Me manda a km.</span></div>
+ <div class="z chat" style="margin-top:50px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">48320</div>
+   <div class="m b">Anotei 48.320 km. Quando a próxima revisão chegar perto, eu te aviso. 🔧</div>
+  </div>
+ </div>
+ <div class="z p" style="margin-top:44px">Leva 5 segundos e a revisão nunca mais passa batido.</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Km e aviso de revisão: grátis para sempre</div>
+</div>
+
+<!-- ============ 26/10 15h30 STORY 2 · Como usar (link) ============ -->
+<div class="st" id="s26b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:70px">HOJE ÀS 19H30</div>
+ <div class="z h" style="margin-top:26px">Abasteceu?<br><span class="neon">Manda um<br>áudio.</span> 🎙️</div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m u" style="display:flex;align-items:center;gap:18px"><span style="font-size:40px">▶</span><span style="letter-spacing:3px;color:var(--neon)">▂▅▇▃▆▂▇▅▃▆▂</span><span>0:04</span></div>
+   <div class="m b">Anotar R$ 200,00 em Combustível? Responda sim para confirmar.</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 25/10 12h15 CARROSSEL · checklist antes de viajar ============ -->
+<div class="fd" id="c25-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">SALVE ESTE POST</div></div>
+ <div class="z big" style="margin-top:110px">6</div>
+ <div class="z h" style="margin-top:20px">coisas pra olhar<br><span class="neon">antes de pegar<br>a estrada.</span></div>
+ <div class="z t3" style="margin-top:36px">Feriado chegando? 10 minutos na garagem evitam dor de cabeça no acostamento.</div>
+ <div class="z swipe" style="margin-top:auto">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c25-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">01</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Pneus,<br>com o estepe.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Calibre com os pneus frios, na pressão da etiqueta da porta ou do manual. E olhe se tem bolha ou corte. O estepe também conta.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">02</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Nível do óleo.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Carro no plano e motor frio: puxe a vareta. Tem que estar entre o mínimo e o máximo. Se a troca estiver perto, faça antes da viagem.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">03</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Água do<br>radiador.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Olhe o reservatório com o motor frio. Nunca abra quente. Nível baixo de novo e de novo é sinal pra levar na oficina.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">04</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Freios.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Pedal baixo, barulho de chiado ou o carro puxando pra um lado na freada? Não viaje assim: passe numa oficina antes.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">05</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Luzes e<br>palhetas.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Peça pra alguém conferir farol, lanterna, seta e luz de freio. Palheta que deixa risco no vidro, troca: chuva na estrada não avisa.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-7">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">6/6</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">06</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">A revisão<br>está em dia?</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Se a revisão vence no meio da viagem, adiante. É bem mais barato que um guincho a 300 km de casa.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c25-8">
+ <div class="dots"></div><div class="g" style="left:-400px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">E EU AJUDO</div></div>
+ <div class="z h" style="margin-top:70px;font-size:80px">Não sabe quando<br>foi a última?<br><span class="neon">Me pergunta.</span></div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m u">próxima revisão</div>
+   <div class="m b">Eu mostro o que trocar na próxima revisão do seu carro, com os links das peças. E quando a km chegar perto, eu te aviso. 🔧</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700">Teste 30 dias grátis: <span class="neon">jarvys.com.br</span></div>
+</div>
+
+<!-- ============ 25/10 18h00 POST · FIPE todo mês ============ -->
+<div class="fd" id="p25">
+ <div class="dots"></div><div class="g" style="left:-300px;top:400px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">TODO MÊS</div></div>
+ <div class="z h" style="margin-top:80px;font-size:96px">Quanto vale<br>o seu carro<br><span class="neon">hoje?</span></div>
+ <div class="z chat" style="margin-top:56px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m b" style="max-width:820px">📊 A FIPE do seu carro saiu. Todo mês eu te mando o valor atualizado, sem você pedir.</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="font-size:34px;font-weight:700">Eu te mando sozinho.<br><span class="neon">jarvys.com.br</span></div>
+  <div class="foot">FIPE grátis no app</div>
+ </div>
+</div>
+
+<!-- ============ 26/10 12h15 CARROSSEL · luzes do painel ============ -->
+<svg width="0" height="0" style="position:absolute"><defs>
+ <symbol id="i-oil" viewBox="0 0 64 64"><path d="M6 26h10l6-6h18l14 8-6 18H16l-4-10H6z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M40 20v-6h-8" fill="none" stroke="currentColor" stroke-width="4"/><path d="M58 30c0 0-4 6-4 9a4 4 0 0 0 8 0c0-3-4-9-4-9z" fill="currentColor"/></symbol>
+ <symbol id="i-temp" viewBox="0 0 64 64"><path d="M28 8a4 4 0 0 1 8 0v30a10 10 0 1 1-8 0z" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="32" cy="46" r="5" fill="currentColor"/><path d="M36 16h8M36 24h8M36 32h8" stroke="currentColor" stroke-width="4"/><path d="M8 56c6-4 10 4 16 0s10 4 16 0 10 4 16 0" fill="none" stroke="currentColor" stroke-width="4"/></symbol>
+ <symbol id="i-bat" viewBox="0 0 64 64"><rect x="6" y="18" width="52" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="4"/><path d="M14 18v-6h8v6M42 18v-6h8v6" fill="none" stroke="currentColor" stroke-width="4"/><path d="M14 35h10M19 30v10M40 35h10" stroke="currentColor" stroke-width="4"/></symbol>
+ <symbol id="i-brake" viewBox="0 0 64 64"><circle cx="32" cy="32" r="17" fill="none" stroke="currentColor" stroke-width="4"/><path d="M12 14a26 26 0 0 0 0 36M52 14a26 26 0 0 1 0 36" fill="none" stroke="currentColor" stroke-width="4"/><path d="M32 22v13" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="42" r="3" fill="currentColor"/></symbol>
+ <symbol id="i-eng" viewBox="0 0 64 64"><path d="M10 26h6v-6h10v-4h14v4h6l4 6h6v18h-6l-4 6H26l-6-6h-4v-6h-6z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M2 30v10" stroke="currentColor" stroke-width="4"/></symbol>
+ <symbol id="i-abs" viewBox="0 0 64 64"><circle cx="32" cy="32" r="17" fill="none" stroke="currentColor" stroke-width="4"/><path d="M12 14a26 26 0 0 0 0 36M52 14a26 26 0 0 1 0 36" fill="none" stroke="currentColor" stroke-width="4"/><text x="32" y="38" text-anchor="middle" font-family="Inter" font-weight="800" font-size="15" fill="currentColor">ABS</text></symbol>
+</defs></svg>
+<div class="fd" id="c26-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">DR. JARVYS</div></div>
+ <div class="z" style="margin-top:90px;display:flex;gap:26px">
+  <div class="lamp r" style="width:150px;height:150px;border-radius:30px;color:var(--bad)"><svg style="width:96px;height:96px"><use href="#i-oil"/></svg></div>
+  <div class="lamp r" style="width:150px;height:150px;border-radius:30px;color:var(--bad)"><svg style="width:96px;height:96px"><use href="#i-temp"/></svg></div>
+  <div class="lamp y" style="width:150px;height:150px;border-radius:30px;color:var(--warn)"><svg style="width:96px;height:96px"><use href="#i-eng"/></svg></div>
+ </div>
+ <div class="z h" style="margin-top:60px;font-size:88px">Acendeu no<br>painel. <span class="neon">E agora?</span></div>
+ <div class="z t3" style="margin-top:36px">6 luzes que todo motorista precisa conhecer. A cor já diz muito: <b style="color:var(--bad)">vermelho</b> é pare, <b style="color:var(--warn)">amarelo</b> é atenção.</div>
+ <div class="z swipe" style="margin-top:auto">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c26-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp r" style="color:var(--bad)"><svg><use href="#i-oil"/></svg></div><div><span class="sev r">PARE</span><div class="h" style="font-size:70px;margin-top:18px">Pressão<br>do óleo</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">Acendeu rodando? Pare em lugar seguro e desligue o motor. Confira o nível do óleo. Rodar assim pode fundir o motor.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp r" style="color:var(--bad)"><svg><use href="#i-temp"/></svg></div><div><span class="sev r">PARE</span><div class="h" style="font-size:70px;margin-top:18px">Temperatura<br>do motor</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">O motor está esquentando demais. Pare, desligue e espere esfriar. Nunca abra o reservatório com o motor quente.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp r" style="color:var(--bad)"><svg><use href="#i-bat"/></svg></div><div><span class="sev r">ATENÇÃO JÁ</span><div class="h" style="font-size:70px;margin-top:18px">Bateria<br>e carga</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">O carro não está carregando a bateria. Ele roda pouco tempo assim. Desligue o que der (som, ar) e vá direto a uma oficina.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp r" style="color:var(--bad)"><svg><use href="#i-brake"/></svg></div><div><span class="sev r">PARE</span><div class="h" style="font-size:70px;margin-top:18px">Freio</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">Primeiro veja se o freio de mão está solto. Se continuar acesa, pode ser fluido baixo. Freio não é coisa pra arriscar.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp y" style="color:var(--warn)"><svg><use href="#i-eng"/></svg></div><div><span class="sev y">ATENÇÃO</span><div class="h" style="font-size:70px;margin-top:18px">Injeção<br>(motor)</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">Acesa fixa: leve pra oficina fazer o diagnóstico logo. Piscando: o motor está falhando, reduza e procure ajuda.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-7">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">6/6</div></div>
+ <div class="z lrow" style="margin-top:auto"><div class="lamp y" style="color:var(--warn)"><svg><use href="#i-abs"/></svg></div><div><span class="sev y">ATENÇÃO</span><div class="h" style="font-size:70px;margin-top:18px">ABS</div></div></div>
+ <div class="z t2" style="margin-top:50px;color:var(--muted);font-size:46px">O freio comum continua funcionando, mas o ABS (que evita a roda travar) pode estar desligado. Dirija com mais calma e leve pra revisar.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c26-8">
+ <div class="dots"></div><div class="g" style="left:-400px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">E EU AJUDO</div></div>
+ <div class="z h" style="margin-top:70px;font-size:80px">Acendeu outra?<br><span class="neon">Manda a foto.</span></div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m u">📸 foto do painel<br>que luz é essa?</div>
+   <div class="m b">O Dr. Jarvys olha a foto e te explica o que é e o que fazer. 🔧</div>
+  </div>
+ </div>
+ <div class="z t3" style="margin-top:30px;font-size:30px">Cada carro tem seus símbolos: na dúvida, consulte o manual.</div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700">Teste 30 dias grátis: <span class="neon">jarvys.com.br</span></div>
+</div>
+
+<!-- ============ 26/10 18h00 POST · frase da marca ============ -->
+<div class="fd" id="p26">
+ <div class="dots"></div><div class="g" style="left:-200px;top:200px;width:1500px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:center"><img src="icon.png" style="width:220px;height:220px;border-radius:50%;box-shadow:0 0 0 6px rgba(58,199,255,.35),0 0 120px rgba(58,199,255,.7)"></div>
+ <div class="z h" style="margin-top:70px;font-size:84px;text-align:center">A IA que cuida<br>do seu carro para<br>você <span class="neon">nunca mais<br>tomar um prejuízo.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="font-size:34px;font-weight:700">jarvys.com.br</div>
+  <div class="foot">30 dias grátis · sem cartão</div>
+ </div>
+</div>
