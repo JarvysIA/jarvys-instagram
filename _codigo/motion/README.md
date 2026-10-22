@@ -28,3 +28,14 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Efeitos: `python3 audio3.py aud3`. Trilha: `trilha-01.mp3` a partir de 5 s (`-ss 5 -t 23`, fade in 0,6 s e out 2,5 s) para não soar igual ao reel 02. Voz: `adelay=500,loudnorm -16`.
 - Quadros: `node cap2.mjs reel03.html fr 23` (2 min). Mix: `AUD=aud3 ./mix2.sh fr saida.mp4 aud3/voz.wav` (final -13,9 LUFS).
 - Trilha nova em 21/10 custaria 1.650 créditos (eleven_music v1 e v2), acima do que resta da reserva de trilhas (900): não gerada.
+
+## Reel 04 "Acendeu uma luz no painel?" (22/10/2026, sai em 28/10 19h30)
+- `reel04.html`: painel original em SVG (função `dash`, conta-giros e velocímetro, luz do óleo piscando), visor de câmera com flash, chat do Dr. Jarvys com a foto do painel, 3 cartões de luzes (ícones `oil`, `eng`, `temp`, `batt` desenhados em SVG), perguntas e selo DR. JARVYS.
+- Narração: `audio/reel04-voz.mp3` (1 take, 18,5 s, 289 créditos; flow NHa8r9WknL46lAd67yT2), VO 0,5 s. Efeitos: `python3 audio4.py aud4` (bipe de alerta e clique de câmera). Trilha: `trilha-01.mp3 -ss 10 -t 23.5`.
+- Quadros: `node cap2.mjs reel04.html fr 23.5`. Mix: `AUD=aud4 ./mix2.sh fr saida.mp4 aud4/voz.wav` (final -14,5 LUFS).
+
+## Reel 05 "grátis para sempre" (22/10/2026, sai em 29/10 19h30)
+- `reel05.html`: etiqueta R$ 0 balançando, carimbo DÁ SIM, placa sendo digitada (`setT` controla o texto), cartão do carro, 4 cartões do app marcados grátis, WhatsApp com a km, carimbo R$ 0 e botão Crie sua conta grátis.
+- Narração: `audio/reel05-voz.mp3` (1 take, 18,6 s, 285 créditos; flow n6fQraMV9s1l3Y71klxM), VO 0,5 s. Efeitos: `python3 audio5.py aud5`. Trilha: `trilha-01.mp3 -ss 2 -t 23.5`.
+- Mix: `AUD=aud5 ./mix2.sh fr5 saida.mp4 aud5/voz.wav` (final -14,4 LUFS).
+- Nota: para o CSS completo, copie todo o bloco <style> do reel03.html (inclui .bub, .saved, swing, slideUp2); só a parte de cima não basta.
