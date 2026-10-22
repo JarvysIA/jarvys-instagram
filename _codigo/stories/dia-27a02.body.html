@@ -1,0 +1,177 @@
+<style>
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+.paper{background:#f3efe6;color:#2b2f36;border-radius:18px;padding:30px 34px;font-family:Inter;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);transform:rotate(-3deg)}
+.paper h4{font-size:30px;letter-spacing:3px;font-weight:800;text-align:center}
+.paper .ln{display:flex;justify-content:space-between;font-size:27px;padding:8px 0;border-bottom:2px dashed #c9c1b1}
+.paper .tot{display:flex;justify-content:space-between;font-size:32px;font-weight:800;padding-top:14px}
+.scan{position:absolute;left:-20px;right:-20px;height:8px;background:var(--neon);box-shadow:0 0 40px 10px rgba(58,199,255,.7);border-radius:4px}
+.bar{height:34px;border-radius:999px;background:#0a1626;border:3px solid var(--border);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--ok),var(--warn));box-shadow:0 0 30px rgba(249,199,24,.6)}
+.notif{display:flex;gap:22px;align-items:flex-start;background:rgba(23,37,55,.95);border:3px solid var(--border);border-radius:36px;padding:28px 30px;box-shadow:0 40px 110px -30px rgba(58,199,255,.55)}
+.notif img{width:76px;height:76px;border-radius:18px}
+.notif b{font-size:31px}.notif small{font-size:24px;color:var(--muted);margin-left:10px}
+.notif p{font-size:31px;line-height:1.38;margin-top:6px;color:var(--fg)}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:34px;padding:20px 0;border-bottom:3px solid var(--border)}
+.row:last-child{border:0}
+.dot{display:inline-block;width:26px;height:26px;border-radius:50%;margin-right:18px;vertical-align:middle}
+.sum{font-family:Orbitron;font-weight:700;font-size:96px;color:var(--neon);text-shadow:0 0 44px rgba(58,199,255,.6)}
+.hb{height:22px;border-radius:999px;margin-top:10px}
+.it{display:flex;align-items:center;gap:20px;font-size:32px;padding:14px 0}
+.it .k2{flex:none;width:44px;height:44px;border-radius:12px;background:var(--soft);border:2px solid rgba(58,199,255,.5);display:flex;align-items:center;justify-content:center;color:var(--neon);font-weight:800;font-size:26px}
+</style>
+
+<!-- ============ 27/10 15h30 · Como usar · foto da nota ============ -->
+<div class="st" id="s27">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">SAIU DA OFICINA?</div>
+ <div class="z h" style="margin-top:22px;font-size:90px">Tira foto<br>da nota.<br><span class="neon">Eu leio.</span> 📸</div>
+ <div class="z" style="margin-top:44px;display:flex;justify-content:center">
+  <div style="position:relative;width:560px;flex:none">
+   <div class="paper">
+    <h4>OFICINA</h4>
+    <div style="text-align:center;font-size:22px;color:#6b6f76;margin:4px 0 12px">14/10 · ordem de serviço</div>
+    <div class="ln"><span>Óleo do motor</span><span>210,00</span></div>
+    <div class="ln"><span>Filtro de óleo</span><span>45,00</span></div>
+    <div class="ln"><span>Filtro de ar</span><span>65,00</span></div>
+    <div class="ln"><span>Mão de obra</span><span>160,00</span></div>
+    <div class="tot"><span>TOTAL</span><span>480,00</span></div>
+   </div>
+   <div class="scan" style="top:-14px;opacity:.75"></div>
+  </div>
+ </div>
+ <div class="z chat" style="margin-top:44px;padding:28px 30px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m b">Li a nota: R$ 480,00 de 14/10, com troca de óleo e filtros. Anotar como Manutenção no Chevrolet Onix? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">A nota fica guardada. Pediu, eu mando de volta.</div>
+</div>
+
+<!-- ============ 28/10 15h30 · Dr. Jarvys · próxima revisão ============ -->
+<div class="st" id="s28">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">DR. JARVYS</div>
+ <div class="z h" style="margin-top:22px;font-size:88px">O que troca<br>na revisão?<br><span class="neon">Me pergunta.</span></div>
+ <div class="z chat" style="margin-top:46px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">próxima revisão</div>
+   <div class="m b" style="max-width:780px">A próxima do seu Onix é a dos 50.000 km. O que trocar:
+    <div class="it"><span class="k2">1</span>óleo do motor</div>
+    <div class="it"><span class="k2">2</span>filtro de óleo</div>
+    <div class="it"><span class="k2">3</span>filtro de ar</div>
+    <div class="it" style="padding-bottom:4px"><span class="k2">4</span>filtro de combustível</div>
+    <div style="margin-top:10px;color:var(--neon)">Te mando os links das peças 👇</div>
+   </div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo, os itens mudam conforme o carro</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Chegue na oficina sabendo o que é da revisão</div>
+</div>
+
+<!-- ============ 29/10 15h30 · Como usar · eu te aviso sozinho ============ -->
+<div class="st" id="s29">
+ <div class="dots"></div><div class="g" style="left:-300px;top:400px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">PODE ESQUECER</div>
+ <div class="z h" style="margin-top:22px;font-size:92px">A revisão<br>chegou perto?<br><span class="neon">Eu te aviso.</span> 🔔</div>
+ <div class="z notif" style="margin-top:56px">
+  <img src="icon.png">
+  <div><b>Jarvys</b><small>agora</small>
+   <p>Seu Onix está com 49.400 km. A revisão dos 50.000 km está chegando. Quer ver o que trocar? 🔧</p></div>
+ </div>
+ <div class="z box" style="margin-top:40px;background:var(--card);border:3px solid var(--border);border-radius:36px;padding:34px 40px">
+  <div style="display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>última revisão</span><span>próxima</span></div>
+  <div style="display:flex;justify-content:space-between;font-size:40px;font-weight:800;margin:6px 0 18px"><span>40.000 km</span><span class="neon">50.000 km</span></div>
+  <div class="bar"><i style="width:94%"></i></div>
+  <div style="font-size:30px;color:var(--warn);margin-top:16px;font-weight:600">faltam 600 km</div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">É só me mandar a km de vez em quando</div>
+</div>
+
+<!-- ============ 30/10 15h30 · Como usar · gasto (link) ============ -->
+<div class="st" id="s30">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">SEXTOU, ABASTECEU?</div>
+ <div class="z h" style="margin-top:22px;font-size:94px">Fala o valor.<br><span class="neon">Eu anoto.</span> ⛽</div>
+ <div class="z chat" style="margin-top:50px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">gastei 150 de gasolina</div>
+   <div class="m b">Anotar R$ 150,00 em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b">Anotado ✅ Qual a km agora? Assim eu cuido da revisão também.</div>
+  </div>
+ </div>
+ <div class="z p" style="margin-top:34px">Sem planilha, sem formulário. Do seu jeito.</div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 31/10 15h30 · Como usar · quanto gastei (link) ============ -->
+<div class="st" id="s31">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">ÚLTIMO DIA DO MÊS</div>
+ <div class="z h" style="margin-top:22px;font-size:88px">Quanto o carro<br>te custou?<br><span class="neon">Me pergunta.</span></div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="msgs" style="margin-top:0">
+   <div class="m u">quanto gastei esse mês?</div>
+  </div>
+  <div style="margin-top:20px;background:rgba(12,25,42,.8);border:3px solid var(--border);border-radius:32px;padding:26px 32px">
+   <div style="font-size:28px;color:var(--muted)">Outubro, Chevrolet Onix</div>
+   <div class="sum">R$ 930</div>
+   <div class="row"><span><i class="dot" style="background:var(--neon)"></i>Combustível</span><b>R$ 450,00</b></div>
+   <div class="row"><span><i class="dot" style="background:var(--warn)"></i>Manutenção</span><b>R$ 480,00</b></div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Teste 30 dias grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br, sem cartão</div></div>
+</div>
+
+<!-- ============ 01/11 15h30 · Comece · FIPE todo mês ============ -->
+<div class="st" id="s01">
+ <div class="dots"></div><div class="g" style="left:-300px;top:400px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">MÊS NOVO</div>
+ <div class="z h" style="margin-top:22px;font-size:90px">Quanto vale<br>o seu carro?<br><span class="neon">Eu te conto.</span> 📊</div>
+ <div class="z notif" style="margin-top:56px">
+  <img src="icon.png">
+  <div><b>Jarvys</b><small>dia 1º</small>
+   <p>Saiu a FIPE de novembro. Seu Onix 2019 está valendo R$&nbsp;61.250, R$&nbsp;380 a menos que no mês passado. 📊</p></div>
+ </div>
+ <div class="z box" style="margin-top:40px;background:var(--card);border:3px solid var(--border);border-radius:36px;padding:34px 40px">
+  <svg viewBox="0 0 800 220" style="width:100%;height:220px">
+   <defs><linearGradient id="fg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3ac7ff" stop-opacity=".35"/><stop offset="1" stop-color="#3ac7ff" stop-opacity="0"/></linearGradient></defs>
+   <path d="M0 70 L130 80 L260 76 L390 100 L520 110 L650 118 L800 128 L800 220 L0 220Z" fill="url(#fg)"/>
+   <path d="M0 70 L130 80 L260 76 L390 100 L520 110 L650 118 L800 128" fill="none" stroke="#3ac7ff" stroke-width="7" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px #3ac7ff)"/>
+   <circle cx="800" cy="128" r="12" fill="#3ac7ff"/>
+  </svg>
+  <div style="display:flex;justify-content:space-between;font-size:28px;color:var(--muted);margin-top:8px"><span>maio</span><span>novembro</span></div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Todo mês, sozinho. Grátis para sempre no app.</div>
+</div>
+
+<!-- ============ 02/11 15h30 · Planos · Status de Saúde grátis (link) ============ -->
+<div class="st" id="s02">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">GRÁTIS PARA SEMPRE</div>
+ <div class="z h" style="margin-top:22px;font-size:90px">Como está<br>a saúde do<br><span class="neon">seu carro?</span></div>
+ <div class="z chat" style="margin-top:46px;padding:30px 40px">
+  <div style="font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:5px;color:var(--muted);padding:6px 0 10px">STATUS DE SAÚDE</div>
+  <div class="row"><span><i class="dot" style="background:var(--ok);box-shadow:0 0 18px var(--ok)"></i>Óleo</span><span style="color:var(--ok);font-weight:700">em dia</span></div>
+  <div class="row"><span><i class="dot" style="background:var(--warn);box-shadow:0 0 18px var(--warn)"></i>Filtros</span><span style="color:var(--warn);font-weight:700">atenção</span></div>
+  <div class="row"><span><i class="dot" style="background:var(--bad);box-shadow:0 0 18px var(--bad)"></i>Pastilhas de freio</span><span style="color:var(--bad);font-weight:700">atrasado</span></div>
+  <div class="row"><span><i class="dot" style="background:#6b7a8a"></i>Arrefecimento</span><span style="color:var(--muted);font-weight:700">sem registro</span></div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z p" style="margin-top:20px">No app: garagem pela placa, Status de Saúde e FIPE. R$ 0, sem prazo.</div>
+ <div class="z" style="margin-top:auto;text-align:center"><div class="btn">Crie sua conta grátis</div><div style="margin-top:26px;font-size:32px;color:var(--muted)">jarvys.com.br</div></div>
+</div>
