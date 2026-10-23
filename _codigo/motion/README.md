@@ -39,3 +39,14 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Narração: `audio/reel05-voz.mp3` (1 take, 18,6 s, 285 créditos; flow n6fQraMV9s1l3Y71klxM), VO 0,5 s. Efeitos: `python3 audio5.py aud5`. Trilha: `trilha-01.mp3 -ss 2 -t 23.5`.
 - Mix: `AUD=aud5 ./mix2.sh fr5 saida.mp4 aud5/voz.wav` (final -14,4 LUFS).
 - Nota: para o CSS completo, copie todo o bloco <style> do reel03.html (inclui .bub, .saved, swing, slideUp2); só a parte de cima não basta.
+
+## Reel 06 "Tá caro?" mecânico espertinho (23/10/2026, sai em 30/10 19h30)
+- `reel06.html`: personagem original em SVG (função `mec('smug'|'surpreso')`: boné amarelo de lado, macacão cinza, lápis na orelha, sem bigode), orçamento ilustrativo desenrolando (`unroll`), carimbo SERÁ?, chat "quanto custa a revisão?", cartão de estimativa (valores de exemplo) com barras dos itens que mais pesam, checklist da próxima revisão com selo "peças", mecânico surpreso suando no fecho.
+- Narração: `audio/reel06-voz.mp3` (1 take, 18,8 s, 304 créditos; flow tkEa9BBDo56qsZuVpjP7), VO 0,5 s. Efeitos: `python3 audio6.py aud6`. Trilha: `trilha-01.mp3 -ss 7 -t 23.5`.
+- Quadros: `node cap2.mjs reel06.html fr6 23.5`. Mix: `AUD=aud6 ./mix2.sh fr6 saida.mp4 aud6/voz.wav` (final -14,2 LUFS).
+
+## Reel 07 "Vai vender o carro?" (23/10/2026, sai em 01/11 19h30)
+- `reel07.html`: carro grande em SVG com placa VENDE-SE, pergunta do comprador, linha do tempo (`.tlx`, troca, nota, km), Certificado Jarvys (`.certx`), selos verdes, nota pelo WhatsApp e fecho com o ícone.
+- Narração: `audio/reel07-voz.mp3` (1 take, 21,5 s, 345 créditos; flow nPJIokPOP8rnTudolpBx), VO 0,5 s. Vídeo de 26 s. Efeitos: `python3 audio7.py aud7`. Trilha: `trilha-01.mp3 -ss 9 -t 26`.
+- Mix: `AUD=aud7 ./mix2.sh fr7 saida.mp4 aud7/voz.wav` (final -14,0 LUFS).
+- Chromium: `cap2.mjs` e `shot.mjs` usam `$CHROME`, ou o caminho antigo se existir, ou `/opt/pw-browsers/chromium` (o caminho 1194 sumiu em 23/10).
