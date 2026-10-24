@@ -50,3 +50,14 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Narração: `audio/reel07-voz.mp3` (1 take, 21,5 s, 345 créditos; flow nPJIokPOP8rnTudolpBx), VO 0,5 s. Vídeo de 26 s. Efeitos: `python3 audio7.py aud7`. Trilha: `trilha-01.mp3 -ss 9 -t 26`.
 - Mix: `AUD=aud7 ./mix2.sh fr7 saida.mp4 aud7/voz.wav` (final -14,0 LUFS).
 - Chromium: `cap2.mjs` e `shot.mjs` usam `$CHROME`, ou o caminho antigo se existir, ou `/opt/pw-browsers/chromium` (o caminho 1194 sumiu em 23/10).
+
+## Reel 08 "Eu também tenho app" (24/10/2026, sai em 02/11 19h30)
+- `reel08.html`: gancho "O Jarvys tem app?" com celular e carimbo TEM, SIM; celular com o site (barra jarvys.com.br, botão Instalar o app Jarvys sendo tocado, keyframe `press` e círculo `tap`), tela inicial com o ícone do Jarvys surgindo; 3 cartões (`.bigtile`: garagem pela placa, Status de Saúde, Dr. Jarvys); R$ 0 com carimbo GRÁTIS PRA SEMPRE; fecho com Crie sua conta grátis.
+- Narração: `audio/reel08-voz.mp3` (1 take, 17,9 s, 280 créditos; flow tng76TaqyXYwUeXbdSyX), VO 0,5 s. Efeitos: `python3 audio8.py aud8`. Trilha: `trilha-01.mp3 -ss 4 -t 23`.
+- Quadros: `node cap2.mjs reel08.html fr8 23`. Mix: `AUD=aud8 ./mix2.sh fr8 saida.mp4 aud8/voz.wav` (final -14,1 LUFS).
+
+## Reel 09 "Motorista de app" (24/10/2026, sai em 03/11 19h30)
+- `reel09.html`: estrada com faixa andando (`.road2`), carro com luz de app, relógio 06:00 → 22:00 e contadores de corridas e km (atualizados no `setT` estendido no fim do arquivo); "Eu." com o ícone; gasto no WhatsApp; visor de câmera com flash no odômetro; resumo do mês com barras (`.sum`, valores de exemplo); notificação de revisão chegando; fecho "Você dirige. Eu cuido das contas."
+- Atenção: `popb` usa transform e anula o translate do `.hub`; com animação, posicionar o hub com left:0 e top:0.
+- Narração: `audio/reel09-voz.mp3` (1 take, 18,9 s, 290 créditos; flow J1yxTOqopIn66O87L2MJ), VO 0,5 s. Efeitos: `python3 audio9.py aud9`. Trilha: `trilha-01.mp3 -ss 11 -t 23.5`.
+- Quadros: `node cap2.mjs reel09.html fr9 23.5`. Mix: `AUD=aud9 ./mix2.sh fr9 saida.mp4 aud9/voz.wav` (final -14,1 LUFS).
