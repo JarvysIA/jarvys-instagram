@@ -1,0 +1,156 @@
+<!-- 07 e 08/11. Montar: head.html + bloco <style> de dia-25a26.body.html + este corpo -->
+<style>
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+.strike{position:relative;display:inline-block;color:var(--muted)}
+.strike:after{content:"";position:absolute;left:-6px;right:-6px;top:52%;height:6px;border-radius:3px;background:var(--bad);box-shadow:0 0 14px rgba(249,65,68,.7);transform:rotate(-4deg)}
+.amt{display:flex;align-items:center;justify-content:center;gap:40px;font-family:Orbitron;font-weight:700;font-size:96px}
+.amt .ok{color:var(--ok);text-shadow:0 0 36px rgba(65,214,134,.6)}
+.amt .ar{font-size:60px;color:var(--muted)}
+.ph{width:520px;border-radius:60px;border:12px solid #22344a;background:#08121f;overflow:hidden;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 50px 140px -30px rgba(58,199,255,.55)}
+.ph .url{margin:28px 28px 0;padding:14px 22px;border-radius:999px;background:#152434;font-size:26px;color:var(--muted);display:flex;align-items:center;gap:12px}
+.ph .ins{margin:30px 28px;padding:26px;border-radius:999px;background:var(--neon);color:var(--on);font-weight:800;font-size:32px;text-align:center;box-shadow:0 0 50px rgba(58,199,255,.6)}
+.home{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:10px 34px 40px}
+.home i{display:block;aspect-ratio:1;border-radius:24px;background:#1a2a3c}
+.home img{width:100%;border-radius:24px;box-shadow:0 0 30px rgba(58,199,255,.8);border:3px solid var(--neon)}
+.sg{display:flex;gap:26px;align-items:center;margin-top:18px;background:var(--card);border:3px solid var(--border);border-radius:30px;padding:24px 30px}
+.sg .ico{flex:none;width:92px;height:92px;border-radius:24px;display:flex;align-items:center;justify-content:center;background:rgba(249,199,24,.12);border:2px solid rgba(249,199,24,.5)}
+.sg .ico svg{width:56px;height:56px;stroke:var(--warn);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sg b{font-size:38px;display:block}.sg span{font-size:28px;color:var(--muted)}
+.wave{display:flex;align-items:center;gap:6px;height:60px}
+.wave i{display:block;width:8px;border-radius:4px;background:var(--neon)}
+.aud{display:flex;align-items:center;gap:22px}
+.aud .pl{flex:none;width:72px;height:72px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center}
+.aud .pl svg{width:30px;height:30px;fill:var(--on);margin-left:5px}
+.aud small{font-size:24px;color:var(--muted)}
+</style>
+
+<!-- ============ 07/11 15h30 · Como usar · corrigir e apagar gasto ============ -->
+<div class="st" id="s07">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">DIGITOU ERRADO?</div>
+ <div class="z h" style="margin-top:22px;font-size:90px">Me fala que<br><span class="neon">eu corrijo.</span> ✏️</div>
+ <div class="z amt" style="margin-top:46px"><span class="strike">105</span><span class="ar">→</span><span class="ok">150</span></div>
+ <div class="z chat" style="margin-top:46px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">errei, era 150</div>
+   <div class="m b">Corrigir o último gasto de R$&nbsp;105,00 para R$&nbsp;150,00 em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Também vale "apaga o último gasto". Nada muda sem o seu sim.</div>
+</div>
+
+<!-- ============ 08/11 15h30 · Comece · instalar o app ============ -->
+<div class="st" id="s08">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:60px">SABIA?</div>
+ <div class="z h" style="margin-top:22px;font-size:88px">Eu também<br>moro no seu<br><span class="neon">celular.</span> 📱</div>
+ <div class="z" style="margin-top:44px;display:flex;gap:34px;align-items:center">
+  <div class="ph" style="width:440px;flex:none">
+   <div class="url">🔒 jarvys.com.br</div>
+   <div style="padding:30px 28px 0;font-size:34px;font-weight:800;line-height:1.2">A IA que cuida<br>do seu carro</div>
+   <div class="ins">Instalar o app Jarvys</div>
+   <div class="home"><i></i><i></i><img src="icon.png"><i></i></div>
+  </div>
+  <div style="flex:1">
+   <div class="step" style="margin-top:0;padding:24px"><div class="num" style="width:70px;height:70px;font-size:32px">1</div><div><b style="font-size:32px">Abre</b><span style="font-size:26px">jarvys.com.br</span></div></div>
+   <div class="step" style="padding:24px"><div class="num" style="width:70px;height:70px;font-size:32px">2</div><div><b style="font-size:32px">Toca em</b><span style="font-size:26px">Instalar o app Jarvys</span></div></div>
+   <div class="step" style="padding:24px"><div class="num" style="width:70px;height:70px;font-size:32px">3</div><div><b style="font-size:32px">Pronto</b><span style="font-size:26px">eu fico na sua tela</span></div></div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700">Garagem, Status de Saúde e Dr. Jarvys:<br><span class="neon">grátis para sempre.</span></div>
+</div>
+
+<!-- ============ 07/11 12h15 CARROSSEL · 5 sinais de oficina ============ -->
+<div class="fd" id="c07-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">SALVE ESTE POST</div></div>
+ <div class="z h" style="margin-top:80px">5 sinais de que<br>o carro <span class="neon">pede<br>oficina.</span></div>
+ <div class="z t3" style="margin-top:34px">Não deixa pra depois: barato hoje, caro amanhã.</div>
+ <div class="z" style="margin-top:44px;display:flex;gap:22px;flex-wrap:wrap">
+  <div class="chip" style="padding:16px 28px;border-radius:999px;background:var(--card);border:3px solid var(--border);font-size:32px;font-weight:600">🔊 barulho</div>
+  <div class="chip" style="padding:16px 28px;border-radius:999px;background:var(--card);border:3px solid var(--border);font-size:32px;font-weight:600">💡 luz acesa</div>
+  <div class="chip" style="padding:16px 28px;border-radius:999px;background:var(--card);border:3px solid var(--border);font-size:32px;font-weight:600">🌡️ temperatura</div>
+  <div class="chip" style="padding:16px 28px;border-radius:999px;background:var(--card);border:3px solid var(--border);font-size:32px;font-weight:600">🛞 volante</div>
+  <div class="chip" style="padding:16px 28px;border-radius:999px;background:var(--card);border:3px solid var(--border);font-size:32px;font-weight:600">🔥 cheiro</div>
+ </div>
+ <div class="z swipe" style="margin-top:auto">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c07-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">01</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Chiado ou barulho<br>na hora de frear.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Costuma ser pastilha no fim. Freio é segurança: leva pra olhar logo, antes de estragar o disco também.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c07-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">02</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Luz acesa<br>no painel.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Vermelha: pare num lugar seguro e veja o que é. Amarela: dá pra seguir com calma, mas leva pra oficina logo.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c07-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">03</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Ponteiro da<br>temperatura subindo.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Pare e desligue o motor. Espere esfriar antes de olhar a água: nunca abra o radiador quente.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c07-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">04</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Volante tremendo<br>ou carro puxando.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Pode ser alinhamento, balanceamento ou pneu. Além do desgaste, deixa o carro menos seguro na curva e na frenagem.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c07-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/5</div></div>
+ <div class="z big" style="margin-top:auto;font-size:180px">05</div>
+ <div class="z h" style="margin-top:30px;font-size:84px">Cheiro de queimado<br>ou fumaça.</div>
+ <div class="z t2" style="margin-top:44px;color:var(--muted);font-size:46px">Pare em segurança, desligue o carro e não continue rodando. Chame ajuda ou leve pra oficina.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c07-7">
+ <div class="dots"></div><div class="g" style="left:-400px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">FICOU NA DÚVIDA?</div></div>
+ <div class="z h" style="margin-top:60px;font-size:80px">Pergunta pro<br><span class="neon">Dr. Jarvys.</span></div>
+ <div class="z chat" style="margin-top:40px">
+  <div class="chead"><img src="icon.png"><div><b>Dr. Jarvys</b><small>no WhatsApp</small></div></div>
+  <div class="msgs">
+   <div class="m u">📸 foto do painel · que luz é essa?</div>
+   <div class="m b">É a luz da injeção eletrônica. Se continuar acesa, vale levar na oficina pra ler o código. 🔧</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="font-size:36px;font-weight:700">Teste 30 dias grátis:<br><span class="neon">jarvys.com.br</span></div>
+  <div class="foot">exemplo ilustrativo</div>
+ </div>
+</div>
+
+<!-- ============ 08/11 12h15 POST · áudio ============ -->
+<div class="fd" id="p08">
+ <div class="dots"></div><div class="g" style="left:-300px;top:400px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">NO WHATSAPP</div></div>
+ <div class="z h" style="margin-top:56px;font-size:92px">Sem tempo pra<br>digitar? <span class="neon">Manda<br>um áudio.</span> 🎙️</div>
+ <div class="z chat" style="margin-top:44px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u" style="max-width:640px"><div class="aud"><div class="pl"><svg viewBox="0 0 10 12"><path d="M0 0 L10 6 L0 12Z"/></svg></div><div class="wave"><i style="height:40px"></i><i style="height:18px"></i><i style="height:30px"></i><i style="height:60px"></i><i style="height:26px"></i><i style="height:22px"></i><i style="height:14px"></i><i style="height:26px"></i><i style="height:52px"></i><i style="height:18px"></i><i style="height:40px"></i><i style="height:40px"></i><i style="height:26px"></i><i style="height:18px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:44px"></i><i style="height:30px"></i><i style="height:40px"></i><i style="height:30px"></i><i style="height:18px"></i><i style="height:44px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:30px"></i><i style="height:14px"></i></div><small>0:04</small></div></div>
+   <div class="m b">Entendi: R$&nbsp;150,00 de gasolina. Anotar em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+  </div>
+ </div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="font-size:34px;font-weight:700">Eu entendo e anoto.<br><span class="neon">jarvys.com.br</span></div>
+  <div class="foot">exemplo ilustrativo</div>
+ </div>
+</div>

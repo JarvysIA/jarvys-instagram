@@ -61,3 +61,10 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Atenção: `popb` usa transform e anula o translate do `.hub`; com animação, posicionar o hub com left:0 e top:0.
 - Narração: `audio/reel09-voz.mp3` (1 take, 18,9 s, 290 créditos; flow J1yxTOqopIn66O87L2MJ), VO 0,5 s. Efeitos: `python3 audio9.py aud9`. Trilha: `trilha-01.mp3 -ss 11 -t 23.5`.
 - Quadros: `node cap2.mjs reel09.html fr9 23.5`. Mix: `AUD=aud9 ./mix2.sh fr9 saida.mp4 aud9/voz.wav` (final -14,1 LUFS).
+
+## Reels 10, 11 e 12 (25/10/2026, saem em 04, 05 e 06/11 19h30)
+- Montagem nova, mais rápida: o HTML é gerado juntando a cabeça do reel09.html (estilos), um bloco de CSS próprio do reel e o script das cenas. `W(i)` devolve o início da palavra i já com o atraso VO, para casar cena e fala sem conta manual.
+- `reel10.html` "Status de Saúde": batimento (ECG) sobre o carro no gancho, cartão do app com os 4 itens ganhando cor, semáforo grande acendendo verde, amarelo e vermelho com a fala, barras por item, item "Sem registro" tracejado e carimbo "?" cortado (nada de chute), fecho grátis para sempre. Narração 1 take, 21,5 s, 293 créditos (flow eNAQJdvSsI6gMjOJTUvR). Trilha `-ss 6 -t 26`. Final -14,2 LUFS.
+- `reel11.html` "Indicou, ganhou R$ 5": moeda dourada balançando no gancho, passos numerados (seu carro ativado, você indica, amigo cria a conta e ativa), notificação de Pix, 5 amigos com contador até R$ 25,00 (`setT` estendido no fim). Narração 1 take, 19,1 s, 307 créditos (flow SYfLvz1VGgI8swdbFUqC). Trilha `-ss 3 -t 24`. Final -13,9 LUFS.
+- `reel12.html` "Qual óleo? Dr. Jarvys": frasco de óleo com "?", manual de 380 páginas com X, chat do Dr. Jarvys, ficha técnica com scanner, resposta 5W30 (exemplo ilustrativo), foto do painel com a luz da injeção e explicação, fecho com selo DR. JARVYS. Narração 1 take, 17,8 s, 288 créditos (flow JWpgYaoUlACBt8w25br5). Trilha `-ss 8 -t 23`. Final -14,4 LUFS.
+- Quadros: `node cap2.mjs reelN.html frN <s>`; mix: `AUD=audN ./mix2.sh frN saida.mp4 audN/voz.wav`.
