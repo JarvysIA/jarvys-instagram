@@ -77,3 +77,8 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 - Atenção: `.saved` e `.fix` usam translateX(-50%) e a animação `popb` anula isso (pílula sai deslocada para a direita). Centralizar com um `div.abs` de left:0;right:0;text-align:center por fora e a pílula com position:relative;display:inline-flex;left:0.
 - Atenção 2: pedir a transcrição só depois que a narração terminou (get_flow_run_status). Pedida antes, cobrou 165 créditos.
 - Orbitron desenha o zero cortado (parece Ø): para valores em reais grandes, usar Inter 800.
+
+## Reel 16 "Barulho estranho no freio?" Dr. Jarvys (27/10/2026, sai em 10/11 19h30)
+- `reel16.html`: roda com disco girando e pinça vermelha tremendo, onomatopeias IIIIH e NHEEC e arcos de som no gancho; balões de pensamento "Será que é grave? / Dá pra rodar assim? / Vai sair caro?" (Chega de achismo); chat com selo DR. JARVYS (chiado ao frear costuma ser pastilha gasta ou sujeira no disco, conversa de exemplo); 2 cartões "Dá pra esperar" (amarelo) x "Oficina logo" (vermelho, destaque) e pílula "Freio chiando: oficina essa semana"; mecânico do reel 06 surpreso com o cliente que chega sabendo; fecho DR. JARVYS, Teste 30 dias grátis.
+- Narração: `audio/reel16-voz.mp3` (1 take, 14,9 s, 250 créditos; flow Jr7jB2qHSXLu4QsTZqmy), VO 0,5 s. Fala mais curta que o padrão (47 palavras); vídeo de 20,5 s com o fecho.
+- Efeitos: `python3 audio16.py aud16` (novo efeito `squeal` para o chiado). Trilha: `trilha-01.mp3 -ss 12 -t 20.5`. Mix: `AUD=aud16 ./mix2.sh fr16 reel16.mp4 aud16/voz.wav` (final -14,2 LUFS).
