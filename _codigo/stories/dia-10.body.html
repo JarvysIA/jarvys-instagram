@@ -1,0 +1,60 @@
+<!-- 10/11. Montar: head.html + bloco <style> de dia-25a26.body.html + este corpo -->
+<style>
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+.aud{display:flex;align-items:center;gap:22px;min-width:520px}
+.aud .pl{flex:none;width:70px;height:70px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center}
+.aud .pl svg{width:30px;height:30px;fill:var(--on);margin-left:5px}
+.aud .wv{display:flex;align-items:center;gap:6px;height:70px}
+.aud .wv i{display:block;width:7px;border-radius:4px;background:#9fe3ff}
+.aud small{font-size:24px;color:var(--muted)}
+.mic{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px rgba(58,199,255,.55)}
+.mic svg{width:70px;height:70px;stroke:var(--neon);fill:none;stroke-width:2.2;stroke-linecap:round}
+.cmp{width:100%;border-collapse:separate;border-spacing:0 12px;font-size:34px}
+.cmp th{font-size:30px;font-weight:800;padding:0 6px 4px;text-align:center}
+.cmp th.j{color:var(--neon);font-family:Orbitron;font-size:26px;letter-spacing:3px}
+.cmp td{background:var(--card);padding:16px 14px;text-align:center;border-top:3px solid var(--border);border-bottom:3px solid var(--border)}
+.cmp td:first-child{text-align:left;padding-left:30px;border-left:3px solid var(--border);border-radius:26px 0 0 26px;font-weight:600;font-size:33px}
+.cmp td:last-child{border-right:3px solid var(--border);border-radius:0 26px 26px 0;background:rgba(58,199,255,.13)}
+.y,.n{display:inline-flex;width:58px;height:58px;border-radius:50%;align-items:center;justify-content:center;font-weight:800;font-size:34px}
+.y{background:rgba(65,214,134,.18);color:var(--ok);border:2px solid rgba(65,214,134,.6)}
+.n{background:rgba(249,65,68,.14);color:var(--bad);border:2px solid rgba(249,65,68,.55)}
+.cmp small{display:block;font-size:21px;color:var(--muted);margin-top:6px;font-weight:500}
+</style>
+
+<!-- ============ 10/11 15h30 · Como usar · áudio ============ -->
+<div class="st" id="s10">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z" style="margin-top:50px;display:flex;align-items:center;gap:34px">
+  <div class="mic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+  <div class="h" style="font-size:80px">No trânsito?<br><span class="neon">Manda áudio.</span></div>
+ </div>
+ <div class="z p" style="margin-top:30px;font-size:38px">Não precisa digitar. Fala do seu jeito que eu entendo e anoto.</div>
+ <div class="z chat" style="margin-top:40px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u"><div class="aud"><div class="pl"><svg viewBox="0 0 10 12"><path d="M0 0L10 6L0 12Z"/></svg></div><div><div class="wv"><i style="height:29px"></i><i style="height:33px"></i><i style="height:20px"></i><i style="height:60px"></i><i style="height:39px"></i><i style="height:44px"></i><i style="height:23px"></i><i style="height:19px"></i><i style="height:18px"></i><i style="height:15px"></i><i style="height:39px"></i><i style="height:49px"></i><i style="height:32px"></i><i style="height:62px"></i><i style="height:17px"></i><i style="height:28px"></i><i style="height:47px"></i><i style="height:48px"></i><i style="height:37px"></i><i style="height:31px"></i><i style="height:63px"></i><i style="height:25px"></i><i style="height:20px"></i><i style="height:30px"></i><i style="height:27px"></i><i style="height:15px"></i></div><small>0:04 · "gastei 150 de gasolina"</small></div></div></div>
+   <div class="m b">Anotar R$ 150,00 em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b">Anotado ⛽ Qual a km agora?</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">exemplo ilustrativo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Teste 30 dias grátis, sem cartão: jarvys.com.br</div>
+</div>
+
+<!-- ============ 10/11 12h15 POST · caderninho, planilha ou Jarvys ============ -->
+<div class="fd" id="p10">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">COMPARA AÍ</div></div>
+ <div class="z h" style="margin-top:40px;font-size:78px">Caderninho, planilha<br>ou <span class="neon">Jarvys?</span></div>
+ <table class="z cmp" style="margin-top:22px">
+  <tr><th></th><th>📒<br>Caderninho</th><th>📊<br>Planilha</th><th class="j">JARVYS</th></tr>
+  <tr><td>Anota o gasto</td><td><span class="y">✓</span><small>à mão</small></td><td><span class="y">✓</span><small>digitando</small></td><td><span class="y">✓</span><small>mensagem ou áudio</small></td></tr>
+  <tr><td>Lê a nota da oficina</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span><small>pela foto</small></td></tr>
+  <tr><td>Avisa da revisão</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span><small>pela km</small></td></tr>
+  <tr><td>Devolve a nota antiga</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span><small>é só pedir</small></td></tr>
+  <tr><td>Soma o mês</td><td><span class="n">✕</span></td><td><span class="y">✓</span><small>com fórmula</small></td><td><span class="y">✓</span><small>sozinho</small></td></tr>
+ </table>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:center"><span style="font-size:32px;font-weight:600;color:var(--neon)">Teste 30 dias grátis: jarvys.com.br</span></div>
+</div>
