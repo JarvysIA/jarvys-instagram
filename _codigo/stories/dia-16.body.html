@@ -1,0 +1,45 @@
+<!-- 16/11. Montar: head.html + bloco <style> de dia-25a26.body.html + este corpo -->
+<style>
+.pnl{width:330px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 120%,#0f2c46,#050b14 70%);border:3px solid #22344a;position:relative;overflow:hidden;flex:none}
+.pnl .gauge{position:absolute;left:50%;top:26px;width:220px;height:220px;margin-left:-110px;border-radius:50%;border:8px solid #1d3a57;border-bottom-color:transparent;border-left-color:#3ac7ff;border-top-color:#3ac7ff}
+.pnl .odo2{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);padding:6px 16px;border-radius:10px;background:#000;border:2px solid #22344a;font-family:Inter;font-weight:800;font-size:30px;white-space:nowrap;color:#7fe0ff;letter-spacing:1px;text-shadow:0 0 12px rgba(58,199,255,.8)}
+.pnl .fl{position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(255,255,255,.35),transparent 35%)}
+.smell{display:flex;gap:28px;align-items:center;background:var(--card);border:3px solid var(--border);border-radius:30px;padding:22px 28px;margin-top:16px}
+.smell .ei{flex:none;width:96px;height:96px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:54px;background:rgba(58,199,255,.12)}
+.smell b{font-size:38px;display:block;line-height:1.15}.smell span{font-size:29px;color:var(--muted);display:block;margin-top:6px;line-height:1.35}
+.smell.bad{border-color:rgba(249,65,68,.7);background:rgba(249,65,68,.08)}.smell.bad .ei{background:rgba(249,65,68,.18)}
+.smell .st2{margin-left:auto;flex:none;font-family:Orbitron;font-weight:700;font-size:22px;letter-spacing:2px;padding:10px 16px;border-radius:12px;color:var(--bad);border:2px solid var(--bad)}
+.okm{color:var(--ok);font-weight:700}
+</style>
+
+<!-- ============ 16/11 15h30 · Como usar (link) · km pela foto do painel ============ -->
+<div class="st" id="s16">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:40px">KM PELA FOTO</div>
+ <div class="z h" style="margin-top:14px;font-size:72px">Rodou muito essa semana?<br><span class="neon">Manda a foto do painel.</span></div>
+ <div class="z chat" style="margin-top:26px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u" style="padding:14px"><div class="pnl"><div class="gauge"></div><div class="odo2">51.204 km</div><div class="fl"></div></div></div>
+   <div class="m b">Li no painel: <b>51.204 km</b>. Anotar no Chevrolet Onix? Responda <b>sim</b> para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b"><span class="okm">✓ Anotado.</span> Eu te aviso quando a revisão chegar perto 🔧</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">conversa de exemplo</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Teste 30 dias grátis, sem cartão: jarvys.com.br</div>
+</div>
+
+<!-- ============ 16/11 12h15 POST · cheiro estranho no carro ============ -->
+<div class="fd" id="p16">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">SALVE ESTE POST</div></div>
+ <div class="z h" style="margin-top:34px;font-size:76px;line-height:1.06">Sentiu cheiro<br>estranho no carro?<br><span class="neon">O que pode ser.</span></div>
+ <div class="z smell" style="margin-top:30px"><div class="ei">🔥</div><div><b>Queimado</b><span>freio ou embreagem esquentando, ou óleo pingando no motor quente</span></div></div>
+ <div class="z smell bad"><div class="ei">⛽</div><div><b>Gasolina</b><span>pode ser vazamento de combustível</span></div><div class="st2">PARE</div></div>
+ <div class="z smell"><div class="ei">🍯</div><div><b>Doce, tipo xarope</b><span>vazamento do líquido do radiador</span></div></div>
+ <div class="z smell"><div class="ei">🥚</div><div><b>Ovo podre</b><span>catalisador ou bateria com problema</span></div></div>
+ <div class="z ex" style="margin-top:12px;text-align:right">na dúvida, leve na oficina</div>
+ <div class="z" style="margin-top:auto;font-size:30px;font-weight:600;color:var(--neon)">Sentiu outro cheiro? Pergunta pro Dr. Jarvys: jarvys.com.br</div>
+</div>
