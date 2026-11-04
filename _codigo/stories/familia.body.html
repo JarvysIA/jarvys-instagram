@@ -1,0 +1,133 @@
+<!-- Jarvys Família (04/11): story de 05/11 e carrossel de 06/11. Montar: head.html + bloco <style> de dia-25a26.body.html + este corpo -->
+<style>
+.fam{display:flex;flex-direction:column;gap:18px}
+.pp{display:flex;align-items:center;gap:22px;background:var(--card);border:3px solid var(--border);border-radius:34px;padding:20px 26px}
+.av{flex:none;width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:38px;color:#061223}
+.av.a{background:#ff8fb1}.av.l{background:#3ac7ff}.av.p{background:#ffd166}
+.pp .who{font-size:27px;color:var(--muted);font-weight:600}
+.pp .say{font-size:35px;font-weight:600;margin-top:2px}
+.pp .wa{margin-left:auto;font-size:24px;color:var(--ok);font-weight:600;white-space:nowrap}
+.flow{display:flex;justify-content:center;margin:6px 0}
+.flow svg{width:120px;height:70px}
+.car{border:3px solid var(--neon);background:var(--soft);border-radius:36px;padding:28px 32px;box-shadow:0 0 80px -12px rgba(58,199,255,.6)}
+.car .ct{display:flex;align-items:center;gap:18px;font-size:36px;font-weight:800}
+.car .ct small{font-size:26px;color:var(--muted);font-weight:600;margin-left:auto}
+.hl{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.hl div{display:flex;align-items:center;gap:16px;font-size:30px;background:rgba(12,25,42,.7);border:2px solid var(--border);border-radius:20px;padding:14px 20px}
+.hl i{font-style:normal;flex:none;width:44px;height:44px;border-radius:50%;background:rgba(65,214,134,.18);color:var(--ok);font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center}
+.hl b{margin-left:auto;font-weight:700}
+.novo{display:inline-block;align-self:flex-start;padding:12px 26px;border-radius:999px;background:var(--neon);color:var(--on);font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:5px;box-shadow:0 0 40px rgba(58,199,255,.55)}
+.avs{display:flex;gap:-20px}
+.avs .av{width:170px;height:170px;font-size:76px;border:8px solid var(--bg);margin-left:-34px}
+.avs .av:first-child{margin-left:0}
+.ntf{background:var(--card);border:3px solid var(--border);border-radius:34px;padding:26px 30px;display:flex;gap:22px;align-items:flex-start}
+.ntf img{width:70px;height:70px;border-radius:50%;flex:none}
+.ntf b{font-size:32px;display:block}.ntf span{font-size:29px;color:var(--muted);line-height:1.38;display:block;margin-top:6px}
+.rcv{display:flex;gap:44px;justify-content:center}
+.rcv div{display:flex;flex-direction:column;align-items:center;gap:12px;font-size:30px;font-weight:600}
+.rcv .av{width:150px;height:150px;font-size:66px;position:relative}
+.rcv .av:after{content:"✓";position:absolute;right:-6px;bottom:-6px;width:46px;height:46px;border-radius:50%;background:var(--ok);color:#061223;font-size:28px;display:flex;align-items:center;justify-content:center;border:5px solid var(--bg)}
+.pz{display:flex;gap:30px;align-items:flex-start;margin-top:48px}
+.pz .qn2{flex:none;width:84px;height:84px;border-radius:50%;background:var(--neon);color:var(--on);font-family:Inter;font-weight:800;font-size:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(58,199,255,.55)}
+.pz b{font-size:46px;display:block;line-height:1.2}.pz span{font-size:35px;color:var(--muted);display:block;margin-top:6px;line-height:1.38}
+.money{font-family:Inter;font-weight:800;font-size:120px;letter-spacing:-4px;color:var(--neon);text-shadow:0 0 50px rgba(58,199,255,.55);line-height:1}
+.note{background:var(--soft);border:2px solid rgba(58,199,255,.45);border-radius:26px;padding:24px 30px;font-size:31px;line-height:1.42}
+</style>
+
+<!-- ============ 05/11 15h30 · Como usar (link) · Jarvys Família ============ -->
+<div class="st" id="sfam">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z novo" style="margin-top:36px">NOVO · JARVYS FAMÍLIA</div>
+ <div class="z h" style="margin-top:22px;font-size:84px">Um carro.<br><span class="neon">A família toda anota.</span></div>
+ <div class="z fam" style="margin-top:34px">
+  <div class="pp"><div class="av a">A</div><div><div class="who">Ana</div><div class="say">abasteci 120</div></div><div class="wa">WhatsApp</div></div>
+  <div class="pp"><div class="av l">L</div><div><div class="who">Luiz</div><div class="say">📸 foto da nota</div></div><div class="wa">WhatsApp</div></div>
+  <div class="pp"><div class="av p">P</div><div><div class="who">Pedro</div><div class="say">📸 foto do painel</div></div><div class="wa">WhatsApp</div></div>
+ </div>
+ <div class="z flow"><svg viewBox="0 0 120 70"><path d="M60 4 V54 M38 34 L60 58 L82 34" fill="none" stroke="#3ac7ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(58,199,255,.8))"/></svg></div>
+ <div class="z car">
+  <div class="ct">🚗 Chevrolet Onix<small>mesmo histórico</small></div>
+  <div class="hl"><div><i>✓</i>Combustível<b>R$ 120,00</b></div><div><i>✓</i>Nota da oficina<b>lida</b></div><div><i>✓</i>Quilometragem<b>48.320 km</b></div></div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Até 3 WhatsApps na mesma conta: jarvys.com.br</div>
+</div>
+
+<!-- ============ 06/11 12h15 · carrossel Jarvys Família (6) ============ -->
+<div class="fd" id="cfam-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">NOVIDADE</div></div>
+ <div class="z novo" style="margin-top:56px">JARVYS FAMÍLIA</div>
+ <div class="z h" style="margin-top:26px;font-size:90px">Quem abasteceu<br>o carro?<br><span class="neon">Agora cada um<br>anota do seu<br>celular.</span></div>
+ <div class="z t3" style="margin-top:28px">Até 3 WhatsApps da família na mesma conta do Jarvys.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+  <div class="avs"><div class="av a">A</div><div class="av l">L</div><div class="av p">P</div></div>
+  <div class="swipe">Arrasta →</div>
+ </div>
+</div>
+
+<div class="fd" id="cfam-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">1/5</div></div>
+ <div class="z h" style="margin-top:50px;font-size:76px">Cada um no<br><span class="neon">seu WhatsApp.</span></div>
+ <div class="z t3" style="margin-top:22px">A Ana abasteceu e avisa do celular dela.</div>
+ <div class="z chat" style="margin-top:26px;padding:24px 28px">
+  <div class="chead"><div class="av a" style="width:64px;height:64px;font-size:30px">A</div><div><b>Jarvys</b><small>WhatsApp da Ana</small></div></div>
+  <div class="msgs">
+   <div class="m u">abasteci 120</div>
+   <div class="m b">Anotar <b>R$ 120,00</b> em Combustível no Chevrolet Onix? Responda sim para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b">Prontinho! Anotei R$ 120,00 em Combustível no Chevrolet Onix.</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">conversa de exemplo</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+
+<div class="fd" id="cfam-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">2/5</div></div>
+ <div class="z h" style="margin-top:50px;font-size:76px">Tudo cai no<br><span class="neon">mesmo carro.</span></div>
+ <div class="z t3" style="margin-top:22px">O Luiz mandou a foto da nota. O Pedro, a foto do painel. Ninguém precisa repassar nada pra ninguém.</div>
+ <div class="z car" style="margin-top:40px">
+  <div class="ct">🚗 Chevrolet Onix<small>histórico</small></div>
+  <div class="hl"><div><i>✓</i>Combustível<b>R$ 120,00</b></div><div><i>✓</i>Manutenção, nota da oficina<b>R$ 280,00</b></div><div><i>✓</i>Quilometragem<b>48.320 km</b></div></div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">valores de exemplo</div>
+ <div class="z note" style="margin-top:40px">Acabou o "quanto foi a gasolina?" no grupo da família.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+
+<div class="fd" id="cfam-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">3/5</div></div>
+ <div class="z h" style="margin-top:50px;font-size:76px">Todo mundo<br><span class="neon">recebe o aviso.</span></div>
+ <div class="z t3" style="margin-top:22px">Revisão chegando, FIPE do mês: o aviso vai para os 3. Ninguém fala "achei que você tinha visto".</div>
+ <div class="z ntf" style="margin-top:40px"><img src="icon.png"><div><b>Jarvys</b><span>A revisão dos 50.000 km do seu Onix está chegando. Quer ver o que trocar?</span></div></div>
+ <div class="z rcv" style="margin-top:44px"><div><div class="av a">A</div>Ana</div><div><div class="av l">L</div>Luiz</div><div><div class="av p">P</div>Pedro</div></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+
+<div class="fd" id="cfam-5">
+ <div class="dots"></div><div class="g" style="left:-300px;top:300px;width:1600px;height:1200px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">4/5</div></div>
+ <div class="z h" style="margin-top:50px;font-size:76px">Sem pagar<br><span class="neon">a mais.</span></div>
+ <div class="z t3" style="margin-top:22px">O carro ativado vale para os 3 números.</div>
+ <div class="z box" style="margin-top:44px;text-align:center">
+  <div class="money">R$&nbsp;29,90</div>
+  <div class="t2" style="margin-top:16px">por carro, uma vez só.<br>Sem mensalidade, sem cartão.</div>
+ </div>
+ <div class="z note" style="margin-top:34px">No grátis também dá: os 3 recebem os avisos de revisão e mandam a km.</div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+
+<div class="fd" id="cfam-6">
+ <div class="dots"></div><div class="g" style="left:-400px;top:500px;width:1700px;height:1200px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">5/5</div></div>
+ <div class="z h" style="margin-top:50px;font-size:76px">Como colocar<br><span class="neon">a família.</span></div>
+ <div class="z pz" style="margin-top:44px"><div class="qn2">1</div><div><b>Abra o Perfil no app</b><span>Na sua conta do Jarvys.</span></div></div>
+ <div class="z pz"><div class="qn2">2</div><div><b>Toque em "Adicionar WhatsApp"</b><span>E escreva o nome de quem vai usar.</span></div></div>
+ <div class="z pz"><div class="qn2">3</div><div><b>A pessoa manda o código</b><span>Do WhatsApp dela para o Jarvys. Pronto.</span></div></div>
+ <div class="z note" style="margin-top:56px">Quem entra na conta vê e lança em todos os carros dela.</div>
+ <div class="z" style="margin-top:auto;font-size:36px;font-weight:700;color:var(--neon)">Teste 30 dias grátis: jarvys.com.br</div>
+</div>
