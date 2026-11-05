@@ -1,0 +1,180 @@
+<!-- 19 e 20/11. Montar: head.html + bloco <style> de dia-25a26.body.html + este corpo -->
+<style>
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+.drt{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--soft);border:3px solid rgba(58,199,255,.55);color:var(--neon);font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:5px;box-shadow:0 0 30px rgba(58,199,255,.35)}
+.qn{font-family:Inter;font-weight:800;letter-spacing:-4px;font-size:170px;line-height:1;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.55)}
+.ico{flex:none;width:200px;height:200px;border-radius:44px;display:flex;align-items:center;justify-content:center;font-size:110px;background:radial-gradient(circle at 50% 35%,#163a5a,#0a1626);border:3px solid rgba(58,199,255,.45);box-shadow:0 30px 90px -20px rgba(58,199,255,.5)}
+.sh{display:flex;align-items:center;justify-content:space-between}
+.stt{font-weight:800;font-size:78px;line-height:1.1;letter-spacing:-2px}
+.sx{font-size:44px;line-height:1.45;color:var(--muted)}
+.tip{display:flex;gap:20px;align-items:flex-start;background:var(--soft);border:2px solid rgba(58,199,255,.45);border-radius:28px;padding:26px 30px}
+.tip em{font-style:normal;font-size:46px}.tip span{font-size:38px;line-height:1.4}
+.tip.w{background:rgba(249,199,24,.1);border-color:rgba(249,199,24,.55)}
+.okm{color:var(--ok);font-weight:700}
+/* estrada da capa */
+.road{position:relative;width:900px;height:420px;margin:0 auto}
+.road .asf{position:absolute;left:50%;bottom:0;width:900px;height:420px;margin-left:-450px;background:linear-gradient(#1b2635,#121c29);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)}
+.road .lane{position:absolute;left:50%;bottom:0;width:16px;height:420px;margin-left:-8px;background:repeating-linear-gradient(#f9c718 0 46px,transparent 46px 92px);clip-path:polygon(35% 0,65% 0,100% 100%,0 100%);opacity:.8}
+.road .edge{position:absolute;bottom:0;width:10px;height:430px;background:#e6edf4;opacity:.55}
+.road .edge.l{left:50%;margin-left:-92px;transform-origin:bottom;transform:skewX(-41deg) translateX(-180px)}
+.road .edge.r{left:50%;margin-left:82px;transform-origin:bottom;transform:skewX(41deg) translateX(180px)}
+.carb{position:absolute;right:120px;bottom:40px;width:250px;height:150px}
+.tri{position:absolute;right:420px;bottom:150px}
+.hz{position:absolute;width:44px;height:28px;border-radius:8px;background:#ff9f1c;box-shadow:0 0 30px 10px rgba(255,159,28,.75);animation:none}
+/* planos */
+.pl{border-radius:36px;padding:34px 38px;border:3px solid var(--border);background:var(--card)}
+.pl.c{border-color:var(--neon);background:linear-gradient(160deg,rgba(58,199,255,.16),rgba(23,37,55,.95));box-shadow:0 0 80px -16px rgba(58,199,255,.6)}
+.pl .nm{font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:5px;color:var(--muted)}
+.pl.c .nm{color:var(--neon)}
+.pl .pr{font-family:Inter;font-weight:800;font-size:96px;letter-spacing:-3px;line-height:1;margin-top:12px;white-space:nowrap}
+.pl .pr small{font-size:34px;font-weight:600;letter-spacing:0;color:var(--muted);margin-left:10px}
+.pl .it{font-size:31px;line-height:1.45;color:var(--fg);margin-top:16px}
+.pl .it i{font-style:normal;color:var(--ok);font-weight:800;margin-right:10px}
+.pill{display:inline-block;padding:10px 22px;border-radius:999px;background:rgba(65,214,134,.16);color:var(--ok);border:2px solid rgba(65,214,134,.55);font-size:26px;font-weight:700;letter-spacing:1px}
+.est{display:flex;align-items:baseline;gap:14px;margin:10px 0 6px}
+.est b{font-family:Inter;font-weight:800;font-size:56px;color:var(--neon);white-space:nowrap}
+</style>
+
+<!-- ============ 19/11 12h15 CARROSSEL · carro quebrou na estrada ============ -->
+<div class="fd" id="c19-1">
+ <div class="dots"></div><div class="g" style="left:-400px;top:200px;width:1700px;height:1400px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">SALVE ESTE POST</div></div>
+ <div class="z h" style="margin-top:60px;font-size:96px">Carro quebrou<br>na estrada?<br><span class="neon">Faça isso.</span></div>
+ <div class="z t3" style="margin-top:30px">6 passos para ficar seguro até a ajuda chegar. Vai viajar no feriado? Salva antes de sair.</div>
+ <div class="z road" style="margin-top:auto">
+  <div class="asf"></div><div class="lane"></div>
+  <svg class="tri" width="90" height="82" viewBox="0 0 130 120" style="overflow:visible;filter:drop-shadow(0 0 14px rgba(249,65,68,.8))"><path d="M65 8 L124 112 H6Z" fill="none" stroke="#f94144" stroke-width="16" stroke-linejoin="round"/></svg>
+  <svg class="carb" viewBox="0 0 250 150"><rect x="20" y="30" width="210" height="96" rx="30" fill="#24364b" stroke="#3ac7ff" stroke-width="5"/><rect x="48" y="44" width="154" height="40" rx="12" fill="#0c192a"/><rect x="34" y="96" width="40" height="18" rx="6" fill="#ff9f1c"/><rect x="176" y="96" width="40" height="18" rx="6" fill="#ff9f1c"/><rect x="36" y="122" width="44" height="26" rx="8" fill="#0b121c"/><rect x="170" y="122" width="44" height="26" rx="8" fill="#0b121c"/></svg>
+  <div class="hz" style="right:322px;bottom:120px"></div><div class="hz" style="right:186px;bottom:120px"></div>
+ </div>
+ <div class="z swipe" style="margin-top:40px">Arrasta pro lado →</div>
+</div>
+<div class="fd" id="c19-2">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 1/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">01</div><div class="ico">⚠️</div></div>
+ <div class="z stt" style="margin-top:44px">Pisca-alerta e acostamento</div>
+ <div class="z sx" style="margin-top:26px">Ligue o pisca-alerta assim que sentir o problema e encoste no acostamento, o mais à direita possível, longe de curva.</div>
+ <div class="z tip w" style="margin-top:56px"><em>🚗</em><span>Sem acostamento? Pare no lugar mais seguro e visível que encontrar.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-3">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 2/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">02</div><div class="ico"><svg width="130" height="120" viewBox="0 0 130 120" style="overflow:visible;filter:drop-shadow(0 0 12px rgba(249,65,68,.7))"><path d="M65 8 L124 112 H6Z" fill="none" stroke="#f94144" stroke-width="14" stroke-linejoin="round"/><path d="M65 50 L92 96 H38Z" fill="#ff8a3d" opacity=".55"/></svg></div></div>
+ <div class="z stt" style="margin-top:44px">Triângulo bem atrás do carro</div>
+ <div class="z sx" style="margin-top:26px">Coloque o triângulo a pelo menos 30 metros do carro, no sentido de onde vêm os outros carros.</div>
+ <div class="z tip" style="margin-top:56px"><em>💡</em><span>Estrada rápida ou depois de curva? Mais longe ainda, para quem vem ter tempo de frear.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-4">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 3/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">03</div><div class="ico">🚸</div></div>
+ <div class="z stt" style="margin-top:44px">Todo mundo para fora, pelo lado direito</div>
+ <div class="z sx" style="margin-top:26px">Desçam pelo lado do acostamento e esperem longe da pista, atrás da mureta ou do guard-rail.</div>
+ <div class="z tip w" style="margin-top:56px"><em>⛔</em><span>Não fique dentro do carro parado no acostamento.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-5">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 4/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">04</div><div class="ico">📍</div></div>
+ <div class="z stt" style="margin-top:44px">Veja onde você está</div>
+ <div class="z sx" style="margin-top:26px">Olhe a placa de quilômetro mais perto, o nome da rodovia e o sentido. É a primeira coisa que o socorro vai perguntar.</div>
+ <div class="z tip" style="margin-top:56px"><em>💡</em><span>Sem placa por perto? Mande a localização do celular.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-6">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 5/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">05</div><div class="ico">📞</div></div>
+ <div class="z stt" style="margin-top:44px">Chame o socorro</div>
+ <div class="z sx" style="margin-top:26px">Rodovia com pedágio tem atendimento da concessionária: o telefone fica nas placas da estrada. O seguro ou a assistência 24 horas também mandam guincho.</div>
+ <div class="z tip" style="margin-top:46px"><em>📲</em><span>Antes de viajar, salve o número da assistência no celular.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-7">
+ <div class="dots"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">PASSO 6/6</div></div>
+ <div class="z sh" style="margin-top:50px"><div class="qn">06</div><div class="ico">🔧</div></div>
+ <div class="z stt" style="margin-top:44px">Nada de conserto do lado da pista</div>
+ <div class="z sx" style="margin-top:26px">Só troque pneu se estiver bem longe dos carros. Se não der, espere o guincho.</div>
+ <div class="z tip w" style="margin-top:56px"><em>🌡️</em><span>Motor esquentou? Não abra o radiador quente: pode espirrar água fervendo.</span></div>
+ <div class="z" style="margin-top:auto;display:flex;justify-content:space-between;font-size:30px;color:var(--muted)"><span>jarvys.com.br</span><span class="neon" style="font-weight:600">arrasta →</span></div>
+</div>
+<div class="fd" id="c19-8">
+ <div class="dots"></div><div class="g" style="left:-300px;top:300px;width:1700px;height:1300px"></div>
+ <div class="z top"><div class="wm s"><img src="icon.png">JARVYS</div><div class="pg">NA DÚVIDA?</div></div>
+ <div class="z" style="margin-top:40px"><span class="drt">DR. JARVYS</span></div>
+ <div class="z h" style="margin-top:22px;font-size:70px">Sigo ou paro?<br><span class="neon">Me pergunta.</span></div>
+ <div class="z chat" style="margin-top:34px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">o carro começou a falhar na estrada, sigo ou paro?</div>
+   <div class="m b">Acendeu luz vermelha ou a temperatura subiu? Pare em lugar seguro e desligue 🔧 Se só falha, sem luz, vá devagar até o próximo posto e não force. Me manda a foto do painel que eu olho.</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:12px;text-align:right">conversa de exemplo</div>
+ <div class="z" style="margin-top:auto;font-size:32px;font-weight:600;color:var(--neon)">Teste 30 dias grátis, sem cartão: jarvys.com.br</div>
+</div>
+
+<!-- ============ 19/11 19h30 (vaga do reel) · Como usar (link) · quanto custa a revisão dos 60 mil ============ -->
+<div class="st" id="s19b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:40px">QUANTO CUSTA?</div>
+ <div class="z h" style="margin-top:14px;font-size:78px">Revisão dos 60 mil?<br><span class="neon">Me pergunta antes.</span></div>
+ <div class="z chat" style="margin-top:32px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">quanto custa a revisão dos 60 mil?</div>
+   <div class="m b">Para o seu Onix, a estimativa da revisão dos 60.000 km:
+    <div class="est"><b>R$&nbsp;650 a 900</b></div>
+    O que mais pesa: óleo e filtros. Com isso na mão, você compara o orçamento da oficina 🔧
+   </div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">conversa de exemplo, valores ilustrativos</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Teste 30 dias grátis, sem cartão: jarvys.com.br</div>
+</div>
+
+<!-- ============ 20/11 15h30 · Como usar (link) · abasteceu na estrada ============ -->
+<div class="st" id="s20a">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:40px">FERIADO</div>
+ <div class="z h" style="margin-top:14px;font-size:80px">Abasteceu na estrada?<br><span class="neon">Fala o valor.</span></div>
+ <div class="z chat" style="margin-top:34px">
+  <div class="chead"><img src="icon.png"><div><b>Jarvys</b><small>online</small></div></div>
+  <div class="msgs">
+   <div class="m u">abasteci 200 no posto da estrada</div>
+   <div class="m b">Anotar <b>R$ 200,00</b> em Combustível no Chevrolet Onix? Responda <b>sim</b> para confirmar.</div>
+   <div class="m u">sim</div>
+   <div class="m b"><span class="okm">✓ Anotado</span> ⛽ Qual a km agora?</div>
+  </div>
+ </div>
+ <div class="z ex" style="margin-top:14px;text-align:right">conversa de exemplo</div>
+ <div class="z p" style="margin-top:40px">Na volta do feriado, me pergunta <b style="color:var(--fg)">quanto gastei esse mês</b> e eu somo tudo.</div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Teste 30 dias grátis, sem cartão: jarvys.com.br</div>
+</div>
+
+<!-- ============ 20/11 19h30 (vaga do reel) · Planos (link) · sem mensalidade ============ -->
+<div class="st" id="s20b">
+ <div class="dots"></div><div class="g" style="left:-300px;top:450px;width:1600px;height:1400px"></div>
+ <div class="z wm"><img src="icon.png">JARVYS</div>
+ <div class="z lab" style="margin-top:40px">QUANTO CUSTA O JARVYS?</div>
+ <div class="z h" style="margin-top:14px;font-size:82px">Sem mensalidade.<br><span class="neon">Nunca.</span></div>
+ <div class="z pl" style="margin-top:36px">
+  <div class="nm">GRÁTIS PARA SEMPRE</div>
+  <div class="pr">R$&nbsp;0</div>
+  <div class="it"><i>✓</i>app inteiro: garagem, Status de Saúde, FIPE<br><i>✓</i>no WhatsApp: km e aviso de revisão</div>
+ </div>
+ <div class="z pl c" style="margin-top:22px">
+  <div class="nm">COMPLETO</div>
+  <div class="pr">R$&nbsp;29,90<small>por carro, uma vez só</small></div>
+  <div class="it"><i>✓</i>o Jarvys inteiro no WhatsApp: gastos, nota pela foto, áudio e Dr. Jarvys</div>
+  <div style="margin-top:18px"><span class="pill">Pix, sem cartão</span></div>
+ </div>
+ <div class="z" style="margin-top:auto;font-size:34px;font-weight:600;color:var(--neon)">Teste 30 dias com tudo liberado: jarvys.com.br</div>
+</div>
