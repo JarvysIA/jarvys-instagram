@@ -1,0 +1,159 @@
+/* ===== reel 27: Banguela na descida economiza? (Dr. Jarvys responde, formato educativo) ===== */
+.ex2{position:absolute;left:0;right:0;text-align:center;font-size:30px;color:var(--muted);opacity:0}
+.serie{position:absolute;left:0;right:0;top:170px;text-align:center}
+.serie span{display:inline-block;padding:14px 34px;border-radius:999px;background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:var(--warn);font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:6px}
+.draw path,.draw line,.draw circle{stroke-dasharray:1400;stroke-dashoffset:1400}
+@keyframes dr{to{stroke-dashoffset:0}}
+.stamp{position:absolute;left:50%;padding:18px 60px;border:12px solid var(--bad);border-radius:26px;color:var(--bad);font-family:Inter;font-weight:800;font-size:170px;letter-spacing:6px;line-height:1;text-shadow:0 0 40px rgba(249,65,68,.5);box-shadow:0 0 60px rgba(249,65,68,.35),inset 0 0 40px rgba(249,65,68,.15);background:rgba(12,25,42,.85);opacity:0}
+.gauge{position:absolute;left:240px;width:600px;height:340px}
+.gauge svg{position:absolute;inset:0;overflow:visible}
+.ndl{position:absolute;left:296px;bottom:20px;width:8px;height:250px;border-radius:6px;background:var(--fg);transform-origin:50% 100%;box-shadow:0 0 20px rgba(255,255,255,.5)}
+.ndl:after{content:"";position:absolute;left:-18px;bottom:-22px;width:44px;height:44px;border-radius:50%;background:var(--fg)}
+@keyframes ndl{from{transform:rotate(var(--a0))}to{transform:rotate(var(--a1))}}
+@keyframes wig{0%,100%{rotate:0deg}50%{rotate:4deg}}
+.glbl{position:absolute;left:0;right:0;text-align:center;font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:6px;color:var(--muted)}
+.big0{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:170px;letter-spacing:-6px;color:var(--ok);text-shadow:0 0 50px rgba(65,214,134,.6);opacity:0}
+.pillx{display:inline-flex;align-items:center;gap:16px;padding:22px 42px;border-radius:999px;font-size:46px;font-weight:800;opacity:0}
+.pillx.ok{background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3}
+.pillx.wa{background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:#ffe28a}
+.pillx.bad{background:rgba(249,65,68,.14);border:3px solid rgba(249,65,68,.65);color:#ff9c9c}
+.knob{position:absolute}
+.drop{position:absolute;width:34px;height:46px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--warn);box-shadow:0 0 20px rgba(249,199,24,.7);opacity:0}
+@keyframes drip{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:1;transform:translateY(10px) scale(1)}100%{opacity:0;transform:translateY(190px) scale(.9)}}
+.disc{position:absolute;left:290px;width:500px;height:500px}
+.heat{position:absolute;inset:40px;border-radius:50%;background:radial-gradient(circle,rgba(255,120,40,.0) 30%,rgba(255,90,40,.85) 60%,rgba(249,65,68,.0) 72%);opacity:0;filter:blur(6px)}
+@keyframes heatup{from{opacity:0}to{opacity:1}}
+.thermo{position:absolute;left:850px;width:70px;height:420px;border-radius:40px;border:6px solid var(--fg);overflow:hidden}
+.thermo i{position:absolute;left:0;right:0;bottom:0;height:12%;background:linear-gradient(0deg,#f94144,#ff8a3d);box-shadow:0 0 30px rgba(249,65,68,.8)}
+@keyframes fillT{from{height:12%}to{height:92%}}
+.auto{position:absolute;left:150px;right:150px;background:#f7f9fb;color:#1b2735;border-radius:26px;padding:36px 44px 40px;box-shadow:0 50px 120px -30px rgba(249,65,68,.5);opacity:0}
+.auto h4{font-family:Orbitron;font-size:34px;letter-spacing:5px;color:#c62f32;margin-bottom:6px}
+.auto .sub{font-size:26px;color:#6b7a89;margin-bottom:12px}
+.auto .ar{display:flex;justify-content:space-between;border-top:2px dashed #c9d3dd;padding:18px 0;font-size:36px}
+.auto .ar span{color:#6b7a89}.auto .ar b{font-weight:800;text-align:right}
+.cm{display:inline-flex;align-items:center;gap:22px;padding:28px 52px;border-radius:44px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.6);font-size:58px;font-weight:800;box-shadow:0 30px 90px -20px rgba(58,199,255,.55);opacity:0}
+.sep{position:absolute;left:300px;right:300px;height:3px;background:linear-gradient(90deg,transparent,rgba(58,199,255,.6),transparent);opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Descer",0,0.28],["a",0.32,0.4],["serra",0.48,0.77],["na",0.8,0.86],["banguela",0.88,1.44],["economiza",1.52,2],["combustível?",2.08,2.8],["Mito.",3.28,3.76],["Carro",4.24,4.48],["com",4.52,4.56],["injeção,",4.64,5.28],["descendo",5.36,5.68],["engatado",5.76,6.32],["e",6.36,6.4],["sem",6.48,6.64],["acelerar,",6.72,7.44],["corta",7.48,7.68],["o",7.72,7.76],["combustível:",7.84,8.8],["gasta",8.84,9.2],["zero.",9.36,9.88],["Na",10.08,10.16],["banguela,",10.24,10.88],["o",10.92,10.96],["motor",11.12,11.28],["fica",11.32,11.44],["em",11.48,11.52],["marcha",11.6,11.92],["lenta,",12,12.48],["gastando.",12.52,13.28],["E",13.44,13.52],["você",13.56,13.76],["perde",13.92,14.16],["o",14.2,14.24],["freio",14.32,14.48],["motor:",14.68,15.28],["o",15.32,15.36],["freio",15.44,15.6],["esquenta",15.68,16.24],["e",16.32,16.48],["pode",16.56,16.72],["falhar",16.8,17.12],["na",17.16,17.2],["descida.",17.28,18.08],["E",18.12,18.16],["ainda",18.24,18.72],["é",18.76,18.8],["infração",18.96,19.28],["de",19.36,19.44],["trânsito.",19.52,20.32],["Desce",20.44,20.64],["engatado.",20.72,21.76],["E",21.8,21.84],["você,",21.88,22.48],["já",22.52,22.64],["desceu",22.72,22.88],["na",22.96,23.04],["banguela?",23.12,23.84],["Comenta",23.92,24.16],["aí.",24.2,24.64]];
+const T = {total: 30, s1:[0,4.85], s2:[4.85,10.45], s3:[10.45,13.85], s4:[13.85,18.5], s5:[18.5,20.85], s6:[20.85,22.25], s7:[22.25,30],
+  breaks: [0, 5, 7, 8, 11, 16, 19, 21, 24, 29, 30, 36, 39, 44, 50, 52, 58]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+const DR = (at, d = 1.2) => `animation:${A('dr', d, at, 'ease-out')}`;
+const CAR = `<svg viewBox="0 0 200 90" style="width:100%;height:100%;overflow:visible"><path d="M14 64 C14 50 22 44 38 42 L62 22 C68 16 76 14 86 14 L128 14 C138 14 146 18 152 24 L172 42 C186 44 192 52 192 64 L192 70 L14 70Z" fill="rgba(58,199,255,.14)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M70 26 L86 20 L118 20 L118 42 L56 42Z M126 20 L136 20 C142 20 146 24 150 28 L162 42 L126 42Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><rect x="182" y="52" width="10" height="7" rx="3" fill="#ffe28a"/><circle cx="50" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="4"/><circle cx="156" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="4"/></svg>`;
+const KNOB = (L, c, bg, s = 1) => `<svg width="${200 * s}" height="${280 * s}" viewBox="0 0 200 280" style="overflow:visible"><rect x="88" y="150" width="24" height="110" rx="10" fill="none" stroke="#fff" stroke-width="5"/><path d="M40 268 H160" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="100" cy="88" r="78" fill="${bg}" stroke="${c}" stroke-width="8" style="filter:drop-shadow(0 0 18px ${c})"/><text x="100" y="122" text-anchor="middle" font-family="Inter" font-weight="800" font-size="96" fill="${c}">${L}</text></svg>`;
+const GAUGE = `<svg viewBox="0 0 600 340"><path d="M40 320 A260 260 0 0 1 560 320" fill="none" stroke="rgba(151,167,183,.35)" stroke-width="26" stroke-linecap="round"/><path d="M40 320 A260 260 0 0 1 140 116" fill="none" stroke="#41d686" stroke-width="26" stroke-linecap="round"/><path d="M460 116 A260 260 0 0 1 560 320" fill="none" stroke="#f9c718" stroke-width="26" stroke-linecap="round"/><text x="22" y="300" fill="#41d686" font-family="Inter" font-weight="800" font-size="44" text-anchor="end">0</text></svg>`;
+const INJ = `<svg width="220" height="300" viewBox="0 0 220 300" style="overflow:visible"><rect x="70" y="10" width="80" height="120" rx="18" fill="none" stroke="#fff" stroke-width="7"/><path d="M80 130 L95 200 H125 L140 130" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M100 70 H120" stroke="#fff" stroke-width="7"/></svg>`;
+const SPRAY = `<svg width="220" height="200" viewBox="0 0 220 200"><g fill="#f9c718"><circle cx="110" cy="40" r="9"/><circle cx="80" cy="80" r="8"/><circle cx="140" cy="80" r="8"/><circle cx="110" cy="100" r="9"/><circle cx="60" cy="130" r="7"/><circle cx="160" cy="130" r="7"/><circle cx="95" cy="150" r="8"/><circle cx="128" cy="160" r="8"/></g></svg>`;
+const XS = `<svg width="300" height="300" viewBox="0 0 300 300"><path d="M40 40 L260 260 M260 40 L40 260" stroke="#f94144" stroke-width="26" stroke-linecap="round" style="filter:drop-shadow(0 0 16px rgba(249,65,68,.8))"/></svg>`;
+const DISC = `<svg viewBox="0 0 500 500" style="position:absolute;inset:0;overflow:visible"><circle cx="250" cy="250" r="220" fill="none" stroke="#fff" stroke-width="10"/><circle cx="250" cy="250" r="80" fill="none" stroke="#fff" stroke-width="8"/>${[0,1,2,3,4,5].map(k=>{const a=k*Math.PI/3;return `<circle cx="${250+150*Math.cos(a)}" cy="${250+150*Math.sin(a)}" r="16" fill="none" stroke="#fff" stroke-width="6"/>`}).join('')}<path d="M380 60 C470 120 500 200 490 280 L430 270 C438 210 418 150 350 105Z" fill="rgba(58,199,255,.18)" stroke="#3ac7ff" stroke-width="8" stroke-linejoin="round"/></svg>`;
+let h = '';
+
+// CENA 1: gancho, banguela na serra
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;font-size:118px;line-height:1.02">${still('Banguela na')}<br>${still('descida')} ${still('economiza?','neon')}</div>
+  <svg class="draw" viewBox="0 0 1080 700" style="position:absolute;left:0;top:640px;width:1080px;height:700px;overflow:visible">
+    <path d="M-20 90 L1100 650" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" style="${DR(.1, 1.0)}"/>
+    <path d="M-20 160 L1100 720" stroke="rgba(255,255,255,.35)" stroke-width="5" fill="none" style="${DR(.2, 1.0)}"/>
+    <path d="M60 40 L240 -60 L380 20 L520 -90 L700 60" stroke="rgba(151,167,183,.5)" stroke-width="6" fill="none" stroke-linejoin="round" style="${DR(.3, 1.4)}"/>
+  </svg>
+  <div style="position:absolute;left:250px;top:700px;width:380px;height:171px;transform:rotate(26.6deg);transform-origin:50% 100%;animation:${A('fade', .5, .4)}">${CAR}</div>
+  <div class="knob" style="left:770px;top:860px;animation:${A('popb', .5, W(4) - .2, BOUNCE)}">${KNOB('N', '#f9c718', '#1c1a0e', .9)}</div>
+  <div class="stamp" style="top:1110px;--r:-9deg;animation:${A('pop', .5, W(7) - .1, BOUNCE)}">MITO</div>
+</div></div>`;
+
+// CENA 2: engatado e sem acelerar, a injeção corta
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('Engatado e', W(11) - .1, .12)}<br>${neonWords('sem acelerar:', W(14) - .1, .14)}</div>
+  <div class="knob" style="left:90px;top:540px;animation:${A('popb', .5, W(12) - .1, BOUNCE)}">${KNOB('4ª', '#3ac7ff', '#0e2236', 1.25)}</div>
+  <div style="position:absolute;left:560px;top:520px;transform:scale(1.35);transform-origin:50% 0;animation:${A('up', .5, W(8))}">${INJ}</div>
+  <div style="position:absolute;left:560px;top:800px;transform:scale(1.35);transform-origin:50% 0;animation:${an([A('fade', .3, W(8) + .3), A('hide', .25, W(16), 'linear', 'forwards')])}">${SPRAY}</div>
+  <div style="position:absolute;left:520px;top:600px;opacity:0;animation:${A('popb', .4, W(16), BOUNCE)}">${XS}</div>
+  <div class="ex2" style="top:1000px;font-size:36px;animation:${A('fade', .4, W(16) + .1)}">a injeção corta o combustível</div>
+  <div class="glbl" style="top:1090px;animation:${A('fade', .4, W(18))}">COMBUSTÍVEL NA DESCIDA</div>
+  <div class="big0" style="top:1130px;animation:${A('popb', .5, W(19) - .1, BOUNCE)}">ZERO</div>
+</div></div>`;
+
+// CENA 3: na banguela, marcha lenta gastando
+const drop = (x, at) => `<div class="drop" style="left:${x}px;top:1020px;animation:${A('drip', 1.1, at, 'ease-in', 'none')} infinite"></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:200px;font-size:96px">${words('Na banguela,', W(21), .14)}<br>${neonWords('o motor gasta.', W(24), .14)}</div>
+  <div class="knob" style="left:70px;top:600px;animation:${A('popb', .5, W(22) - .1, BOUNCE)}">${KNOB('N', '#f9c718', '#1c1a0e', 1.15)}</div>
+  <div class="gauge" style="left:400px;top:600px;width:600px;transform:scale(.9);transform-origin:0 0;animation:${A('fade', .4, W(21) + .2)}">${GAUGE}
+    <div class="ndl" style="--a0:-88deg;--a1:-38deg;animation:${an([A('ndl', .9, W(27) - .2, BOUNCE), A('wig', .4, W(29), 'ease-in-out', 'none') + ' infinite'])}"></div></div>
+  <div class="glbl" style="top:930px;left:400px;right:80px;animation:${A('fade', .4, W(27))}">MARCHA LENTA</div>
+  ${drop(640, W(28))}${drop(700, W(28) + .35)}${drop(760, W(28) + .7)}
+  <div class="abs" style="left:0;right:0;top:1250px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(29) - .1, BOUNCE)}">⛽ Gastando à toa</span></div>
+</div></div>`;
+
+// CENA 4: perde o freio motor, o freio esquenta
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('Sem freio motor,', W(30), .12)}<br>${neonWords('o freio esquenta.', W(36), .14)}</div>
+  <div class="disc" style="top:530px;left:230px">${DISC}
+    <div class="heat" style="animation:${A('heatup', 1.6, W(38) - .3, 'ease-in')}"></div></div>
+  <div class="thermo" style="top:560px;animation:${A('fade', .4, W(36))}"><i style="animation:${A('fillT', 1.8, W(37), 'ease-in')}"></i></div>
+  <div class="abs" style="left:0;right:0;top:1170px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(41) - .15, BOUNCE)}">⚠️ Pode falhar na descida</span></div>
+</div></div>`;
+
+// CENA 5: infração de trânsito
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:200px;font-size:96px">${words('E ainda é', W(44), .12)}<br>${neonWords('infração.', W(47), .1)}</div>
+  <div class="auto" style="top:540px;--r:-3deg;animation:${A('popb', .5, W(47) - .1, BOUNCE)}"><h4>AUTO DE INFRAÇÃO</h4><div class="sub">exemplo ilustrativo</div>
+    <div class="ar"><span>Conduta</span><b>Desengrenado<br>em declive</b></div>
+    <div class="ar"><span>Lei</span><b>CTB, art. 231</b></div>
+    <div class="ar"><span>Gravidade</span><b>Média</b></div></div>
+</div></div>`;
+
+// CENA 6: desce engatado
+h += `<div class="scene" style="${sceneStyle(T.s6)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:220px;font-size:130px">${still('Desce')}<br>${neonWords('engatado.', W(51) - .1, .1)}</div>
+  <div class="knob" style="left:405px;top:560px;animation:${A('popb', .5, W(50) - .15, BOUNCE)}">${KNOB('✓', '#41d686', '#0e2a1c', 1.1)}</div>
+  <div class="ex2" style="top:1000px;font-size:34px;animation:${A('fade', .4, W(51))}">na serra, use a marcha que usaria para subir</div>
+  <div class="abs" style="left:0;right:0;top:1090px;text-align:center"><span class="pillx ok" style="position:relative;animation:${A('popb', .45, W(51) + .2, BOUNCE)}">Freio motor + zero combustível</span></div>
+</div></div>`;
+
+// CENA 7: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s7, true)}"><div class="cam" style="${camStyle(T.s7)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('E você, já desceu', W(52), .14)}<br>${neonWords('na banguela?', W(56), .14)}</div>
+  <div class="abs" style="left:0;right:0;top:520px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(58) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:720px;animation:${A('fade', .5, 25.4)}"></div>
+  <div class="abs" style="left:0;right:0;top:790px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 25.6, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:900px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 25.9, .12)}<br>${neonWords('Pergunta no WhatsApp.', 26.4, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1130px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 27.0)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1225px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 27.4)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+const capEl = document.getElementById('cap');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
+window.setT = (t) => {
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t < 0.3) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+</script>
+</body></html>
