@@ -248,7 +248,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-f
 .big0{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:170px;letter-spacing:-6px;color:var(--ok);text-shadow:0 0 50px rgba(65,214,134,.6);opacity:0}
 .pillx{display:inline-flex;align-items:center;gap:16px;padding:22px 42px;border-radius:999px;font-size:46px;font-weight:800;opacity:0}
 .pillx.ok{background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3}
-.pillx.wa{background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:#ffe28a}
+.pillx.wa{left:0;top:0;display:inline-flex;background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:#ffe28a}
 .pillx.bad{background:rgba(249,65,68,.14);border:3px solid rgba(249,65,68,.65);color:#ff9c9c}
 .knob{position:absolute}
 .drop{position:absolute;width:34px;height:46px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--warn);box-shadow:0 0 20px rgba(249,199,24,.7);opacity:0}
@@ -335,7 +335,7 @@ h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${c
     <div class="ndl" style="--a0:-88deg;--a1:-38deg;animation:${an([A('ndl', .9, W(27) - .2, BOUNCE), A('wig', .4, W(29), 'ease-in-out', 'none') + ' infinite'])}"></div></div>
   <div class="glbl" style="top:930px;left:400px;right:80px;animation:${A('fade', .4, W(27))}">MARCHA LENTA</div>
   ${drop(640, W(28))}${drop(700, W(28) + .35)}${drop(760, W(28) + .7)}
-  <div class="abs" style="left:0;right:0;top:1250px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(29) - .1, BOUNCE)}">⛽ Gastando à toa</span></div>
+  <div class="abs" style="left:0;right:0;top:1250px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(28) - .1, BOUNCE)}">⛽ Gastando à toa</span></div>
 </div></div>`;
 
 // CENA 4: perde o freio motor, o freio esquenta
