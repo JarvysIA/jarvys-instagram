@@ -1,0 +1,138 @@
+/* ===== reel 29: Completar o tanque depois do clique faz mal? (educativo) ===== */
+.puff{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(205,218,232,.6),rgba(205,218,232,0) 70%);opacity:0}
+@keyframes puffu{0%{opacity:0;transform:translate(0,0) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translate(0,-150px) scale(1.8)}}
+.tank{position:absolute;left:190px;width:700px;height:420px;border:8px solid #fff;border-radius:60px;overflow:hidden;background:rgba(58,199,255,.06)}
+.tank .fuel{position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,#ffd84a,#f9a818);box-shadow:0 0 40px rgba(249,199,24,.6) inset}
+.tank .fuel:before{content:"";position:absolute;left:0;right:0;top:-10px;height:20px;border-radius:50%;background:#ffe27a;opacity:.8}
+.lim{position:absolute;left:0;right:0;border-top:6px dashed rgba(255,255,255,.75)}
+.liml{position:absolute;right:26px;font-family:Orbitron;font-weight:700;font-size:24px;letter-spacing:4px;color:#fff;background:rgba(12,25,42,.85);padding:4px 12px;border-radius:10px}
+@keyframes lvl{from{height:var(--h0)}to{height:var(--h1)}}
+.vtag{position:absolute;left:0;right:0;text-align:center;font-family:Orbitron;font-weight:700;font-size:34px;letter-spacing:6px;color:var(--neon);text-shadow:0 0 20px rgba(58,199,255,.6);opacity:0}
+.arr{position:absolute;font-size:60px;font-weight:800;color:var(--warn);opacity:0}
+@keyframes bobv{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.tube{position:absolute;height:22px;border:6px solid #fff;border-radius:14px;background:rgba(58,199,255,.06);overflow:hidden}
+.tube i{position:absolute;left:0;top:0;bottom:0;width:0;background:#f9c718;box-shadow:0 0 18px rgba(249,199,24,.8)}
+@keyframes flowx{from{width:0}to{width:100%}}
+.can{position:absolute;width:250px;height:330px;border:8px solid #fff;border-radius:40px/30px;overflow:hidden;background:repeating-linear-gradient(0deg,rgba(151,167,183,.18) 0 10px,rgba(151,167,183,.05) 10px 22px)}
+.can i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(255,216,74,.9),rgba(249,168,24,.95))}
+@keyframes fillC{from{height:0}to{height:88%}}
+.clbl{position:absolute;text-align:center;font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:4px;color:#fff}
+.noz{position:absolute}
+@keyframes push{0%,100%{translate:0 0}50%{translate:-18px 10px}}
+.click{position:absolute;font-family:Inter;font-weight:800;font-size:110px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.8);opacity:0}
+.eng{position:absolute}
+@keyframes flash{0%,49%{opacity:1}50%,100%{opacity:.18}}
+.fg{position:absolute;left:290px;width:500px;height:290px}
+.fg svg{position:absolute;inset:0;overflow:visible}
+.fg .ndl{left:246px;height:210px}
+.drip2{position:absolute;width:30px;height:42px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--warn);box-shadow:0 0 20px rgba(249,199,24,.7);opacity:0}
+@keyframes drip{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:1;transform:translateY(10px) scale(1)}100%{opacity:0;transform:translateY(160px) scale(.9)}}
+@keyframes shk{0%,100%{translate:0 0}25%{translate:-6px 0}75%{translate:6px 0}}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Completar",0,0.4],["o",0.48,0.56],["tanque",0.64,0.96],["depois",1.04,1.28],["do",1.36,1.44],["clique",1.52,1.84],["faz",2,2.16],["mal?",2.24,2.72],["Verdade.",2.96,3.72],["O",3.92,4],["bico",4.08,4.4],["desarma",4.48,4.96],["no",5,5.04],["limite.",5.12,5.8],["O",6,6.08],["espaço",6.16,6.4],["que",6.48,6.56],["sobra",6.72,7.12],["é",7.16,7.2],["pros",7.28,7.44],["vapores",7.48,8.08],["e",8.16,8.2],["pro",8.24,8.4],["combustível",8.48,8.96],["dilatar.",9,9.76],["Forçando,",10,10.76],["a",10.88,10.96],["gasolina",11.04,11.36],["pode",11.44,11.6],["ir",11.64,11.68],["pro",11.76,11.92],["cânister,",12,12.64],["o",12.68,12.72],["filtro",12.88,13.2],["que",13.24,13.28],["segura",13.36,13.6],["os",13.64,13.68],["vapores.",13.72,14.52],["Ele",14.72,14.8],["encharca,",14.92,15.52],["e",15.76,15.84],["o",15.893,15.947],["carro",16,16.16],["pode",16.24,16.4],["falhar",16.48,16.96],["e",17.04,17.12],["acender",17.2,17.52],["luz",17.56,17.76],["no",17.8,17.84],["painel.",17.96,18.44],["Parou",18.64,18.88],["no",18.96,19.04],["clique,",19.08,19.56],["tá",19.68,19.84],["cheio.",19.96,20.44],["E",20.64,20.68],["você,",20.72,21.2],["completa",21.36,21.76],["até",21.84,21.947],["a",21.973,22],["boca?",22.08,22.56],["Comenta",22.72,23.04],["aí.",23.12,23.6]];
+const T = {total: 30, s1:[0,4.45], s2:[4.45,6.4], s3:[6.4,10.4], s4:[10.4,16.2], s5:[16.2,19.05], s6:[19.05,21.3], s7:[21.3,30],
+  breaks: [0, 8, 9, 14, 20, 25, 31, 38, 40, 45, 50, 55, 61]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// bico da bomba (desenho nosso, traço branco)
+const NOZ = (s = 1) => `<svg width="${340 * s}" height="${260 * s}" viewBox="0 0 340 260" style="overflow:visible"><path d="M300 30 L300 120 C300 140 288 150 268 150 L150 150 L150 100 L230 100 L230 30Z" fill="rgba(58,199,255,.14)" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M150 112 L40 132 L36 150 L150 140" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M190 150 C190 200 230 214 262 196" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M300 30 C300 10 320 0 340 0" fill="none" stroke="#97a7b7" stroke-width="10" stroke-linecap="round"/></svg>`;
+// luz da injeção (motor) em amarelo
+const ENG = `<svg width="360" height="260" viewBox="0 0 360 260"><path d="M70 90 H120 V60 H200 V90 H240 L270 120 H300 V80 H330 V200 H300 V170 H270 L240 210 H110 L70 170 H40 V200 H20 V100 H40 V130 H70Z" fill="rgba(249,199,24,.15)" stroke="#f9c718" stroke-width="12" stroke-linejoin="round" style="filter:drop-shadow(0 0 22px #f9c718)"/><path d="M130 60 V40 H190 V60" fill="none" stroke="#f9c718" stroke-width="12" stroke-linejoin="round"/></svg>`;
+const FUELG = `<svg viewBox="0 0 500 290"><path d="M40 270 A210 210 0 0 1 460 270" fill="none" stroke="rgba(151,167,183,.35)" stroke-width="24" stroke-linecap="round"/><path d="M380 104 A210 210 0 0 1 460 270" fill="none" stroke="#41d686" stroke-width="24" stroke-linecap="round"/><text x="22" y="250" fill="#97a7b7" font-family="Inter" font-weight="800" font-size="46" text-anchor="end">E</text><text x="480" y="250" fill="#41d686" font-family="Inter" font-weight="800" font-size="46">F</text></svg>`;
+const puffsUp = (x, y, at, n = 3, per = 1.6, gap = 90) => [...Array(n).keys()].map(k => `<div class="puff" style="left:${x + k * gap}px;top:${y}px;animation:${A('puffu', per, at + k * per / n, 'ease-out', 'none')} infinite"></div>`).join('');
+const drip = (x, y, at) => `<div class="drip2" style="left:${x}px;top:${y}px;animation:${A('drip', 1.1, at, 'ease-in', 'none')} infinite"></div>`;
+let h = '';
+
+// CENA 1: gancho, bico no tanque e carimbo VERDADE
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:96px;line-height:1.04;white-space:nowrap">${still('Completar o tanque')}<br>${still('depois do')} ${still('clique','neon')}<br>${still('faz mal?')}</div>
+  <div class="tank" style="top:800px;height:320px;animation:${A('fade', .5, .15)}">
+    <div class="fuel" style="--h0:70%;--h1:96%;animation:${A('lvl', 2.6, .4, 'ease-in-out')}"></div>
+    <div class="lim" style="top:22%"></div></div>
+  <div class="noz" style="left:640px;top:660px;animation:${A('push', .5, .2, 'ease-in-out', 'none')} infinite">${NOZ(.9)}</div>
+  ${drip(560, 1110, 1.2)}${drip(640, 1110, 1.6)}
+  <div class="stamp" style="top:1200px;--r:-8deg;font-size:140px;animation:${A('pop', .5, W(8) - .1, BOUNCE)}">VERDADE</div>
+</div></div>`;
+
+// CENA 2: o bico desarma no limite
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:100px">${words('O bico', W(9), .12)} ${neonWords('desarma', W(11), .1)}<br>${words('no limite.', W(12), .14)}</div>
+  <div class="noz" style="left:120px;top:560px">${NOZ(1.2)}</div>
+  <div class="click" style="left:560px;top:600px;animation:${A('popb', .4, W(11) - .05, BOUNCE)}">CLIC!</div>
+  <div class="fg" style="top:880px;animation:${A('fade', .4, T.s2[0] + .2)}">${FUELG}
+    <div class="ndl" style="--a0:-60deg;--a1:78deg;animation:${A('ndl', 1.1, W(10), BOUNCE)}"></div></div>
+  <div class="glbl" style="top:1200px;animation:${A('fade', .4, W(13))}">TANQUE CHEIO</div>
+</div></div>`;
+
+// CENA 3: o espaço que sobra é pros vapores e pro combustível dilatar
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:190px;font-size:90px">${words('O espaço que sobra', W(14), .12)}<br>${neonWords('tem função.', W(17) + .1, .14)}</div>
+  <div class="tank" style="top:560px;height:520px;animation:${A('fade', .4, T.s3[0] + .2)}">
+    <div class="fuel" style="--h0:66%;--h1:72%;height:66%;animation:${A('lvl', 1.4, W(24) - .1, 'ease-in-out')}"></div>
+    <div class="lim" style="top:16%;opacity:.0"></div></div>
+  ${puffsUp(330, 620, W(20) - .2, 4, 1.6, 120)}
+  <div class="vtag" style="top:600px;animation:${A('popb', .45, W(20) - .1, BOUNCE)}">VAPORES</div>
+  <div class="arr" style="left:220px;top:690px;animation:${an([A('fade', .3, W(24) - .1), A('bobv', .8, W(24), 'ease-in-out', 'none') + ' infinite'])}">↑</div>
+  <div class="arr" style="left:820px;top:690px;animation:${an([A('fade', .3, W(24) - .1), A('bobv', .8, W(24) + .2, 'ease-in-out', 'none') + ' infinite'])}">↑</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(23) - .1, BOUNCE)}">🌡️ Combustível dilata</span></div>
+</div></div>`;
+
+// CENA 4: forçando, vai pro cânister, encharca
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:190px;font-size:90px">${words('Forçando, vai pro', W(25), .14)}<br>${neonWords('cânister.', W(31), .1)}</div>
+  <div class="tank" style="left:60px;width:460px;top:620px;height:440px;animation:${A('fade', .4, T.s4[0] + .2)}">
+    <div class="fuel" style="--h0:80%;--h1:100%;height:80%;animation:${A('lvl', 1.4, W(25) + .2, 'ease-in')}"></div></div>
+  <div class="noz" style="left:300px;top:470px;animation:${an([A('fade', .3, T.s4[0] + .2), A('push', .45, W(25), 'ease-in-out', 'none') + ' 4'])}">${NOZ(.75)}</div>
+  <div class="tube" style="left:500px;top:650px;width:230px;animation:${A('fade', .3, T.s4[0] + .3)}"><i style="animation:${A('flowx', 1.0, W(27), 'ease-in')}"></i></div>
+  <div class="can" style="left:720px;top:600px;animation:${an([A('fade', .4, T.s4[0] + .3), A('shk', .25, W(39), 'ease-in-out', 'none') + ' 4'])}"><i style="animation:${A('fillC', 2.6, W(28), 'ease-in')}"></i></div>
+  <div class="clbl" style="left:680px;width:330px;top:950px;animation:${A('fade', .4, W(31))}">CÂNISTER</div>
+  <div class="clbl" style="left:640px;width:410px;top:995px;font-size:24px;color:var(--muted);font-family:Inter;letter-spacing:0;animation:${A('fade', .4, W(33))}">filtro que segura os vapores</div>
+  ${drip(800, 1040, W(38))}${drip(880, 1040, W(38) + .4)}
+  <div class="abs" style="left:0;right:0;top:1180px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(39) - .15, BOUNCE)}">💧 Ele encharca</span></div>
+</div></div>`;
+
+// CENA 5: o carro pode falhar e acender luz no painel
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:200px;font-size:96px">${words('O carro pode', W(41), .12)}<br>${neonWords('falhar.', W(44), .1)}</div>
+  <div class="eng" style="left:360px;top:600px;animation:${an([A('popb', .45, W(46) - .2, BOUNCE), A('flash', .7, W(46) + .3, 'linear', 'none') + ' infinite'])}">${ENG}</div>
+  <div class="glbl" style="top:900px;animation:${A('fade', .4, W(47))}">LUZ NO PAINEL</div>
+  <div class="abs" style="left:0;right:0;top:1060px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(44) - .1, BOUNCE)}">⚠️ Falha e luz acesa</span></div>
+</div></div>`;
+
+// CENA 6: parou no clique, tá cheio
+h += `<div class="scene" style="${sceneStyle(T.s6)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:200px;font-size:100px">${words('Parou no clique,', W(50), .12)}<br>${neonWords('tá cheio.', W(53), .12)}</div>
+  <div class="fg" style="top:560px;animation:${A('fade', .4, T.s6[0] + .2)}">${FUELG}
+    <div class="ndl" style="--a0:78deg;--a1:78deg;rotate:0deg;transform:rotate(78deg)"></div></div>
+  <div class="abs" style="left:0;right:0;top:940px;text-align:center"><span class="pillx ok" style="position:relative;font-size:60px;padding:28px 56px;animation:${A('popb', .45, W(52), BOUNCE)}">✓ Clicou? Para.</span></div>
+</div></div>`;
+
+// CENA 7: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s7, true)}"><div class="cam" style="${camStyle(T.s7)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você,', W(55), .12)}<br>${words('completa', W(57), .12)}<br>${neonWords('até a boca?', W(58), .1)}</div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(61) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:770px;animation:${A('fade', .5, 24.6)}"></div>
+  <div class="abs" style="left:0;right:0;top:820px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 24.8, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:925px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 25.1, .12)}<br>${neonWords('Pergunta no WhatsApp.', 25.6, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 26.2)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 26.6)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
