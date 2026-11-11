@@ -1,0 +1,144 @@
+/* ===== reel 30: Pé na embreagem no semáforo faz mal? (educativo) ===== */
+.e30p{position:absolute;transform-origin:130px 30px}
+@keyframes prs{from{rotate:0deg}to{rotate:var(--pr)}}
+@keyframes jit{0%,100%{translate:0 0}50%{translate:2px 3px}}
+.e30sem{position:absolute}
+.e30b{position:absolute;width:420px;height:420px}
+.e30b .heat{inset:20px}
+.balls{transform-box:view-box;transform-origin:210px 210px}
+@keyframes spin30{to{transform:rotate(360deg)}}
+.e30lb{position:absolute;text-align:center;font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:5px;color:#fff}
+.wear{position:absolute;left:150px;right:150px;height:48px;border:5px solid #fff;border-radius:30px;overflow:hidden;background:rgba(151,167,183,.12)}
+.wear i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#41d686,#f9c718 55%,#f94144);box-shadow:0 0 22px rgba(249,65,68,.6)}
+@keyframes wearx{from{width:0}to{width:86%}}
+.e30arr{position:absolute;height:0;border-top:7px dashed rgba(58,199,255,.8)}
+.e30arr:after{content:"";position:absolute;right:-6px;top:-19px;border-left:26px solid rgba(58,199,255,.9);border-top:15px solid transparent;border-bottom:15px solid transparent}
+.spk{position:absolute;width:16px;height:16px;border-radius:50%;background:#ffb347;box-shadow:0 0 16px #ff8a3d;opacity:0}
+@keyframes spk{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.bill{position:absolute;left:190px;width:700px;padding:44px 50px;border-radius:30px;background:#f4f1e8;color:#1b2533;box-shadow:0 30px 90px -20px rgba(0,0,0,.6);transform:rotate(-2deg)}
+.bill .bt{font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:5px;color:#5b6b7c;margin-bottom:24px}
+.bill .bl{display:flex;justify-content:space-between;font-size:40px;font-weight:700;padding:14px 0;border-bottom:3px dashed #c9c3b3}
+.bill .btot{display:flex;justify-content:space-between;font-size:52px;font-weight:800;padding-top:22px;color:#d12f32}
+.e30st{position:absolute;left:70px;right:70px;height:210px;display:flex;align-items:center;gap:34px;padding:0 40px;border-radius:36px;background:rgba(23,37,55,.95);border:3px solid rgba(58,199,255,.4);box-shadow:0 24px 70px -24px rgba(58,199,255,.45);opacity:0}
+.e30st .qn3{flex:none;width:96px;height:96px;border-radius:50%;background:var(--neon);color:var(--on);font-family:Inter;font-weight:800;font-size:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(58,199,255,.6)}
+.e30st .ic{flex:none;width:160px;height:180px;display:flex;align-items:center;justify-content:center}
+.e30st .tx{font-size:58px;font-weight:800;line-height:1.05}
+.e30st .tx small{display:block;font-size:32px;font-weight:600;color:var(--muted);margin-top:8px}
+.carw{position:absolute;width:300px;height:135px}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+@keyframes roll30{from{transform:translateX(0)}to{transform:translateX(var(--dx))}}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Ficar",0,0.32],["com",0.4,0.48],["o",0.52,0.56],["pé",0.64,0.72],["na",0.76,0.8],["embreagem",0.96,1.36],["no",1.4,1.44],["semáforo",1.52,2.16],["faz",2.24,2.48],["mal?",2.64,3.04],["Verdade.",3.28,4.04],["Com",4.24,4.32],["o",4.36,4.4],["pedal",4.48,4.64],["apertado,",4.72,5.52],["o",5.56,5.6],["rolamento",5.68,6.08],["da",6.12,6.16],["embreagem",6.28,6.72],["trabalha",6.76,7.12],["o",7.2,7.28],["tempo",7.4,7.68],["todo,",7.84,8.16],["e",8.2,8.24],["vai",8.32,8.4],["se",8.48,8.56],["gastando.",8.6,9.28],["Trocar",9.44,9.92],["não",10.16,10.4],["sai",10.453,10.56],["barato.",10.64,11.36],["Em",11.44,11.52],["parada",11.56,11.84],["longa,",11.92,12.4],["coloca",12.48,12.72],["em",12.8,12.88],["ponto",12.92,13.12],["morto,",13.2,13.76],["solta",13.84,14.08],["o",14.12,14.16],["pedal",14.28,14.64],["e",14.72,14.8],["segura",14.88,15.12],["no",15.2,15.28],["freio.",15.36,15.92],["Só",15.96,16.04],["aperta",16.08,16.4],["de",16.48,16.56],["novo",16.6,16.8],["na",16.88,16.96],["hora",17.04,17.12],["de",17.16,17.2],["sair.",17.28,17.92],["E",17.96,18],["você,",18.08,18.72],["fica",18.76,18.96],["de",19.04,19.12],["pé",19.2,19.28],["na",19.32,19.36],["embreagem?",19.48,20.24],["Comenta",20.28,20.56],["aí.",20.6,21.04]];
+const T = {total: 28, s1:[0,4.6], s2:[4.6,9.84], s3:[9.84,11.84], s4:[11.84,16.36], s5:[16.36,18.36], s6:[18.36,28],
+  breaks: [0, 10, 11, 15, 19, 23, 27, 31, 34, 38, 41, 45, 49, 53, 55, 60]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos (traço branco e neon)
+const PEDAL = (c = '#fff', s = 1, wide = false) => `<svg width="${260 * s}" height="${380 * s}" viewBox="0 0 260 380" style="overflow:visible"><circle cx="130" cy="30" r="18" fill="none" stroke="#97a7b7" stroke-width="8"/><path d="M130 48 L130 250" stroke="${c}" stroke-width="16" stroke-linecap="round"/><rect x="${wide ? 20 : 45}" y="250" width="${wide ? 220 : 170}" height="90" rx="22" fill="rgba(58,199,255,.12)" stroke="${c}" stroke-width="9"/><path d="M${wide ? 50 : 72} 278 H${wide ? 210 : 188} M${wide ? 50 : 72} 296 H${wide ? 210 : 188} M${wide ? 50 : 72} 314 H${wide ? 210 : 188}" stroke="${c}" stroke-width="5" opacity=".6" stroke-linecap="round"/></svg>`;
+const SHOE = `<svg width="300" height="150" viewBox="0 0 300 150" style="overflow:visible"><path d="M112 40 L132 -150 L206 -150 L182 62Z" fill="#16314a" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M18 118 C16 86 34 66 66 60 L118 22 C146 6 172 22 178 50 L248 76 C278 86 290 104 286 124 L18 124Z" fill="#16314a" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M14 136 H288" stroke="#3ac7ff" stroke-width="12" stroke-linecap="round"/><path d="M150 52 L176 62 M140 70 L166 80" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>`;
+const SEM = (on) => `<svg width="170" height="420" viewBox="0 0 170 420"><rect x="10" y="10" width="150" height="400" rx="40" fill="#0c192a" stroke="#fff" stroke-width="8"/>${['#f94144', '#f9c718', '#41d686'].map((c, i) => `<circle cx="85" cy="${82 + i * 128}" r="48" fill="${i === on ? c : 'rgba(151,167,183,.18)'}" style="${i === on ? `filter:drop-shadow(0 0 26px ${c})` : ''}"/>`).join('')}</svg>`;
+const BEAR = (at) => `<svg viewBox="0 0 420 420" style="width:100%;height:100%;overflow:visible"><circle cx="210" cy="210" r="190" fill="none" stroke="#fff" stroke-width="12"/><circle cx="210" cy="210" r="110" fill="none" stroke="#fff" stroke-width="12"/><circle cx="210" cy="210" r="58" fill="rgba(58,199,255,.12)" stroke="#3ac7ff" stroke-width="8"/><g class="balls" style="animation:${A('spin30', 1.1, at, 'linear', 'none')} infinite">${[...Array(10).keys()].map(k => { const a = k * 36 * Math.PI / 180; return `<circle cx="${(210 + 150 * Math.cos(a)).toFixed(1)}" cy="${(210 + 150 * Math.sin(a)).toFixed(1)}" r="26" fill="rgba(58,199,255,.2)" stroke="#3ac7ff" stroke-width="6"/>`; }).join('')}</g></svg>`;
+const KNOB = (L, c, bg, s = 1) => `<svg width="${200 * s}" height="${280 * s}" viewBox="0 0 200 280" style="overflow:visible"><rect x="88" y="150" width="24" height="110" rx="10" fill="none" stroke="#fff" stroke-width="5"/><path d="M40 268 H160" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="100" cy="88" r="78" fill="${bg}" stroke="${c}" stroke-width="8" style="filter:drop-shadow(0 0 18px ${c})"/><text x="100" y="122" text-anchor="middle" font-family="Inter" font-weight="800" font-size="96" fill="${c}">${L}</text></svg>`;
+const CAR = `<svg viewBox="0 0 200 90" style="width:100%;height:100%;overflow:visible"><path d="M14 64 C14 50 22 44 38 42 L62 22 C68 16 76 14 86 14 L128 14 C138 14 146 18 152 24 L172 42 C186 44 192 52 192 64 L192 70 L14 70Z" fill="rgba(58,199,255,.14)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M70 26 L86 20 L118 20 L118 42 L56 42Z M126 20 L136 20 C142 20 146 24 150 28 L162 42 L126 42Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><rect x="182" y="52" width="10" height="7" rx="3" fill="#ffe28a"/><circle cx="50" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="4"/><circle cx="156" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="4"/></svg>`;
+const sparks = (x, y, at) => [[-120, -90], [110, -120], [140, 40], [-130, 60], [20, -150], [-40, 140]].map(([dx, dy], k) => `<div class="spk" style="left:${x}px;top:${y}px;--dx:${dx}px;--dy:${dy}px;animation:${A('spk', .9, at + k * .15, 'ease-out', 'none')} infinite"></div>`).join('');
+// pedal com o pé em cima (gira no pivô de cima)
+const FOOTPEDAL = (x, y, at, pr = '16deg', s = 1) => `<div class="e30p" style="left:${x}px;top:${y}px;--pr:${pr};animation:${an([A('prs', .5, at, 'ease-out'), A('jit', .3, at + .5, 'ease-in-out', 'none') + ' infinite'])}">${PEDAL('#fff', s)}<div style="position:absolute;left:${-80 * s}px;top:${168 * s}px;transform-origin:0 0;transform:rotate(-6deg) scale(${s})">${SHOE}</div></div>`;
+let h = '';
+
+// CENA 1: gancho, semáforo vermelho, pé no pedal e carimbo VERDADE
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:96px;line-height:1.04;white-space:nowrap">${still('Pé na embreagem')}<br>${still('no')} ${still('semáforo','neon')}<br>${still('faz mal?')}</div>
+  <div class="e30sem" style="left:150px;top:690px;animation:${A('fade', .4, .1)}">${SEM(0)}</div>
+  ${FOOTPEDAL(560, 640, .3, '16deg', 1.3)}
+  <div class="stamp" style="top:1270px;--r:-8deg;font-size:140px;animation:${A('pop', .5, W(10) - .1, BOUNCE)}">VERDADE</div>
+</div></div>`;
+
+// CENA 2: pedal apertado, rolamento trabalhando o tempo todo e se gastando
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:190px;font-size:90px">${words('Pedal apertado,', W(11), .12)}<br>${neonWords('rolamento trabalhando.', W(16), .14)}</div>
+  ${FOOTPEDAL(170, 520, W(13) - .1, '16deg', 1)}
+  <div class="e30arr" style="left:450px;top:760px;width:110px;animation:${A('fade', .3, W(16) - .1)}"></div>
+  <div class="e30b" style="left:600px;top:530px;animation:${A('popb', .45, W(16) - .15, BOUNCE)}"><div class="heat" style="animation:${A('heatup', 1.4, W(19))}"></div>${BEAR(W(19) - .2)}</div>
+  ${sparks(800, 730, W(21))}
+  <div class="e30lb" style="left:600px;width:420px;top:975px;animation:${A('fade', .4, W(16) + .2)}">ROLAMENTO</div>
+  <div class="glbl" style="top:1065px;animation:${A('fade', .4, W(23) - .2)}">DESGASTE</div>
+  <div class="wear" style="top:1110px;animation:${A('fade', .3, W(23) - .2)}"><i style="animation:${A('wearx', 1.4, W(23), 'ease-in')}"></i></div>
+  <div class="abs" style="left:0;right:0;top:1220px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(24) - .1, BOUNCE)}">⚠️ Vai se gastando</span></div>
+</div></div>`;
+
+// CENA 3: trocar não sai barato
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:200px;font-size:96px">${words('Trocar', W(27), .12)}<br>${neonWords('não sai barato.', W(28), .12)}</div>
+  <div class="bill" style="top:520px;animation:${A('unroll', .8, T.s3[0] + .15, 'ease-out')}">
+    <div class="bt">ORÇAMENTO</div>
+    <div class="bl"><span>Kit embreagem</span><span>R$ ???</span></div>
+    <div class="bl"><span>Rolamento</span><span>R$ ???</span></div>
+    <div class="bl"><span>Mão de obra</span><span>R$ ???</span></div>
+    <div class="btot"><span>TOTAL</span><span>R$ ???</span></div></div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(28) - .05, BOUNCE)}">💸 Gasto antes da hora</span></div>
+</div></div>`;
+
+// CENA 4: parada longa, faz assim
+const step = (n, top, at, icon, txt, sub) => `<div class="e30st" style="top:${top}px;animation:${A('stIn', .5, at)}"><div class="qn3">${n}</div><div class="ic">${icon}</div><div class="tx">${txt}<small>${sub}</small></div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('Parada longa?', W(31), .14)}<br>${neonWords('Faz assim:', W(33) + .1, .14)}</div>
+  ${step(1, 500, W(34) - .15, KNOB('N', '#3ac7ff', 'rgba(58,199,255,.15)', .58), 'Ponto morto', 'câmbio no neutro')}
+  ${step(2, 750, W(38) - .15, `<div style="rotate:-8deg">${PEDAL('#41d686', .45)}</div>`, 'Solta o pedal', 'pé fora da embreagem')}
+  ${step(3, 1000, W(42) - .15, PEDAL('#f9c718', .45, true), 'Pé no freio', 'carro parado e seguro')}
+</div></div>`;
+
+// CENA 5: abriu o sinal, só agora aperta
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:200px;font-size:96px">${words('Só aperta', W(45), .12)}<br>${neonWords('na hora de sair.', W(49), .12)}</div>
+  <div class="e30sem" style="left:120px;top:540px">${SEM(0)}</div>
+  <div class="e30sem" style="left:120px;top:540px;opacity:0;animation:${A('fade', .2, W(46))}">${SEM(2)}</div>
+  <div class="glbl" style="left:80px;right:auto;width:250px;top:985px;color:#7ff0b3;opacity:0;animation:${A('fade', .3, W(46) + .1)}">ABRIU</div>
+  <div class="road2" style="top:1100px;animation:${A('fade', .4, T.s5[0] + .2)}"><i></i></div>
+  <div class="carw" style="left:380px;top:990px;--dx:520px;animation:${A('roll30', 1.6, W(50), 'cubic-bezier(.5,0,.8,.6)')}">${CAR}</div>
+</div></div>`;
+
+// CENA 6: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você,', W(53), .12)}<br>${words('fica de pé', W(55), .12)}<br>${neonWords('na embreagem?', W(58), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(60) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:770px;animation:${A('fade', .5, 22.3)}"></div>
+  <div class="abs" style="left:0;right:0;top:820px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 22.5, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:925px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 22.8, .12)}<br>${neonWords('Pergunta no WhatsApp.', 23.3, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 23.9)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 24.3)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+const capEl = document.getElementById('cap');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
+window.setT = (t) => {
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t < 0.3) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+</script>
+</body></html>
