@@ -1,0 +1,145 @@
+/* ===== reel 31: Carro híbrido precisa trocar óleo? (novidade com gancho prático) ===== */
+.stamp.g{border-color:var(--ok);color:var(--ok);text-shadow:0 0 40px rgba(65,214,134,.55);box-shadow:0 0 60px rgba(65,214,134,.35),inset 0 0 40px rgba(65,214,134,.15)}
+.serie.b span{background:rgba(58,199,255,.12);border-color:rgba(58,199,255,.6);color:var(--neon)}
+.e31car{position:absolute}
+.e31bd{position:absolute;display:flex;align-items:center;justify-content:center;width:150px;height:150px;border-radius:50%;font-size:76px;background:rgba(23,37,55,.95);border:4px solid rgba(58,199,255,.55);box-shadow:0 0 40px rgba(58,199,255,.35);opacity:0}
+.e31bd.y{border-color:rgba(249,199,24,.7);box-shadow:0 0 40px rgba(249,199,24,.35)}
+.e31plus{position:absolute;font-size:90px;font-weight:800;color:var(--muted);opacity:0}
+.e31box{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-radius:28px;font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:4px;opacity:0}
+.e31box.y{border:6px solid #f9c718;background:rgba(249,199,24,.12);color:#ffe28a;box-shadow:0 0 50px rgba(249,199,24,.45)}
+.e31box.b{border:5px solid rgba(58,199,255,.55);background:rgba(58,199,255,.08);color:var(--neon)}
+@keyframes glo31{0%,100%{box-shadow:0 0 30px rgba(249,199,24,.35)}50%{box-shadow:0 0 80px rgba(249,199,24,.8)}}
+.e31it{position:absolute;width:280px;height:380px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(58,199,255,.4);box-shadow:0 24px 70px -24px rgba(58,199,255,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:34px;gap:20px;opacity:0}
+.e31it .ic{height:200px;display:flex;align-items:center;justify-content:center}
+.e31it b{font-size:52px;font-weight:800}
+.e31it .ck{position:absolute;top:-26px;right:-22px;width:74px;height:74px;border-radius:50%;background:var(--ok);color:#06210f;font-size:46px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+.e31disc{position:absolute;width:440px;height:440px}
+.e31disc .rot{position:absolute;inset:0;transform-origin:220px 220px}
+@keyframes spin31{to{transform:rotate(360deg)}}
+.e31bat{position:absolute;width:260px;height:150px;border:8px solid #fff;border-radius:22px}
+.e31bat:after{content:"";position:absolute;right:-30px;top:40px;width:22px;height:54px;border-radius:0 10px 10px 0;background:#fff}
+.e31bat i{position:absolute;left:10px;top:10px;bottom:10px;width:30%;border-radius:10px;background:linear-gradient(90deg,#41d686,#7ff0b3);box-shadow:0 0 26px rgba(65,214,134,.7)}
+@keyframes chg31{from{width:30%}to{width:88%}}
+.e31en{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--neon);box-shadow:0 0 22px var(--neon);opacity:0}
+@keyframes flow31{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.e31lb{position:absolute;text-align:center;font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:5px;color:#fff;opacity:0}
+.e31hv{position:absolute;left:340px;top:520px;width:400px;height:360px}
+@keyframes pulse31{0%,100%{filter:drop-shadow(0 0 16px #ff8a3d)}50%{filter:drop-shadow(0 0 50px #ff8a3d)}}
+.e31cab{position:absolute;left:120px;right:120px;top:930px;height:22px;border-radius:12px;background:#ff8a3d;box-shadow:0 0 26px rgba(255,138,61,.7);transform-origin:0 50%}
+@keyframes cab31{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Carro",0,0.32],["híbrido",0.4,0.8],["precisa",0.96,1.36],["trocar",1.44,1.76],["óleo?",1.84,2.28],["Precisa,",2.48,3.04],["sim.",3.16,3.36],["Ele",3.76,3.92],["tem",4,4.08],["um",4.12,4.16],["motor",4.32,4.48],["a",4.507,4.533],["combustão,",4.56,5.36],["igual",5.44,5.68],["a",5.72,5.76],["um",5.8,5.84],["carro",5.92,6.08],["comum.",6.16,6.56],["Então",6.88,7.12],["tem",7.2,7.36],["óleo,",7.44,8],["filtro",8.24,8.48],["e",8.56,8.64],["vela",8.72,9],["pra",9.04,9.12],["trocar,",9.2,9.84],["no",9.92,10],["prazo",10.08,10.32],["do",10.4,10.44],["manual.",10.48,11.08],["O",11.28,11.32],["que",11.36,11.44],["muda",11.52,11.84],["é",11.92,12],["o",12.04,12.08],["freio:",12.24,12.96],["ele",13.04,13.12],["usa",13.2,13.36],["o",13.387,13.413],["motor",13.44,13.68],["elétrico",13.76,14.24],["pra",14.32,14.4],["frear,",14.48,15.04],["e",15.08,15.12],["as",15.2,15.28],["pastilhas",15.4,15.76],["costumam",15.84,16.24],["durar",16.28,16.48],["mais.",16.56,17.08],["E",17.28,17.36],["a",17.4,17.44],["parte",17.52,17.72],["elétrica?",17.76,18.52],["Só",18.72,18.88],["em",18.96,19.04],["oficina",19.12,19.52],["preparada.",19.6,20.16],["Você",20.56,20.8],["dirige",20.88,21.2],["híbrido?",21.24,21.92],["Comenta",22,22.24],["aí.",22.32,22.72]];
+const T = {total: 29, s1:[0,4.1], s2:[4.1,7.25], s3:[7.25,11.6], s4:[11.6,17.65], s5:[17.65,20.9], s6:[20.9,29],
+  breaks: [0, 5, 7, 13, 18, 23, 26, 30, 36, 40, 43, 46, 49, 53, 57, 60]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos (traço branco e neon, carro genérico)
+const CAR = `<svg viewBox="0 0 200 90" style="width:100%;height:100%;overflow:visible"><path d="M14 64 C14 50 22 44 38 42 L62 22 C68 16 76 14 86 14 L128 14 C138 14 146 18 152 24 L172 42 C186 44 192 52 192 64 L192 70 L14 70Z" fill="rgba(58,199,255,.10)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M70 26 L86 20 L118 20 L118 42 L56 42Z M126 20 L136 20 C142 20 146 24 150 28 L162 42 L126 42Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><rect x="182" y="52" width="10" height="7" rx="3" fill="#ffe28a"/><circle cx="50" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="3"/><circle cx="156" cy="72" r="15" fill="#0c192a" stroke="#fff" stroke-width="3"/></svg>`;
+const ENGI = (s = 1) => `<svg width="${200 * s}" height="${150 * s}" viewBox="0 0 360 260"><path d="M70 90 H120 V60 H200 V90 H240 L270 120 H300 V80 H330 V200 H300 V170 H270 L240 210 H110 L70 170 H40 V200 H20 V100 H40 V130 H70Z" fill="rgba(249,199,24,.15)" stroke="#f9c718" stroke-width="14" stroke-linejoin="round"/><path d="M130 60 V40 H190 V60" fill="none" stroke="#f9c718" stroke-width="14" stroke-linejoin="round"/></svg>`;
+const BOLT = (s = 1, c = '#3ac7ff') => `<svg width="${110 * s}" height="${150 * s}" viewBox="0 0 110 150"><path d="M66 6 L14 84 H50 L38 144 L96 58 H58Z" fill="rgba(58,199,255,.15)" stroke="${c}" stroke-width="9" stroke-linejoin="round"/></svg>`;
+const OIL = `<svg width="150" height="190" viewBox="0 0 150 190"><path d="M75 12 C110 70 132 100 132 128 A57 57 0 0 1 18 128 C18 100 40 70 75 12Z" fill="rgba(249,199,24,.2)" stroke="#f9c718" stroke-width="9" style="filter:drop-shadow(0 0 18px rgba(249,199,24,.6))"/><path d="M48 128 A28 28 0 0 0 70 154" fill="none" stroke="#ffe28a" stroke-width="8" stroke-linecap="round"/></svg>`;
+const FILT = `<svg width="150" height="190" viewBox="0 0 150 190"><rect x="25" y="30" width="100" height="140" rx="16" fill="rgba(58,199,255,.1)" stroke="#fff" stroke-width="8"/><rect x="45" y="12" width="60" height="22" rx="6" fill="none" stroke="#fff" stroke-width="7"/>${[0,1,2,3,4].map(k => `<path d="M${42 + k * 17} 50 V150" stroke="#3ac7ff" stroke-width="6" stroke-linecap="round"/>`).join('')}</svg>`;
+const PLUG = `<svg width="110" height="200" viewBox="0 0 110 200"><rect x="40" y="6" width="30" height="26" rx="6" fill="none" stroke="#fff" stroke-width="7"/><path d="M34 32 H76 L70 92 H40Z" fill="rgba(240,246,252,.15)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M26 92 H84 V120 H26Z" fill="rgba(58,199,255,.15)" stroke="#3ac7ff" stroke-width="7" stroke-linejoin="round"/>${[0,1,2,3].map(k => `<path d="M36 ${130 + k * 12} H74" stroke="#97a7b7" stroke-width="6" stroke-linecap="round"/>`).join('')}<path d="M55 172 V186 H72" fill="none" stroke="#3ac7ff" stroke-width="6" stroke-linecap="round"/></svg>`;
+const DISC = `<svg viewBox="0 0 500 500" style="position:absolute;inset:0;overflow:visible"><circle cx="250" cy="250" r="220" fill="none" stroke="#fff" stroke-width="10"/><circle cx="250" cy="250" r="80" fill="none" stroke="#fff" stroke-width="8"/>${[0,1,2,3,4,5].map(k=>{const a=k*Math.PI/3;return `<circle cx="${250+150*Math.cos(a)}" cy="${250+150*Math.sin(a)}" r="16" fill="none" stroke="#fff" stroke-width="6"/>`}).join('')}</svg>`;
+const PAD = `<svg viewBox="0 0 500 500" style="position:absolute;inset:0;overflow:visible"><path d="M380 60 C470 120 500 200 490 280 L430 270 C438 210 418 150 350 105Z" fill="rgba(65,214,134,.2)" stroke="#41d686" stroke-width="8" stroke-linejoin="round"/></svg>`;
+const HV = `<svg viewBox="0 0 400 360" style="width:100%;height:100%;overflow:visible;animation:pulse31 1.2s ease-in-out infinite"><path d="M200 20 L384 340 H16Z" fill="rgba(255,138,61,.12)" stroke="#ff8a3d" stroke-width="16" stroke-linejoin="round"/><path d="M214 110 L150 230 H200 L184 310 L254 190 H204Z" fill="#ff8a3d" stroke="#ff8a3d" stroke-width="6" stroke-linejoin="round"/></svg>`;
+let h = '';
+
+// CENA 1: gancho, carro híbrido com gasolina e tomada, carimbo PRECISA
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie b"><span>DR. JARVYS RESPONDE</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:104px;line-height:1.04;white-space:nowrap">${still('Carro')} ${still('híbrido','neon')}<br>${still('precisa trocar')}<br>${still('óleo?')}</div>
+  <div class="e31car" style="left:140px;top:760px;width:800px;height:360px;animation:${A('fade', .5, .1)}">${CAR}</div>
+  <div class="e31bd y" style="left:250px;top:620px;animation:${A('popb', .45, .5, BOUNCE)}">⛽</div>
+  <div class="e31plus" style="left:505px;top:640px;animation:${A('fade', .3, .8)}">+</div>
+  <div class="e31bd" style="left:680px;top:620px;animation:${A('popb', .45, 1.0, BOUNCE)}">⚡</div>
+  <div class="stamp g" style="top:1200px;--r:-8deg;font-size:140px;animation:${A('pop', .5, W(5) - .1, BOUNCE)}">PRECISA</div>
+</div></div>`;
+
+// CENA 2: dois motores, o a combustão acende
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:190px;font-size:90px">${words('Ele tem motor', W(7), .12)}<br>${neonWords('a combustão.', W(11), .14)}</div>
+  <div class="e31car" style="left:60px;top:560px;width:960px;height:432px;opacity:.55">${CAR}</div>
+  <div class="e31box y" style="left:640px;top:600px;width:330px;height:250px;animation:${an([A('popb', .45, W(10) - .15, BOUNCE), A('glo31', 1.2, W(12) + .4, 'ease-in-out', 'none') + ' infinite'])}">${ENGI(1)}<span>COMBUSTÃO</span></div>
+  <div class="e31box b" style="left:120px;top:600px;width:300px;height:250px;animation:${A('fade', .4, W(9))}">${BOLT(.9)}<span>ELÉTRICO</span></div>
+  <div class="abs" style="left:0;right:0;top:1130px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(13) - .1, BOUNCE)}">⛽ Igual a um carro comum</span></div>
+</div></div>`;
+
+// CENA 3: o que trocar: óleo, filtro e vela, no prazo do manual
+const item = (x, at, ic, t) => `<div class="e31it" style="left:${x}px;top:560px;animation:${A('stIn', .5, at)}"><div class="ic">${ic}</div><b>${t}</b><div class="ck" style="animation:${A('popb', .4, at + .45, BOUNCE)}">✓</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('Então troca', W(18), .14)}<br>${neonWords('igual:', W(19) + .1, .14)}</div>
+  <div class="abs" style="left:0;right:0;top:470px;height:0"></div>
+  ${item(70, W(20) - .15, OIL, 'Óleo')}
+  ${item(400, W(21) - .15, FILT, 'Filtro')}
+  ${item(730, W(23) - .15, PLUG, 'Vela')}
+  <div class="abs" style="left:0;right:0;top:1100px;text-align:center"><span class="pillx ok" style="position:relative;animation:${A('popb', .45, W(26) - .1, BOUNCE)}">📖 No prazo do manual</span></div>
+</div></div>`;
+
+// CENA 4: o que muda é o freio: freio regenerativo carrega a bateria, pastilha dura mais
+const en = (k, at) => `<div class="e31en" style="left:520px;top:${745 + (k % 2) * 30}px;--dx:330px;--dy:${-20 + (k % 3) * 20}px;animation:${A('flow31', 1.0, at + k * .22, 'ease-in', 'none')} infinite"></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('O que muda?', W(30), .14)}<br>${neonWords('O freio.', W(34), .16)}</div>
+  <div class="e31disc" style="left:70px;top:560px;animation:${A('popb', .45, W(34) - .1, BOUNCE)}"><div class="rot" style="animation:${A('spin31', 1.4, T.s4[0], 'linear', 'none')} infinite">${DISC.replace('position:absolute;inset:0', 'position:absolute;width:440px;height:440px')}</div><div style="position:absolute;width:440px;height:440px">${PAD.replace('position:absolute;inset:0', 'position:absolute;width:440px;height:440px')}</div></div>
+  <div class="e31lb" style="left:70px;width:440px;top:1020px;animation:${A('fade', .4, W(35))}">FREIO</div>
+  ${[0,1,2,3,4].map(k => en(k, W(39))).join('')}
+  <div class="e31bat" style="left:770px;top:680px;opacity:0;animation:${A('fade', .4, W(39) - .2)}"><i style="animation:${A('chg31', 2.2, W(40), 'ease-out')}"></i></div>
+  <div class="e31lb" style="left:700px;width:400px;top:860px;color:#7ff0b3;animation:${A('fade', .4, W(40))}">CARREGA</div>
+  <div class="glbl" style="top:1080px;animation:${A('fade', .4, W(40))}">O MOTOR ELÉTRICO AJUDA A FREAR</div>
+  <div class="abs" style="left:0;right:0;top:1170px;text-align:center"><span class="pillx ok" style="position:relative;animation:${A('popb', .45, W(45) - .1, BOUNCE)}">✓ Pastilhas costumam durar mais</span></div>
+</div></div>`;
+
+// CENA 5: parte elétrica, só oficina preparada
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('E a parte', W(49), .12)}<br>${neonWords('elétrica?', W(52), .12)}</div>
+  <div class="e31hv" style="animation:${A('popb', .5, W(51), BOUNCE)}">${HV}</div>
+  <div class="e31cab" style="animation:${A('cab31', .8, W(52) + .1, 'ease-out')}"></div>
+  <div class="glbl" style="top:985px;color:#ffb98a;animation:${A('fade', .4, W(52) + .3)}">ALTA TENSÃO</div>
+  <div class="abs" style="left:0;right:0;top:1100px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(53) - .1, BOUNCE)}">🔧 Só em oficina preparada</span></div>
+</div></div>`;
+
+// CENA 6: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('E você,', W(57), .12)}<br>${words('dirige', W(58), .12)} ${neonWords('híbrido?', W(59), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:500px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(60) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:690px;animation:${A('fade', .5, 23.8)}"></div>
+  <div class="abs" style="left:0;right:0;top:740px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 24.0, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:845px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 24.3, .12)}<br>${neonWords('Pergunta pro Dr. Jarvys.', 24.8, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1100px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 25.4)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1190px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 25.8)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+const capEl = document.getElementById('cap');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
+window.setT = (t) => {
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t < 0.3) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+</script>
+</body></html>
