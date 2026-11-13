@@ -1,0 +1,113 @@
+/* ===== reel 33: Lavar o motor faz mal? (educativo) ===== */
+.stamp.y{border-color:var(--warn);color:var(--warn);text-shadow:0 0 40px rgba(249,199,24,.55);box-shadow:0 0 60px rgba(249,199,24,.35),inset 0 0 40px rgba(249,199,24,.15)}
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e33eng{position:absolute}
+@keyframes hot33{0%,100%{filter:drop-shadow(0 0 14px rgba(249,65,68,.5))}50%{filter:drop-shadow(0 0 50px rgba(249,65,68,.95))}}
+.e33dp{position:absolute;width:26px;height:36px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:linear-gradient(180deg,#9be3ff,#3ac7ff);box-shadow:0 0 14px rgba(58,199,255,.7);opacity:0}
+@keyframes fall33{0%{opacity:0;transform:translateY(-40px)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateY(var(--fy))}}
+.e33noz{position:absolute}
+.e33wv{position:absolute;opacity:0}
+@keyframes wv33{0%{opacity:0;transform:translateY(30px)}30%{opacity:1}100%{opacity:0;transform:translateY(-90px)}}
+.e33hot{position:absolute;padding:14px 30px;border-radius:999px;background:rgba(249,65,68,.16);border:3px solid rgba(249,65,68,.7);color:#ff9c9c;font-family:Orbitron;font-weight:700;font-size:34px;letter-spacing:5px;opacity:0;box-shadow:0 0 30px rgba(249,65,68,.4)}
+.e33big{position:absolute;width:70px;height:96px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:linear-gradient(180deg,#c9f1ff,#3ac7ff);box-shadow:0 0 30px rgba(58,199,255,.9);opacity:0}
+@keyframes drop33{0%{opacity:0;transform:translateY(-200px)}20%{opacity:1}100%{opacity:1;transform:translateY(0)}}
+.e33x{position:absolute;width:300px;height:300px;border-radius:50%;border:16px solid var(--bad);background:rgba(12,25,42,.6);box-shadow:0 0 60px rgba(249,65,68,.6);opacity:0}
+.e33x:before,.e33x:after{content:"";position:absolute;left:50%;top:50%;width:200px;height:24px;border-radius:12px;background:var(--bad);transform:translate(-50%,-50%) rotate(45deg)}
+.e33x:after{transform:translate(-50%,-50%) rotate(-45deg)}
+.e33jet{position:absolute;height:34px;border-radius:17px;background:linear-gradient(90deg,rgba(155,227,255,.95),rgba(58,199,255,.8));box-shadow:0 0 30px rgba(58,199,255,.8);transform-origin:0 50%;transform:scaleX(0)}
+@keyframes jet33{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.e33box{position:absolute;width:300px;height:300px;border-radius:30px;background:rgba(23,37,55,.95);border:5px solid #f9c718;box-shadow:0 0 50px rgba(249,199,24,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0}
+.e33box b{font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:4px;color:#ffe28a}
+.e33spl{position:absolute;width:20px;height:20px;border-radius:50%;background:rgba(155,227,255,.9);opacity:0}
+@keyframes spl33{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.e33it{position:absolute;top:540px;width:300px;height:420px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(58,199,255,.4);box-shadow:0 24px 70px -24px rgba(58,199,255,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0}
+.e33it em{font-style:normal;font-size:130px;line-height:1;filter:drop-shadow(0 0 22px rgba(58,199,255,.55))}
+.e33it b{font-size:44px;font-weight:800;text-align:center;line-height:1.05}
+.e33it .ck{position:absolute;top:-28px;right:-22px;width:78px;height:78px;border-radius:50%;background:var(--ok);color:#06210f;font-size:48px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Lavar",0,0.32],["o",0.36,0.4],["motor",0.64,0.88],["faz",0.96,1.12],["mal?",1.2,1.76],["Depende",2,2.48],["de",2.6,2.72],["como",2.84,2.96],["você",3.04,3.28],["lava.",3.32,3.88],["Com",4.08,4.16],["o",4.2,4.24],["motor",4.4,4.56],["quente,",4.64,5.28],["nunca:",5.36,6.08],["água",6.2,6.4],["fria",6.56,6.8],["no",6.84,6.88],["metal",7.04,7.2],["quente",7.28,7.68],["não",7.84,8],["é",8.04,8.08],["boa",8.16,8.24],["ideia.",8.36,8.84],["Jato",9.04,9.36],["forte",9.44,9.84],["em",9.92,10],["cima",10.053,10.16],["da",10.24,10.32],["parte",10.4,10.6],["elétrica,",10.64,11.36],["também",11.44,11.68],["não.",11.76,12.32],["Motor",12.52,12.72],["frio,",12.8,13.36],["produto",13.56,13.76],["próprio",13.84,14.32],["e",14.4,14.48],["água",14.56,14.8],["com",14.92,15.04],["pouca",15.08,15.36],["pressão:",15.56,16.16],["aí",16.24,16.48],["pode.",16.52,17.2],["Na",17.28,17.36],["dúvida,",17.44,18],["leva",18.12,18.293],["em",18.347,18.4],["quem",18.453,18.56],["sabe",18.64,18.88],["fazer.",19.013,19.68],["E",19.72,19.76],["você,",19.84,20.48],["já",20.52,20.6],["lavou",20.64,20.88],["o",20.92,20.96],["motor",21.08,21.2],["do",21.24,21.28],["seu",21.32,21.44],["carro?",21.52,22.08],["Comenta",22.16,22.4],["aí.",22.48,22.88]];
+const T = {total: 28, s1:[0,4.45], s2:[4.45,9.45], s3:[9.45,12.95], s4:[12.95,20.15], s5:[20.15,28],
+  breaks: [0, 5, 10, 15, 20, 24, 28, 31, 33, 37, 42, 44, 46, 51, 55, 60]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const redWords = (txt, at, step) => words(txt, at, step, 'red');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos: bloco do motor, bico de mangueira, lavadora de pressão, caixa elétrica
+const ENG = (w, c = '#3ac7ff', fill = 'rgba(58,199,255,.1)') => `<svg width="${w}" height="${w * 260 / 360}" viewBox="0 0 360 260" style="overflow:visible"><path d="M70 90 H120 V60 H200 V90 H240 L270 120 H300 V80 H330 V200 H300 V170 H270 L240 210 H110 L70 170 H40 V200 H20 V100 H40 V130 H70Z" fill="${fill}" stroke="${c}" stroke-width="12" stroke-linejoin="round"/><path d="M130 60 V40 H190 V60" fill="none" stroke="${c}" stroke-width="12" stroke-linejoin="round"/><path d="M100 130 H230 M100 160 H230" stroke="${c}" stroke-width="8" stroke-linecap="round" opacity=".6"/></svg>`;
+const NOZ = `<svg width="200" height="140" viewBox="0 0 200 140"><path d="M10 40 Q60 20 110 50" fill="none" stroke="#41d686" stroke-width="22" stroke-linecap="round"/><rect x="105" y="35" width="70" height="40" rx="10" fill="#97a7b7" stroke="#fff" stroke-width="6" transform="rotate(25 140 55)"/></svg>`;
+const GUN = `<svg width="330" height="220" viewBox="0 0 330 220"><path d="M40 70 H230 V110 H130 L110 190 H60 L80 110 H40Z" fill="rgba(249,199,24,.18)" stroke="#f9c718" stroke-width="10" stroke-linejoin="round"/><rect x="230" y="78" width="90" height="24" rx="8" fill="#97a7b7" stroke="#fff" stroke-width="5"/><path d="M40 90 Q0 120 10 200" fill="none" stroke="#97a7b7" stroke-width="12" stroke-linecap="round"/></svg>`;
+const drops = (x0, y0, fy, at, n = 7) => [...Array(n).keys()].map(k => `<div class="e33dp" style="left:${x0 + k * 38 + (k % 2) * 10}px;top:${y0 + (k % 3) * 18}px;--fy:${fy}px;animation:${A('fall33', 1.1, at + k * .17, 'ease-in', 'none')} infinite"></div>`).join('');
+const waves = (x, y, at) => [0, 1, 2].map(k => `<svg class="e33wv" style="left:${x + k * 120}px;top:${y}px;animation:${A('wv33', 1.6, at + k * .35, 'ease-out', 'none')} infinite" width="60" height="140" viewBox="0 0 60 140"><path d="M30 135 Q5 110 30 85 Q55 60 30 35 Q10 15 30 5" fill="none" stroke="#ff8a3d" stroke-width="9" stroke-linecap="round"/></svg>`).join('');
+const splash = (x, y, at) => [[-80, -90], [-120, -20], [-90, 70], [-40, -120], [-60, 110]].map(([dx, dy], k) => `<div class="e33spl" style="left:${x}px;top:${y}px;--dx:${dx}px;--dy:${dy}px;animation:${A('spl33', .7, at + k * .12, 'ease-out', 'none')} infinite"></div>`).join('');
+let h = '';
+
+// CENA 1: gancho, motor sendo molhado e carimbo DEPENDE
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:108px;line-height:1.04;white-space:nowrap">${still('Lavar o')} ${still('motor','neon')}<br>${still('faz mal?')}</div>
+  <div class="e33noz" style="left:700px;top:560px;transform:scaleX(-1);animation:${A('popb', .45, .3, BOUNCE)}">${NOZ}</div>
+  ${drops(470, 690, 190, .6)}
+  <div class="e33eng" style="left:250px;top:820px;animation:${A('popb', .5, .15, BOUNCE)}">${ENG(560)}</div>
+  <div class="stamp y" style="top:1250px;--r:-8deg;font-size:140px;white-space:nowrap;animation:${A('pop', .5, W(5) - .1, BOUNCE)}">DEPENDE</div>
+</div></div>`;
+
+// CENA 2: motor quente, nunca
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('Motor quente?', W(10), .14)}<br>${redWords('Nunca.', W(14), .14)}</div>
+  ${waves(360, 470, W(12))}
+  <div class="e33eng" style="left:240px;top:610px;animation:${an([A('popb', .45, W(10) - .3, BOUNCE), A('hot33', 1, W(12), 'ease-in-out', 'none') + ' infinite'])}">${ENG(600, '#f94144', 'rgba(249,65,68,.14)')}</div>
+  <div class="e33hot" style="left:380px;top:1050px;animation:${A('popb', .4, W(13) - .1, BOUNCE)}">🌡️ QUENTE</div>
+  <div class="e33big" style="left:505px;top:640px;animation:${A('drop33', .7, W(15) - .1, 'ease-in')}"></div>
+  <div class="e33x" style="left:390px;top:600px;animation:${A('popb', .45, W(20) - .1, BOUNCE)}"></div>
+  <div class="abs" style="left:0;right:0;top:1170px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(16), BOUNCE)}">❌ Água fria no motor quente</span></div>
+</div></div>`;
+
+// CENA 3: jato forte na parte elétrica, também não
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:190px;font-size:88px;line-height:1.05">${words('Jato forte na', W(24), .12)}<br>${words('parte elétrica?', W(29), .14)}<br>${redWords('Também não.', W(31), .14)}</div>
+  <div class="abs" style="left:40px;top:690px;animation:${A('popb', .45, W(24) - .25, BOUNCE)}">${GUN}</div>
+  <div class="e33jet" style="left:360px;top:760px;width:340px;animation:${A('jet33', .35, W(25), 'ease-out')}"></div>
+  ${splash(700, 770, W(25) + .35)}
+  <div class="e33box" style="left:700px;top:630px;animation:${an([A('popb', .45, W(24) - .1, BOUNCE), A('shake', .35, W(29), 'linear', 'none') + ' 4'])}"><svg width="110" height="130" viewBox="0 0 110 130"><path d="M65 5 L15 75 H52 L40 125 L95 50 H58Z" fill="#f9c718" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg><b>ELÉTRICA</b></div>
+  <div class="e33x" style="left:700px;top:630px;animation:${A('popb', .45, W(32) - .15, BOUNCE)}"></div>
+  <div class="abs" style="left:0;right:0;top:1110px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(30) - .05, BOUNCE)}">❌ Fios, conectores e módulos</span></div>
+</div></div>`;
+
+// CENA 4: do jeito certo, aí pode
+const card = (x, at, em, txt) => `<div class="e33it" style="left:${x}px;animation:${A('stIn', .5, at - .3)}"><em>${em}</em><b>${txt}</b><div class="ck" style="animation:${A('popb', .4, at + .25, BOUNCE)}">✓</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:190px;font-size:96px">${words('Do jeito certo,', W(33) - .2, .14)}<br>${neonWords('aí pode.', W(42), .16)}</div>
+  ${card(50, W(33), '❄️', 'Motor<br>frio')}
+  ${card(390, W(35), '🧴', 'Produto<br>próprio')}
+  ${card(730, W(38), '💧', 'Pouca<br>pressão')}
+  <div class="abs" style="left:0;right:0;top:1100px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(44) - .1, BOUNCE)}">🔧 Na dúvida, chama quem sabe</span></div>
+</div></div>`;
+
+// CENA 5: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s5, true)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você,', W(51), .12)}<br>${words('já lavou o', W(53), .12)}<br>${neonWords('motor?', W(56), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(60) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:770px;animation:${A('fade', .5, 23.4)}"></div>
+  <div class="abs" style="left:0;right:0;top:820px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 23.6, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:925px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 23.9, .12)}<br>${neonWords('Pergunta pro Dr. Jarvys.', 24.4, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 25.0)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 25.4)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
