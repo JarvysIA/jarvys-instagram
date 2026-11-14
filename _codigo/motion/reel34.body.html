@@ -1,0 +1,125 @@
+/* ===== reel 34: Carro elétrico não precisa de revisão? (novidade) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e34car{position:absolute}
+@keyframes zap34{0%,100%{opacity:.35;filter:drop-shadow(0 0 6px #f9c718)}50%{opacity:1;filter:drop-shadow(0 0 30px #f9c718)}}
+.e34dot{position:absolute;width:18px;height:18px;border-radius:50%;background:#9be3ff;box-shadow:0 0 16px #3ac7ff;opacity:0;offset-rotate:0deg}
+@keyframes flow34{0%{offset-distance:0%;opacity:1}100%{offset-distance:100%;opacity:1}}
+.e34it{position:absolute;top:560px;width:300px;height:420px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(249,65,68,.45);box-shadow:0 24px 70px -24px rgba(249,65,68,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0}
+.e34it em{font-style:normal;font-size:120px;line-height:1;height:150px;display:flex;align-items:center}
+.e34it b{font-size:42px;font-weight:800;text-align:center;line-height:1.05}
+.e34it .xx{position:absolute;top:-28px;right:-22px;width:78px;height:78px;border-radius:50%;background:var(--bad);color:#fff;font-size:46px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(249,65,68,.6);opacity:0}
+.e34ok{position:absolute;width:450px;height:250px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(65,214,134,.5);box-shadow:0 24px 70px -24px rgba(65,214,134,.4);display:flex;align-items:center;gap:26px;padding:0 34px;opacity:0}
+.e34ok em{font-style:normal;font-size:100px;line-height:1}
+.e34ok b{font-size:44px;font-weight:800;line-height:1.05}
+.e34ok .ck{position:absolute;top:-24px;right:-18px;width:70px;height:70px;border-radius:50%;background:var(--ok);color:#06210f;font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+.e34snow{position:absolute;font-size:90px;opacity:0;filter:drop-shadow(0 0 20px rgba(58,199,255,.8))}
+@keyframes spin34{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.e34sh{position:absolute}
+@keyframes red34{to{filter:drop-shadow(0 0 50px rgba(249,65,68,.9)) saturate(1)}}
+.e34crack{position:absolute;opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Carro",0,0.24],["elétrico",0.32,0.88],["não",1.04,1.12],["precisa",1.2,1.52],["de",1.56,1.6],["revisão?",1.68,2.44],["Mito.",2.72,3.2],["É",3.6,3.68],["verdade",3.76,4.24],["que",4.28,4.32],["ele",4.4,4.48],["não",4.56,4.64],["tem",4.72,4.88],["óleo",4.92,5.12],["do",5.16,5.2],["motor,",5.44,5.92],["nem",5.973,6.08],["vela,",6.16,6.64],["nem",6.667,6.72],["correia.",6.8,7.52],["Mas",7.76,7.92],["muita",8,8.4],["coisa",8.44,8.72],["continua",8.88,9.12],["igual",9.2,9.44],["a",9.48,9.52],["qualquer",9.6,10],["carro:",10.08,10.88],["freio,",10.96,11.52],["pneu,",11.6,12.16],["suspensão,",12.24,13.28],["filtro",13.44,13.6],["do",13.68,13.72],["ar-condicionado",13.76,14.56],["e,",14.88,15.013],["em",15.067,15.12],["muitos",15.16,15.44],["modelos,",15.64,16.08],["o",16.12,16.16],["líquido",16.24,16.56],["que",16.6,16.64],["esfria",16.72,17.04],["a",17.067,17.093],["bateria.",17.12,17.84],["E",18.08,18.16],["sem",18.24,18.4],["revisão",18.48,18.8],["em",18.88,18.96],["dia,",19.08,19.44],["você",19.48,19.68],["pode",19.76,20],["perder",20.12,20.4],["a",20.44,20.48],["garantia.",20.56,21.6],["E",21.64,21.68],["você,",21.72,22.24],["teria",22.4,22.64],["um",22.68,22.72],["elétrico?",22.76,23.6],["Comenta",23.64,23.92],["aí.",23.96,24.4]];
+const T = {total: 30, s1:[0,4.0], s2:[4.0,8.15], s3:[8.15,15.35], s4:[15.35,18.4], s5:[18.4,22.0], s6:[22.0,30],
+  breaks: [0, 6, 7, 13, 16, 20, 23, 28, 31, 34, 38, 44, 49, 54, 59]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const redWords = (txt, at, step) => words(txt, at, step, 'red');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos (genéricos): carro elétrico com cabo, vela, correia, bateria com tubo de refrigeração, escudo da garantia
+const EV = (w) => `<svg width="${w}" height="${w * 300 / 640}" viewBox="0 0 640 300" style="overflow:visible">
+ <path d="M40 200 Q40 150 90 140 L190 130 Q240 70 330 66 L430 66 Q500 70 550 130 L600 145 Q620 155 620 200 L620 220 H40Z" fill="rgba(58,199,255,.1)" stroke="#3ac7ff" stroke-width="12" stroke-linejoin="round"/>
+ <path d="M220 130 Q260 90 330 86 H420 Q470 90 510 130Z" fill="rgba(58,199,255,.18)" stroke="#3ac7ff" stroke-width="8" stroke-linejoin="round"/>
+ <path d="M365 86 V130" stroke="#3ac7ff" stroke-width="8"/>
+ <circle cx="160" cy="222" r="52" fill="#0b1626" stroke="#e8f1f8" stroke-width="12"/><circle cx="160" cy="222" r="18" fill="#3ac7ff"/>
+ <circle cx="500" cy="222" r="52" fill="#0b1626" stroke="#e8f1f8" stroke-width="12"/><circle cx="500" cy="222" r="18" fill="#3ac7ff"/>
+ <path d="M355 150 L320 195 H350 L335 235 L385 175 H352Z" fill="#f9c718" stroke="#fff" stroke-width="4" stroke-linejoin="round" style="animation:zap34 1s ease-in-out infinite"/>
+ <rect x="596" y="160" width="26" height="30" rx="6" fill="#41d686"/>
+ <path d="M622 175 Q700 180 690 290 Q685 340 740 350" fill="none" stroke="#41d686" stroke-width="12" stroke-linecap="round"/>
+</svg>`;
+const PLUG = `<svg width="60" height="150" viewBox="0 0 60 150"><rect x="22" y="0" width="16" height="22" rx="4" fill="#97a7b7"/><rect x="10" y="22" width="40" height="50" rx="10" fill="#e8f1f8"/><rect x="14" y="72" width="32" height="26" fill="#97a7b7"/><path d="M18 100 H42 V122 H18Z" fill="#c9d3dd"/><path d="M30 122 V140 M30 140 H44" stroke="#c9d3dd" stroke-width="7" stroke-linecap="round" fill="none"/></svg>`;
+const BELT = `<svg width="190" height="150" viewBox="0 0 190 150"><circle cx="45" cy="95" r="38" fill="none" stroke="#97a7b7" stroke-width="10"/><circle cx="145" cy="45" r="30" fill="none" stroke="#97a7b7" stroke-width="10"/><path d="M14 80 L118 22 M76 118 L170 62" stroke="#e8f1f8" stroke-width="10" stroke-linecap="round"/></svg>`;
+const BAT = `<svg width="560" height="360" viewBox="0 0 560 360" style="overflow:visible">
+ <rect x="80" y="60" width="400" height="230" rx="34" fill="rgba(65,214,134,.1)" stroke="#41d686" stroke-width="12"/>
+ <path d="M140 60 V30 H200 V60 M360 60 V30 H420 V60" fill="none" stroke="#41d686" stroke-width="12" stroke-linejoin="round"/>
+ <rect x="120" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="210" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="300" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="390" y="100" width="50" height="150" rx="12" fill="#41d686" opacity=".35"/>
+ <path id="pipe34" d="M30 175 V320 H530 V40 H480" fill="none" stroke="rgba(58,199,255,.55)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+const SHIELD = (c) => `<svg width="340" height="400" viewBox="0 0 340 400"><path d="M170 14 L310 66 V190 Q310 320 170 386 Q30 320 30 190 V66Z" fill="rgba(58,199,255,.12)" stroke="${c}" stroke-width="14" stroke-linejoin="round"/><path d="M110 200 L155 245 L235 150" fill="none" stroke="${c}" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const CRACK = `<svg width="340" height="400" viewBox="0 0 340 400"><path d="M170 14 L150 110 L195 160 L140 240 L185 300 L170 386" fill="none" stroke="#f94144" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+const dots = (at) => [0, 1, 2, 3, 4, 5].map(k => `<div class="e34dot" style="offset-path:path('M30 175 V320 H530 V40 H480');animation:${A('fade', .1, at)}, flow34 2.4s linear ${at + k * .4}s infinite"></div>`).join('');
+let h = '';
+
+// CENA 1: gancho, carro elétrico na tomada e carimbo MITO
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:100px;line-height:1.04;white-space:nowrap">${still('Carro')} ${still('elétrico','neon')}<br>${still('não precisa')}<br>${still('de revisão?')}</div>
+  <div class="e34car" style="left:150px;top:760px;animation:${A('popb', .5, .15, BOUNCE)}">${EV(700)}</div>
+  <div class="stamp" style="top:1250px;--r:-8deg;font-size:150px;white-space:nowrap;animation:${A('pop', .5, W(6) - .1, BOUNCE)}">MITO</div>
+</div></div>`;
+
+// CENA 2: o que ele não tem
+const xcard = (x, at, em, txt) => `<div class="e34it" style="left:${x}px;animation:${A('stIn', .5, at - .35)}"><em>${em}</em><b>${txt}</b><div class="xx" style="animation:${A('popb', .4, at + .2, BOUNCE)}">✕</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('É verdade:', W(7), .14)}<br>${words('ele não tem', W(10), .12)}</div>
+  ${xcard(50, W(13), '🛢️', 'Óleo do<br>motor')}
+  ${xcard(390, W(17), PLUG, 'Vela')}
+  ${xcard(730, W(19), BELT, 'Correia')}
+  <div class="abs" style="left:0;right:0;top:1110px;text-align:center"><span class="pillx ok" style="position:relative;animation:${A('popb', .45, W(19) + .3, BOUNCE)}">⚡ Menos peças no motor</span></div>
+</div></div>`;
+
+// CENA 3: o que continua igual
+const okc = (x, y, at, em, txt) => `<div class="e34ok" style="left:${x}px;top:${y}px;animation:${A('stIn', .5, at - .35)}"><em>${em}</em><b>${txt}</b><div class="ck" style="animation:${A('popb', .4, at + .15, BOUNCE)}">✓</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:190px;font-size:88px;line-height:1.06">${words('Mas muita coisa', W(20), .14)}<br>${words('continua igual a', W(23), .12)}<br>${neonWords('qualquer carro:', W(26), .14)}</div>
+  ${okc(65, 600, W(28), '🛑', 'Freio')}
+  ${okc(565, 600, W(29), '🛞', 'Pneu')}
+  ${okc(65, 900, W(30), '🔧', 'Suspensão')}
+  ${okc(565, 900, W(31), '🌬️', 'Filtro<br>do ar')}
+</div></div>`;
+
+// CENA 4: líquido que esfria a bateria
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:200px;font-size:84px;line-height:1.08">${words('Em muitos modelos:', W(34) - .1, .12)}<br>${neonWords('o líquido que', W(38), .1)}<br>${neonWords('esfria a bateria', W(41), .12)}</div>
+  <div class="abs" style="left:260px;top:640px;animation:${A('popb', .5, W(34) - .3, BOUNCE)}">${BAT}<div style="position:absolute;left:0;top:0">${dots(W(39))}</div></div>
+  <div class="e34snow" style="left:830px;top:600px;animation:${an([A('popb', .4, W(41), BOUNCE), 'spin34 4s linear ' + W(41) + 's infinite'])}">❄️</div>
+  <div class="abs" style="left:0;right:0;top:1130px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(39), BOUNCE)}">📘 Confira no manual do seu</span></div>
+</div></div>`;
+
+// CENA 5: sem revisão, pode perder a garantia
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('Sem revisão em dia?', W(44), .12)}</div>
+  <div class="e34sh" style="left:370px;top:440px;animation:${an([A('popb', .45, W(44) - .2, BOUNCE), A('shake', .35, W(51), 'linear', 'none') + ' 3'])}">${SHIELD('#3ac7ff')}
+   <div style="position:absolute;inset:0;opacity:0;animation:${A('fade', .3, W(51))}">${SHIELD('#f94144')}</div>
+   <div class="e34crack" style="left:0;top:0;animation:${A('fade', .2, W(51) + .1)}">${CRACK}</div></div>
+  <div class="abs" style="left:0;right:0;top:880px;text-align:center;font-family:Orbitron;font-weight:700;font-size:42px;letter-spacing:8px;color:var(--muted);animation:${A('fade', .4, W(46))}">GARANTIA</div>
+  <div class="hd c" style="top:980px;font-size:84px">${redWords('Pode perder a garantia.', W(50), .14)}</div>
+</div></div>`;
+
+// CENA 6: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você,', W(54), .12)}<br>${words('teria um', W(56), .12)}<br>${neonWords('elétrico?', W(58), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(59) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:770px;animation:${A('fade', .5, 25.4)}"></div>
+  <div class="abs" style="left:0;right:0;top:820px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 25.6, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:925px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 25.9, .12)}<br>${neonWords('Pergunta pro Dr. Jarvys.', 26.4, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 27.0)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 27.4)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;

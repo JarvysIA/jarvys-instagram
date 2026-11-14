@@ -1,0 +1,409 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(inter-latin-400-normal.woff);font-weight:400}
+@font-face{font-family:Inter;src:url(inter-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:Inter;src:url(inter-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:Inter;src:url(inter-latin-700-normal.woff);font-weight:700}
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+@font-face{font-family:Orbitron;src:url(orbitron-latin-700-normal.woff);font-weight:700}
+:root{--bg:#0c192a;--card:#172537;--fg:#f0f6fc;--muted:#97a7b7;--neon:#3ac7ff;--on:#061223;--soft:rgba(58,199,255,.15);--border:rgba(40,61,78,.95);--ok:#41d686;--warn:#f9c718;--bad:#f94144}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter;color:var(--fg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+.glow{position:absolute;left:-200px;top:300px;width:1480px;height:1480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(58,199,255,.22),rgba(58,199,255,.06) 40%,rgba(12,25,42,0) 65%);animation:breath 6s ease-in-out infinite alternate}
+@keyframes breath{from{transform:scale(1);opacity:.85}to{transform:scale(1.08);opacity:1}}
+.grid{position:absolute;inset:-100px;background-image:radial-gradient(rgba(58,199,255,.20) 2px,transparent 2.6px);background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(circle at 50% 48%,#000 0,transparent 62%);animation:drift 32s linear both}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-162px)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(3,8,16,.65) 100%);pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0}
+.cam{position:absolute;inset:0}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.07);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes sceneOut{from{opacity:1;transform:none;filter:blur(0)}to{opacity:0;transform:scale(.94);filter:blur(12px)}}
+@keyframes ken{from{transform:scale(1)}to{transform:scale(1.045)}}
+@keyframes up{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes word{from{opacity:0;transform:translateY(70%) rotate(3deg);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(var(--r,0deg))}60%{opacity:1;transform:translate(-50%,-50%) scale(1.1) rotate(var(--r,0deg))}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg))}}
+@keyframes popb{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes fly{to{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.15) rotate(0deg)}}
+@keyframes wob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes ring{from{transform:translate(-50%,-50%) scale(.9);opacity:.8}to{transform:translate(-50%,-50%) scale(2.1);opacity:0}}
+@keyframes dash{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes sweep{from{transform:translateX(-120%) skewX(-20deg)}to{transform:translateX(220%) skewX(-20deg)}}
+@keyframes dots{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+@keyframes hide{to{opacity:0}}
+@keyframes check{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+.hd{position:absolute;left:80px;right:80px;top:250px;font-weight:800;font-size:100px;line-height:1.02;letter-spacing:-3px}
+.hd .w{display:inline-block;margin-right:24px;opacity:0}
+.c{text-align:center}
+.neon{color:var(--neon);text-shadow:0 0 30px rgba(58,199,255,.6)}
+.eyebrow{font-family:Orbitron;font-size:28px;letter-spacing:8px;color:var(--neon);margin-bottom:26px;opacity:0}
+.abs{position:absolute}
+.prob{position:absolute;display:flex;align-items:center;gap:24px;padding:30px 40px;border-radius:34px;background:rgba(23,37,55,.92);border:3px solid var(--border);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);opacity:0;font-size:46px;font-weight:700;white-space:nowrap}
+.prob .ic{width:88px;height:88px;border-radius:24px;background:rgba(249,199,24,.14);display:flex;align-items:center;justify-content:center}
+.prob svg{width:52px;height:52px;stroke:var(--warn);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.prob small{display:block;font-size:29px;font-weight:500;color:var(--muted);margin-top:2px}
+.hub{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);
+  box-shadow:0 0 90px rgba(58,199,255,.6),inset 0 0 40px rgba(58,199,255,.25);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);opacity:0}
+.hub img{width:232px;height:232px;border-radius:50%}
+.ringx{position:absolute;width:300px;height:300px;border-radius:50%;border:4px solid var(--neon);opacity:0}
+.pill{display:flex;align-items:center;gap:18px;padding:24px 40px;border-radius:999px;font-size:44px;font-weight:700;background:var(--card);border:3px solid var(--border);opacity:0;white-space:nowrap}
+.pill i{width:22px;height:22px;border-radius:50%;display:block;box-shadow:0 0 14px currentColor}
+.inp{position:absolute;display:flex;align-items:center;gap:16px;padding:22px 30px;border-radius:28px;font-size:36px;font-weight:700;background:var(--soft);color:var(--neon);border:3px solid rgba(58,199,255,.35);opacity:0}
+.inp svg,.wa svg{width:44px;height:44px;stroke:var(--neon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wa{position:absolute;left:50%;top:1300px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:20px 36px;border-radius:999px;background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:38px;font-weight:700;opacity:0}
+.wa svg{stroke:#7ff0b3}
+.chat{position:absolute;left:80px;right:80px;top:470px;background:var(--card);border:3px solid var(--border);border-radius:52px;padding:42px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.chead{display:flex;align-items:center;gap:22px;padding-bottom:28px;border-bottom:3px solid var(--border)}
+.chead img{width:90px;height:90px;border-radius:50%}
+.chead b{font-size:38px;display:block}.chead small{font-size:27px;color:var(--ok)}
+.msgs{display:flex;flex-direction:column;gap:24px;margin-top:32px;min-height:600px}
+.m{max-width:780px;padding:24px 32px;font-size:42px;line-height:1.38;border-radius:38px;opacity:0}
+.u{align-self:flex-end;background:rgba(58,199,255,.2);border-bottom-right-radius:8px;transform-origin:bottom right}
+.b{align-self:flex-start;background:rgba(12,25,42,.8);border:3px solid var(--border);border-bottom-left-radius:8px;transform-origin:bottom left}
+.typing{display:flex;gap:12px;align-items:center;height:56px}
+.typing span{width:16px;height:16px;border-radius:50%;background:var(--muted);animation:dots 1s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.btn{display:inline-block;position:relative;overflow:hidden;background:var(--neon);color:var(--on);font-size:52px;font-weight:800;padding:36px 76px;border-radius:999px;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 26px 90px -10px rgba(58,199,255,.75)}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-120%) skewX(-20deg);animation:sweep 1.4s ease-in-out var(--sw,0s) 2}
+/* legenda */
+#cap{position:absolute;left:70px;right:70px;top:1445px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px;font-size:54px;font-weight:800;line-height:1.25;letter-spacing:-.5px;text-align:center}
+#cap span{color:#fff;opacity:.98;text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 24px rgba(0,0,0,.55);transition:none}
+#cap span.on{color:var(--neon);text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 26px rgba(58,199,255,.6)}
+#cap span.off{opacity:0}
+
+.phone{position:absolute;left:50%;transform:translateX(-50%);width:600px;border-radius:56px;border:10px solid #22344a;background:#000;overflow:hidden;box-shadow:0 0 0 3px rgba(58,199,255,.35),0 60px 160px -30px rgba(58,199,255,.55);opacity:0}
+.crop{position:relative;background-image:url(prova-uno.jpg);background-repeat:no-repeat;border-radius:28px;box-shadow:0 30px 90px -20px rgba(0,0,0,.7)}
+.real{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:rgba(249,65,68,.14);border:3px solid rgba(249,65,68,.65);color:#ff8a8c;font-family:Orbitron;font-size:28px;letter-spacing:5px;font-weight:700}
+.real i{width:18px;height:18px;border-radius:50%;background:#f94144;box-shadow:0 0 16px #f94144;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+@keyframes scan{from{top:0}to{top:100%}}
+@keyframes zoomIn{from{transform:scale(.55);opacity:0;filter:blur(10px)}to{transform:none;opacity:1;filter:blur(0)}}
+@keyframes slideUp{from{opacity:0;transform:translate(-50%,180px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes grow{from{width:0}to{width:var(--w)}}
+.km{font-family:Orbitron;font-weight:700;font-size:118px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.7);letter-spacing:2px}
+.lbl{font-family:Orbitron;font-size:26px;letter-spacing:6px;color:var(--muted)}
+.notif{position:absolute;left:90px;right:90px;display:flex;gap:26px;align-items:center;padding:30px 34px;border-radius:36px;background:rgba(23,37,55,.96);border:3px solid rgba(58,199,255,.55);box-shadow:0 40px 110px -20px rgba(58,199,255,.5);opacity:0}
+.notif img{width:96px;height:96px;border-radius:24px}
+.notif b{font-size:38px;display:block}.notif span{font-size:31px;color:var(--muted)}
+/* ===== reel 03: personagem e nota ===== */
+.guy{position:absolute;left:50%;transform:translateX(-50%);width:520px;height:620px}
+.guy svg{width:100%;height:100%;overflow:visible}
+.q{position:absolute;font-family:Orbitron;font-weight:700;color:var(--warn);text-shadow:0 0 30px rgba(249,199,24,.7);opacity:0;transform:translate(-50%,-50%)}
+.cal{position:absolute;padding:20px 30px;border-radius:24px;background:#f0f6fc;color:#0c192a;font-size:38px;font-weight:800;box-shadow:0 24px 60px -16px rgba(0,0,0,.7);opacity:0;transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+.cal small{display:block;font-size:22px;font-weight:600;color:#c0392b;letter-spacing:2px}
+.nota{position:absolute;left:50%;width:560px;margin-left:-280px;background:#f7f9fb;color:#1b2735;border-radius:14px;padding:38px 40px 46px;font-size:30px;line-height:1.5;box-shadow:0 50px 120px -30px rgba(58,199,255,.55);opacity:0;font-family:Inter}
+.nota h4{font-size:34px;font-weight:800;letter-spacing:1px;text-align:center}
+.nota .sub{text-align:center;font-size:22px;color:#6b7a89;margin-bottom:18px}
+.nota .ln{display:flex;justify-content:space-between;border-top:2px dashed #c9d3dd;padding:12px 0}
+.nota .tot{font-weight:800;font-size:34px}
+.nota:after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:20px;background:linear-gradient(-45deg,transparent 12px,#f7f9fb 0) 0 0/24px 20px,linear-gradient(45deg,transparent 12px,#f7f9fb 0) 0 0/24px 20px}
+.scanl{position:absolute;left:-20px;right:-20px;height:8px;background:linear-gradient(90deg,transparent,#3ac7ff,transparent);box-shadow:0 0 30px #3ac7ff;opacity:0}
+@keyframes scanY{0%{top:0;opacity:1}100%{top:100%;opacity:1}}
+.saved{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:18px;padding:22px 38px;border-radius:999px;background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:40px;font-weight:700;opacity:0;white-space:nowrap}
+.bub{position:absolute;max-width:820px;padding:26px 34px;font-size:42px;line-height:1.38;border-radius:38px;opacity:0}
+.bub.u{right:90px;background:rgba(58,199,255,.2);border-bottom-right-radius:8px;transform-origin:bottom right}
+.bub.b{left:90px;background:rgba(23,37,55,.96);border:3px solid var(--border);border-bottom-left-radius:8px;transform-origin:bottom left}
+.docb{display:flex;align-items:center;gap:26px}
+.docb .ic{width:110px;height:136px;border-radius:14px;background:#f0f6fc;position:relative;flex:none}
+.docb .ic i{position:absolute;left:18px;right:18px;height:8px;border-radius:4px;background:#b9c6d3}
+.docb b{display:block;font-size:40px}.docb span{font-size:30px;color:var(--muted)}
+.odo{display:inline-block;padding:26px 46px;border-radius:30px;background:#050b14;border:4px solid #22344a;box-shadow:inset 0 0 40px rgba(58,199,255,.18),0 30px 90px -20px rgba(58,199,255,.5)}
+@keyframes swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes qpop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes calfly{0%{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(.3)}25%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + 60px)) rotate(calc(var(--r) * 3)) scale(.8)}}
+@keyframes shrinkTo{to{opacity:0;transform:translate(0,420px) scale(.15)}}
+@keyframes slideUp2{from{opacity:0;transform:translateY(180px)}to{opacity:1;transform:none}}
+@keyframes smile{from{opacity:0}to{opacity:1}}
+/* ===== reel 05: grátis para sempre ===== */
+.tagp{position:absolute;left:50%;top:1000px;width:520px;height:300px;margin-left:-260px;border-radius:40px 40px 40px 40px;background:linear-gradient(160deg,#1c3a57,#0f2236);border:5px solid var(--neon);box-shadow:0 0 90px rgba(58,199,255,.5);display:flex;align-items:center;justify-content:center;font-family:Orbitron;font-weight:700;font-size:150px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.8);transform-origin:50% -120px}
+.tagp:before{content:"";position:absolute;top:-120px;left:50%;width:4px;height:120px;background:#7fb8dc}
+.tagp:after{content:"";position:absolute;top:26px;left:50%;margin-left:-20px;width:40px;height:40px;border-radius:50%;background:var(--bg);border:4px solid #7fb8dc}
+.stamp{position:absolute;padding:20px 50px;border:8px solid var(--ok);border-radius:24px;color:var(--ok);font-family:Orbitron;font-weight:700;font-size:80px;letter-spacing:6px;text-shadow:0 0 30px rgba(65,214,134,.6);box-shadow:0 0 50px -6px rgba(65,214,134,.6),inset 0 0 30px rgba(65,214,134,.25);opacity:0;transform:rotate(-8deg)}
+@keyframes stampIn{0%{opacity:0;transform:rotate(-8deg) scale(2.4)}70%{opacity:1;transform:rotate(-8deg) scale(.94)}100%{opacity:1;transform:rotate(-8deg) scale(1)}}
+.app{position:absolute;left:140px;right:140px;background:var(--card);border:3px solid var(--border);border-radius:52px;padding:44px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5)}
+.plate{margin-top:26px;border-radius:18px;background:#f4f6f8;border:5px solid #1b2735;overflow:hidden;color:#11161c}
+.plate .bar{background:#1f4fa8;color:#fff;font-size:22px;font-weight:800;letter-spacing:6px;text-align:center;padding:6px 0}
+.plate .num{font-family:'Courier New',monospace;font-weight:800;font-size:96px;letter-spacing:10px;text-align:center;padding:8px 0;min-height:126px}
+.caret{display:inline-block;width:6px;height:80px;background:#11161c;vertical-align:middle;animation:blink .8s steps(2,start) infinite}
+.car{margin-top:30px;display:flex;align-items:center;gap:28px;padding:26px 30px;border-radius:30px;background:rgba(12,25,42,.8);border:3px solid var(--border)}
+.car svg{width:150px;height:80px;flex:none}
+.car b{font-size:40px;display:block}.car span{font-size:30px;color:var(--muted)}
+.tile{position:absolute;width:430px;height:330px;border-radius:40px;background:rgba(23,37,55,.96);border:3px solid var(--border);padding:34px;opacity:0;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+.tile .tt{font-size:40px;font-weight:800;margin-top:18px}
+.tile .ts{font-size:27px;color:var(--muted);margin-top:6px}
+.hbar{height:18px;border-radius:99px;margin-top:12px}
+.free{display:inline-block;padding:8px 20px;border-radius:999px;background:rgba(65,214,134,.14);border:2px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:24px;font-weight:700;position:absolute;right:26px;top:26px}
+/* ===== reel 06: tá caro? mecânico espertinho ===== */
+.mec{position:absolute;width:500px;height:640px}
+.mec svg{width:100%;height:100%;overflow:visible}
+.orc{position:absolute;width:470px;background:#f7f9fb;color:#1b2735;border-radius:12px;padding:30px 34px 40px;font-size:27px;line-height:1.45;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);transform-origin:50% 0;font-family:Inter}
+.orc h4{font-size:30px;font-weight:800;letter-spacing:1px;text-align:center}
+.orc .sub{text-align:center;font-size:20px;color:#6b7a89;margin-bottom:12px}
+.orc .ln{display:flex;justify-content:space-between;border-top:2px dashed #c9d3dd;padding:8px 0}
+.orc .tot{font-weight:800;font-size:36px;color:#c0392b}
+@keyframes unroll{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.big{position:absolute;font-weight:800;letter-spacing:-4px;text-align:center;left:0;right:0}
+.est{position:absolute;left:90px;right:90px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.55);border-radius:46px;padding:40px 44px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.est .rg{font-family:Orbitron;font-weight:700;font-size:76px;color:var(--neon);text-shadow:0 0 34px rgba(58,199,255,.7);margin:10px 0 6px}
+.itm{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;font-size:36px;font-weight:700;opacity:0}
+.itm .bw{flex:none;width:300px;height:22px;border-radius:99px;background:rgba(151,167,183,.18);overflow:hidden}
+.itm .bw i{display:block;height:100%;border-radius:99px;background:var(--neon);box-shadow:0 0 16px var(--neon);width:0}
+.chk{display:flex;align-items:center;gap:24px;padding:22px 30px;border-radius:30px;background:rgba(23,37,55,.96);border:3px solid var(--border);font-size:42px;font-weight:700;opacity:0;margin-top:20px}
+.chk .lk{margin-left:auto;font-size:26px;font-weight:700;color:var(--neon);padding:8px 18px;border-radius:999px;background:var(--soft);border:2px solid rgba(58,199,255,.4)}
+.sweat{position:absolute;opacity:0}
+@keyframes drip{0%{opacity:0;transform:translateY(-10px)}20%{opacity:1}100%{opacity:1;transform:translateY(40px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+/* ===== reel 07: vai vender o carro? ===== */
+.sign{position:absolute;padding:14px 26px;background:#fff7d6;color:#1b2735;border:5px solid #1b2735;border-radius:12px;font-family:Orbitron;font-weight:700;font-size:40px;letter-spacing:3px;box-shadow:0 20px 40px -10px rgba(0,0,0,.6)}
+.road{position:absolute;left:-100px;right:-100px;height:10px;background:repeating-linear-gradient(90deg,rgba(151,167,183,.35) 0 80px,transparent 80px 140px)}
+.tlx{position:absolute;left:110px;right:90px}
+.tlx:before{content:"";position:absolute;left:30px;top:30px;bottom:30px;width:6px;border-radius:3px;background:linear-gradient(var(--neon),rgba(58,199,255,.1));transform-origin:top;animation:var(--ln)}
+@keyframes lineIn{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.tix{position:relative;display:flex;gap:30px;align-items:center;margin-bottom:34px;opacity:0}
+.tix .dot{flex:none;width:66px;height:66px;border-radius:50%;background:#0c192a;border:5px solid var(--ok);box-shadow:0 0 26px rgba(65,214,134,.7);display:flex;align-items:center;justify-content:center}
+.tix .dot svg{width:34px;height:34px;stroke:var(--ok);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.tix .cd{flex:1;background:rgba(23,37,55,.96);border:3px solid var(--border);border-radius:32px;padding:26px 32px}
+.tix b{display:block;font-size:40px}.tix span{font-size:30px;color:var(--muted)}
+.certx{position:absolute;left:110px;right:110px;border-radius:44px;padding:50px 46px;background:linear-gradient(160deg,#16314b,#0f2236);border:4px solid var(--neon);box-shadow:0 0 120px -10px rgba(58,199,255,.6);opacity:0;text-align:center}
+.sealx{width:200px;height:200px;margin:0 auto 26px;border-radius:50%;border:8px solid var(--neon);display:flex;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(58,199,255,.6),inset 0 0 40px rgba(58,199,255,.3)}
+.sealx img{width:150px;height:150px;border-radius:50%}
+.certx h3{font-family:Orbitron;font-size:44px;letter-spacing:4px;color:var(--neon)}
+.certx .r{display:flex;justify-content:space-between;font-size:34px;padding:16px 0;border-top:2px solid rgba(58,199,255,.25);text-align:left}
+.certx .r span{color:var(--muted)}
+.okp{display:inline-flex;align-items:center;gap:18px;padding:24px 40px;border-radius:999px;background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3;font-size:46px;font-weight:700;opacity:0}
+/* ===== reel 09: motorista de app ===== */
+.road2{position:absolute;left:0;right:0;height:230px;background:#101e2f;border-top:4px solid #22344a;border-bottom:4px solid #22344a;overflow:hidden}
+.road2 i{position:absolute;left:-200px;right:-200px;top:105px;height:14px;background:repeating-linear-gradient(90deg,#f9c718 0 90px,transparent 90px 170px);animation:lane .6s linear infinite}
+@keyframes lane{from{transform:translateX(0)}to{transform:translateX(-170px)}}
+.clk{position:absolute;left:0;right:0;text-align:center;font-family:Orbitron;font-weight:700;font-size:150px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.7)}
+.ctr{display:inline-flex;flex-direction:column;align-items:center;gap:6px;padding:22px 36px;border-radius:30px;background:rgba(23,37,55,.92);border:3px solid var(--border)}
+.ctr b{font-family:Orbitron;font-size:52px;color:var(--fg)}.ctr span{font-size:26px;color:var(--muted);letter-spacing:2px}
+.vf{position:absolute;left:140px;right:140px;height:520px;border-radius:30px}
+.vf i{position:absolute;width:80px;height:80px;border:7px solid #fff}
+.flash{position:absolute;inset:0;background:#fff;opacity:0}
+@keyframes flashk{0%{opacity:0}20%{opacity:.85}100%{opacity:0}}
+.sum{position:absolute;left:110px;right:110px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.55);border-radius:46px;padding:40px 44px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5);opacity:0}
+.sum .tt{font-family:Orbitron;font-weight:700;font-size:72px;color:var(--neon);text-shadow:0 0 30px rgba(58,199,255,.7);margin:8px 0 10px}
+.sum .row{display:flex;justify-content:space-between;font-size:36px;font-weight:700;margin-top:22px}
+.sum .row span{color:var(--muted);font-weight:600}
+.sum .br{height:22px;border-radius:99px;margin-top:10px;width:0}
+/* ===== reel 12: Dr. Jarvys, qual óleo ===== */
+.xno{display:inline-block;position:relative;width:420px;height:420px;transform:rotate(-8deg)}
+.xno:before,.xno:after{content:"";position:absolute;left:-10px;right:-10px;top:200px;height:26px;border-radius:13px;background:var(--bad);box-shadow:0 0 30px rgba(249,65,68,.7)}
+.xno:before{transform:rotate(45deg)}.xno:after{transform:rotate(-45deg)}
+.drh{position:absolute;left:90px;right:90px;top:220px;display:flex;align-items:center;gap:22px;padding:24px 30px;border-radius:36px;background:rgba(23,37,55,.96);border:3px solid var(--border)}
+.drh img{width:96px;height:96px;border-radius:50%}
+.drh b{font-size:40px;display:block}.drh small{font-size:28px;color:var(--ok)}
+.drtag{margin-left:auto;padding:12px 22px;border-radius:999px;background:var(--soft);border:3px solid rgba(58,199,255,.55);color:var(--neon);font-family:Orbitron;font-weight:700;font-size:24px;letter-spacing:4px;display:inline-block}
+.drtag.big2{font-size:38px;padding:16px 34px;letter-spacing:6px;box-shadow:0 0 40px rgba(58,199,255,.4)}
+.ficha{position:absolute;left:120px;right:120px;overflow:hidden;background:#f7f9fb;color:#1b2735;border-radius:26px;padding:36px 40px 40px;box-shadow:0 50px 120px -30px rgba(58,199,255,.55)}
+.ficha .lbl{color:#6b7a89}
+.frow{display:flex;justify-content:space-between;align-items:center;border-top:2px dashed #c9d3dd;padding:16px 0;font-size:36px}
+.frow span{color:#6b7a89}.frow b{font-weight:800}
+.scanw{display:inline-block;width:200px;height:28px;border-radius:14px;background:linear-gradient(90deg,#dfe7ef,#b9d8ee,#dfe7ef);background-size:200% 100%;animation:shim 1s linear infinite}
+@keyframes shim{from{background-position:200% 0}to{background-position:0 0}}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:.35}}
+/* ===== reel 15: quanto vale o seu carro? placa, FIPE e Status de Saúde ===== */
+.ptag{position:absolute;padding:24px 40px;border-radius:26px;background:#fff7d6;color:#1b2735;font-family:Inter;font-weight:800;font-size:84px;letter-spacing:-2px;border:6px solid #1b2735;box-shadow:0 30px 70px -10px rgba(0,0,0,.6);transform-origin:50% -60px}
+.ptag:before{content:"";position:absolute;left:50%;top:-64px;width:4px;height:60px;background:#f9c718}
+.bigplate{position:absolute;left:110px;right:110px;border-radius:30px;background:#f4f6f8;border:8px solid #1b2735;overflow:hidden;color:#11161c;box-shadow:0 50px 140px -30px rgba(58,199,255,.55)}
+.bigplate .bar{background:#1f4fa8;color:#fff;font-size:34px;font-weight:800;letter-spacing:10px;text-align:center;padding:12px 0}
+.bigplate .ch{display:flex;justify-content:center;gap:8px;padding:22px 0;font-family:'Courier New',monospace;font-weight:800;font-size:150px;min-height:220px}
+.bigplate .ch span{opacity:0;display:inline-block}
+.cursor{display:inline-block;width:10px;height:130px;background:var(--neon);align-self:center;animation:blink 1s steps(1) infinite}
+.fic{position:absolute;left:110px;right:110px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.55);border-radius:46px;padding:44px 48px;box-shadow:0 50px 140px -30px rgba(58,199,255,.5)}
+.fic .r{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-top:2px solid rgba(58,199,255,.2);font-size:42px;opacity:0}
+.fic .r span{color:var(--muted);font-size:34px}.fic .r b{font-weight:800}
+.fic .fp{font-family:Inter;font-weight:800;font-size:64px;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.6)}
+.hs{position:absolute;left:110px;right:110px;background:rgba(23,37,55,.97);border:3px solid var(--border);border-radius:46px;padding:40px 46px}
+.hs .it{display:flex;align-items:center;gap:26px;padding:22px 0;border-top:2px solid rgba(151,167,183,.15);font-size:42px;font-weight:700}
+.hs .it .d{flex:none;width:44px;height:44px;border-radius:50%;background:#2a3a4c;transition:none}
+.hs .it em{margin-left:auto;font-style:normal;font-size:30px;font-weight:700;padding:8px 20px;border-radius:999px;opacity:0}
+@keyframes litG{to{background:var(--ok);box-shadow:0 0 24px var(--ok)}}
+@keyframes litY{to{background:var(--warn);box-shadow:0 0 24px var(--warn)}}
+.dots3{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:60px}
+.dots3 i{width:150px;height:150px;border-radius:50%;opacity:0}
+.zero{font-family:Inter;font-weight:800;font-size:300px;letter-spacing:-12px;line-height:1;color:var(--neon);text-shadow:0 0 60px rgba(58,199,255,.6)}
+.fic .r b span{font-size:inherit;color:inherit}
+/* ===== base do reel 27 (educativo) ===== */
+.ex2{position:absolute;left:0;right:0;text-align:center;font-size:30px;color:var(--muted);opacity:0}
+.serie{position:absolute;left:0;right:0;top:170px;text-align:center}
+.serie span{display:inline-block;padding:14px 34px;border-radius:999px;background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:var(--warn);font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:6px}
+.draw path,.draw line,.draw circle{stroke-dasharray:1400;stroke-dashoffset:1400}
+@keyframes dr{to{stroke-dashoffset:0}}
+.stamp{position:absolute;left:50%;padding:18px 60px;border:12px solid var(--bad);border-radius:26px;color:var(--bad);font-family:Inter;font-weight:800;font-size:170px;letter-spacing:6px;line-height:1;text-shadow:0 0 40px rgba(249,65,68,.5);box-shadow:0 0 60px rgba(249,65,68,.35),inset 0 0 40px rgba(249,65,68,.15);background:rgba(12,25,42,.85);opacity:0}
+.gauge{position:absolute;left:240px;width:600px;height:340px}
+.gauge svg{position:absolute;inset:0;overflow:visible}
+.ndl{position:absolute;left:296px;bottom:20px;width:8px;height:250px;border-radius:6px;background:var(--fg);transform-origin:50% 100%;box-shadow:0 0 20px rgba(255,255,255,.5)}
+.ndl:after{content:"";position:absolute;left:-18px;bottom:-22px;width:44px;height:44px;border-radius:50%;background:var(--fg)}
+@keyframes ndl{from{transform:rotate(var(--a0))}to{transform:rotate(var(--a1))}}
+@keyframes wig{0%,100%{rotate:0deg}50%{rotate:4deg}}
+.glbl{position:absolute;left:0;right:0;text-align:center;font-family:Orbitron;font-weight:700;font-size:26px;letter-spacing:6px;color:var(--muted)}
+.big0{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:170px;letter-spacing:-6px;color:var(--ok);text-shadow:0 0 50px rgba(65,214,134,.6);opacity:0}
+.pillx{display:inline-flex;align-items:center;gap:16px;padding:22px 42px;border-radius:999px;font-size:46px;font-weight:800;opacity:0}
+.pillx.ok{background:rgba(65,214,134,.14);border:3px solid rgba(65,214,134,.6);color:#7ff0b3}
+.pillx.wa{left:0;top:0;display:inline-flex;background:rgba(249,199,24,.12);border:3px solid rgba(249,199,24,.6);color:#ffe28a}
+.pillx.bad{background:rgba(249,65,68,.14);border:3px solid rgba(249,65,68,.65);color:#ff9c9c}
+.knob{position:absolute}
+.drop{position:absolute;width:34px;height:46px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--warn);box-shadow:0 0 20px rgba(249,199,24,.7);opacity:0}
+@keyframes drip{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:1;transform:translateY(10px) scale(1)}100%{opacity:0;transform:translateY(190px) scale(.9)}}
+.disc{position:absolute;left:290px;width:500px;height:500px}
+.heat{position:absolute;inset:40px;border-radius:50%;background:radial-gradient(circle,rgba(255,120,40,.0) 30%,rgba(255,90,40,.85) 60%,rgba(249,65,68,.0) 72%);opacity:0;filter:blur(6px)}
+@keyframes heatup{from{opacity:0}to{opacity:1}}
+.thermo{position:absolute;left:850px;width:70px;height:420px;border-radius:40px;border:6px solid var(--fg);overflow:hidden}
+.thermo i{position:absolute;left:0;right:0;bottom:0;height:12%;background:linear-gradient(0deg,#f94144,#ff8a3d);box-shadow:0 0 30px rgba(249,65,68,.8)}
+@keyframes fillT{from{height:12%}to{height:92%}}
+.auto{position:absolute;left:150px;right:150px;background:#f7f9fb;color:#1b2735;border-radius:26px;padding:36px 44px 40px;box-shadow:0 50px 120px -30px rgba(249,65,68,.5);opacity:0}
+.auto h4{font-family:Orbitron;font-size:34px;letter-spacing:5px;color:#c62f32;margin-bottom:6px}
+.auto .sub{font-size:26px;color:#6b7a89;margin-bottom:12px}
+.auto .ar{display:flex;justify-content:space-between;border-top:2px dashed #c9d3dd;padding:18px 0;font-size:36px}
+.auto .ar span{color:#6b7a89}.auto .ar b{font-weight:800;text-align:right}
+.cm{display:inline-flex;align-items:center;gap:22px;padding:28px 52px;border-radius:44px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.6);font-size:58px;font-weight:800;box-shadow:0 30px 90px -20px rgba(58,199,255,.55);opacity:0}
+.sep{position:absolute;left:300px;right:300px;height:3px;background:linear-gradient(90deg,transparent,rgba(58,199,255,.6),transparent);opacity:0}
+/* ===== reel 34: Carro elétrico não precisa de revisão? (novidade) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e34car{position:absolute}
+@keyframes zap34{0%,100%{opacity:.35;filter:drop-shadow(0 0 6px #f9c718)}50%{opacity:1;filter:drop-shadow(0 0 30px #f9c718)}}
+.e34dot{position:absolute;width:18px;height:18px;border-radius:50%;background:#9be3ff;box-shadow:0 0 16px #3ac7ff;opacity:0;offset-rotate:0deg}
+@keyframes flow34{0%{offset-distance:0%;opacity:1}100%{offset-distance:100%;opacity:1}}
+.e34it{position:absolute;top:560px;width:300px;height:420px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(249,65,68,.45);box-shadow:0 24px 70px -24px rgba(249,65,68,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0}
+.e34it em{font-style:normal;font-size:120px;line-height:1;height:150px;display:flex;align-items:center}
+.e34it b{font-size:42px;font-weight:800;text-align:center;line-height:1.05}
+.e34it .xx{position:absolute;top:-28px;right:-22px;width:78px;height:78px;border-radius:50%;background:var(--bad);color:#fff;font-size:46px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(249,65,68,.6);opacity:0}
+.e34ok{position:absolute;width:450px;height:250px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(65,214,134,.5);box-shadow:0 24px 70px -24px rgba(65,214,134,.4);display:flex;align-items:center;gap:26px;padding:0 34px;opacity:0}
+.e34ok em{font-style:normal;font-size:100px;line-height:1}
+.e34ok b{font-size:44px;font-weight:800;line-height:1.05}
+.e34ok .ck{position:absolute;top:-24px;right:-18px;width:70px;height:70px;border-radius:50%;background:var(--ok);color:#06210f;font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+.e34snow{position:absolute;font-size:90px;opacity:0;filter:drop-shadow(0 0 20px rgba(58,199,255,.8))}
+@keyframes spin34{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.e34sh{position:absolute}
+@keyframes red34{to{filter:drop-shadow(0 0 50px rgba(249,65,68,.9)) saturate(1)}}
+.e34crack{position:absolute;opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="glow"></div><div class="grid"></div>
+<div id="scenes"></div>
+<div id="cap"></div>
+<div class="vig"></div>
+</div>
+<script>
+const VO = 0.5;
+const W0 = [["Carro",0,0.24],["elétrico",0.32,0.88],["não",1.04,1.12],["precisa",1.2,1.52],["de",1.56,1.6],["revisão?",1.68,2.44],["Mito.",2.72,3.2],["É",3.6,3.68],["verdade",3.76,4.24],["que",4.28,4.32],["ele",4.4,4.48],["não",4.56,4.64],["tem",4.72,4.88],["óleo",4.92,5.12],["do",5.16,5.2],["motor,",5.44,5.92],["nem",5.973,6.08],["vela,",6.16,6.64],["nem",6.667,6.72],["correia.",6.8,7.52],["Mas",7.76,7.92],["muita",8,8.4],["coisa",8.44,8.72],["continua",8.88,9.12],["igual",9.2,9.44],["a",9.48,9.52],["qualquer",9.6,10],["carro:",10.08,10.88],["freio,",10.96,11.52],["pneu,",11.6,12.16],["suspensão,",12.24,13.28],["filtro",13.44,13.6],["do",13.68,13.72],["ar-condicionado",13.76,14.56],["e,",14.88,15.013],["em",15.067,15.12],["muitos",15.16,15.44],["modelos,",15.64,16.08],["o",16.12,16.16],["líquido",16.24,16.56],["que",16.6,16.64],["esfria",16.72,17.04],["a",17.067,17.093],["bateria.",17.12,17.84],["E",18.08,18.16],["sem",18.24,18.4],["revisão",18.48,18.8],["em",18.88,18.96],["dia,",19.08,19.44],["você",19.48,19.68],["pode",19.76,20],["perder",20.12,20.4],["a",20.44,20.48],["garantia.",20.56,21.6],["E",21.64,21.68],["você,",21.72,22.24],["teria",22.4,22.64],["um",22.68,22.72],["elétrico?",22.76,23.6],["Comenta",23.64,23.92],["aí.",23.96,24.4]];
+const T = {total: 30, s1:[0,4.0], s2:[4.0,8.15], s3:[8.15,15.35], s4:[15.35,18.4], s5:[18.4,22.0], s6:[22.0,30],
+  breaks: [0, 6, 7, 13, 16, 20, 23, 28, 31, 34, 38, 44, 49, 54, 59]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const redWords = (txt, at, step) => words(txt, at, step, 'red');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos (genéricos): carro elétrico com cabo, vela, correia, bateria com tubo de refrigeração, escudo da garantia
+const EV = (w) => `<svg width="${w}" height="${w * 300 / 640}" viewBox="0 0 640 300" style="overflow:visible">
+ <path d="M40 200 Q40 150 90 140 L190 130 Q240 70 330 66 L430 66 Q500 70 550 130 L600 145 Q620 155 620 200 L620 220 H40Z" fill="rgba(58,199,255,.1)" stroke="#3ac7ff" stroke-width="12" stroke-linejoin="round"/>
+ <path d="M220 130 Q260 90 330 86 H420 Q470 90 510 130Z" fill="rgba(58,199,255,.18)" stroke="#3ac7ff" stroke-width="8" stroke-linejoin="round"/>
+ <path d="M365 86 V130" stroke="#3ac7ff" stroke-width="8"/>
+ <circle cx="160" cy="222" r="52" fill="#0b1626" stroke="#e8f1f8" stroke-width="12"/><circle cx="160" cy="222" r="18" fill="#3ac7ff"/>
+ <circle cx="500" cy="222" r="52" fill="#0b1626" stroke="#e8f1f8" stroke-width="12"/><circle cx="500" cy="222" r="18" fill="#3ac7ff"/>
+ <path d="M355 150 L320 195 H350 L335 235 L385 175 H352Z" fill="#f9c718" stroke="#fff" stroke-width="4" stroke-linejoin="round" style="animation:zap34 1s ease-in-out infinite"/>
+ <rect x="596" y="160" width="26" height="30" rx="6" fill="#41d686"/>
+ <path d="M622 175 Q700 180 690 290 Q685 340 740 350" fill="none" stroke="#41d686" stroke-width="12" stroke-linecap="round"/>
+</svg>`;
+const PLUG = `<svg width="60" height="150" viewBox="0 0 60 150"><rect x="22" y="0" width="16" height="22" rx="4" fill="#97a7b7"/><rect x="10" y="22" width="40" height="50" rx="10" fill="#e8f1f8"/><rect x="14" y="72" width="32" height="26" fill="#97a7b7"/><path d="M18 100 H42 V122 H18Z" fill="#c9d3dd"/><path d="M30 122 V140 M30 140 H44" stroke="#c9d3dd" stroke-width="7" stroke-linecap="round" fill="none"/></svg>`;
+const BELT = `<svg width="190" height="150" viewBox="0 0 190 150"><circle cx="45" cy="95" r="38" fill="none" stroke="#97a7b7" stroke-width="10"/><circle cx="145" cy="45" r="30" fill="none" stroke="#97a7b7" stroke-width="10"/><path d="M14 80 L118 22 M76 118 L170 62" stroke="#e8f1f8" stroke-width="10" stroke-linecap="round"/></svg>`;
+const BAT = `<svg width="560" height="360" viewBox="0 0 560 360" style="overflow:visible">
+ <rect x="80" y="60" width="400" height="230" rx="34" fill="rgba(65,214,134,.1)" stroke="#41d686" stroke-width="12"/>
+ <path d="M140 60 V30 H200 V60 M360 60 V30 H420 V60" fill="none" stroke="#41d686" stroke-width="12" stroke-linejoin="round"/>
+ <rect x="120" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="210" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="300" y="100" width="70" height="150" rx="12" fill="#41d686" opacity=".75"/><rect x="390" y="100" width="50" height="150" rx="12" fill="#41d686" opacity=".35"/>
+ <path id="pipe34" d="M30 175 V320 H530 V40 H480" fill="none" stroke="rgba(58,199,255,.55)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+const SHIELD = (c) => `<svg width="340" height="400" viewBox="0 0 340 400"><path d="M170 14 L310 66 V190 Q310 320 170 386 Q30 320 30 190 V66Z" fill="rgba(58,199,255,.12)" stroke="${c}" stroke-width="14" stroke-linejoin="round"/><path d="M110 200 L155 245 L235 150" fill="none" stroke="${c}" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const CRACK = `<svg width="340" height="400" viewBox="0 0 340 400"><path d="M170 14 L150 110 L195 160 L140 240 L185 300 L170 386" fill="none" stroke="#f94144" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+const dots = (at) => [0, 1, 2, 3, 4, 5].map(k => `<div class="e34dot" style="offset-path:path('M30 175 V320 H530 V40 H480');animation:${A('fade', .1, at)}, flow34 2.4s linear ${at + k * .4}s infinite"></div>`).join('');
+let h = '';
+
+// CENA 1: gancho, carro elétrico na tomada e carimbo MITO
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="serie"><span>MITO OU VERDADE?</span></div>
+  <div class="hd c" style="top:270px;left:30px;right:30px;font-size:100px;line-height:1.04;white-space:nowrap">${still('Carro')} ${still('elétrico','neon')}<br>${still('não precisa')}<br>${still('de revisão?')}</div>
+  <div class="e34car" style="left:150px;top:760px;animation:${A('popb', .5, .15, BOUNCE)}">${EV(700)}</div>
+  <div class="stamp" style="top:1250px;--r:-8deg;font-size:150px;white-space:nowrap;animation:${A('pop', .5, W(6) - .1, BOUNCE)}">MITO</div>
+</div></div>`;
+
+// CENA 2: o que ele não tem
+const xcard = (x, at, em, txt) => `<div class="e34it" style="left:${x}px;animation:${A('stIn', .5, at - .35)}"><em>${em}</em><b>${txt}</b><div class="xx" style="animation:${A('popb', .4, at + .2, BOUNCE)}">✕</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('É verdade:', W(7), .14)}<br>${words('ele não tem', W(10), .12)}</div>
+  ${xcard(50, W(13), '🛢️', 'Óleo do<br>motor')}
+  ${xcard(390, W(17), PLUG, 'Vela')}
+  ${xcard(730, W(19), BELT, 'Correia')}
+  <div class="abs" style="left:0;right:0;top:1110px;text-align:center"><span class="pillx ok" style="position:relative;animation:${A('popb', .45, W(19) + .3, BOUNCE)}">⚡ Menos peças no motor</span></div>
+</div></div>`;
+
+// CENA 3: o que continua igual
+const okc = (x, y, at, em, txt) => `<div class="e34ok" style="left:${x}px;top:${y}px;animation:${A('stIn', .5, at - .35)}"><em>${em}</em><b>${txt}</b><div class="ck" style="animation:${A('popb', .4, at + .15, BOUNCE)}">✓</div></div>`;
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:190px;font-size:88px;line-height:1.06">${words('Mas muita coisa', W(20), .14)}<br>${words('continua igual a', W(23), .12)}<br>${neonWords('qualquer carro:', W(26), .14)}</div>
+  ${okc(65, 600, W(28), '🛑', 'Freio')}
+  ${okc(565, 600, W(29), '🛞', 'Pneu')}
+  ${okc(65, 900, W(30), '🔧', 'Suspensão')}
+  ${okc(565, 900, W(31), '🌬️', 'Filtro<br>do ar')}
+</div></div>`;
+
+// CENA 4: líquido que esfria a bateria
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:200px;font-size:84px;line-height:1.08">${words('Em muitos modelos:', W(34) - .1, .12)}<br>${neonWords('o líquido que', W(38), .1)}<br>${neonWords('esfria a bateria', W(41), .12)}</div>
+  <div class="abs" style="left:260px;top:640px;animation:${A('popb', .5, W(34) - .3, BOUNCE)}">${BAT}<div style="position:absolute;left:0;top:0">${dots(W(39))}</div></div>
+  <div class="e34snow" style="left:830px;top:600px;animation:${an([A('popb', .4, W(41), BOUNCE), 'spin34 4s linear ' + W(41) + 's infinite'])}">❄️</div>
+  <div class="abs" style="left:0;right:0;top:1130px;text-align:center"><span class="pillx wa" style="position:relative;animation:${A('popb', .45, W(39), BOUNCE)}">📘 Confira no manual do seu</span></div>
+</div></div>`;
+
+// CENA 5: sem revisão, pode perder a garantia
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:200px;font-size:92px">${words('Sem revisão em dia?', W(44), .12)}</div>
+  <div class="e34sh" style="left:370px;top:440px;animation:${an([A('popb', .45, W(44) - .2, BOUNCE), A('shake', .35, W(51), 'linear', 'none') + ' 3'])}">${SHIELD('#3ac7ff')}
+   <div style="position:absolute;inset:0;opacity:0;animation:${A('fade', .3, W(51))}">${SHIELD('#f94144')}</div>
+   <div class="e34crack" style="left:0;top:0;animation:${A('fade', .2, W(51) + .1)}">${CRACK}</div></div>
+  <div class="abs" style="left:0;right:0;top:880px;text-align:center;font-family:Orbitron;font-weight:700;font-size:42px;letter-spacing:8px;color:var(--muted);animation:${A('fade', .4, W(46))}">GARANTIA</div>
+  <div class="hd c" style="top:980px;font-size:84px">${redWords('Pode perder a garantia.', W(50), .14)}</div>
+</div></div>`;
+
+// CENA 6: comenta aí + fecho Dr. Jarvys
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você,', W(54), .12)}<br>${words('teria um', W(56), .12)}<br>${neonWords('elétrico?', W(58), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(59) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:770px;animation:${A('fade', .5, 25.4)}"></div>
+  <div class="abs" style="left:0;right:0;top:820px;text-align:center"><span class="drtag big2" style="opacity:0;animation:${A('popb', .45, 25.6, BOUNCE)}">DR. JARVYS</span></div>
+  <div class="hd c" style="top:925px;font-size:76px;line-height:1.08">${words('Dúvida do carro?', 25.9, .12)}<br>${neonWords('Pergunta pro Dr. Jarvys.', 26.4, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 27.0)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 27.4)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
+document.getElementById('scenes').innerHTML = h;
+
+const capEl = document.getElementById('cap');
+const CH = T.breaks.map((i0, k) => [i0, (T.breaks[k + 1] ?? T.words.length)]);
+window.setT = (t) => {
+  let cur = null;
+  for (const [i0, i1] of CH) {
+    const st = T.words[i0][1] - 0.12, nx = (i1 < T.words.length ? T.words[i1][1] - 0.12 : T.words[i1 - 1][2] + 0.5);
+    const en = Math.min(nx, T.words[i1 - 1][2] + 0.9);
+    if (t >= st && t < en) { cur = [i0, i1]; break; }
+  }
+  if (!cur || t < 0.3) { capEl.innerHTML = ''; return; }
+  capEl.innerHTML = T.words.slice(cur[0], cur[1]).map(([w, a, b]) => `<span class="${t < a - 0.05 ? 'off' : (t < b + 0.08 ? 'on' : '')}">${w}</span>`).join('');
+};
+</script>
+</body></html>
