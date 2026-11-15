@@ -1,0 +1,32 @@
+/* ===== reel 35: Quando foi a sua última troca de óleo? (sobre o app, dor forte) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.vf{position:absolute;left:140px;right:140px;height:520px;border-radius:30px}
+.vf i{position:absolute;width:80px;height:80px;border:7px solid #fff}
+.ex2{position:absolute;left:0;right:0;text-align:center;font-size:26px;color:var(--muted);opacity:0}
+.kmI{font-family:Inter;font-weight:800;font-size:120px;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.7);letter-spacing:-2px;line-height:1}
+.bub2{position:absolute;left:90px;right:90px;padding:28px 36px;font-size:42px;line-height:1.38;border-radius:38px;background:rgba(23,37,55,.96);border:3px solid var(--border);border-bottom-left-radius:8px;opacity:0}
+@keyframes fl{0%{opacity:0}12%{opacity:.85}100%{opacity:0}}
+.puff{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(205,218,232,.6),rgba(205,218,232,0) 70%);opacity:0}
+@keyframes puff{0%{opacity:0;transform:translate(0,0) scale(.4)}20%{opacity:1}100%{opacity:0;transform:translate(-140px,-170px) scale(2.4)}}
+/* etiqueta da troca de óleo no para-brisa */
+.e35tag{position:absolute;left:240px;top:700px;width:600px;border-radius:34px;background:#f0f6fc;color:#0c192a;box-shadow:0 40px 110px -20px rgba(0,0,0,.8),0 0 0 6px rgba(58,199,255,.25);overflow:hidden;opacity:0;transform:rotate(-4deg)}
+@keyframes tagIn{0%{opacity:0;transform:rotate(-4deg) translateY(80px) scale(.8)}100%{opacity:1;transform:rotate(-4deg) translateY(0) scale(1)}}
+.e35tag h4{margin:0;padding:26px 34px;background:#f9c718;font-size:40px;font-weight:800;letter-spacing:2px;display:flex;align-items:center;gap:18px}
+.e35tag .r{display:flex;justify-content:space-between;align-items:center;padding:26px 34px;border-top:3px dashed #c5d2de;font-size:40px;font-weight:700;color:#53647a}
+.e35tag .r b{font-size:52px;font-weight:800;color:#c0392b;opacity:0}
+.e35tag .fadeink{position:absolute;inset:0;background:linear-gradient(180deg,rgba(240,246,252,0),rgba(214,224,233,.55));pointer-events:none}
+.e35q{position:absolute;font-family:Inter;font-weight:800;color:var(--warn);text-shadow:0 0 30px rgba(249,199,24,.7);opacity:0;transform:translate(-50%,-50%)}
+.e35drop{position:absolute}
+@keyframes darken35{from{opacity:0}to{opacity:1}}
+.e35lab{position:absolute;font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:5px;text-align:center;opacity:0}
+@keyframes hot35{to{filter:drop-shadow(0 0 40px rgba(249,65,68,.9))}}
+.e35gear{position:absolute;opacity:0}
+@keyframes spin35{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.e35spk{position:absolute;width:12px;height:12px;border-radius:50%;background:#ffd36b;box-shadow:0 0 14px #ff9c3a;opacity:0}
+@keyframes spk35{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.e35hub{position:absolute;left:390px;top:560px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#14324d,#0b1c2f);border:5px solid var(--neon);box-shadow:0 0 90px rgba(58,199,255,.55);display:flex;align-items:center;justify-content:center;opacity:0}
+.e35hub img{width:232px;height:232px;border-radius:50%}
+.e35ring{position:absolute;left:390px;top:560px;width:300px;height:300px;border-radius:50%;border:4px solid var(--neon);opacity:0}
+@keyframes ring35{0%{opacity:.8;transform:scale(.95)}100%{opacity:0;transform:scale(2)}}
+.e35brain{position:absolute;opacity:0}

@@ -1,0 +1,94 @@
+const VO = 0.5;
+const W0 = [["Quando",0,0.24],["foi",0.32,0.48],["a",0.52,0.56],["sua",0.64,0.8],["última",0.84,1.12],["troca",1.2,1.44],["de",1.52,1.6],["óleo?",1.64,2],["Se",2.48,2.56],["você",2.6,2.8],["precisou",2.88,3.28],["pensar,",3.387,4.08],["cuidado.",4.12,4.96],["Óleo",5.2,5.44],["vencido",5.573,6.08],["não",6.24,6.4],["faz",6.56,6.72],["barulho.",6.8,7.28],["Ele",7.6,7.76],["só",7.92,8],["desgasta",8.08,8.56],["o",8.6,8.64],["motor",8.8,8.96],["por",9.04,9.12],["dentro.",9.2,9.6],["E",9.92,10],["motor",10.16,10.32],["batido",10.44,10.8],["custa",11.04,11.4],["caro.",11.52,12.12],["Me",12.4,12.48],["manda",12.56,12.64],["uma",12.72,12.8],["foto",12.88,13.12],["do",13.16,13.2],["painel",13.28,13.52],["no",13.56,13.6],["WhatsApp.",13.88,14.28],["Eu",14.4,14.48],["leio",14.56,14.72],["a",14.747,14.773],["quilometragem",14.8,15.52],["e",15.6,15.68],["te",15.72,15.76],["aviso",15.84,16.16],["quando",16.24,16.4],["chegar",16.44,16.64],["a",16.68,16.72],["revisão.",16.8,17.4],["Você",17.6,17.76],["não",17.8,17.88],["precisa",17.92,18.24],["lembrar.",18.32,18.8],["Eu",18.96,19.12],["lembro.",19.2,19.52],["E",19.92,20],["você,",20.04,20.56],["sabe",20.72,20.88],["quando",20.96,21.12],["trocou?",21.2,21.72],["Comenta",21.92,22.24],["aí.",22.28,22.72]];
+const T = {total: 28, s1:[0,5.5], s2:[5.5,10.25], s3:[10.25,12.95], s4:[12.95,18.0], s5:[18.0,20.4], s6:[20.4,28],
+  breaks: [0, 5, 8, 12, 13, 18, 23, 25, 30, 34, 38, 42, 46, 49, 53, 55, 60]};
+T.words = W0.map(([w,a,b]) => [w, +(a+VO).toFixed(3), +(b+VO).toFixed(3)]);
+window.T = T;
+const ICON = 'icon-512.png';
+const an = (list) => list.filter(Boolean).join(', ');
+const A = (name, dur, at, ease = 'cubic-bezier(.2,.8,.2,1)', fill = 'both') => `${name} ${dur}s ${ease} ${at}s ${fill}`;
+const sceneStyle = (s, last, noIn) => `${noIn ? 'opacity:1;' : ''}animation:${an([noIn ? '' : A('sceneIn', .55, s[0]), last ? '' : A('sceneOut', .45, s[1] - .45, 'ease-in', 'forwards')])}`;
+const camStyle = (s) => `animation:${A('ken', s[1] - s[0], s[0], 'linear')}`;
+const words = (txt, at, step, cls = '') => txt.split(' ').map((w, i) => `<span class="w ${cls}" style="animation:${A('word', .55, at + i * step)}">${w}</span>`).join('');
+const neonWords = (txt, at, step) => words(txt, at, step, 'neon');
+const redWords = (txt, at, step) => words(txt, at, step, 'red');
+const still = (txt, cls='') => txt.split(' ').map(w => `<span class="w ${cls}" style="opacity:1">${w}</span>`).join('');
+const BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
+const W = (i) => T.words[i][1];
+// desenhos nossos: gota de óleo, motor, engrenagem
+const DROP = (c, s) => `<svg width="300" height="380" viewBox="0 0 300 380"><path d="M150 14 C150 14 40 160 40 250 A110 110 0 0 0 260 250 C260 160 150 14 150 14Z" fill="${c}" stroke="${s}" stroke-width="10" stroke-linejoin="round"/><path d="M95 250 Q95 200 125 165" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="14" stroke-linecap="round"/></svg>`;
+const ENG = (w, c = '#3ac7ff', fill = 'rgba(58,199,255,.1)') => `<svg width="${w}" height="${w * 260 / 360}" viewBox="0 0 360 260" style="overflow:visible"><path d="M70 90 H120 V60 H200 V90 H240 L270 120 H300 V80 H330 V200 H300 V170 H270 L240 210 H110 L70 170 H40 V200 H20 V100 H40 V130 H70Z" fill="${fill}" stroke="${c}" stroke-width="12" stroke-linejoin="round"/><path d="M130 60 V40 H190 V60" fill="none" stroke="${c}" stroke-width="12" stroke-linejoin="round"/><path d="M100 130 H230 M100 160 H230" stroke="${c}" stroke-width="8" stroke-linecap="round" opacity=".6"/></svg>`;
+const GEAR = (r, c) => { let d = ''; for (let k = 0; k < 10; k++) { const a = k * Math.PI / 5; d += `<rect x="${-r * .12}" y="${-r * 1.18}" width="${r * .24}" height="${r * .3}" rx="4" fill="${c}" transform="rotate(${k * 36})"/>`; } return `<svg width="${r * 2.5}" height="${r * 2.5}" viewBox="${-r * 1.25} ${-r * 1.25} ${r * 2.5} ${r * 2.5}">${d}<circle r="${r * .95}" fill="none" stroke="${c}" stroke-width="${r * .22}"/><circle r="${r * .28}" fill="${c}"/></svg>`; };
+const puffs = (x, y, at, n = 3, per = 1.4) => [...Array(n).keys()].map(k => `<div class="puff" style="left:${x}px;top:${y}px;animation:${A('puff', per, at + k * per / n, 'ease-out', 'none')} infinite"></div>`).join('');
+const sparks = (x, y, at) => [[-90,-60],[80,-90],[-40,-120],[110,-30],[-120,10],[60,60]].map(([dx,dy], k) => `<div class="e35spk" style="left:${x}px;top:${y}px;--dx:${dx}px;--dy:${dy}px;animation:${A('spk35', .7, at + k * .12, 'ease-out', 'none')} infinite"></div>`).join('');
+let h = '';
+
+// CENA 1: gancho, etiqueta da troca de óleo apagada, interrogações
+h += `<div class="scene" style="${sceneStyle(T.s1, false, true)}"><div class="cam" style="${camStyle(T.s1)}">
+  <div class="hd c" style="top:220px;left:30px;right:30px;font-size:104px;line-height:1.04;white-space:nowrap">${still('Quando foi a sua')}<br>${still('última troca')}<br>${still('de óleo?','neon')}</div>
+  <div class="e35tag" style="animation:${A('tagIn', .6, .2, BOUNCE)}">
+    <h4>🛢️ TROCA DE ÓLEO</h4>
+    <div class="r">Data <b style="animation:${A('popb', .4, 1.2, BOUNCE)}">?? / ??</b></div>
+    <div class="r">Km <b style="animation:${A('popb', .4, 1.6, BOUNCE)}">?????</b></div>
+    <div class="r">Próxima <b style="animation:${A('popb', .4, 2.0, BOUNCE)}">???</b></div>
+    <div class="fadeink"></div>
+  </div>
+  <div class="e35q" style="left:180px;top:760px;font-size:150px;animation:${A('qpop', .5, W(10), BOUNCE)}">?</div>
+  <div class="e35q" style="left:920px;top:900px;font-size:120px;animation:${A('qpop', .5, W(11), BOUNCE)}">?</div>
+  <div class="e35q" style="left:880px;top:660px;font-size:90px;animation:${A('qpop', .5, W(11) + .3, BOUNCE)}">?</div>
+  <div class="abs" style="left:0;right:0;top:1290px;text-align:center"><span class="pillx bad" style="position:relative;animation:${A('popb', .45, W(12) - .1, BOUNCE)}">⚠️ Precisou pensar? Cuidado.</span></div>
+</div></div>`;
+
+// CENA 2: óleo vencido escurece em silêncio, motor desgastando
+h += `<div class="scene" style="${sceneStyle(T.s2)}"><div class="cam" style="${camStyle(T.s2)}">
+  <div class="hd c" style="top:200px;font-size:96px;line-height:1.05">${words('Óleo vencido', W(13), .14)}<br>${words('não faz barulho.', W(15), .12)}</div>
+  <div class="e35drop" style="left:110px;top:520px;animation:${A('popb', .5, W(13) - .2, BOUNCE)}">${DROP('#f4b63c', '#ffd47a')}
+    <div style="position:absolute;left:0;top:0;opacity:0;animation:${A('darken35', 2.2, W(14), 'ease-in-out')}">${DROP('#2b1f12', '#5a4630')}</div></div>
+  <div class="e35lab" style="left:110px;width:300px;top:920px;color:#ffd47a;animation:${an([A('fade', .3, W(13)), A('hide', .3, W(14) + 1.6, 'ease', 'forwards')])}">NOVO</div>
+  <div class="e35lab" style="left:110px;width:300px;top:920px;color:#ff9c9c;animation:${A('fade', .4, W(14) + 1.8)}">VENCIDO</div>
+  <div class="abs" style="left:0;width:520px;top:990px;text-align:center"><span class="pillx wa" style="position:relative;font-size:38px;padding:16px 30px;animation:${A('popb', .45, W(16), BOUNCE)}">🔇 Sem barulho</span></div>
+  <div class="abs" style="left:520px;top:560px;animation:${an([A('popb', .5, W(18) - .1, BOUNCE), A('hot35', 1.2, W(20), 'ease-in', 'forwards')])}">${ENG(450, '#f94144', 'rgba(249,65,68,.12)')}</div>
+  <div class="e35gear" style="left:660px;top:610px;animation:${A('fade', .3, W(20))}"><div style="animation:spin35 1.6s linear infinite">${GEAR(60, '#ffd36b')}</div></div>
+  ${sparks(745, 700, W(20) + .1)}
+  <div class="hd c" style="top:1110px;font-size:84px;line-height:1.06">${redWords('Ele desgasta o motor', W(18), .12)}<br>${redWords('por dentro.', W(23), .12)}</div>
+</div></div>`;
+
+// CENA 3: motor batido, carimbo CARO
+h += `<div class="scene" style="${sceneStyle(T.s3)}"><div class="cam" style="${camStyle(T.s3)}">
+  <div class="hd c" style="top:200px;font-size:100px">${words('E motor batido', W(25), .12)}<br>${redWords('custa caro.', W(28), .14)}</div>
+  <div class="abs" style="left:190px;top:560px;animation:${an([A('popb', .5, T.s3[0] + .1, BOUNCE), A('shake', .3, W(27), 'linear', 'none') + ' 4'])}">${ENG(700, '#f94144', 'rgba(249,65,68,.14)')}</div>
+  ${puffs(380, 560, W(26), 4, 1.4)}${puffs(640, 540, W(26) + .3, 4, 1.5)}
+  <div class="stamp" style="top:1180px;--r:-8deg;font-size:150px;white-space:nowrap;animation:${A('pop', .5, W(29) - .15, BOUNCE)}">CARO</div>
+</div></div>`;
+
+// CENA 4: foto do painel, Jarvys lê a km e avisa a revisão
+h += `<div class="scene" style="${sceneStyle(T.s4)}"><div class="cam" style="${camStyle(T.s4)}">
+  <div class="hd c" style="top:200px;font-size:88px;line-height:1.05">${words('Me manda uma foto', W(30), .1)}<br>${neonWords('do painel.', W(34), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:460px;text-align:center;animation:${A('zoomIn', .5, T.s4[0] + .15)}"><div class="odo"><div class="lbl">KM</div><div class="kmI">48.320</div></div></div>
+  <div class="vf" style="top:420px;height:300px;left:250px;right:250px;opacity:0;animation:${A('fade', .3, W(31))}"><i style="left:0;top:0;border-right:0;border-bottom:0"></i><i style="right:0;top:0;border-left:0;border-bottom:0"></i><i style="left:0;bottom:0;border-right:0;border-top:0"></i><i style="right:0;bottom:0;border-left:0;border-top:0"></i></div>
+  <div class="flash" style="animation:${A('fl', .5, W(33) + .1, 'ease-out')}"></div>
+  <div class="bub2" style="top:770px;animation:${A('slideUp2', .45, W(38) - .1)}">Li no painel: <b class="neon">48.320 km</b>. Anotar no Chevrolet Onix? Responda <b>sim</b> para confirmar.</div>
+  <div class="ex2" style="top:1045px;animation:${A('fade', .4, W(44) - .4)}">dias depois…</div>
+  <div class="notif" style="top:1095px;animation:${A('popb', .55, W(44) - .2, BOUNCE)}"><img src="${ICON}"><div><b>Jarvys · agora</b><span>Seu Onix chegou a 49.500 km. A revisão dos 50.000 km está perto 🔧</span></div></div>
+  <div class="ex2" style="top:1330px;animation:${A('fade', .4, T.s4[0] + .8)}">conversa de exemplo</div>
+</div></div>`;
+
+// CENA 5: você não precisa lembrar, eu lembro
+h += `<div class="scene" style="${sceneStyle(T.s5)}"><div class="cam" style="${camStyle(T.s5)}">
+  <div class="hd c" style="top:220px;font-size:96px">${words('Você não precisa', W(49), .1)}<br>${words('lembrar.', W(52), .1)}</div>
+  <div class="e35ring" style="animation:${A('ring35', 1.6, W(53), 'ease-out', 'none')} infinite"></div>
+  <div class="e35hub" style="animation:${A('popb', .5, T.s5[0] + .2, BOUNCE)}"><img src="${ICON}"></div>
+  <div class="hd c" style="top:930px;font-size:130px">${neonWords('Eu lembro.', W(53), .2)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center"><span class="pillx ok" style="position:relative;font-size:40px;animation:${A('popb', .45, W(53) + .1, BOUNCE)}">✓ Aviso de revisão grátis pra sempre</span></div>
+</div></div>`;
+
+// CENA 6: comenta aí + fecho da marca
+h += `<div class="scene" style="${sceneStyle(T.s6, true)}"><div class="cam" style="${camStyle(T.s6)}">
+  <div class="hd c" style="top:190px;font-size:92px">${words('E você, sabe', W(55), .12)}<br>${neonWords('quando trocou?', W(58), .12)}</div>
+  <div class="abs" style="left:0;right:0;top:500px;text-align:center"><span class="cm" style="position:relative;animation:${A('popb', .5, W(60) - .1, BOUNCE)}">💬 Comenta aí 👇</span></div>
+  <div class="sep" style="top:700px;animation:${A('fade', .5, 23.8)}"></div>
+  <div class="abs" style="left:0;right:0;top:750px;text-align:center;animation:${A('popb', .5, 24.0, BOUNCE)}"><img src="${ICON}" style="width:150px;height:150px;border-radius:50%;box-shadow:0 0 60px rgba(58,199,255,.6)"></div>
+  <div class="hd c" style="top:940px;font-size:72px;line-height:1.1">${words('A IA que cuida', 24.4, .12)}<br>${neonWords('do seu carro.', 24.9, .12)}</div>
+  <div class="abs" style="left:0;right:0;top:1150px;text-align:center;font-size:58px;font-weight:800;color:var(--neon);text-shadow:0 0 26px rgba(58,199,255,.5);animation:${A('up', .5, 25.6)}">jarvys.com.br</div>
+  <div class="abs" style="left:0;right:0;top:1240px;text-align:center;font-size:34px;color:var(--muted);animation:${A('fade', .5, 26.0)}">Teste 30 dias grátis, sem cartão.</div>
+</div></div>`;
