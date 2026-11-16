@@ -1,0 +1,23 @@
+/* ===== reel 36: Gasolina aditivada dá mais potência? (educativo) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e36p{position:absolute}
+.e36lab{position:absolute;text-align:center;font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:5px;color:var(--muted)}
+.e36bar{position:absolute;height:34px;border-radius:20px;background:rgba(255,255,255,.08);overflow:hidden;border:3px solid rgba(58,199,255,.4)}
+.e36bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#3ac7ff,#9be3ff);box-shadow:0 0 20px rgba(58,199,255,.7)}
+@keyframes bar36{from{width:0}to{width:82%}}
+.e36eq{position:absolute;font-size:200px;line-height:1;font-weight:800;color:var(--neon);text-shadow:0 0 40px rgba(58,199,255,.6);opacity:0}
+.e36cd{position:absolute;top:620px;width:440px;height:560px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(58,199,255,.4);box-shadow:0 24px 70px -24px rgba(58,199,255,.4);opacity:0}
+.e36cd b{position:absolute;left:0;right:0;bottom:44px;text-align:center;font-size:48px;font-weight:800}
+.e36cd .ck{position:absolute;top:-24px;right:-18px;width:74px;height:74px;border-radius:50%;background:var(--ok);color:#06210f;font-size:44px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+.e36art{position:absolute;left:120px;top:40px;width:200px;height:370px}
+.e36dirt{position:absolute;border-radius:50%;background:#8a6537;box-shadow:0 0 8px #3d2a14}
+@keyframes clean36{to{opacity:0;transform:scale(.1)}}
+.e36spk{position:absolute;font-size:54px;opacity:0}
+@keyframes tw36{0%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(25deg)}100%{opacity:.9;transform:scale(1) rotate(0)}}
+.e36q{position:absolute;opacity:0}
+.e36nd{position:absolute;left:253px;top:80px;width:14px;height:190px;border-radius:7px;background:#f94144;box-shadow:0 0 18px rgba(249,65,68,.8);transform-origin:50% 100%;transform:rotate(-62deg)}
+@keyframes up36{0%{transform:rotate(-62deg)}60%{transform:rotate(-44deg)}100%{transform:rotate(-58deg)}}
+@keyframes wig36{0%,100%{transform:rotate(-58deg)}50%{transform:rotate(-54deg)}}
+.e36x{position:absolute;width:110px;height:110px;border-radius:50%;background:var(--bad);color:#fff;font-size:66px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(249,65,68,.7);opacity:0}
+.e36sp{opacity:0}
