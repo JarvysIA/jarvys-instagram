@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css"></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel 3D A01: O que acontece se você completar o radiador só com água? (29 s) -->
+<div id="ui">
+  <div class="ov tt" data-a="-1" data-b="3.25" data-fx="fade" style="top:225px">O que acontece se<br>você completar<br>o radiador<br><b>só com água?</b></div>
+  <div class="ov chip pin" id="lbJug" data-a="-1" data-b="3.25" data-fx="fade">💧 ÁGUA DA TORNEIRA</div>
+  <div class="ov stamp" data-a="3.42" data-b="4.75" data-fx="stamp" data-rot="-5" style="top:300px"><span>Ferrugem<br>por dentro</span></div>
+
+  <div class="ov tt m" data-a="4.95" data-b="11.75" style="top:215px">O líquido certo<br>tem <b>aditivo</b></div>
+  <div class="ov chip pin s" id="l1" data-a="5.3" data-b="6.95">RADIADOR</div><div class="ov chip pin s" id="l2" data-a="5.5" data-b="6.95">BOMBA D'ÁGUA</div><div class="ov chip pin s" id="l3" data-a="5.7" data-b="6.95">MOTOR</div>
+  <div class="ov row" data-a="7.08" data-b="11.75" style="top:408px"><span class="chip ok">🛡️ PROTEGE O METAL</span></div>
+  <div class="ov row" data-a="8.12" data-b="11.75" style="top:493px"><span class="chip ok">⚙️ LUBRIFICA A BOMBA D'ÁGUA</span></div>
+  <div class="ov row" data-a="9.6" data-b="11.75" style="top:578px"><span class="chip ok">🌡️ AGUENTA MAIS CALOR</span></div>
+
+  <div class="ov tt" data-a="11.9" data-b="16.7" style="top:235px">Só com <i>água</i>...</div>
+  <div class="ov row" data-a="12.88" data-b="16.7" style="top:365px"><span class="chip rust">🟤 FERRUGEM</span></div>
+  <div class="ov row" data-a="13.44" data-b="16.7" style="top:455px"><span class="chip rust">🚫 RADIADOR ENTUPINDO</span></div>
+  <div class="ov stamp" data-a="15.84" data-b="16.7" data-fx="stamp" data-rot="-7" style="top:560px"><span>Ferveu!</span></div>
+
+  <div class="ov tt" data-a="16.85" data-b="21.4" style="top:235px">O certo:</div>
+  <div class="ov chip pin" id="lbA" data-a="17.6" data-b="21.4">ADITIVO</div>
+  <div class="ov chip pin s" id="lbW" data-a="18.45" data-b="21.4" style="white-space:normal;text-align:center;line-height:1.1">ÁGUA<br>DESMINERALIZADA</div>
+  <div class="ov row" data-a="19.96" data-b="21.4" style="top:370px"><span class="chip y">📘 A MEDIDA ESTÁ NO MANUAL</span></div>
+
+  <div class="ov tt m" data-a="21.44" data-b="23.2" style="top:235px">Manda pra quem<br>completa <b>na torneira</b></div>
+  <div class="ov row" data-a="21.95" data-b="23.2" style="top:440px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+
+  <div class="ov tt m" data-a="23.28" data-b="25.6" style="top:235px">E o seu,<br>tá com <b>o quê?</b></div>
+  <div class="ov row" data-a="23.95" data-b="25.6" style="top:440px"><span class="chip">💧 SÓ ÁGUA</span><span class="chip ok">🧪 ADITIVO</span></div>
+  <div class="ov row" data-a="24.75" data-b="25.6" style="top:540px"><span class="chip y">💬 COMENTA AÍ 👇</span></div>
+
+  <div class="ov end" data-a="25.75" style="top:215px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="26.0" data-fx="up" style="top:432px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="26.45" style="top:575px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="26.9" data-fx="up" style="top:722px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .4, DUR = 29;
+const W0 = [0,.2,.52,.84,1,1.52,1.76,2.04,2.52,2.72,2.92,3.52,3.76,4.48,4.64,5.04,5.44,5.68,6.68,7,7.28,7.72,8.267,8.32,8.64,9.04,9.2,9.6,9.96,10.32,10.56,11.52,11.76,11.92,12.36,12.48,12.907,13.04,13.547,13.6,14.36,14.48,14.72,15.04,15.12,15.44,16.32,16.48,17.28,17.84,18.08,18.4,19.56,19.68,20.12,20.36,21.04,21.24,21.32,21.52,21.92,22.08,22.827,22.88,22.96,23.48,23.6,23.707,23.76,24.4,24.68];
+const TXT = "Se você completa o radiador só com água, o motor enferruja por dentro. O líquido certo tem aditivo: protege o metal, lubrifica a bomba d'água e aguenta mais calor sem ferver. Só com água, a ferrugem vai entupindo o radiador, e um dia o motor ferve. O certo: aditivo com água desmineralizada, na medida do manual. Manda pra quem completa na torneira. E o seu, tá com o quê? Comenta aí.".split(' ');
+K.setCaps(TXT, W0.map(w => w + VO), 25.62);
+
+// ================= RUA (origem)
+K.ground(0, 0); box(16, .02, .25, 0xffd21f, 0, .02, 4.4);
+const car = K.carro(); car.position.set(-.6, 0, 0); car.rotation.y = -.5;
+const mot = K.pessoa(car, { camisa: 0xff8a3d }); mot.position.set(3.1, 0, 2.75); mot.rotation.y = Math.PI; mot.scale.setScalar(.9);
+const jug = box(.62, .95, .62, M(0x58b8ff, { transparent: true, opacity: .8 }), 0, -1.95, 0, mot.bd); box(.26, .18, .26, 0x0a84d6, 0, -2.5, 0, mot.bd);
+const jorro = box(.13, 1, .13, M(0x58b8ff, { transparent: true, opacity: .85, emissive: 0x58b8ff, emissiveIntensity: .3 }), 2.3, 3.2, .9, car); jorro.castShadow = false;
+const mec = K.pessoa(s, { camisa: 0x0a84d6, calca: 0x14365c, bone: 0x0b1b2e }); mec.position.set(4.6, 0, 3.3); mec.rotation.y = .55;
+box(.5, .5, .06, 0xffffff, .3, 2.55, .36, mec);   // crachá
+
+// ================= CIRCUITO EM CORTE (x = 200)
+const C = K.circuito(); C.g.position.set(200, .6, 0);
+
+// ================= BANCADA (x = -200)
+K.ground(-200, 0, 50, 0xdfe9f2);
+const B = grp(-200, 0, 0);
+box(10, .4, 3.8, 0xc98f55, 0, 3.0, 0, B); [[-4.5, -1.5], [4.5, -1.5], [-4.5, 1.5], [4.5, 1.5]].forEach(([x, z]) => box(.4, 2.8, .4, 0xa9713d, x, 1.4, z, B));
+const jA = K.galao(B, 0xff4fa3), jW = K.galao(B, 0x58b8ff, 0x0a84d6); jW.scale.x = -1;
+box(1.9, 2.8, 1.9, M(0xffffff, { transparent: true, opacity: .22, depthWrite: false }), 0, 4.6, 0, B).castShadow = false;
+[0, 1, 2, 3].forEach(i => box(.3, .05, .05, 0x0b1b2e, -.7, 3.8 + i * .55, .97, B));
+const liq = box(1.66, 1, 1.66, M(0xff4fa3, { emissive: 0xff4fa3, emissiveIntensity: .3, roughness: .4 }), 0, 3.25, 0, B); liq.castShadow = false;
+const jr = [0, 1].map(i => { const m = box(.15, 1, .15, M(i ? 0x58b8ff : 0xff4fa3, { emissive: i ? 0x58b8ff : 0xff4fa3, emissiveIntensity: .3 }), 0, 5, 0, B); m.castShadow = false; return m; });
+const man = grp(1.25, 3.22, 1.55, B); man.rotation.set(-.35, -.25, 0); box(1.35, 1.8, .2, 0x0a84d6, 0, .9, 0, man); box(1.0, .16, .22, 0xffffff, 0, 1.35, .02, man); box(.5, .5, .22, 0xffd21f, 0, .7, .02, man);
+
+// ================= TORNEIRA (z = 200)
+K.ground(0, 200);
+const Tz = grp(0, 0, 200);
+box(16, 9, .6, 0xf3e7d6, 0, 4.5, -.6, Tz); box(16, 1.3, .64, 0x9fd3f2, 0, .65, -.6, Tz);
+const cano = cyl(.13, .13, .8, 0x8f9aa6, -1.7, 3.3, 0, Tz, 8); cano.rotation.x = Math.PI / 2; box(.2, .34, .2, 0x8f9aa6, -1.7, 3.16, .36, Tz); box(.5, .12, .12, 0xe03437, -1.7, 3.5, .1, Tz);
+const agua = box(.13, 2.0, .13, M(0x58b8ff, { emissive: 0x58b8ff, emissiveIntensity: .3 }), -1.7, 2.0, .36, Tz); agua.castShadow = false;
+cyl(.8, .62, 1.15, 0x0a84d6, -1.7, .58, .36, Tz, 12); cyl(.72, .72, .06, 0x8fd3ff, -1.7, 1.14, .36, Tz, 12);
+const mot2 = K.pessoa(Tz, { camisa: 0xff8a3d }); mot2.position.set(1.2, 0, .9); mot2.rotation.y = -.2; mot2.scale.setScalar(.9);
+box(.62, .95, .62, M(0x58b8ff, { transparent: true, opacity: .8 }), 0, -1.95, 0, mot2.be);
+
+// ================= CÂMERA
+K.camKeys([
+  { t: 0, p: [10.5, 8, 20.5], l: [.1, 3.5, 1.4] }, { t: 2.85, p: [9, 7.2, 17.5], l: [.3, 3.2, 1.4], e: 'lin' }, { t: 3.25, p: [4.6, 4.6, 8], l: [1.2, 2.5, .9] },
+  { t: 3.25, p: [202.5, 5.2, 27], l: [200.6, 4.4, 0] }, { t: 4.7, p: [201.4, 6, 40], l: [199.95, 4.6, 0] }, { t: 6.9, p: [201.1, 6, 39.5], l: [199.95, 4.6, 0], e: 'lin' },
+  { t: 7.5, p: [204.6, 5.6, 26], l: [203.1, 4.5, 0] }, { t: 7.95, p: [204.4, 5.6, 25.6], l: [203.1, 4.5, 0], e: 'lin' },
+  { t: 8.5, p: [199.0, 3.6, 17], l: [199.8, 2.6, 0] }, { t: 9.35, p: [199.2, 3.6, 16.6], l: [199.8, 2.6, 0], e: 'lin' },
+  { t: 9.95, p: [201.4, 6, 40], l: [199.95, 4.6, 0] }, { t: 12.8, p: [200.7, 6, 39], l: [199.95, 4.6, 0], e: 'lin' },
+  { t: 13.5, p: [195.2, 5.2, 22], l: [196.3, 4.2, 0] }, { t: 14.7, p: [195.4, 5.2, 21.4], l: [196.3, 4.2, 0], e: 'lin' },
+  { t: 15.3, p: [204.6, 5.8, 27], l: [202.9, 4.9, 0] }, { t: 16.7, p: [204.2, 5.8, 26], l: [202.9, 4.9, 0], e: 'lin' },
+  { t: 16.7, p: [-198, 8, 30], l: [-200, 4.7, 0] }, { t: 21.4, p: [-198.6, 7.6, 28.5], l: [-200, 4.7, 0], e: 'lin' },
+  { t: 21.4, p: [2.6, 6.2, 227.5], l: [-.1, 2.9, 200] }, { t: 25.6, p: [1.4, 6, 225.5], l: [-.1, 2.9, 200], e: 'lin' },
+  { t: 25.6, p: [12.5, 9, 29], l: [.9, 3.3, 0] }, { t: 29.2, p: [11.2, 8.5, 26.5], l: [.9, 3.3, 0], e: 'lin' },
+]);
+
+// fase do líquido: integra a velocidade (determinístico)
+const vel = t => t < 4.75 ? .3 : t < 13.6 ? 1 : mix(1, .06, seg(t, 13.6, 15.2));
+const pvel = t => t < 15.1 ? 1 : 1 - seg(t, 15.1, 15.9);
+const FA = [0], GI = [0], PI_ = [0]; for (let i = 1; i <= DUR * 60 + 60; i++) { const t = i / 60; FA.push(FA[i - 1] + vel(t) / 60 * .17); GI.push(GI[i - 1] + vel(t) / 60 * 6); PI_.push(PI_[i - 1] + pvel(t) / 60 * 10); }
+const lut = (a, t) => { const x = Math.max(0, t) * 60, i = Math.min(a.length - 2, Math.floor(x)); return mix(a[i], a[i + 1], x - i); };
+const l1 = document.getElementById('l1'), l2 = document.getElementById('l2'), l3 = document.getElementById('l3'), lbJug = document.getElementById('lbJug'), lbA = document.getElementById('lbA'), lbW = document.getElementById('lbW');
+
+window.setT = t => {
+  // ---- zonas, fundo e luz
+  const z = t < 3.25 ? 0 : t < 16.7 ? 1 : t < 21.4 ? 2 : t < 25.6 ? 3 : 4;
+  K.fundo(z == 1 ? 'linear-gradient(#123052,#0b1b2e)' : 'linear-gradient(#a9d8f8,#e6f4ff)');
+  K.zone(z == 1 ? 200 : z == 2 ? -200 : 0, z == 3 ? 200 : 0);
+  // ---- rua
+  const fim = z == 4;
+  car.hood(fim ? 0 : 1); mot.visible = !fim; jorro.visible = !fim && t < 3.25; mec.visible = fim;
+  mot.bd.rotation.x = -2.1 + Math.sin(t * 5) * .03; mot.be.rotation.x = -.15; mot.cab.rotation.x = .25;
+  jorro.scale.set(1 + Math.sin(t * 23) * .15, 1, 1 + Math.cos(t * 19) * .15);
+  if (fim) { const k = back(seg(t, 25.6, 26.1)); mec.scale.setScalar(Math.max(.001, k)); mec.bd.rotation.x = -2.7; mec.bd.rotation.z = .25 + Math.sin(t * 7) * .28; mec.cab.rotation.z = Math.sin(t * 3.5) * .06; }
+  // ---- circuito
+  C.fluxo(lut(FA, t), lut(GI, t), lut(PI_, t));
+  const flash = t < 4.75, limpa = 1 - seg(t, 4.75, 5.2);
+  C.cor(flash ? 2 : t < 5.3 ? 2 * limpa : t < 11.9 ? 0 : t < 13 ? seg(t, 11.9, 12.7) : 1 + seg(t, 13.0, 14.8));
+  C.ferrugem(flash ? seg(t, 3.3, 4.3) : t < 5.3 ? limpa : seg(t, 12.9, 14.3), flash ? seg(t, 3.5, 4.5) : t < 5.3 ? limpa : seg(t, 13.1, 14.4), flash ? seg(t, 3.6, 4.7) * .5 : t < 5.3 ? limpa * .5 : seg(t, 13.5, 15.0));
+  C.calor(seg(t, 14.9, 15.9)); C.vapor(t, seg(t, 15.3, 15.9));
+  // ---- bancada
+  const pA = io(seg(t, 17.3, 17.7)) * (1 - io(seg(t, 18.3, 18.7))), pW = io(seg(t, 18.5, 18.9)) * (1 - io(seg(t, 19.6, 20.0)));
+  jA.position.set(mix(-2.7, -1.82, pA), mix(3.2, 7.4, pA), -.2); jA.rotation.z = -1.9 * pA;
+  jW.position.set(mix(2.8, 1.82, pW), mix(3.2, 7.4, pW), -.2); jW.rotation.z = 1.9 * pW;
+  const nA = seg(t, 17.72, 18.3), nW = seg(t, 18.9, 19.6), h = Math.max(.02, (nA + nW) * 1.2);
+  liq.scale.y = h; liq.position.y = 3.25 + h / 2; liq.material.color.copy(K.col(0xff4fa3, 0xff8fc4, nW)); liq.material.emissive.copy(liq.material.color); liq.visible = nA > 0;
+  [[17.7, 18.3], [18.88, 19.6]].forEach(([a, b], i) => { const on = t >= a && t < b + .12, topo = 6.3, base = 3.25 + h, len = Math.max(.05, (topo - base) * (on ? Math.min(1, seg(t, a, a + .1)) : 0)); jr[i].visible = on; jr[i].scale.set(1 + Math.sin(t * 25) * .12, len, 1); jr[i].position.set(i ? .08 : -.08, topo - len / 2, 0); });
+  man.scale.setScalar(Math.max(.001, back(seg(t, 19.9, 20.3))));
+  // ---- torneira
+  mot2.bd.rotation.x = -2.5; mot2.bd.rotation.z = .2 + Math.sin(t * 6) * .22; mot2.be.rotation.x = -.5; mot2.cab.rotation.z = Math.sin(t * 3) * .07;
+  agua.scale.set(1 + Math.sin(t * 23) * .15, 1, 1 + Math.cos(t * 19) * .15);
+  // ---- câmera, rótulos presos, textos, legenda
+  K.camAt(t, z == 1 && t > 15.4 ? .07 * seg(t, 15.4, 15.8) : 0); K.cam.updateMatrixWorld();
+  K.ui(t); K.caps(t);
+  if (z == 0) K.pin(lbJug, ...K.wp(jug), 150, -150);
+  if (z == 2) { K.pin(lbA, -202.7, 2.8, 1.9, 0, 40); K.pin(lbW, -197.35, 2.8, 1.9, 0, 80); }
+  if (z == 1) { K.pin(l1, 196.3, 1.0, .3, 0, 50); K.pin(l2, 199.7, 1.0, .3, 0, 50); K.pin(l3, 203.1, 1.0, .3, 0, 50); }
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>

@@ -1,0 +1,25 @@
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,'Noto Color Emoji',sans-serif;font-weight:800;background:#bfe3fb;color:#fff}
+canvas{position:absolute;inset:0}
+#sky{position:absolute;inset:0}
+#ui{position:absolute;inset:0}
+.ov{position:absolute;opacity:0;will-change:transform,opacity}
+.row{left:0;right:0;display:flex;justify-content:center;gap:22px}
+.tt{left:50px;right:50px;text-align:center;font-size:92px;line-height:1.06;letter-spacing:-2px;-webkit-text-stroke:14px #0b1b2e;paint-order:stroke fill;text-transform:uppercase}
+.tt.m{font-size:78px}
+.tt b{color:#ffd21f;font-weight:800}
+.tt i{font-style:normal;color:#58c4ff}
+.chip{display:inline-block;background:#0b1b2e;color:#fff;font-size:42px;line-height:1;padding:17px 30px;border-radius:22px;border:4px solid #fff;white-space:nowrap}
+.chip.ok{background:#0e7a45}.chip.bad{background:#b3261e}.chip.rust{background:#8a4518}.chip.y{background:#ffd21f;color:#0b1b2e;border-color:#0b1b2e}
+.chip.s{font-size:36px;padding:14px 24px}
+.pin{transform-origin:50% 100%}
+.stamp{left:0;right:0;text-align:center}
+.stamp span{display:inline-block;font-size:104px;letter-spacing:-1px;color:#ff3b30;border:12px solid #ff3b30;border-radius:26px;padding:8px 36px;background:rgba(255,255,255,.94);text-transform:uppercase}
+.cap{position:absolute;left:70px;right:70px;top:1395px;text-align:center;font-size:68px;line-height:1.14;letter-spacing:-1px;-webkit-text-stroke:13px #0b1b2e;paint-order:stroke fill}
+.cap span{opacity:0}.cap span.on{opacity:1}.cap span.now{color:#ffd21f}
+.end{left:0;right:0;text-align:center}
+.end img{width:190px;height:190px;border-radius:44px;border:6px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.35)}
+.btn{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:66px;padding:22px 48px;border-radius:30px;border:6px solid #0b1b2e;box-shadow:0 12px 0 #0b1b2e}
+.url{font-size:62px;-webkit-text-stroke:12px #0b1b2e;paint-order:stroke fill}
+.sub{font-size:46px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill;line-height:1.15}
