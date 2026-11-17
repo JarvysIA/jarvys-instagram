@@ -14,3 +14,12 @@ Luiz, 17/11/2026: "a dor de ser enganado é ótima" e "ok, pode fazer". Históri
 - Transcrição de áudio de clipe (não gerado como fala na ElevenLabs): 5,5 créditos por segundo (44 por cena de 8 s). Extrair o mp3, subir no repositório e anexar por link.
 - Total da parte 1: 10.125 créditos (imagem 190, 4 cenas 9.696, voz 63, transcrições 176).
 - No Buffer: `isAiGenerated: true` e "Cenas ilustrativas, feitas com IA." na legenda.
+
+## Correção de 17/11 (retorno do Luiz: "antes do mecânico falar, ele fala tipo embolado")
+
+Na cena 4 o Veo pôs uns 3 s de resmungo sem palavras antes da fala. A transcrição mostrou só "Hum. É.", mas o volume do trecho era de fala. Corrigido sem gastar crédito: `cena4-limpa.wav` troca os primeiros 3,45 s do som da cena pelo ruído de fundo da própria cena (trecho de 5,75 a 7,15 s, repetido) e a legenda "É..." saiu. Versão publicada: `2026-11/dia-23/reel-novela-p1-v2.mp4`.
+
+Para as próximas partes:
+- Depois de gerar cada cena, medir o volume de 0,2 em 0,2 s e comparar com os tempos das palavras da transcrição. Som em volume de fala (acima de uns -30 dB) fora das palavras transcritas é resmungo: trocar pelo ruído de fundo.
+- No prompt, dizer que o personagem fica em silêncio total antes e depois da fala ("completely silent, mouth closed, until he says the line"), e pôr a fala logo no começo da cena.
+- Se uma fala inteira sair embolada, trocar por voz da ElevenLabs com sincronia labial (cerca de 425 a 506 créditos por segundo) em vez de gerar a cena de novo (2.424).
