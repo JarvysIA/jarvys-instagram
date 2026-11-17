@@ -1,0 +1,31 @@
+/* ===== reel 37: Você confere o óleo no posto? (série Você faz isso todo dia) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.serie.todo span{background:rgba(58,199,255,.12);border-color:rgba(58,199,255,.6);color:var(--neon)}
+.e37p{position:absolute}
+.e37lab{position:absolute;font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:5px;color:var(--muted);white-space:nowrap}
+/* vareta */
+.e37stick{position:absolute;width:56px;border-radius:0 0 28px 28px;background:linear-gradient(90deg,#9aa9b8,#e8f1f8 45%,#9aa9b8);box-shadow:0 0 30px rgba(58,199,255,.25);overflow:hidden}
+.e37ring{position:absolute;width:150px;height:110px;border:18px solid #f9c718;border-radius:60px;box-shadow:0 0 26px rgba(249,199,24,.5)}
+.e37oil{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,#b07a1a,#f2b53b);box-shadow:0 0 22px rgba(242,181,59,.8)}
+.e37over{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,#c62f32,#f94144);box-shadow:0 0 26px rgba(249,65,68,.9);opacity:0}
+@keyframes lv37{from{height:0}to{height:var(--h)}}
+.e37mk{position:absolute;height:6px;background:var(--fg);border-radius:3px}
+.e37tag{position:absolute;font-family:Orbitron;font-weight:700;font-size:34px;letter-spacing:4px;white-space:nowrap}
+.e37arrow{position:absolute;font-size:70px;font-weight:800;color:var(--warn);opacity:0}
+@keyframes bob37{0%,100%{transform:translateX(0)}50%{transform:translateX(-18px)}}
+/* motor e gotas */
+.e37drop{position:absolute;width:26px;height:36px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#f2b53b;box-shadow:0 0 16px rgba(242,181,59,.8);opacity:0}
+@keyframes fall37{0%{opacity:0;transform:translateY(0)}10%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateY(var(--dy))}}
+.e37heat{position:absolute;font-size:70px;opacity:0}
+@keyframes heat37{0%{opacity:0;transform:translateY(20px) scale(.8)}50%{opacity:1}100%{opacity:0;transform:translateY(-120px) scale(1.1)}}
+@keyframes fillT{from{height:12%}to{height:92%}}
+/* cartões do jeito certo */
+.e37ok{position:absolute;left:150px;right:150px;height:200px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(65,214,134,.5);box-shadow:0 24px 70px -24px rgba(65,214,134,.4);display:flex;align-items:center;gap:34px;padding:0 44px;opacity:0}
+.e37ok em{font-style:normal;font-size:92px;line-height:1;width:110px;text-align:center}
+.e37ok b{font-size:60px;font-weight:800}
+.e37ok .ck{position:absolute;top:-22px;right:-18px;width:72px;height:72px;border-radius:50%;background:var(--ok);color:#06210f;font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+/* enviar */
+.e37send{position:absolute;left:0;right:0;text-align:center;font-size:220px;line-height:1;opacity:0;filter:drop-shadow(0 0 40px rgba(58,199,255,.7))}
+@keyframes fly37{0%{opacity:0;transform:translate(-160px,120px) rotate(-10deg) scale(.6)}40%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}100%{opacity:1;transform:translate(40px,-30px) rotate(6deg) scale(1)}}
+.e37chat{position:absolute;left:170px;right:170px;padding:30px 40px;border-radius:34px 34px 34px 8px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.5);font-size:44px;font-weight:700;line-height:1.2;opacity:0}
