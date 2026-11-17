@@ -1,0 +1,88 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+#clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;display:none}
+.ia{left:40px;top:150px;font-size:28px;-webkit-text-stroke:7px #0b1b2e;paint-order:stroke fill;letter-spacing:.5px}
+.num{display:inline-block;background:#ffd21f;color:#0b1b2e;-webkit-text-stroke:0;border:6px solid #0b1b2e;border-radius:50%;width:112px;height:112px;line-height:100px;font-size:72px;letter-spacing:0;margin-right:16px;vertical-align:middle}
+.av img{width:300px;height:300px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:8px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.4)}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel B01 (piloto do formato B, híbrido): apresentador feito por IA fala o gancho, peças em 3D no meio. Comprou seminovo? O que trocar primeiro. (23,3 s) -->
+<img id="clip">
+<div id="ui">
+  <div class="ov ia" data-a="-1" data-b="4.0" data-fx="fade">cena ilustrativa, feita com IA</div>
+  <div class="ov tt" data-a="-1" data-b="4.0" data-fx="fade" style="top:1165px;font-size:74px">Comprou seminovo?<br><b>Troque isso primeiro</b></div>
+
+  <div class="ov tt m" data-a="4.05" data-b="7.95" style="top:225px"><span class="num">1</span>Óleo e<br><b>filtro de óleo</b></div>
+  <div class="ov row" data-a="5.7" data-b="7.95" style="top:455px"><span class="chip">❓ quando foi a última troca?</span></div>
+  <div class="ov tt m" data-a="8.0" data-b="10.45" style="top:225px"><span class="num">2</span>Filtro de ar<br><b>e de combustível</b></div>
+  <div class="ov tt m" data-a="10.5" data-b="13.35" style="top:225px"><span class="num">3</span>Fluido<br><b>de freio</b></div>
+  <div class="ov row" data-a="11.7" data-b="13.35" style="top:455px"><span class="chip bad">⚠️ quase ninguém troca</span></div>
+  <div class="ov tt m" data-a="13.4" data-b="18.1" style="top:225px"><span class="num">4</span>Correia<br><b>dentada</b></div>
+  <div class="ov row" data-a="14.2" data-b="18.1" style="top:455px"><span class="chip s">se o motor do seu carro tem correia</span></div>
+  <div class="ov row" data-a="15.3" data-b="18.1" style="top:540px"><span class="chip y">🧾 SEM NOTA DA TROCA? TROCA.</span></div>
+
+  <div class="ov tt m" data-a="18.2" data-b="20.3" style="top:215px">Manda pra quem<br><b>acabou de<br>comprar carro</b></div>
+  <div class="ov row" data-a="18.8" data-b="20.3" style="top:500px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+  <div class="ov row" data-a="19.3" data-b="20.3" style="top:590px"><span class="chip s">💬 E você, trocou o quê primeiro? Comenta aí 👇</span></div>
+
+  <div class="ov end av" data-a="20.4" style="top:205px"><img src="b01/dr-jarvys.png"></div>
+  <div class="ov end sub" data-a="20.7" data-fx="up" style="top:535px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="21.1" style="top:675px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="21.5" data-fx="up" style="top:822px">jarvys.com.br</div>
+  <div class="ov ia" data-a="20.4" data-fx="fade" style="left:0;right:0;top:150px;text-align:center">personagem ilustrativo, feito com IA</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .15, DUR = 23.3, NCLIP = +(new URLSearchParams(location.search).get('n') || 120);
+const W0 = [0,.36,.48,1.44,1.76,1.88,2.08,2.88,3.08,3.2,3.92,4.32,4.48,4.88,4.96,5.56,5.84,6.08,6.36,6.6,6.747,6.8,7.12,7.92,8.32,8.48,8.8,8.96,9.28,9.36,10.4,10.72,10.96,11.44,11.68,12.2,12.56,13.28,13.4,13.48,13.64,13.84,14.08,14.48,14.96,15.16,15.52,15.64,15.96,16.12,16.28,16.4,17.12,17.44,18.08,18.36,18.44,18.6,18.92,19.04,19.36];
+const TXT = "Comprou um seminovo? Antes de sair rodando, troca isso aqui. Óleo e filtro de óleo: você não sabe quando foi a última troca. Filtro de ar e filtro de combustível. Fluido de freio, que quase ninguém troca. E se o motor tem correia dentada e ninguém te mostrou a nota da troca, troca também. Manda pra quem acabou de comprar carro.".split(' ');
+K.setCaps(TXT, W0.map(w => w + VO), 20.25);
+
+// ================= PEDESTAL DAS PEÇAS (x = 300)
+K.ground(300, 0, 60, 0xdfe9f2);
+const P = grp(300, 0, 0); cyl(2.9, 3.1, 1.0, 0x0a84d6, 0, .5, 0, P, 24); cyl(2.7, 2.7, .1, 0xffffff, 0, 1.05, 0, P, 24);
+const it = [0, 1, 2, 3].map(() => grp(0, 1.1, 0, P));
+// 1 óleo e filtro de óleo
+{ const g = it[0]; const j = K.galao(g, 0xf2b31b); j.position.set(-1.0, 0, 0); j.scale.setScalar(1.15);
+  const f = grp(1.1, 0, .2, g); cyl(.62, .62, 1.35, 0x14365c, 0, .7, 0, f, 16); cyl(.5, .5, .14, 0xcfd8e2, 0, 1.44, 0, f, 16); cyl(.2, .2, .16, 0x20262e, 0, 1.46, 0, f, 8);
+  for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; box(.08, .5, .08, 0x0f2946, Math.cos(a) * .63, .3, Math.sin(a) * .63, f); } }
+// 2 filtro de ar e filtro de combustível
+{ const g = it[1]; const a = grp(-.75, .9, 0, g); a.rotation.set(.9, 0, 0); box(2.3, .5, 1.6, 0xff8a3d, 0, 0, 0, a); for (let i = 0; i < 12; i++) box(.1, .56, 1.4, 0xfff6e8, -.99 + i * .18, .03, 0, a);
+  const c = grp(1.45, .55, .9, g); c.rotation.z = Math.PI / 2; cyl(.36, .36, 1.2, 0xe8eef4, 0, 0, 0, c, 12); cyl(.1, .1, 1.9, 0x8f9aa6, 0, 0, 0, c, 8); cyl(.37, .37, .2, 0x0a84d6, 0, .35, 0, c, 12); }
+// 3 fluido de freio
+{ const g = it[2]; const r = grp(-.95, 0, .2, g); box(1.3, 1.05, 1.1, M(0xcfe6ff, { transparent: true, opacity: .55, depthWrite: false }), 0, .55, 0, r).castShadow = false; box(1.1, .6, .9, M(0xd9a520, { emissive: 0xd9a520, emissiveIntensity: .25 }), 0, .34, 0, r).castShadow = false; cyl(.34, .34, .22, 0xffd21f, 0, 1.18, 0, r, 10); box(.5, .05, .05, 0x0b1b2e, 0, .8, .57, r);
+  const d = grp(1.1, 1.15, 0, g); d.rotation.y = -.5; const disc = cyl(1.1, 1.1, .2, 0xb9c4cf, 0, 0, 0, d, 20); disc.rotation.x = Math.PI / 2; const hub = cyl(.45, .45, .34, 0x55626f, 0, 0, 0, d, 10); hub.rotation.x = Math.PI / 2; box(.6, .9, .5, 0xe03437, .75, .35, 0, d); it[2].disc = d; }
+// 4 correia dentada
+{ const g = it[3]; const m = grp(0, 0, 0, g); box(3.4, 3.0, .3, 0x8f9aa6, 0, 1.6, -.35, m);
+  const p1 = grp(-.8, 2.2, 0, m), p2 = grp(.9, 1.0, 0, m); [[p1, .8], [p2, .55]].forEach(([p, r]) => { const c = cyl(r, r, .35, 0xcfd8e2, 0, 0, 0, p, 14); c.rotation.x = Math.PI / 2; for (let i = 0; i < 4; i++) { const b = grp(0, 0, .2, p); b.rotation.z = i * Math.PI / 2; box(.14, r * .8, .08, 0x55626f, 0, r * .45, 0, b); } });
+  const seg2 = (x1, y1, x2, y2) => { const b = box(Math.hypot(x2 - x1, y2 - y1), .16, .4, 0x20262e, (x1 + x2) / 2, (y1 + y2) / 2, 0, m); b.rotation.z = Math.atan2(y2 - y1, x2 - x1); };
+  seg2(-.3, 2.85, 1.3, 1.4); seg2(-1.45, 1.75, .45, .65); seg2(-1.5, 1.8, -1.6, 2.4); seg2(-1.6, 2.4, -1.2, 2.95); seg2(-1.2, 2.95, -.3, 2.9); seg2(1.3, 1.4, 1.45, .9); seg2(1.45, .9, 1.0, .45); seg2(1.0, .45, .45, .65);
+  it[3].p1 = p1; it[3].p2 = p2; }
+
+// ================= RUA DO FECHO (origem)
+K.ground(0, 0); box(16, .02, .25, 0xffd21f, 0, .02, 4.4);
+const car = K.carro(s, 0xf4f7fa, 0xe03437); car.position.set(-.6, 0, 0); car.rotation.y = -.5;
+const dono = K.pessoa(s, { camisa: 0x12a35a }); dono.position.set(3.9, 0, 3.2); dono.rotation.y = .5; dono.scale.setScalar(.9);
+
+K.camKeys([
+  { t: 0, p: [303, 5.6, 15], l: [300, 2.75, 0] },
+  { t: 4.0, p: [303, 5.6, 15], l: [300, 2.75, 0] }, { t: 7.95, p: [301.5, 5.3, 14.2], l: [300, 2.75, 0], e: 'lin' },
+  { t: 7.95, p: [297.4, 5.6, 15], l: [300, 2.75, 0] }, { t: 10.45, p: [298.6, 5.3, 14.3], l: [300, 2.75, 0], e: 'lin' },
+  { t: 10.45, p: [303, 5.6, 15], l: [300, 2.75, 0] }, { t: 13.35, p: [301.6, 5.3, 14.2], l: [300, 2.75, 0], e: 'lin' },
+  { t: 13.35, p: [297.6, 5.2, 15.4], l: [300, 3.0, 0] }, { t: 18.1, p: [299.3, 5.0, 14.2], l: [300, 3.0, 0], e: 'lin' },
+  { t: 18.1, p: [12.5, 9, 29], l: [.9, 3.3, 0] }, { t: 23.5, p: [10.8, 8.4, 26], l: [.9, 3.3, 0], e: 'lin' },
+]);
+const clip = document.getElementById('clip'), WIN = [[4.0, 7.95], [7.95, 10.45], [10.45, 13.35], [13.35, 18.1]];
+window.setT = async t => {
+  const hook = t < 4.0, rua = t >= 18.1;
+  K.fundo('linear-gradient(#a9d8f8,#e6f4ff)'); K.zone(rua ? 0 : 300, 0);
+  clip.style.display = hook ? 'block' : 'none';
+  if (hook) { const n = Math.max(1, Math.min(NCLIP, Math.round((t - VO) * 30) + 1)), src = `b01/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } }
+  it.forEach((g, i) => { const [a, b] = WIN[i], on = t >= a && t < b; g.visible = on; if (on) { g.scale.setScalar(Math.max(.001, back(seg(t, a, a + .4)))); g.rotation.y = Math.sin((t - a) * 1.1) * .45; } });
+  it[2].disc.children[0].rotation.y = t * 3; it[3].p1.rotation.z = -t * 3; it[3].p2.rotation.z = -t * 4.4;
+  dono.bd.rotation.x = -2.7; dono.bd.rotation.z = .25 + Math.sin(t * 7) * .28; dono.cab.rotation.z = Math.sin(t * 3.5) * .06;
+  K.camAt(t); K.cam.updateMatrixWorld(); K.ui(t); K.caps(t); K.render();
+};
+window.setT(0).then(() => { window.READY = true; });
+</script></body></html>

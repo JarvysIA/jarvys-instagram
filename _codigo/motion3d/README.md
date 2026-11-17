@@ -48,3 +48,16 @@ cp ../stories/icon.png icon-512.png
 - Narração: `../motion/audio/reel3d-a01-voz.mp3` (1 take, 25,0 s, 71 palavras, 384 créditos; flow Q6CINOaFQzHMewjyUTSx, nó tXMjbWgzLY10bGKwRrKJ, geração JwXi1abbIlLKFJBV4RRU), VO 0,4 s. Transcrição 0 crédito.
 - Cenas: rua (motorista completando com água da torneira, título), "raio-x" do circuito com ferrugem, líquido certo rosa com 3 funções do aditivo, só água (azul, ferrugem, radiador entupindo, motor vermelho e vapor, carimbo FERVEU!), bancada (aditivo + água desmineralizada no medidor, manual), torneira (manda pra quem completa na torneira; e o seu, tá com o quê?), fecho com o Dr. Jarvys de blocos.
 - Trilha: `trilha-01.mp3 -ss 4.2 -t 29`. Vídeo de 29 s, final -14,3 LUFS. Mídia `2026-11/dia-18/reel3d.mp4`, capa em 1 s.
+
+## B01 "Comprou seminovo? Troque isso primeiro" (piloto do formato B, híbrido; 17/11/2026, sai em 21/11 19h30)
+
+Formato B = apresentador com rosto feito por IA (o Dr. Jarvys em pessoa, personagem original). Este piloto é HÍBRIDO porque o reel inteiro com fala sincronizada não cabe em 5.000 créditos (ver `claude/teste-de-formatos.md`): o apresentador fala só o gancho (4 s) e o resto é a mesma voz por cima das peças em 3D.
+
+- Personagem: `b01/dr-jarvys.png` (gpt-image-2.5-sunburst, 9:16, 190 créditos; flow JM5RaHHourYMBEHndY2d, nó DfTSf9yMMKVTYspz43uA, geração ja5H4ufpkqpYpZ7KoCvT). Usar SEMPRE esta mesma imagem como rosto do Dr. Jarvys.
+- Narração inteira: `../motion/audio/reel-b01-voz.mp3` (Jhony Tygas, eleven_v4, 1 take, 19,9 s, 61 palavras, 329 créditos; nó T9QJH4KgEieant8VkMAu, geração RNFwQ2AUw0bfBEse75l7). Transcrição 0.
+- Gancho falado: `../motion/audio/reel-b01-gancho.mp3` (os primeiros 3,72 s da narração + 0,2 s de silêncio; manter ABAIXO de 4,0 s, porque o HeyGen cobra por segundo cheio). Subir no repositório, anexar no flow por link (`creative_attach_reference_file`) e ligar imagem + áudio num nó `heygen-avatar4` (`talking_style: expressive`, `aspect_ratio: 9:16`): 2.424 créditos por 4 s (606 por segundo). Clipe em `b01/clip.mp4` (25 fps; geração zjeODjhvyz8nZzrbenh2).
+- Quadros do clipe para a cena: `ffmpeg -i b01/clip.mp4 -vf "fps=30,scale=1080:1920" -q:v 2 b01/cf%04d.jpg` (120 quadros; não vão para o repositório). A cena `b01.html` mostra o quadro certo em cada instante (`setT` é assíncrona e espera a imagem carregar).
+- Cena: gancho com o apresentador e título embaixo do rosto; 4 peças num pedestal girando (óleo e filtro de óleo, filtro de ar e de combustível, fluido de freio, correia dentada); "manda pra quem acabou de comprar carro"; fecho com a foto do personagem em círculo e o aviso "personagem ilustrativo, feito com IA".
+- `node cap3d.mjs b01.html frb 23.3`, `python3 audio_b01.py audb`, trilha `trilha-02.mp3 -ss 1 -t 23.3`, voz com `adelay=150`. Vídeo de 23,3 s, final -14,4 LUFS. Mídia `2026-11/dia-21/reel-b01.mp4`, capa em 0,5 s.
+- No Buffer: `isAiGenerated: true` e "cena ilustrativa, feita com IA" na legenda.
+- Fontes do conteúdo: as mesmas do carrossel "Comprou seminovo? O que trocar primeiro" de 01/12 (diário de 17/11).
