@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Inter;src:url(inter-latin-800-normal.woff);font-weight:800}
+*{margin:0;box-sizing:border-box}body{width:1080px;height:1920px;overflow:hidden;font-family:Inter;background:#bfe3fb}
+canvas{position:absolute;inset:0}
+.t{position:absolute;left:60px;right:60px;top:300px;text-align:center;font-weight:800;font-size:92px;line-height:1.06;letter-spacing:-2px;color:#fff;-webkit-text-stroke:14px #0b1b2e;paint-order:stroke fill}
+.t b{color:#ffd21f}
+.chip{position:absolute;left:50%;top:640px;transform:translateX(-50%);background:#0b1b2e;color:#fff;font-weight:800;font-size:44px;padding:16px 36px;border-radius:22px;border:4px solid #fff;white-space:nowrap}
+.chip i{font-style:normal;color:#ff8a3d}.chip u{text-decoration:none;color:#3ac7ff}
+.tag{position:absolute;left:640px;top:1040px;color:#ffd21f;font-weight:800;font-size:54px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill}
+.wm{position:absolute;left:0;right:0;bottom:120px;text-align:center;font-weight:800;font-size:40px;color:#0b1b2e;letter-spacing:8px}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<div class="t">O QUE ACONTECE<br>SE VOCÊ RODAR COM<br><b>O ÓLEO VENCIDO?</b></div>
+<div class="chip">ÓLEO <i>NOVO</i> → <u>BORRA</u></div>
+<div class="tag">← MOTOR</div>
+<div class="wm">JARVYS</div>
+<script>
+const W=1080,H=1920,T=THREE;
+const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,H);r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;document.body.prepend(r.domElement);
+const s=new T.Scene();
+const cam=new T.PerspectiveCamera(30,W/H,.1,200);cam.position.set(13,10,25);cam.lookAt(1.2,5.6,0);
+s.add(new T.HemisphereLight(0xffffff,0x9db7cc,1.5));
+const d=new T.DirectionalLight(0xffffff,2.2);d.position.set(-6,14,10);d.castShadow=true;d.shadow.mapSize.set(2048,2048);Object.assign(d.shadow.camera,{left:-12,right:12,top:12,bottom:-12});s.add(d);
+const M=c=>new T.MeshStandardMaterial({color:c,flatShading:true,roughness:.85});
+const box=(w,h,dp,c,x,y,z,p=s)=>{const m=new T.Mesh(new T.BoxGeometry(w,h,dp),M(c));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;p.add(m);return m};
+const cyl=(rt,rb,h,c,x,y,z,p=s,seg=10)=>{const m=new T.Mesh(new T.CylinderGeometry(rt,rb,h,seg),M(c));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;p.add(m);return m};
+// chao
+const g=new T.Mesh(new T.PlaneGeometry(80,80),new T.MeshStandardMaterial({color:0xe9eef3,roughness:1}));g.rotation.x=-Math.PI/2;g.receiveShadow=true;s.add(g);
+box(14,.02,.25,0xffd21f,0,.02,4.2);
+// carro
+const car=new T.Group();s.add(car);car.position.set(-.6,0,0);car.rotation.y=-.5;
+box(6.2,1.3,2.9,0xf4f7fa,0,1.25,0,car);          // corpo
+box(3.3,1.15,2.6,0xf4f7fa,-.5,2.45,0,car);       // cabine
+box(3.1,.8,2.65,0x1d3550,-.5,2.45,0,car);        // vidros
+box(3.4,.14,2.7,0x0a84d6,-.5,3.08,0,car);        // teto azul
+box(6.25,.18,2.95,0x0a84d6,0,.72,0,car);         // friso
+box(.2,.45,2.2,0x2a3340,3.12,1.1,0,car);         // grade
+[[2,1.5],[2,-1.5],[-2,1.5],[-2,-1.5]].forEach(([x,z])=>{const w=cyl(.72,.72,.5,0x20262e,x,.72,z,car,14);w.rotation.x=Math.PI/2;const h=cyl(.36,.36,.52,0xcfd8e2,x,.72,z,car,8);h.rotation.x=Math.PI/2});
+box(.25,.3,.6,0xfff3b0,3.14,1.45,.95,car);box(.25,.3,.6,0xfff3b0,3.14,1.45,-.95,car);
+const hood=box(1.9,.12,2.7,0xf4f7fa,2.0,2.55,0,car);hood.position.set(1.35,2.75,0);hood.rotation.z=1.05;  // capo aberto
+box(1.5,.7,2.2,0x3b4654,2.2,1.75,0,car);                                // motor
+cyl(.14,.14,.9,0xffd21f,2.3,2.3,.6,car,6);                               // vareta
+// mecanico
+const m=new T.Group();s.add(m);m.position.set(3.9,0,2.6);m.rotation.y=-2.3;
+box(.5,1.5,.5,0x14365c,-.32,.75,0,m);box(.5,1.5,.5,0x14365c,.32,.75,0,m);
+box(1.3,1.6,.7,0x0a84d6,0,2.3,0,m);
+box(.4,1.3,.4,0x0a84d6,-.88,2.4,0,m);const arm=box(.4,1.3,.4,0x0a84d6,.88,2.75,.45,m);arm.rotation.x=-1.1;
+box(.85,.85,.85,0xf2c9a0,0,3.55,0,m);
+box(.95,.3,.95,0x0b1b2e,0,4.05,0,m);box(.95,.1,.5,0x0b1b2e,0,3.92,.6,m);
+// galao de oleo
+cyl(.55,.55,1.1,0x12a35a,5.3,.55,.6,s,10);box(.3,.25,.3,0x0b1b2e,5.3,1.2,.6);
+r.render(s,cam);window.READY=true;
+</script></body></html>
