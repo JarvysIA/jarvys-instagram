@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../motion3d/kit3d.css">
+<style>
+#clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.ia{left:44px;top:232px;font-size:26px;-webkit-text-stroke:7px #0b1b2e;paint-order:stroke fill}
+.serie{left:40px;top:140px}
+.cap{top:1420px}
+</style></head><body>
+<script src="../../motion3d/node_modules/three/build/three.min.js"></script>
+<script src="../../motion3d/kit3d.js"></script>
+<!-- Novelinha "O Mecânico Espertinho", parte 1 (35 s): 4 cenas geradas por IA (Veo 3.1 Lite) + textos e fecho por cima -->
+<img id="clip">
+<div id="ui">
+  <div class="ov chip y s serie" data-a="-1" data-b="32" data-fx="fade">O MECÂNICO ESPERTINHO · PARTE 1</div>
+  <div class="ov ia" data-a="-1" data-b="32" data-fx="fade">cena ilustrativa, feita com IA</div>
+  <div class="ov tt" data-a="-1" data-b="2.9" data-fx="fade" style="top:1085px;font-size:72px">A oficina mandou trocar tudo.<br><b>Será?</b></div>
+  <div class="ov row" data-a="18.8" data-b="24.1" style="top:1270px"><span class="chip ok">📱 DR. JARVYS RESPONDE</span></div>
+  <div class="ov row" data-a="30.1" data-b="32" style="top:1230px"><span class="chip y">CONTINUA NA PARTE 2 ➜</span></div>
+
+  <div class="ov end" data-a="32.1" style="top:330px"><img src="../../motion3d/icon-512.png"></div>
+  <div class="ov end sub" data-a="32.3" data-fx="up" style="top:560px">Antes de aprovar o orçamento,<br>pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="32.7" style="top:720px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="33.0" data-fx="up" style="top:868px">jarvys.com.br</div>
+  <div class="ov row" data-a="33.4" style="top:1010px"><span class="chip y">➕ SEGUE PRA VER A PARTE 2</span></div>
+  <div class="ov ia" data-a="32.1" data-fx="fade" style="left:0;right:0;top:232px;text-align:center">cenas ilustrativas, feitas com IA</div>
+</div>
+<script>
+const DUR = 35, N = 960;
+// palavras: [texto, início em s no vídeo]
+const P = [["Dona",.1],["Ana,",.46],["vai",1.34],["ter",1.58],["que",1.72],["trocar",1.86],["tudo",2.46],["isso",2.96],["aqui.",3.2],["Tudo",4.78],["isso?!",5.54],
+  ["Rebimboca",8.1],["da",8.88],["parafuseta...",9.02],["tudo",11.0],["original,",11.28],["viu?",11.98],
+  ["Deixa",16.54],["eu",16.72],["perguntar",16.82],["pro",17.3],["Dr.",17.44],["Jarvys.",17.88],
+  ["Dona",18.9],["Ana,",19.22],["pelo",19.74],["manual,",19.94],["nessa",20.74],["quilometragem",21.06],["é",21.94],["só",22.18],["óleo",22.42],["e",22.86],["filtros.",22.98],
+  ["É...",24.74],["dá",27.78],["pra",27.92],["fazer",28.06],["só",28.42],["o",28.64],["óleo",28.78],["também.",29.14]];
+K.setCaps(P.map(p => p[0]), P.map(p => p[1]), 30.2);
+const FALA = [[0, 4.3], [4.6, 6.7], [8, 10.5], [10.9, 12.8], [16.4, 18.6], [18.8, 24.2], [24.6, 25.6], [27.6, 30.2]];
+K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
+const clip = document.getElementById('clip'), cap = document.querySelector('.cap');
+window.setT = async t => {
+  K.fundo('#0b1b2e');
+  const n = Math.max(1, Math.min(N, Math.round(t * 30) + 1)), src = `fr/cf${String(n).padStart(4, '0')}.jpg`;
+  if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); }
+  const k = K.seg(t, 32, 32.4); clip.style.filter = k > 0 ? `brightness(${K.mix(1, .32, k)}) blur(${K.mix(0, 14, k)}px)` : 'none';
+  K.camAt(t); K.ui(t); K.caps(t);
+  if (!FALA.some(([a, b]) => t >= a - .1 && t < b)) cap.style.opacity = 0;
+  K.render();
+};
+window.setT(0).then(() => { window.READY = true; });
+</script></body></html>
