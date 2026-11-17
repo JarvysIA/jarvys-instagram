@@ -1,0 +1,28 @@
+<style>
+/* TEMA CLARO DO FEED (desde 16/11/2026). Vale para post e carrossel (.fd). Reels e stories continuam escuros.
+   Entra por ultimo na montagem: head.html + <style> do dia-25a26 + body do dia + este arquivo.
+   O script no fim poe a classe .claro em todo .fd.
+   Regra para body novo de feed: usar so as variaveis (--bg --card --fg --muted --neon --soft --border --ok --warn --bad).
+   Nada de fundo escuro fixo (#0b1626, #08121f...) atras de texto, nem texto em amarelo/verde claro fixo (#ffe9a8, #ffe28a, #7ff0b3).
+   Quadro escuro so em desenho ou icone (ex.: o quadradinho do emoji, uma estrada), nunca com texto que use var(--fg). */
+.claro{--bg:#eef5fb;--card:#ffffff;--fg:#0b1b2e;--muted:#566a7e;--neon:#0a84d6;--on:#ffffff;--soft:rgba(10,132,214,.10);--border:#cfdeeb;--ok:#12a35a;--warn:#c98a00;--bad:#e03437;color:var(--fg);background:linear-gradient(160deg,#f6fafe 0%,#e3effa 100%)}
+.claro .neon,.claro .big{text-shadow:none}
+.claro .dots{background-image:radial-gradient(rgba(10,132,214,.20) 2px,transparent 2.6px)}
+.claro .g{background:radial-gradient(circle,rgba(58,199,255,.30),rgba(238,245,251,0) 62%)}
+.claro .b{background:#f1f6fb}
+.claro .u{background:rgba(10,132,214,.14)}
+.claro .chat,.claro .box,.claro .step{box-shadow:0 30px 80px -40px rgba(11,60,110,.35)}
+.claro .wm img,.claro .chead img{box-shadow:0 0 0 4px #0c192a;background:#0c192a}
+.claro .num{box-shadow:0 10px 30px -8px rgba(10,132,214,.6)}
+.claro .tag{border-color:rgba(10,132,214,.45)}
+.claro .btn{box-shadow:0 0 0 3px rgba(10,132,214,.25),0 26px 70px -18px rgba(10,132,214,.7)}
+.claro .cert,.claro .ti:before{box-shadow:none}
+
+/* Ajustes dos posts feitos antes do tema claro (17 a 30/11), que tinham cor fixa de tema escuro */
+.claro .fx .pr,.claro .gl .r,#p23.claro .sm,.claro .why em{background:#fff}
+.claro .sm .tt{text-shadow:none}
+.claro .first,.claro .tip3,.claro .tip29,.claro .pode,.claro .cal28{color:#7a5200}
+.claro .kmp{color:#0c7a43}
+.claro .tip2{background:var(--soft);border:2px solid rgba(10,132,214,.35);border-radius:26px;padding:24px 30px;font-size:32px;line-height:1.4}
+</style>
+<script>addEventListener('DOMContentLoaded',()=>document.querySelectorAll('.fd').forEach(e=>e.classList.add('claro')))</script>
