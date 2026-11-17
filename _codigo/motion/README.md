@@ -107,3 +107,8 @@ Retorno do Luiz (14/10): ficou muito bom, mas rápido demais. Na próxima versã
 ## Reel 26 "Motorista de app? A revisão chega em semanas" (08/11/2026, sai em 23/11 19h30)
 - `reel26.html` (cabeça das 234 primeiras linhas do reel24.html + CSS próprio): odômetro contando 52.300 → 53.300 com carro na estrada (rodas girando, etiqueta APP) e os dias SEG a DOM acendendo, pílula +1.000 km na semana; barra 50.000 → 60.000 REVISÃO enchendo por semana, cartões "meses" riscado x "semanas"; 23:40 fim do turno, foto do odômetro 58.740 com flash, leitura e notificação da revisão dos 60.000; chat do abastecimento com o sim; "quanto gastei esse mês?" com o total contando até R$ 1.380,00 (exemplo); fecho "Você roda. Eu cuido do carro."
 - Narração `audio/reel26-voz.mp3` (1 take, 22,6 s, 320 créditos; flow ElgMCWT5O3S4dmjGQUe5). Efeitos `python3 audio26.py aud26`. Trilha `trilha-01.mp3 -ss 1.5 -t 27`. Mix -14,3 LUFS.
+
+## Cortes para anúncio dos reels 20 e 06 (17/11/2026)
+- `python3 anuncios.py` gera `anuncio20.html` (14,2 s, sem "feriado") e `anuncio06.html` (14,4 s, sem "no WhatsApp"), corta a narração já paga (`an20/voz.wav`, `an06/voz.wav`) e escreve `audio_an20.py` e `audio_an06.py`. Fecho novo: "App 100% grátis", jarvys.com.br.
+- Trilha: `trilha-01.mp3 -ss 0.5 -t 14.2` e `-ss 7 -t 14.4` (fade de saída de 2 s). Quadros: `node cap2.mjs anuncio20.html fran20 14.2` e `node cap2.mjs anuncio06.html fran06 14.4`. Mix: `AUD=an20 ./mix2.sh fran20 anuncio20.mp4 an20/voz.wav` (os dois em -14,5 LUFS).
+- Mídias em `2026-11/anuncios/`.
