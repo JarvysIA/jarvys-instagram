@@ -1,6 +1,6 @@
 # Novelinha 3D "O Mecânico Espertinho" (formato C do teste de formatos)
 
-Luiz, 17/11/2026: "a dor de ser enganado é ótima" e "ok, pode fazer". História em 3 partes (roteiro em `claude/teste-de-formatos.md`). Personagens originais: o Mecânico Espertinho (boné amarelo de lado, macacão cinza), a Dona Ana (blusa lilás, óculos redondos), o Dr. Jarvys só como voz (Jhony Tygas) saindo do celular.
+Fernando, 17/11/2026: "a dor de ser enganado é ótima" e "ok, pode fazer". História em 3 partes (roteiro em `claude/teste-de-formatos.md`). Personagens originais: o Mecânico Espertinho (boné amarelo de lado, macacão cinza), a Dona Ana (blusa lilás, óculos redondos), o Dr. Jarvys só como voz (Jhony Tygas) saindo do celular.
 
 ## Parte 1 (17/11/2026, 35 s, sai em 23/11 19h30)
 
@@ -15,7 +15,7 @@ Luiz, 17/11/2026: "a dor de ser enganado é ótima" e "ok, pode fazer". Históri
 - Total da parte 1: 10.125 créditos (imagem 190, 4 cenas 9.696, voz 63, transcrições 176).
 - No Buffer: `isAiGenerated: true` e "Cenas ilustrativas, feitas com IA." na legenda.
 
-## Correção de 17/11 (retorno do Luiz: "antes do mecânico falar, ele fala tipo embolado")
+## Correção de 17/11 (retorno do Fernando: "antes do mecânico falar, ele fala tipo embolado")
 
 Na cena 4 o Veo pôs uns 3 s de resmungo sem palavras antes da fala. A transcrição mostrou só "Hum. É.", mas o volume do trecho era de fala. Corrigido sem gastar crédito: `cena4-limpa.wav` troca os primeiros 3,45 s do som da cena pelo ruído de fundo da própria cena (trecho de 5,75 a 7,15 s, repetido) e a legenda "É..." saiu. Versão publicada: `2026-11/dia-23/reel-novela-p1-v2.mp4`.
 
