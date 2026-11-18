@@ -1,0 +1,22 @@
+/* ===== reel 38: Seu Onix: correia banhada a óleo (série Seu [modelo]) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e38p{position:absolute}
+.e38lab{position:absolute;font-family:Orbitron;font-weight:700;font-size:32px;letter-spacing:5px;color:var(--muted);white-space:nowrap}
+.e38big{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:250px;line-height:1;letter-spacing:-6px;color:var(--neon);text-shadow:0 0 60px rgba(58,199,255,.6)}
+@keyframes belt38{from{stroke-dashoffset:0}to{stroke-dashoffset:-240}}
+@keyframes rot38{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes oil38{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes wave38{0%,100%{transform:translateX(0)}50%{transform:translateX(-30px)}}
+.e38drop{position:absolute;width:44px;height:60px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#7a5a1c;box-shadow:0 0 18px rgba(249,65,68,.8);border:3px solid var(--bad);opacity:0}
+@keyframes fall38{0%{opacity:0;transform:translateY(0)}10%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(var(--dy))}}
+.e38crack{position:absolute;opacity:0}
+.e38bit{position:absolute;width:70px;height:46px;border-radius:8px;background:#3a4654;border:5px solid #f9c718;box-shadow:0 0 18px rgba(249,199,24,.5);opacity:0}
+@keyframes bit38{0%{opacity:0;transform:translate(0,0) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rr))}}
+.e38ok{position:absolute;left:150px;right:150px;height:190px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(65,214,134,.5);box-shadow:0 24px 70px -24px rgba(65,214,134,.4);display:flex;align-items:center;gap:34px;padding:0 44px;opacity:0}
+.e38ok em{font-style:normal;font-size:88px;line-height:1;width:110px;text-align:center}
+.e38ok b{font-size:58px;font-weight:800;white-space:nowrap}
+.e38ok .ck{position:absolute;top:-22px;right:-18px;width:72px;height:72px;border-radius:50%;background:var(--ok);color:#06210f;font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+.e38send{position:absolute;left:0;right:0;text-align:center;font-size:220px;line-height:1;opacity:0;filter:drop-shadow(0 0 40px rgba(58,199,255,.7))}
+@keyframes fly38{0%{opacity:0;transform:translate(-160px,120px) rotate(-10deg) scale(.6)}40%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}100%{opacity:1;transform:translate(40px,-30px) rotate(6deg) scale(1)}}
+.e38chat{position:absolute;left:170px;right:170px;padding:30px 40px;border-radius:34px 34px 34px 8px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.5);font-size:46px;font-weight:700;line-height:1.2;opacity:0}
