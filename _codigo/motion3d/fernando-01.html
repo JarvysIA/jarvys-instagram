@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+#clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.ic img{width:150px;height:150px;border-radius:36px;border:6px solid #fff;box-shadow:0 14px 40px rgba(11,27,46,.5)}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Fernando 01 (gravado por ele em 18/11/2026 na loja): "Olá, eu sou Fernando... desenvolvi o Jarvys. Clica no link aqui abaixo e instale agora mesmo no seu celular."
+     ?v=ad (padrão): anúncio de 14 s com a fala inteira, textos dentro da área segura de anúncio. ?v=reel: reel de 10,8 s para o feed, sem a frase do link, fecho "link na bio". -->
+<img id="clip">
+<div id="ui">
+  <div class="ov row" data-a="-1" data-b="3.95" data-fx="fade" style="top:285px"><div class="tt" style="position:static;font-size:58px;background:rgba(11,27,46,.78);padding:18px 30px;border-radius:26px;-webkit-text-stroke:0">Dono de oficina criou um app<br><b>pra cuidar do seu carro</b></div></div>
+  <div class="ov end ic" id="icone" data-a="6.9" data-b="99" style="top:290px"><img src="icon-512.png"></div>
+  <div class="ov row" id="cta" data-a="8.45" data-b="99" style="top:1215px"><span class="chip y">▼ INSTALE AGORA, É GRÁTIS ▼</span></div>
+
+  <div class="ov end" data-a="E0.1" style="top:330px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="E0.3" data-fx="up" style="top:560px">Cuide do seu carro<br>com o Jarvys.</div>
+  <div class="ov end" data-a="E0.7" style="top:710px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="E1.0" data-fx="up" style="top:858px">jarvys.com.br</div>
+  <div class="ov row" data-a="E1.4" style="top:990px"><span class="chip y" id="fim"></span></div>
+</div>
+<script>
+const AD = new URLSearchParams(location.search).get('v') !== 'reel';
+const FIM = AD ? 11.35 : 8.0, NQ = AD ? 341 : 240;      // fim do vídeo gravado e último quadro usado
+const P = [["Olá,",.15],["eu",.57],["sou",.75],["Fernando,",1.0],["proprietário",1.70],["da",2.35],["Star",2.47],["Serviços",2.75],["Automotivos",3.15],
+  ["e,",4.10],["pensando",4.23],["em",4.65],["te",4.78],["ajudar",4.90],["a",5.30],["cuidar",5.42],["do",5.72],["seu",5.85],["carro",6.0],["melhor,",6.47],["desenvolvi",6.83],["o",7.40],["Jarvys.",7.53],
+  ["Clica",8.45],["no",8.69],["link",8.81],["aqui",8.97],["abaixo",9.19],["e",9.61],["instale",9.71],["agora",10.03],["mesmo",10.30],["no",10.51],["seu",10.63],["celular.",10.75]].slice(0, AD ? 35 : 23);
+const FALA = [[.1, 3.9], [4.05, 7.95], [8.4, 11.15]];
+document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); if (e.dataset.b == '99') e.dataset.b = FIM; });
+document.getElementById('fim').textContent = AD ? '▼ INSTALE AGORA NO SEU CELULAR ▼' : 'LINK NA BIO';
+if (!AD) document.getElementById('cta').dataset.a = '999';
+K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
+const cap = document.querySelector('.cap'); cap.style.top = AD ? '1085px' : '1395px';
+K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
+const clip = document.getElementById('clip');
+window.setT = async t => {
+  K.fundo('#0b1b2e');
+  const n = Math.max(1, Math.min(NQ, Math.round(t * 30) + 1)), src = `fer01/cf${String(n).padStart(4, '0')}.jpg`;
+  if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); }
+  const k = K.seg(t, FIM, FIM + .4); clip.style.filter = k > 0 ? `brightness(${K.mix(1, .3, k)}) blur(${K.mix(0, 14, k)}px)` : 'none';
+  K.camAt(t); K.ui(t); K.caps(t);
+  if (!FALA.some(([a, b]) => t >= a - .1 && t < b)) cap.style.opacity = 0;
+  K.render();
+};
+window.setT(0).then(() => { window.READY = true; });
+</script></body></html>
