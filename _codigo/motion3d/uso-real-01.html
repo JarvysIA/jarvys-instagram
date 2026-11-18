@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+#card{position:absolute;left:150px;top:420px;width:780px;height:1084px;border-radius:38px;overflow:hidden;background:#efeae2;border:8px solid #fff;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+#card img{width:100%;display:block}
+.selo{left:0;right:0;text-align:center}
+.selo span{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:46px;padding:12px 30px;border-radius:18px;border:5px solid #0b1b2e;transform:rotate(-3deg)}
+.nota{font-size:34px;line-height:1.25;color:#cfe3f5;left:60px;right:60px;text-align:center}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel curto "Uso real" 01 (11 s, sem narração): print real do WhatsApp do Luiz em 18/11/2026, mensagens aparecendo uma a uma -->
+<div id="card"><img id="print" src="uso-real/print-2026-11-18.jpg"></div>
+<div id="ui">
+  <div class="ov selo" data-a="-1" data-b="7.7" data-fx="fade" style="top:150px"><span>USO REAL, SEM MONTAGEM</span></div>
+  <div class="ov tt m" data-a="-1" data-b="7.7" data-fx="fade" style="top:245px;font-size:60px">Abasteceu?<br><b>2 mensagens e tá anotado</b></div>
+  <div class="ov row" data-a="4.5" data-b="7.7" style="top:1522px"><span class="chip ok">✅ GASTO E KM ANOTADOS</span></div>
+
+  <div class="ov end" data-a="7.8" style="top:330px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="8.0" data-fx="up" style="top:560px">O Jarvys anota o gasto<br>e a km do seu carro.<br>Comece pelo app.</div>
+  <div class="ov end" data-a="8.4" style="top:775px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="8.8" data-fx="up" style="top:925px">jarvys.com.br</div>
+  <div class="ov nota" data-a="9.1" data-fx="fade" style="top:1050px">O app é grátis. A conversa pelo WhatsApp é a função paga.</div>
+  <div class="ov nota" id="story" data-a="99" data-fx="fade" style="top:1625px;font-size:40px;color:#fff">App 100% grátis: jarvys.com.br<br><span style="font-size:30px;color:#cfe3f5">A conversa pelo WhatsApp é a função paga.</span></div>
+</div>
+<script>
+const STORY = new URLSearchParams(location.search).get('story');
+// [instante, fração da altura do print já visível]
+const PASSOS = [[0, .19], [.6, .37], [2.0, .585], [3.5, .668], [4.2, .815], [5.9, .892], [6.6, 1]];
+K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
+const card = document.getElementById('card'), img = document.getElementById('print');
+if (STORY) { document.getElementById('story').dataset.a = '-1'; document.querySelectorAll('.ov[data-b]').forEach(e => e.dataset.b = '99'); }
+window.setT = async t => {
+  K.fundo('linear-gradient(#123052,#0b1b2e)');
+  let f = PASSOS[0][1], ta = 0; PASSOS.forEach(([a, v]) => { if (t >= a) { f = v; ta = a; } });
+  const i = PASSOS.findIndex(p => p[0] === ta), ant = i > 0 ? PASSOS[i - 1][1] : f, k = K.out(K.seg(t, ta, ta + .22));
+  const vis = STORY ? 1 : K.mix(ant, f, k);
+  img.style.clipPath = `inset(0 0 ${(1 - vis) * 100}% 0)`;
+  const fim = !STORY && t >= 7.7; card.style.opacity = fim ? 0 : 1; card.style.transform = `scale(${K.mix(.94, 1, K.out(K.seg(t, 0, .4)))})`;
+  K.camAt(t); K.ui(t); K.render();
+};
+img.decode().then(() => window.setT(0)).then(() => { window.READY = true; });
+</script></body></html>
