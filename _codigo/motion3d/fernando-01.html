@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
 <style>
 #clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
-.ic img{width:150px;height:150px;border-radius:36px;border:6px solid #fff;box-shadow:0 14px 40px rgba(11,27,46,.5)}
+.ic img{width:260px;height:260px;border-radius:60px;border:6px solid #fff;box-shadow:0 14px 40px rgba(11,27,46,.5)}
 </style></head><body>
 <script src="node_modules/three/build/three.min.js"></script>
 <script src="kit3d.js"></script>
@@ -10,14 +10,14 @@
 <img id="clip"><div id="escuro" style="position:absolute;inset:0;background:#0b1b2e;opacity:0"></div>
 <div id="ui">
   <div class="ov row" data-a="-1" data-b="3.95" data-fx="fade" style="top:285px"><div class="tt" style="position:static;font-size:58px;background:rgba(11,27,46,.78);padding:18px 30px;border-radius:26px;-webkit-text-stroke:0">Dono de oficina criou um app<br><b>pra cuidar do seu carro</b></div></div>
-  <div class="ov end ic" id="icone" data-a="6.9" data-b="99" style="top:290px"><img src="icon-512.png"></div>
+  <div class="ov end ic" id="icone" data-a="6.9" data-b="99" style="top:235px"><img src="icon-512.png"></div>
   <div class="ov row" id="cta" data-a="8.45" data-b="99" style="top:1215px"><span class="chip y">▼ INSTALE AGORA, É GRÁTIS ▼</span></div>
 
-  <div class="ov end" data-a="E0.1" style="top:330px"><img src="icon-512.png"></div>
-  <div class="ov end sub" data-a="E0.3" data-fx="up" style="top:560px">Cuide do seu carro<br>com o Jarvys.</div>
-  <div class="ov end" data-a="E0.7" style="top:710px"><span class="btn">App 100% grátis</span></div>
-  <div class="ov end url" data-a="E1.0" data-fx="up" style="top:858px">jarvys.com.br</div>
-  <div class="ov row" data-a="E1.4" style="top:990px"><span class="chip y" id="fim"></span></div>
+  <div class="ov end g" data-a="E0.1" style="top:235px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="E0.3" data-fx="up" style="top:625px">Cuide do seu carro<br>com o Jarvys.</div>
+  <div class="ov end" data-a="E0.7" style="top:775px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="E1.0" data-fx="up" style="top:923px">jarvys.com.br</div>
+  <div class="ov row" data-a="E1.4" style="top:1065px"><span class="chip y" id="fim"></span></div>
 </div>
 <script>
 const QS = new URLSearchParams(location.search), AD = QS.get('v') !== 'reel', ALPHA = QS.get('alpha');   // alpha=1: só os textos, fundo transparente (o vídeo entra depois, no ffmpeg, com a cor certa)

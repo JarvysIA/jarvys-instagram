@@ -70,3 +70,11 @@ Exemplo: `fernando-01.html`. Gravação de iPhone vem em HDR (HLG, 10 bits); sem
 2. Vídeo base direto da fonte, uma passada, crf 10 (`fer01/base.mp4`, fora do git).
 3. Textos em PNG transparente: `ALPHA=1 node cap3d.mjs "cena.html?alpha=1" pasta segundos`. A cena precisa tratar `?alpha=1` (esconder o vídeo e deixar o fundo transparente).
 4. Juntar no ffmpeg com `overlay`, uma compressão só (crf 17). Nunca passar o vídeo gravado pela captura de tela do Chromium: perde nitidez e cor.
+
+## Logo do Jarvys grande (regra do Fernando, 18/11/2026)
+
+"A logo está muito miúda na tela, nos próximos vamos dar mais valor a ela."
+
+- Fecho de toda cena nova: `<div class="ov end g" ...><img src="icon-512.png"></div>` (320 px; a classe `g` está no `kit3d.css`). O padrão antigo de 190 px fica só nas cenas já publicadas. Ao copiar `a01.html` ou `uso-real-01.html`, pôr o `g` e descer o texto, o botão e o endereço uns 130 px.
+- No meio do vídeo, quando o Jarvys é citado: logo com 260 px ou mais (`.ic img` em `fernando-01.html`).
+- `fernando-01.html` já está com a logo grande. Os arquivos v2 publicados em 18/11 (anúncio e reel do Fernando) foram feitos antes, com 150 e 190 px.

@@ -20,6 +20,7 @@ canvas{position:absolute;inset:0}
 .cap span{opacity:0}.cap span.on{opacity:1}.cap span.now{color:#ffd21f}
 .end{left:0;right:0;text-align:center}
 .end img{width:190px;height:190px;border-radius:44px;border:6px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.35)}
+.end.g img{width:320px;height:320px;border-radius:74px;border:8px solid #fff}   /* logo grande: padrão das peças novas desde 18/11 (pedido do Fernando) */
 .btn{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:66px;padding:22px 48px;border-radius:30px;border:6px solid #0b1b2e;box-shadow:0 12px 0 #0b1b2e}
 .url{font-size:62px;-webkit-text-stroke:12px #0b1b2e;paint-order:stroke fill}
 .sub{font-size:46px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill;line-height:1.15}
