@@ -7,7 +7,7 @@
 <script src="kit3d.js"></script>
 <!-- Fernando 01 (gravado por ele em 18/11/2026 na loja): "Olá, eu sou Fernando... desenvolvi o Jarvys. Clica no link aqui abaixo e instale agora mesmo no seu celular."
      ?v=ad (padrão): anúncio de 14 s com a fala inteira, textos dentro da área segura de anúncio. ?v=reel: reel de 10,8 s para o feed, sem a frase do link, fecho "link na bio". -->
-<img id="clip">
+<img id="clip"><div id="escuro" style="position:absolute;inset:0;background:#0b1b2e;opacity:0"></div>
 <div id="ui">
   <div class="ov row" data-a="-1" data-b="3.95" data-fx="fade" style="top:285px"><div class="tt" style="position:static;font-size:58px;background:rgba(11,27,46,.78);padding:18px 30px;border-radius:26px;-webkit-text-stroke:0">Dono de oficina criou um app<br><b>pra cuidar do seu carro</b></div></div>
   <div class="ov end ic" id="icone" data-a="6.9" data-b="99" style="top:290px"><img src="icon-512.png"></div>
@@ -20,7 +20,7 @@
   <div class="ov row" data-a="E1.4" style="top:990px"><span class="chip y" id="fim"></span></div>
 </div>
 <script>
-const AD = new URLSearchParams(location.search).get('v') !== 'reel';
+const QS = new URLSearchParams(location.search), AD = QS.get('v') !== 'reel', ALPHA = QS.get('alpha');   // alpha=1: só os textos, fundo transparente (o vídeo entra depois, no ffmpeg, com a cor certa)
 const FIM = AD ? 11.35 : 8.0, NQ = AD ? 341 : 240;      // fim do vídeo gravado e último quadro usado
 const P = [["Olá,",.15],["eu",.57],["sou",.75],["Fernando,",1.0],["proprietário",1.70],["da",2.35],["Star",2.47],["Serviços",2.75],["Automotivos",3.15],
   ["e,",4.10],["pensando",4.23],["em",4.65],["te",4.78],["ajudar",4.90],["a",5.30],["cuidar",5.42],["do",5.72],["seu",5.85],["carro",6.0],["melhor,",6.47],["desenvolvi",6.83],["o",7.40],["Jarvys.",7.53],
@@ -32,12 +32,13 @@ if (!AD) document.getElementById('cta').dataset.a = '999';
 K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
 const cap = document.querySelector('.cap'); cap.style.top = AD ? '1085px' : '1395px';
 K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
-const clip = document.getElementById('clip');
+const clip = document.getElementById('clip'), escuro = document.getElementById('escuro');
+if (ALPHA) { clip.style.display = 'none'; document.body.style.background = 'transparent'; }
 window.setT = async t => {
-  K.fundo('#0b1b2e');
-  const n = Math.max(1, Math.min(NQ, Math.round(t * 30) + 1)), src = `fer01/cf${String(n).padStart(4, '0')}.jpg`;
-  if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); }
-  const k = K.seg(t, FIM, FIM + .4); clip.style.filter = k > 0 ? `brightness(${K.mix(1, .3, k)}) blur(${K.mix(0, 14, k)}px)` : 'none';
+  K.fundo(ALPHA ? 'transparent' : '#0b1b2e');
+  const k = K.seg(t, FIM, FIM + .4);
+  if (ALPHA) escuro.style.opacity = k * .8;
+  else { const n = Math.max(1, Math.min(NQ, Math.round(t * 30) + 1)), src = `fer01/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } clip.style.filter = k > 0 ? `brightness(${K.mix(1, .3, k)}) blur(${K.mix(0, 14, k)}px)` : 'none'; }
   K.camAt(t); K.ui(t); K.caps(t);
   if (!FALA.some(([a, b]) => t >= a - .1 && t < b)) cap.style.opacity = 0;
   K.render();

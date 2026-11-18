@@ -61,3 +61,12 @@ Formato B = apresentador com rosto feito por IA (o Dr. Jarvys em pessoa, persona
 - `node cap3d.mjs b01.html frb 23.3`, `python3 audio_b01.py audb`, trilha `trilha-02.mp3 -ss 1 -t 23.3`, voz com `adelay=150`. Vídeo de 23,3 s, final -14,4 LUFS. Mídia `2026-11/dia-21/reel-b01.mp4`, capa em 0,5 s.
 - No Buffer: `isAiGenerated: true` e "cena ilustrativa, feita com IA" na legenda.
 - Fontes do conteúdo: as mesmas do carrossel "Comprou seminovo? O que trocar primeiro" de 01/12 (diário de 17/11).
+
+## Vídeo gravado (celular) com textos por cima
+
+Exemplo: `fernando-01.html`. Gravação de iPhone vem em HDR (HLG, 10 bits); sem converter a cor o vídeo sai esbranquiçado. Regra:
+
+1. `ffprobe` na fonte. Se `color_transfer` for `arib-std-b67` ou `smpte2084`, usar o filtro de cor (tone mapping hable, npl 100) descrito em `2026-11/anuncios/README.md`.
+2. Vídeo base direto da fonte, uma passada, crf 10 (`fer01/base.mp4`, fora do git).
+3. Textos em PNG transparente: `ALPHA=1 node cap3d.mjs "cena.html?alpha=1" pasta segundos`. A cena precisa tratar `?alpha=1` (esconder o vídeo e deixar o fundo transparente).
+4. Juntar no ffmpeg com `overlay`, uma compressão só (crf 17). Nunca passar o vídeo gravado pela captura de tela do Chromium: perde nitidez e cor.
