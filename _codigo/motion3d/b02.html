@@ -5,7 +5,7 @@
 #topo{position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(rgba(11,27,46,.94),rgba(11,27,46,.72) 52%,rgba(11,27,46,0))}
 #ui{perspective:1500px}
 /* título em 3D: cada linha é um span com o texto repetido em data-t (frente cromada por cima da "espessura") */
-.x3{position:absolute;left:30px;right:30px;top:96px;text-align:center;font-size:104px;line-height:1.02;letter-spacing:-3px;text-transform:uppercase;transform-origin:50% 50%;opacity:0}
+.x3{position:absolute;left:0;right:0;top:66px;text-align:center;white-space:nowrap;font-size:98px;line-height:1.0;letter-spacing:-3px;text-transform:uppercase;transform-origin:50% 50%;opacity:0}
 .x3 span{position:relative;display:block;color:#061120;text-shadow:0 2px 0 #061120,0 4px 0 #061120,0 6px 0 #061120,0 8px 0 #061120,0 10px 0 #050d18,0 12px 0 #050d18,0 20px 26px rgba(0,0,0,.55)}
 .x3 span::after{content:attr(data-t);position:absolute;left:0;right:0;top:0;text-shadow:none;background:linear-gradient(#ffffff 8%,#dfe7f1 44%,#93a5bb 54%,#f4f8fc 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .x3 span.o::after{background:linear-gradient(#fff6b0 6%,#ffd21f 46%,#f39a0a 56%,#ffe36b 82%);-webkit-background-clip:text;background-clip:text}
@@ -17,16 +17,18 @@
 .pl{position:absolute;left:70px;width:940px;height:250px;top:930px;opacity:0;transform-style:preserve-3d}
 .pl .f{position:absolute;inset:0;border-radius:36px;background:linear-gradient(158deg,#1d3d63,#0b1b2e 58%,#071221);border:7px solid #ffd21f;box-shadow:0 0 0 4px #0b1b2e,0 0 44px 6px rgba(255,210,31,.6),inset 0 3px 0 rgba(255,255,255,.28),16px 20px 0 #040a13;display:flex;align-items:center;gap:28px;padding:0 34px}
 .pl .n{flex:none;width:136px;height:136px;border-radius:32px;background:linear-gradient(#fff6b0,#ffd21f 48%,#f39a0a);color:#0b1b2e;font-size:100px;line-height:136px;text-align:center;box-shadow:0 9px 0 #8f5c00,inset 0 3px 0 rgba(255,255,255,.7)}
-.pl .t{font-size:62px;line-height:1.0;letter-spacing:-1.5px;text-transform:uppercase}
-.pl .s{font-size:41px;line-height:1.05;color:#ffd21f;margin-top:14px}
+.pl .t{font-size:68px;line-height:1.0;letter-spacing:-1.5px;text-transform:uppercase}
+.pl .s{font-size:44px;line-height:1.05;color:#ffd21f;margin-top:14px}
 .spk{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:#ffe36b;box-shadow:0 0 14px 4px #ffb300;opacity:0}
-.ck{display:block;margin:0 auto 14px;width:max-content}
-.ia{font-size:30px;-webkit-text-stroke:8px #0b1b2e;paint-order:stroke fill;opacity:.9}
+.ck{display:block;margin:0 auto 16px;width:max-content;font-size:48px;padding:18px 34px 18px 28px}
+.ck i{display:inline-block;width:17px;height:32px;border:solid #fff;border-width:0 8px 8px 0;transform:rotate(45deg);margin:0 26px 4px 8px}
+
+.ia{font-size:34px;-webkit-text-stroke:8px #0b1b2e;paint-order:stroke fill;opacity:.9}
 </style></head><body>
 <script src="node_modules/three/build/three.min.js"></script>
 <script src="kit3d.js"></script>
 <!-- B02 (18/11/2026): Dr. Jarvys em pessoa (personagem de IA) na tela o tempo todo, com título e placas em 3D por cima. Pedido do Fernando a partir de um vídeo de referência.
-     Vídeo: 2 cenas de 8 s do Veo 3.1 Lite (b02/cena1.mp4 e cena2.mp4). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 19.4 -->
+     Vídeo: 2 cenas de 8 s do Veo 3.1 Lite (b02/cena1.mp4 e cena2.mp4). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 18.4 -->
 <img id="clip"><div id="topo"></div><div id="escuro"></div>
 <div id="ui">
   <div class="x3" id="gancho"><span data-t="Quanto seu carro">Quanto seu carro</span><span class="o" data-t="te custou">te custou</span><span class="o" data-t="esse ano?">esse ano?</span></div>
@@ -36,19 +38,20 @@
   <div class="pl" id="p3"><div class="f"><div class="n">3</div><div><div class="t">Valor<br>pela Fipe</div><div class="s">atualizado todo mês</div></div></div></div>
   <div id="spks"></div>
 
-  <div class="ov end g" data-a="E0.1" style="top:150px"><img src="icon-512.png"></div>
-  <div class="ov end" data-a="E0.35" data-fx="up" style="top:535px"><span class="chip s ok ck">✔ Gastos sob controle</span><span class="chip s ok ck">✔ Histórico das revisões</span><span class="chip s ok ck">✔ Valor pela Fipe todo mês</span></div>
-  <div class="ov end" data-a="E0.8" style="top:800px"><span class="btn">App 100% grátis</span></div>
-  <div class="ov end url" data-a="E1.1" data-fx="up" style="top:948px">jarvys.com.br</div>
-  <div class="ov end ia" data-a="E1.4" data-fx="fade" style="top:1075px">Personagem ilustrativo, feito com IA</div>
+  <div class="ov end g" data-a="E0.1" style="top:120px"><img src="icon-512.png"></div>
+  <div class="ov end" data-a="E0.35" data-fx="up" style="top:498px"><span class="chip ok ck"><i></i>Gastos sob controle</span><span class="chip ok ck"><i></i>Histórico das revisões</span><span class="chip ok ck"><i></i>Valor pela Fipe todo mês</span></div>
+  <div class="ov end" data-a="E0.8" style="top:825px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="E1.1" data-fx="up" style="top:975px">jarvys.com.br</div>
+  <div class="ov end ia" data-a="E1.4" data-fx="fade" style="top:1100px">Personagem ilustrativo, feito com IA</div>
 </div>
 <script>
 const QS = new URLSearchParams(location.search), ALPHA = QS.get('alpha');
 // tempos (s) medidos no som das cenas: ver README (seção B02)
-const FIM = 16.0, TOTAL = 19.4;
-const GANCHO = [0.15, 3.35], LOGO = 3.45, PL = [[4.2, 8.15], [8.3, 12.55], [12.7, FIM]];
-const P = [];      // [palavra, início]; preenchido depois de medir a fala
-const FALA = [];
+const C1 = 7.0, FIM = 15.0, TOTAL = 18.4;      // cena 1 usada até 7,0 s; cena 2 inteira (8 s)
+const GANCHO = [0.15, 3.55], LOGO = 3.9, PL = [[5.0, 7.25], [7.3, 11.55], [11.6, FIM]];
+const P = [["Você",.04],["sabe",.46],["quanto",.88],["seu",1.30],["carro",1.51],["te",1.93],["custou",2.14],["esse",2.56],["ano?",2.98],["No",3.92],["Jarvys,",4.05],["cada",5.02],["gasto",5.38],["fica",5.76],["anotado.",6.10],
+  ...[["O",.24],["histórico",.40],["das",1.05],["revisões",1.21],["fica",1.69],["guardado",2.01],["e",2.70],["valoriza",2.87],["na",3.54],["venda.",3.71],["E",4.42],["todo",4.60],["mês",4.92],["você",5.38],["vê",5.65],["quanto",6.10],["ele",6.42],["vale",6.60],["na",6.90],["Fipe.",7.18]].map(([w, t]) => [w, t + 7.0])];
+const FALA = [[0, 3.5], [3.9, 6.9], [7.2, 11.1], [11.4, 14.65]];
 document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); });
 if (P.length) K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
 const cap = document.querySelector('.cap'); if (cap) cap.style.top = '1245px';
@@ -61,7 +64,7 @@ window.setT = async t => {
   K.fundo(ALPHA ? 'transparent' : '#0b1b2e');
   const k = seg(t, FIM, FIM + .4);
   if (ALPHA) escuro.style.opacity = k * .8;
-  else { const n = Math.max(1, Math.min(480, Math.round(t * 30) + 1)), src = `b02/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } clip.style.filter = k > 0 ? `brightness(${mix(1, .3, k)}) blur(${mix(0, 14, k)}px)` : 'none'; }
+  else { const n = Math.max(1, Math.min(450, Math.round(t * 30) + 1)), src = `b02/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } clip.style.filter = k > 0 ? `brightness(${mix(1, .3, k)}) blur(${mix(0, 14, k)}px)` : 'none'; }
   topo.style.opacity = 1 - k;
   // gancho em 3D: entra tombando de cima, sai encolhendo
   const g = $('gancho'), ga = back(seg(t, GANCHO[0], GANCHO[0] + .5)), gb = seg(t, GANCHO[1] - .22, GANCHO[1]);

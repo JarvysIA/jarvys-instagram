@@ -19,3 +19,7 @@ Código: `_codigo/motion/anuncios.py` gera `anuncio20.html`, `anuncio06.html`, a
   3. Capturar só os textos com fundo transparente: `ALPHA=1 node cap3d.mjs "fernando-01.html?alpha=1" ova 14` (PNG).
   4. Juntar no ffmpeg (vídeo + PNG por cima, fecho com o último quadro congelado, desfocado e escurecido) em uma única compressão, crf 17, marcado como bt709. Assim o vídeo gravado não passa por captura de tela.
 - Saída sempre em 1080x1920: é o máximo que o Instagram exibe, então o 4K entra como nitidez e folga para o recorte, não como resolução final.
+
+## Anúncio com o Dr. Jarvys em pessoa (18/11/2026)
+
+- `2026-11/dia-29/reel-b02.mp4` (18,4 s): o mesmo arquivo do reel B02 serve de anúncio. Gancho "Quanto seu carro te custou esse ano?", 3 vantagens (gastos, histórico das revisões, valor pela Fipe), fecho "App 100% grátis, jarvys.com.br". Personagem feito com IA: marcar o rótulo de IA no anúncio. Código e passo a passo em `_codigo/motion3d/README.md` (seção B02).

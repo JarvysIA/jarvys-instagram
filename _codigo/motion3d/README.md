@@ -78,3 +78,16 @@ Exemplo: `fernando-01.html`. Gravação de iPhone vem em HDR (HLG, 10 bits); sem
 - Fecho de toda cena nova: `<div class="ov end g" ...><img src="icon-512.png"></div>` (320 px; a classe `g` está no `kit3d.css`). O padrão antigo de 190 px fica só nas cenas já publicadas. Ao copiar `a01.html` ou `uso-real-01.html`, pôr o `g` e descer o texto, o botão e o endereço uns 130 px.
 - No meio do vídeo, quando o Jarvys é citado: logo com 260 px ou mais (`.ic img` em `fernando-01.html`).
 - `fernando-01.html` já está com a logo grande. Os arquivos v2 publicados em 18/11 (anúncio e reel do Fernando) foram feitos antes, com 150 e 190 px.
+
+## B02 "Quanto seu carro te custou esse ano?" (18/11/2026, sai em 29/11 19h30; serve também de anúncio)
+
+Pedido do Fernando a partir de um vídeo de referência (apresentador de IA com títulos e placas "meio 3D"): o Dr. Jarvys em pessoa falando 3 vantagens do app. Aqui o apresentador fica na tela o tempo todo.
+
+- Fala (conferida por transcrição): "Você sabe quanto seu carro te custou esse ano? No Jarvys, cada gasto fica anotado. O histórico das revisões fica guardado e valoriza na venda. E todo mês você vê quanto ele vale na Fipe."
+- Vídeo: 2 cenas de 8 s no Veo 3.1 Lite (720p, 9:16, com áudio, 2.424 créditos cada), no flow do formato B (JM5RaHHourYMBEHndY2d). Cena 1 (nó QIt8vqlzPCbXSAi147Oa) começa de `b01/dr-jarvys.png`; cena 2 (nó blAO3oEmHCLGesYWBTvQ) começa do último quadro da cena 1 (`b02/fim1.png`, anexado por link do repositório). A voz saiu igual nas duas. Total 4.848 créditos; transcrição feita aqui, 0 crédito.
+- Prompt: "Photorealistic vertical commercial video, continuing from the first frame", a ação e os gestos (contar nos dedos, joinha), a fala entre aspas com "says in Brazilian Portuguese, with a natural Brazilian accent, a deep warm confident voice ... starting immediately", "Locked-off static camera", "Only he speaks", "No subtitles, no captions, no on-screen text, no logos, no graphics, no music". "Járvis" no prompt. Até 20 palavras por cena de 8 s.
+- Cuidado com a transcrição local: o whisper small repetiu "No Jarvis" duas vezes no áudio inteiro. Transcrevendo cada trecho de fala separado (achado pelo volume), a repetição sumiu: era erro do transcritor, não da cena. Conferir sempre por trechos antes de mexer.
+- Cena 1 usada até 7,0 s (depois da fala tem um som solto, cortado); cena 2 inteira. Vídeo base: `b02/base.mp4` (as duas cenas emendadas, 30 fps, 1080x1920 lanczos, crf 12; fora do git).
+- Textos: `b02.html` (título do gancho em 3D cromado, logo de 270 px no topo desde "No Jarvys", 3 placas em 3D com faíscas, legenda palavra por palavra, fecho com logo de 320 px). Só os textos: `ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 18.4`. Som: `python3 audio_b02.py audb2`, voz das cenas em `audb2/voz.wav`, `trilha-01.mp3 -ss 3 -t 18.4`. Junta tudo num ffmpeg só (overlay + mistura do `mix2.sh`), crf 18. Final 18,4 s, -14,5 LUFS.
+- Mídia: `2026-11/dia-29/reel-b02.mp4`. No Buffer: `isAiGenerated: true` e "Personagem ilustrativo, feito com IA." na legenda.
+- Fonte da frase "valoriza na venda": InstaCarro ("Histórico de revisões valoriza carro usado e acelera a venda"), iCarros e AutoPapo, consultados em 18/11/2026.
