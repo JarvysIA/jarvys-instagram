@@ -1,0 +1,71 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+#clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+#escuro{position:absolute;inset:0;background:#0b1b2e;opacity:0}
+#topo{position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(rgba(11,27,46,.94),rgba(11,27,46,.72) 52%,rgba(11,27,46,0))}
+#ui{perspective:1500px}
+/* título em 3D: cada linha é um span com o texto repetido em data-t (frente cromada por cima da "espessura") */
+.x3{position:absolute;left:0;right:0;top:66px;text-align:center;white-space:nowrap;font-size:98px;line-height:1.0;letter-spacing:-3px;text-transform:uppercase;transform-origin:50% 50%;opacity:0}
+.x3 span{position:relative;display:block;color:#061120;text-shadow:0 2px 0 #061120,0 4px 0 #061120,0 6px 0 #061120,0 8px 0 #061120,0 10px 0 #050d18,0 12px 0 #050d18,0 20px 26px rgba(0,0,0,.55)}
+.x3 span::after{content:attr(data-t);position:absolute;left:0;right:0;top:0;text-shadow:none;background:linear-gradient(#ffffff 8%,#dfe7f1 44%,#93a5bb 54%,#f4f8fc 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.x3 span.o::after{background:linear-gradient(#fff6b0 6%,#ffd21f 46%,#f39a0a 56%,#ffe36b 82%);-webkit-background-clip:text;background-clip:text}
+.x3 span.p{font-size:86px}
+/* logo no topo */
+.lg{position:absolute;left:0;right:0;top:46px;text-align:center;opacity:0}
+.lg img{width:270px;height:270px;border-radius:62px;border:7px solid #fff;box-shadow:0 0 0 5px #0b1b2e,0 0 46px 10px rgba(88,196,255,.75),0 18px 40px rgba(0,0,0,.5)}
+/* placa em 3D */
+.pl{position:absolute;left:70px;width:940px;height:250px;top:930px;opacity:0;transform-style:preserve-3d}
+.pl .f{position:absolute;inset:0;border-radius:36px;background:linear-gradient(158deg,#1d3d63,#0b1b2e 58%,#071221);border:7px solid #ffd21f;box-shadow:0 0 0 4px #0b1b2e,0 0 44px 6px rgba(255,210,31,.6),inset 0 3px 0 rgba(255,255,255,.28),16px 20px 0 #040a13;display:flex;align-items:center;gap:28px;padding:0 34px}
+.pl .n{flex:none;width:136px;height:136px;border-radius:32px;background:linear-gradient(#fff6b0,#ffd21f 48%,#f39a0a);color:#0b1b2e;font-size:100px;line-height:136px;text-align:center;box-shadow:0 9px 0 #8f5c00,inset 0 3px 0 rgba(255,255,255,.7)}
+.pl#p4 .t{font-size:84px}.pl#p4 .s{font-size:52px}
+.pl .t{font-size:68px;line-height:1.0;letter-spacing:-1.5px;text-transform:uppercase}
+.pl .s{font-size:44px;line-height:1.05;color:#ffd21f;margin-top:14px}
+.spk{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:#ffe36b;box-shadow:0 0 14px 4px #ffb300;opacity:0}
+.ck{display:block;margin:0 auto 16px;width:max-content;font-size:48px;padding:18px 34px 18px 28px}
+.ck i{display:inline-block;width:17px;height:32px;border:solid #fff;border-width:0 8px 8px 0;transform:rotate(45deg);margin:0 26px 4px 8px}
+
+.ia{font-size:34px;-webkit-text-stroke:8px #0b1b2e;paint-order:stroke fill;opacity:.9}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Avatar do Fernando (desenho 3D) falando com a voz dele. Teste 01 (18/11/2026): fala 9 do lote de voz, "Instale agora mesmo, o app é 100% grátis."
+     Clipe: ../avatar/clipes/f09-instale-agora.mp4 (HeyGen Avatar 4 a partir de ../avatar/fernando-avatar-jarvys-720.png + áudio dele).
+     Só os textos saem daqui: ALPHA=1 node cap3d.mjs "fav01.html?alpha=1" ovf 6.4 -->
+<div id="topo"></div><div id="escuro"></div>
+<div id="ui">
+  <div class="lg" id="logo"><img src="icon-512.png"></div>
+  <div class="pl" id="p4" style="top:405px"><div class="f"><img class="n" src="icon-512.png" style="background:none;box-shadow:0 0 0 5px #fff"><div><div class="t">Instale agora</div><div class="s">o app é 100% grátis</div></div></div></div>
+  <div id="spks"></div>
+  <div class="ov end g" data-a="E0.1" style="top:170px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="E0.35" data-fx="up" style="top:560px">Cuide do seu carro<br>com o Jarvys.</div>
+  <div class="ov end" data-a="E0.7" style="top:715px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="E1.0" data-fx="up" style="top:865px">jarvys.com.br</div>
+  <div class="ov end ia" data-a="E1.3" data-fx="fade" style="top:990px">Avatar do Fernando, feito com IA. A voz é dele.</div>
+</div>
+<script>
+const FIM = 3.5, LOGO = 0.1, PL = [.3, FIM];
+const P = [["Instale",.14],["agora",.575],["mesmo,",1.01],["o",1.82],["app",1.95],["é",2.21],["100%",2.34],["grátis.",2.86]];
+document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); });
+K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
+const cap = document.querySelector('.cap'); cap.style.top = "1175px";
+K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
+const $ = id => document.getElementById(id), escuro = $('escuro'), topo = $('topo');
+document.body.style.background = 'transparent';
+const NS = 16, spks = [...Array(NS)].map(() => { const d = document.createElement('div'); d.className = 'spk'; $('spks').appendChild(d); return d; });
+const { seg, mix, back, out } = K;
+window.setT = t => {
+  K.fundo('transparent');
+  const k = seg(t, FIM, FIM + .4); escuro.style.opacity = k * .8; topo.style.opacity = 1 - k;
+  const l = $('logo'), la = back(seg(t, LOGO, LOGO + .45));
+  l.style.opacity = Math.min(seg(t, LOGO, LOGO + .14), Math.max(0, 1 - k * 4));
+  l.style.transform = `scale(${mix(.4, 1, la) * (1 + Math.sin(t * 3) * .012)}) rotateY(${mix(180, 0, out(seg(t, LOGO, LOGO + .6)))}deg)`;
+  const [a, b] = PL, e = $('p4'), ka = back(seg(t, a, a + .5)), kb = seg(t, b - .2, b);
+  e.style.opacity = t < a ? 0 : Math.min(seg(t, a, a + .12), 1 - kb);
+  e.style.transform = `translateX(${mix(520, 0, out(seg(t, a, a + .4)))}px) rotateY(${mix(80, -9, ka) + Math.sin(t * 1.9) * 2}deg) rotateX(${5 + Math.sin(t * 1.4) * 1.5}deg) scale(${mix(.6, 1, ka) * mix(1, .7, kb)})`;
+  const ks = seg(t, a + .18, a + .85);
+  spks.forEach((s, j) => { if (ks > 0 && ks < 1) { const an = j / NS * 6.283, r = mix(60, 330 + (j % 3) * 70, out(ks)); s.style.opacity = 1 - ks; s.style.transform = `translate(${540 + Math.cos(an) * r * 1.5}px,${530 + Math.sin(an) * r * .55}px) scale(${mix(1.3, .3, ks)})`; } else s.style.opacity = 0; });
+  K.camAt(t); K.ui(t); K.caps(t); if (t > FIM - .1) cap.style.opacity = 0;
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
