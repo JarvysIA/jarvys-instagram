@@ -91,3 +91,12 @@ Pedido do Fernando a partir de um vídeo de referência (apresentador de IA com 
 - Textos: `b02.html` (título do gancho em 3D cromado, logo de 270 px no topo desde "No Jarvys", 3 placas em 3D com faíscas, legenda palavra por palavra, fecho com logo de 320 px). Só os textos: `ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 18.4`. Som: `python3 audio_b02.py audb2`, voz das cenas em `audb2/voz.wav`, `trilha-01.mp3 -ss 3 -t 18.4`. Junta tudo num ffmpeg só (overlay + mistura do `mix2.sh`), crf 18. Final 18,4 s, -14,5 LUFS.
 - Mídia: `2026-11/dia-29/reel-b02.mp4`. No Buffer: `isAiGenerated: true` e "Personagem ilustrativo, feito com IA." na legenda.
 - Fonte da frase "valoriza na venda": InstaCarro ("Histórico de revisões valoriza carro usado e acelera a venda"), iCarros e AutoPapo, consultados em 18/11/2026.
+
+### B02 v2 (18/11, 22h40): fecho falado pelo personagem
+
+Retorno do Fernando: "Ficou muito bom. O personagem poderia fechar falando: instale agora mesmo, é 100% grátis." Vale a v2: `2026-11/dia-29/reel-b02-v2.mp4` (21,5 s, -14,4 LUFS). A v1 (`reel-b02.mp4`) fica no repositório, sem uso.
+
+- Cena 3 (nó ViDgSC0qnrqPw1phDmTm, geração oz6NRYH47VTjnTB3PJvN): Veo 3.1 Lite com `duration_secs: 4` custa 1.212 (metade da de 8 s). Começa do último quadro da cena 2 (`b02/fim2.png`). Fala conferida: "Instale agora mesmo. O app é 100% grátis." (no prompt: "cem por cento"; o "grátis" fica ligado à palavra "app", pela regra da chamada). Usada até 3,5 s.
+- Na cena: placa 4 "INSTALE AGORA / o app é 100% grátis" com a logo, de 15,05 a 18,5 s; fecho escrito de 18,5 a 21,5 s. Captura dos textos: `ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 21.5`.
+- A cada cena gerada a partir do último quadro da anterior o rosto muda um pouco. Três cenas em sequência ainda passa; para vídeos mais longos, partir sempre de `b01/dr-jarvys.png` e emendar com corte seco.
+- Total do B02: 6.060 créditos (2.424 + 2.424 + 1.212).

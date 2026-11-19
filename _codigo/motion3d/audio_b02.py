@@ -6,7 +6,7 @@ from scipy.io import wavfile
 
 SR = 44100
 OUT = sys.argv[1]
-DUR = 18.4
+DUR = 21.5
 N = int(DUR * SR)
 rng = np.random.default_rng(7)
 
@@ -82,8 +82,8 @@ def tec(at, g=1.0):
     place(sfx, (s + x) * g, at)
 pop(.15, 560, .35); whoosh(.55, .5, .7); thump(.2, .5) if 'thump' in globals() else None
 whoosh(3.95, .45, .6); pop(3.95, 720, .45); ding(4.1, .28)
-for t in (5.0, 7.3, 11.6): whoosh(t + .1, .5, .9); pop(t + .32, 640, .5); coin(t + .45, .5)
-E = 15.0; whoosh(E + .05, .6, .9); pop(E + .15, 700, .5); pop(E + .8, 780, .5); ding(E + 1.15, .45)
+for t in (5.0, 7.3, 11.6, 15.05): whoosh(t + .1, .5, .9); pop(t + .32, 640, .5); coin(t + .45, .5)
+E = 18.5; whoosh(E + .05, .6, .9); pop(E + .15, 700, .5); pop(E + .8, 780, .5); ding(E + 1.15, .45)
 sfx /= np.abs(sfx).max() + 1e-9
 wavfile.write(f'{OUT}/sfx.wav', SR, (np.stack([sfx, sfx], 1) * 32000 * 0.9).astype(np.int16))
 print('ok')

@@ -22,4 +22,4 @@ Código: `_codigo/motion/anuncios.py` gera `anuncio20.html`, `anuncio06.html`, a
 
 ## Anúncio com o Dr. Jarvys em pessoa (18/11/2026)
 
-- `2026-11/dia-29/reel-b02.mp4` (18,4 s): o mesmo arquivo do reel B02 serve de anúncio. Gancho "Quanto seu carro te custou esse ano?", 3 vantagens (gastos, histórico das revisões, valor pela Fipe), fecho "App 100% grátis, jarvys.com.br". Personagem feito com IA: marcar o rótulo de IA no anúncio. Código e passo a passo em `_codigo/motion3d/README.md` (seção B02).
+- `2026-11/dia-29/reel-b02-v2.mp4` (21,5 s): o mesmo arquivo do reel B02 serve de anúncio. O personagem fecha falando "Instale agora mesmo. O app é 100% grátis." Gancho "Quanto seu carro te custou esse ano?", 3 vantagens (gastos, histórico das revisões, valor pela Fipe), fecho "App 100% grátis, jarvys.com.br". Personagem feito com IA: marcar o rótulo de IA no anúncio. Código e passo a passo em `_codigo/motion3d/README.md` (seção B02).

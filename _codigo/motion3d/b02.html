@@ -17,6 +17,7 @@
 .pl{position:absolute;left:70px;width:940px;height:250px;top:930px;opacity:0;transform-style:preserve-3d}
 .pl .f{position:absolute;inset:0;border-radius:36px;background:linear-gradient(158deg,#1d3d63,#0b1b2e 58%,#071221);border:7px solid #ffd21f;box-shadow:0 0 0 4px #0b1b2e,0 0 44px 6px rgba(255,210,31,.6),inset 0 3px 0 rgba(255,255,255,.28),16px 20px 0 #040a13;display:flex;align-items:center;gap:28px;padding:0 34px}
 .pl .n{flex:none;width:136px;height:136px;border-radius:32px;background:linear-gradient(#fff6b0,#ffd21f 48%,#f39a0a);color:#0b1b2e;font-size:100px;line-height:136px;text-align:center;box-shadow:0 9px 0 #8f5c00,inset 0 3px 0 rgba(255,255,255,.7)}
+.pl#p4 .t{font-size:84px}.pl#p4 .s{font-size:52px}
 .pl .t{font-size:68px;line-height:1.0;letter-spacing:-1.5px;text-transform:uppercase}
 .pl .s{font-size:44px;line-height:1.05;color:#ffd21f;margin-top:14px}
 .spk{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:#ffe36b;box-shadow:0 0 14px 4px #ffb300;opacity:0}
@@ -28,7 +29,7 @@
 <script src="node_modules/three/build/three.min.js"></script>
 <script src="kit3d.js"></script>
 <!-- B02 (18/11/2026): Dr. Jarvys em pessoa (personagem de IA) na tela o tempo todo, com título e placas em 3D por cima. Pedido do Fernando a partir de um vídeo de referência.
-     Vídeo: 2 cenas de 8 s do Veo 3.1 Lite (b02/cena1.mp4 e cena2.mp4). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 18.4 -->
+     Vídeo: 2 cenas de 8 s e 1 de 4 s do Veo 3.1 Lite (b02/cena1.mp4, cena2.mp4 e cena3.mp4). Fecho falado pedido pelo Fernando: "Instale agora mesmo. O app é 100% grátis." Só os textos saem daqui: ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 21.5 -->
 <img id="clip"><div id="topo"></div><div id="escuro"></div>
 <div id="ui">
   <div class="x3" id="gancho"><span data-t="Quanto seu carro">Quanto seu carro</span><span class="o" data-t="te custou">te custou</span><span class="o" data-t="esse ano?">esse ano?</span></div>
@@ -36,6 +37,7 @@
   <div class="pl" id="p1"><div class="f"><div class="n">1</div><div><div class="t">Gastos<br>sob controle</div><div class="s">cada gasto anotado</div></div></div></div>
   <div class="pl" id="p2"><div class="f"><div class="n">2</div><div><div class="t">Histórico<br>das revisões</div><div class="s">valoriza na venda</div></div></div></div>
   <div class="pl" id="p3"><div class="f"><div class="n">3</div><div><div class="t">Valor<br>pela Fipe</div><div class="s">atualizado todo mês</div></div></div></div>
+  <div class="pl" id="p4"><div class="f"><img class="n" src="icon-512.png" style="background:none;box-shadow:0 0 0 5px #fff"><div><div class="t">Instale agora</div><div class="s">o app é 100% grátis</div></div></div></div>
   <div id="spks"></div>
 
   <div class="ov end g" data-a="E0.1" style="top:120px"><img src="icon-512.png"></div>
@@ -47,11 +49,12 @@
 <script>
 const QS = new URLSearchParams(location.search), ALPHA = QS.get('alpha');
 // tempos (s) medidos no som das cenas: ver README (seção B02)
-const C1 = 7.0, FIM = 15.0, TOTAL = 18.4;      // cena 1 usada até 7,0 s; cena 2 inteira (8 s)
-const GANCHO = [0.15, 3.55], LOGO = 3.9, PL = [[5.0, 7.25], [7.3, 11.55], [11.6, FIM]];
+const C1 = 7.0, C2 = 15.0, FIM = 18.5, TOTAL = 21.5;      // cena 1 usada até 7,0 s; cena 2 inteira (8 s); cena 3 (fecho falado) até 3,5 s
+const GANCHO = [0.15, 3.55], LOGO = 3.9, PL = [[5.0, 7.25], [7.3, 11.55], [11.6, C2], [C2 + .05, FIM]];
 const P = [["Você",.04],["sabe",.46],["quanto",.88],["seu",1.30],["carro",1.51],["te",1.93],["custou",2.14],["esse",2.56],["ano?",2.98],["No",3.92],["Jarvys,",4.05],["cada",5.02],["gasto",5.38],["fica",5.76],["anotado.",6.10],
-  ...[["O",.24],["histórico",.40],["das",1.05],["revisões",1.21],["fica",1.69],["guardado",2.01],["e",2.70],["valoriza",2.87],["na",3.54],["venda.",3.71],["E",4.42],["todo",4.60],["mês",4.92],["você",5.38],["vê",5.65],["quanto",6.10],["ele",6.42],["vale",6.60],["na",6.90],["Fipe.",7.18]].map(([w, t]) => [w, t + 7.0])];
-const FALA = [[0, 3.5], [3.9, 6.9], [7.2, 11.1], [11.4, 14.65]];
+  ...[["O",.24],["histórico",.40],["das",1.05],["revisões",1.21],["fica",1.69],["guardado",2.01],["e",2.70],["valoriza",2.87],["na",3.54],["venda.",3.71],["E",4.42],["todo",4.60],["mês",4.92],["você",5.38],["vê",5.65],["quanto",6.10],["ele",6.42],["vale",6.60],["na",6.90],["Fipe.",7.18]].map(([w, t]) => [w, t + 7.0]),
+  ...[["Instale",.06],["agora",.42],["mesmo.",.80],["O",1.44],["app",1.62],["é",1.98],["100%",2.16],["grátis.",2.88]].map(([w, t]) => [w, t + 15.0])];
+const FALA = [[0, 3.5], [3.9, 6.9], [7.2, 11.1], [11.4, 14.65], [15.0, 18.35]];
 document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); });
 if (P.length) K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
 const cap = document.querySelector('.cap'); if (cap) cap.style.top = '1245px';
@@ -64,7 +67,7 @@ window.setT = async t => {
   K.fundo(ALPHA ? 'transparent' : '#0b1b2e');
   const k = seg(t, FIM, FIM + .4);
   if (ALPHA) escuro.style.opacity = k * .8;
-  else { const n = Math.max(1, Math.min(450, Math.round(t * 30) + 1)), src = `b02/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } clip.style.filter = k > 0 ? `brightness(${mix(1, .3, k)}) blur(${mix(0, 14, k)}px)` : 'none'; }
+  else { const n = Math.max(1, Math.min(555, Math.round(t * 30) + 1)), src = `b02/cf${String(n).padStart(4, '0')}.jpg`; if (!clip.src.endsWith(src)) { clip.src = src; await clip.decode(); } clip.style.filter = k > 0 ? `brightness(${mix(1, .3, k)}) blur(${mix(0, 14, k)}px)` : 'none'; }
   topo.style.opacity = 1 - k;
   // gancho em 3D: entra tombando de cima, sai encolhendo
   const g = $('gancho'), ga = back(seg(t, GANCHO[0], GANCHO[0] + .5)), gb = seg(t, GANCHO[1] - .22, GANCHO[1]);
