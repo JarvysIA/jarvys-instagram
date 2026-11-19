@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+#clip{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+#escuro{position:absolute;inset:0;background:#0b1b2e;opacity:0}
+#topo{position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(rgba(11,27,46,.94),rgba(11,27,46,.72) 52%,rgba(11,27,46,0))}
+#ui{perspective:1500px}
+/* título em 3D: cada linha é um span com o texto repetido em data-t (frente cromada por cima da "espessura") */
+.x3{position:absolute;left:0;right:0;top:66px;text-align:center;white-space:nowrap;font-size:98px;line-height:1.0;letter-spacing:-3px;text-transform:uppercase;transform-origin:50% 50%;opacity:0}
+.x3 span{position:relative;display:block;color:#061120;text-shadow:0 2px 0 #061120,0 4px 0 #061120,0 6px 0 #061120,0 8px 0 #061120,0 10px 0 #050d18,0 12px 0 #050d18,0 20px 26px rgba(0,0,0,.55)}
+.x3 span::after{content:attr(data-t);position:absolute;left:0;right:0;top:0;text-shadow:none;background:linear-gradient(#ffffff 8%,#dfe7f1 44%,#93a5bb 54%,#f4f8fc 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.x3 span.o::after{background:linear-gradient(#fff6b0 6%,#ffd21f 46%,#f39a0a 56%,#ffe36b 82%);-webkit-background-clip:text;background-clip:text}
+.x3 span.p{font-size:86px}
+/* logo no topo */
+.lg{position:absolute;left:0;right:0;top:46px;text-align:center;opacity:0}
+.lg img{width:270px;height:270px;border-radius:62px;border:7px solid #fff;box-shadow:0 0 0 5px #0b1b2e,0 0 46px 10px rgba(88,196,255,.75),0 18px 40px rgba(0,0,0,.5)}
+/* placa em 3D */
+.pl{position:absolute;left:70px;width:940px;height:250px;top:930px;opacity:0;transform-style:preserve-3d}
+.pl .f{position:absolute;inset:0;border-radius:36px;background:linear-gradient(158deg,#1d3d63,#0b1b2e 58%,#071221);border:7px solid #ffd21f;box-shadow:0 0 0 4px #0b1b2e,0 0 44px 6px rgba(255,210,31,.6),inset 0 3px 0 rgba(255,255,255,.28),16px 20px 0 #040a13;display:flex;align-items:center;gap:28px;padding:0 34px}
+.pl .n{flex:none;width:136px;height:136px;border-radius:32px;background:linear-gradient(#fff6b0,#ffd21f 48%,#f39a0a);color:#0b1b2e;font-size:100px;line-height:136px;text-align:center;box-shadow:0 9px 0 #8f5c00,inset 0 3px 0 rgba(255,255,255,.7)}
+.pl#p4 .t{font-size:84px}.pl#p4 .s{font-size:52px}
+.pl .t{font-size:68px;line-height:1.0;letter-spacing:-1.5px;text-transform:uppercase}
+.pl .s{font-size:44px;line-height:1.05;color:#ffd21f;margin-top:14px}
+.spk{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:#ffe36b;box-shadow:0 0 14px 4px #ffb300;opacity:0}
+.ck{display:block;margin:0 auto 16px;width:max-content;font-size:48px;padding:18px 34px 18px 28px}
+.ck i{display:inline-block;width:17px;height:32px;border:solid #fff;border-width:0 8px 8px 0;transform:rotate(45deg);margin:0 26px 4px 8px}
+
+.ia{font-size:34px;-webkit-text-stroke:8px #0b1b2e;paint-order:stroke fill;opacity:.9}
+.card{position:absolute;left:90px;width:900px;top:500px;border-radius:46px;background:linear-gradient(170deg,#ffffff,#e8eef6);color:#0b1b2e;box-shadow:0 0 0 6px #0b1b2e,0 0 0 12px #ffd21f,0 40px 70px rgba(0,0,0,.55),18px 24px 0 #040a13;opacity:0;transform-style:preserve-3d;padding:0 0 26px;overflow:hidden}
+.card h3{font-size:54px;line-height:1;margin:0;padding:34px 40px;background:#0b1b2e;color:#fff;text-transform:uppercase;letter-spacing:-1px}
+.card h3 b{color:#ffd21f}
+.card .r{display:flex;align-items:center;justify-content:space-between;font-size:50px;padding:26px 40px;border-bottom:3px solid #d5dde8;opacity:0}
+.card .r i{font-style:normal;margin-right:22px}
+.card .r b{font-size:54px}
+.card .tot{display:flex;justify-content:space-between;font-size:58px;padding:30px 40px 6px;opacity:0}
+.card .tot b{font-size:74px;color:#0e7a45}
+.card .ex{font-size:28px;color:#62748b;padding:14px 40px 0;font-weight:800}
+.card .ok{display:inline-block;width:62px;height:62px;border-radius:50%;background:#0e7a45;margin-right:24px;position:relative;flex:none}
+.card .ok::after{content:"";position:absolute;left:22px;top:11px;width:15px;height:29px;border:solid #fff;border-width:0 8px 8px 0;transform:rotate(45deg)}
+.card .l{display:flex;align-items:center}
+.card .km{color:#62748b;font-size:42px}
+.card .bell{margin:26px 34px 0;padding:26px 30px;border-radius:30px;background:#ffd21f;border:5px solid #0b1b2e;font-size:46px;line-height:1.1;opacity:0}
+.card .big{font-size:150px;letter-spacing:-5px;text-align:center;padding:44px 0 0;line-height:1}
+.card .sm{font-size:46px;text-align:center;color:#0e7a45;padding:6px 0 10px}
+.card svg{display:block;margin:10px auto 0}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- F01 (19/11/2026): primeiro reel com o avatar do Fernando e a voz dele (frases 4, 8 e 9 do lote de voz 1).
+     O avatar fala só o gancho e o fecho (HeyGen Avatar 4); o meio são cartões em 3D sobre a garagem desfocada, com a voz dele por cima.
+     Vídeo base montado no ffmpeg (ver README de _codigo/avatar). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "fav02.html?alpha=1" ovg 19.4 -->
+<div id="topo"></div><div id="escuro"></div>
+<div id="ui">
+  <div class="x3" id="gancho"><span data-t="Quanto seu carro">Quanto seu carro</span><span class="o" data-t="te custou">te custou</span><span class="o" data-t="esse ano?">esse ano?</span></div>
+  <div class="lg" id="logo"><img src="icon-512.png"></div>
+  <div class="card" id="c1"><h3>Gastos <b>do mês</b></h3>
+    <div class="r"><span><i>⛽</i>Combustível</span><b>R$ 420</b></div>
+    <div class="r"><span><i>🧽</i>Lavagem</span><b>R$ 60</b></div>
+    <div class="r"><span><i>🔧</i>Troca de óleo</span><b>R$ 280</b></div>
+    <div class="tot"><span>Total</span><b>R$ 760</b></div><div class="ex">Valores de exemplo</div></div>
+  <div class="card" id="c2"><h3>Histórico <b>das revisões</b></h3>
+    <div class="r"><span class="l"><span class="ok"></span>Revisão</span><span class="km">10.000 km</span></div>
+    <div class="r"><span class="l"><span class="ok"></span>Óleo e filtros</span><span class="km">20.000 km</span></div>
+    <div class="r"><span class="l"><span class="ok"></span>Pastilhas de freio</span><span class="km">30.000 km</span></div>
+    <div class="bell">🔔 Próxima revisão chegando:<br><b>40.000 km</b></div><div class="ex">Exemplo</div></div>
+  <div class="card" id="c3"><h3>Seu carro <b>na Fipe</b></h3>
+    <div class="big">R$ 58.900</div><div class="sm">atualizado todo mês</div>
+    <svg width="780" height="230" viewBox="0 0 780 230"><polyline id="ln" fill="none" stroke="#0e7a45" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" points="20,170 130,150 240,160 350,120 460,130 570,90 680,100 760,60"/><circle id="pt" cx="760" cy="60" r="18" fill="#ffd21f" stroke="#0b1b2e" stroke-width="8"/></svg>
+    <div class="ex">Valor de exemplo</div></div>
+  <div class="pl" id="p4" style="top:1270px"><div class="f"><img class="n" src="icon-512.png" style="background:none;box-shadow:0 0 0 5px #fff"><div><div class="t">Instale agora</div><div class="s">o app é 100% grátis</div></div></div></div>
+  <div id="spks"></div>
+  <div class="ov end g" data-a="E0.1" style="top:120px"><img src="icon-512.png"></div>
+  <div class="ov end" data-a="E0.35" data-fx="up" style="top:498px"><span class="chip ok ck"><i></i>Gastos sob controle</span><span class="chip ok ck"><i></i>Histórico das revisões</span><span class="chip ok ck"><i></i>Valor pela Fipe todo mês</span></div>
+  <div class="ov end" data-a="E0.8" style="top:825px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="E1.1" data-fx="up" style="top:975px">jarvys.com.br</div>
+</div>
+<script>
+const H = 2.85, M = 2.95, F8 = 5.75, C = 13.1, FIM = 16.6;      // gancho (clipe), fala 4b, fala 8, fecho (clipe), fim
+const GANCHO = [.1, H - .1], LOGO = M + .1, CARDS = [[M, F8 - .05], [F8 + .1, F8 + 4.65], [F8 + 4.7, C - .05]], BELL = F8 + 2.63, PL = [C + .2, FIM];
+const add = (a, o) => a.map(([w, t]) => [w, t + o]);
+const P = [...add([["Você",.14],["sabe",.41],["o",.68],["quanto",.81],["seu",1.08],["carro",1.21],["te",1.48],["custou",1.62],["esse",1.88],["ano?",2.15]], 0),
+  ...add([["No",.12],["Jarvys,",.31],["cada",.69],["gasto",1.07],["fica",1.45],["anotado.",1.83]], M),
+  ...add([["O",.13],["Jarvys",.28],["guarda",.58],["o",.89],["histórico",1.04],["das",1.64],["revisões,",1.79],["avisa",2.63],["quando",3.05],["a",3.33],["próxima",3.47],["está",3.88],["chegando",4.16],["e",4.71],["mostra",4.85],["quanto",5.12],["o",5.40],["seu",5.54],["carro",5.68],["vale",5.95],["na",6.23],["Fipe,",6.37],["todo",6.80],["mês.",7.02]], F8),
+  ...add([["Instale",.14],["agora",.575],["mesmo,",1.01],["o",1.82],["app",1.95],["é",2.21],["100%",2.34],["grátis.",2.86]], C)];
+const FALA = [[.05, 2.6], [M, M + 2.7], [F8, C - .05], [C + .05, C + 3.3]];
+document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); });
+K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
+const cap = document.querySelector('.cap');
+K.camKeys([{ t: 0, p: [0, 5, 20], l: [0, 3, 0] }]);
+const $ = id => document.getElementById(id), escuro = $('escuro'), topo = $('topo');
+document.body.style.background = 'transparent';
+const NS = 16, spks = [...Array(NS)].map(() => { const d = document.createElement('div'); d.className = 'spk'; $('spks').appendChild(d); return d; });
+const { seg, mix, back, out } = K;
+window.setT = t => {
+  K.fundo('transparent');
+  const k = seg(t, FIM, FIM + .4); escuro.style.opacity = k * .8; topo.style.opacity = 1 - k;
+  const g = $('gancho'), ga = back(seg(t, GANCHO[0], GANCHO[0] + .45)), gb = seg(t, GANCHO[1] - .18, GANCHO[1]);
+  g.style.opacity = Math.min(seg(t, GANCHO[0], GANCHO[0] + .12), 1 - gb);
+  g.style.transform = `rotateX(${mix(-75, 0, ga) + Math.sin(t * 2.2) * 2.5}deg) rotateY(${Math.sin(t * 1.6) * 4}deg) scale(${mix(.7, 1, ga) * mix(1, .8, gb)})`;
+  const l = $('logo'), la = back(seg(t, LOGO, LOGO + .45));
+  l.style.opacity = Math.min(seg(t, LOGO, LOGO + .14), Math.max(0, 1 - k * 4));
+  l.style.transform = `scale(${mix(.4, 1, la) * (1 + Math.sin(t * 3) * .012)}) rotateY(${mix(180, 0, out(seg(t, LOGO, LOGO + .6)))}deg)`;
+  CARDS.forEach(([a, b], i) => {
+    const e = $('c' + (i + 1)), lado = i % 2 ? 1 : -1, ka = back(seg(t, a, a + .5)), kb = seg(t, b - .22, b);
+    e.style.opacity = t < a ? 0 : Math.min(seg(t, a, a + .12), 1 - kb);
+    e.style.transform = `translateX(${mix(lado * 620, 0, out(seg(t, a, a + .4))) + mix(0, -lado * 500, kb * kb)}px) rotateY(${mix(lado * 75, lado * -7, ka) + Math.sin(t * 1.7 + i) * 1.6}deg) rotateX(${4 + Math.sin(t * 1.3) * 1.2}deg) scale(${mix(.65, 1, ka)})`;
+    [...e.querySelectorAll('.r,.tot')].forEach((r, j) => { const ta = a + .45 + j * (i == 0 ? .42 : .5); r.style.opacity = seg(t, ta, ta + .15); r.style.transform = `translateX(${mix(60, 0, out(seg(t, ta, ta + .3)))}px)`; });
+  });
+  const bl = document.querySelector('.bell'), kbl = back(seg(t, BELL, BELL + .4)); bl.style.opacity = seg(t, BELL, BELL + .12); bl.style.transform = `scale(${mix(.5, 1, kbl)}) rotate(${Math.sin((t - BELL) * 18) * 3 * (1 - seg(t, BELL, BELL + .9))}deg)`;
+  const a3 = CARDS[2][0] + .5, kl = out(seg(t, a3, a3 + 1.1)); $('ln').style.strokeDasharray = 1000; $('ln').style.strokeDashoffset = 1000 * (1 - kl); $('pt').style.opacity = seg(t, a3 + .95, a3 + 1.1);
+  const [a, b] = PL, e = $('p4'), ka = back(seg(t, a, a + .5)), kb = seg(t, b - .2, b);
+  e.style.opacity = t < a ? 0 : Math.min(seg(t, a, a + .12), 1 - kb);
+  e.style.transform = `translateX(${mix(520, 0, out(seg(t, a, a + .4)))}px) rotateY(${mix(80, -9, ka) + Math.sin(t * 1.9) * 2}deg) rotateX(${5 + Math.sin(t * 1.4) * 1.5}deg) scale(${mix(.6, 1, ka) * mix(1, .7, kb)})`;
+  const ks = seg(t, a + .18, a + .85);
+  spks.forEach((s, j) => { if (ks > 0 && ks < 1) { const an = j / NS * 6.283, r = mix(60, 330 + (j % 3) * 70, out(ks)); s.style.opacity = 1 - ks; s.style.transform = `translate(${540 + Math.cos(an) * r * 1.5}px,${1395 + Math.sin(an) * r * .55}px) scale(${mix(1.3, .3, ks)})`; } else s.style.opacity = 0; });
+  cap.style.top = (t >= H && t < C) ? '1440px' : '1150px';
+  K.camAt(t); K.ui(t); K.caps(t); if (!FALA.some(([x, y]) => t >= x - .1 && t < y)) cap.style.opacity = 0;
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>

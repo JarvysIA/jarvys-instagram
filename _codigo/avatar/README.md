@@ -21,3 +21,14 @@ Ele gravou o lote de voz 1 (IMG_2591, 2 min 30 s; texto em `claude/roteiros-grav
 - Montagem do teste: `_codigo/motion3d/fav01.html` (logo no topo, placa "Instale agora" ACIMA da cabeça, legenda no peito, fecho) e `audio_fav01.py`; resultado em `clipes/teste-avatar-voz-01.mp4`.
 - **Dois defeitos do quadro inicial que aparecem no clipe e precisam ser corrigidos antes dos vídeos de verdade:** (1) as mãos sobem escuras, parecendo luva, porque os braços do recorte vêm escurecidos pelo degradê do vídeo de origem; (2) o remendo no peito, onde ficava a marca, aparece como um retângulo mais escuro. Ideia: refazer só a parte de baixo do corpo com a IA (braços e mãos iluminados) mantendo a cabeça do recorte original, e pôr a logo do Jarvys bordada no lugar do remendo.
 - Nesse enquadramento a cabeça fica entre 700 e 1.000 px de altura: nada de placa entre 650 e 1.100 px, senão tampa a boca.
+
+## F01, primeiro reel com o avatar (19/11/2026)
+
+Formato barato, escolhido pelo Fernando: o avatar fala só o gancho e o fecho; o meio são cartões em 3D com a voz dele por cima.
+
+- Gancho: `clipes/f04a-gancho.mp4` (HeyGen Avatar 4, `voz/f04a-quanto-custou-gancho.mp3`, 2,9 s, 1.818 créditos; geração xE2Cb1VRgnEAY4AvhcJ5). Neste clipe as mãos saíram com a cor certa.
+- Fecho: `clipes/f09-instale-agora.mp4` (o do teste 01; reaproveitar em todo vídeo).
+- Vídeo base (`clipes/f01-base.mp4`, fora do git): gancho 0 a 2,85 s + `fundo-garagem-desfocado.jpg` com zoom lento por 10,25 s + fecho 3,5 s, emendados no ffmpeg (`concat`), crf 12.
+- Textos: `../motion3d/fav02.html` (`ALPHA=1 node cap3d.mjs "fav02.html?alpha=1" ovg 19.4`). Som: `python3 audio_fav02.py audg`; voz = som do gancho + fala 4b em 2,95 s + fala 8 em 5,75 s + som do fecho em 13,1 s (`adelay` + `amix`); `trilha-02.mp3 -ss 2 -t 19.4`.
+- Final: `2026-11/dia-27/reel-avatar-f01.mp4` (19,4 s, -14,3 LUFS).
+- Voz clonada dele na ElevenLabs: "Fernando" (07OrNOE5HHvotITtTPgi). A "Fernando Star" é do chat da loja.
