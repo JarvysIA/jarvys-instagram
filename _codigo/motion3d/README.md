@@ -79,7 +79,7 @@ Exemplo: `fernando-01.html`. Gravação de iPhone vem em HDR (HLG, 10 bits); sem
 - No meio do vídeo, quando o Jarvys é citado: logo com 260 px ou mais (`.ic img` em `fernando-01.html`).
 - `fernando-01.html` já está com a logo grande. Os arquivos v2 publicados em 18/11 (anúncio e reel do Fernando) foram feitos antes, com 150 e 190 px.
 
-## B02 "Quanto seu carro te custou esse ano?" (18/11/2026, sai em 29/11 19h30; serve também de anúncio)
+## B02 "Quanto seu carro te custou esse ano?" (18/11/2026, sai em 22/11 às 11h45, dia e hora pedidos pelo Fernando; serve também de anúncio)
 
 Pedido do Fernando a partir de um vídeo de referência (apresentador de IA com títulos e placas "meio 3D"): o Dr. Jarvys em pessoa falando 3 vantagens do app. Aqui o apresentador fica na tela o tempo todo.
 
@@ -89,7 +89,7 @@ Pedido do Fernando a partir de um vídeo de referência (apresentador de IA com 
 - Cuidado com a transcrição local: o whisper small repetiu "No Jarvis" duas vezes no áudio inteiro. Transcrevendo cada trecho de fala separado (achado pelo volume), a repetição sumiu: era erro do transcritor, não da cena. Conferir sempre por trechos antes de mexer.
 - Cena 1 usada até 7,0 s (depois da fala tem um som solto, cortado); cena 2 inteira. Vídeo base: `b02/base.mp4` (as duas cenas emendadas, 30 fps, 1080x1920 lanczos, crf 12; fora do git).
 - Textos: `b02.html` (título do gancho em 3D cromado, logo de 270 px no topo desde "No Jarvys", 3 placas em 3D com faíscas, legenda palavra por palavra, fecho com logo de 320 px). Só os textos: `ALPHA=1 node cap3d.mjs "b02.html?alpha=1" ovb 18.4`. Som: `python3 audio_b02.py audb2`, voz das cenas em `audb2/voz.wav`, `trilha-01.mp3 -ss 3 -t 18.4`. Junta tudo num ffmpeg só (overlay + mistura do `mix2.sh`), crf 18. Final 18,4 s, -14,5 LUFS.
-- Mídia: `2026-11/dia-29/reel-b02.mp4`. No Buffer: `isAiGenerated: true` e "Personagem ilustrativo, feito com IA." na legenda.
+- Mídia: `2026-11/dia-29/reel-b02.mp4` (a pasta ficou dia-29 porque a primeira data era 29/11; o arquivo não muda de lugar porque o rascunho do Buffer aponta para ele). No Buffer: `isAiGenerated: true` e "Personagem ilustrativo, feito com IA." na legenda.
 - Fonte da frase "valoriza na venda": InstaCarro ("Histórico de revisões valoriza carro usado e acelera a venda"), iCarros e AutoPapo, consultados em 18/11/2026.
 
 ### B02 v2 (18/11, 22h40): fecho falado pelo personagem
