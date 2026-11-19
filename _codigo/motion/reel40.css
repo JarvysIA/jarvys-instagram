@@ -1,0 +1,26 @@
+/* ===== reel 40: Seu HB20: corrente no lugar da correia (série Seu [modelo]) ===== */
+.hd .w.red{color:var(--bad);text-shadow:0 0 30px rgba(249,65,68,.5)}
+@keyframes stIn{from{opacity:0;transform:translateY(120px)}to{opacity:1;transform:translateY(0)}}
+.e40p{position:absolute}
+.e40lab{position:absolute;font-family:Orbitron;font-weight:700;font-size:32px;letter-spacing:5px;color:var(--muted);white-space:nowrap}
+.e40big{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:250px;line-height:1;letter-spacing:-6px;color:var(--neon);text-shadow:0 0 60px rgba(58,199,255,.6)}
+@keyframes chain40{from{stroke-dashoffset:0}to{stroke-dashoffset:-136}}
+@keyframes rot40{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes wave40{0%,100%{transform:translateX(0)}50%{transform:translateX(-30px)}}
+@keyframes slide40{from{transform:translateX(0)}to{transform:translateX(-136px)}}
+.e40drop{position:absolute;width:44px;height:60px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#3a2a10;box-shadow:0 0 18px rgba(249,65,68,.7);border:3px solid #7a5a1c;opacity:0}
+@keyframes fall40{0%{opacity:0;transform:translateY(0)}10%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(var(--dy))}}
+.e40ok{position:absolute;left:150px;right:150px;height:190px;border-radius:34px;background:rgba(23,37,55,.95);border:3px solid rgba(65,214,134,.5);box-shadow:0 24px 70px -24px rgba(65,214,134,.4);display:flex;align-items:center;gap:34px;padding:0 44px;opacity:0}
+.e40ok em{font-style:normal;font-size:88px;line-height:1;width:110px;text-align:center}
+.e40ok b{font-size:58px;font-weight:800;white-space:nowrap}
+.e40ok .ck{position:absolute;top:-22px;right:-18px;width:72px;height:72px;border-radius:50%;background:var(--ok);color:#06210f;font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
+@keyframes shake40{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-7px,3px) rotate(-.6deg)}50%{transform:translate(6px,-3px) rotate(.5deg)}75%{transform:translate(-4px,-2px) rotate(-.3deg)}}
+.e40vib{position:absolute;width:14px;border-radius:8px;background:var(--warn);box-shadow:0 0 16px rgba(249,199,24,.7);opacity:0}
+@keyframes vib40{0%,100%{opacity:.15;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1.1)}}
+.e40mount{position:absolute;left:390px;top:1150px;width:300px;height:110px;border-radius:24px;background:#2a3440;border:6px solid var(--warn);box-shadow:0 0 30px rgba(249,199,24,.45);display:flex;align-items:center;justify-content:center;font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:4px;color:#ffe28a;opacity:0}
+.e40send{position:absolute;left:0;right:0;text-align:center;font-size:220px;line-height:1;opacity:0;filter:drop-shadow(0 0 40px rgba(58,199,255,.7))}
+@keyframes fly40{0%{opacity:0;transform:translate(-160px,120px) rotate(-10deg) scale(.6)}40%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}100%{opacity:1;transform:translate(40px,-30px) rotate(6deg) scale(1)}}
+.e40chat{position:absolute;left:150px;right:150px;padding:30px 40px;border-radius:34px 34px 34px 8px;background:rgba(23,37,55,.97);border:3px solid rgba(58,199,255,.5);font-size:46px;font-weight:700;line-height:1.2;opacity:0}
+.e40logo{position:absolute;left:370px;top:300px;width:340px;height:340px;border-radius:76px;box-shadow:0 0 90px rgba(58,199,255,.55),0 30px 80px -20px rgba(0,0,0,.6);opacity:0}
+@keyframes x40{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.e40x{position:absolute;height:12px;border-radius:6px;background:var(--bad);box-shadow:0 0 20px rgba(249,65,68,.8);transform-origin:left center}
