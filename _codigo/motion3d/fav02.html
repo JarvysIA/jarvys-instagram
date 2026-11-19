@@ -45,9 +45,9 @@
 </style></head><body>
 <script src="node_modules/three/build/three.min.js"></script>
 <script src="kit3d.js"></script>
-<!-- F01 (19/11/2026): primeiro reel com o avatar do Fernando e a voz dele (frases 4, 8 e 9 do lote de voz 1).
+<!-- F01 (19/11/2026): primeiro reel com o avatar do Fernando. v2: voz clonada "Fernando" (mais animada), a pedido dele; a v1 usava as frases 4, 8 e 9 gravadas por ele.
      O avatar fala só o gancho e o fecho (HeyGen Avatar 4); o meio são cartões em 3D sobre a garagem desfocada, com a voz dele por cima.
-     Vídeo base montado no ffmpeg (ver README de _codigo/avatar). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "fav02.html?alpha=1" ovg 19.4 -->
+     Vídeo base montado no ffmpeg (ver README de _codigo/avatar). Só os textos saem daqui: ALPHA=1 node cap3d.mjs "fav02.html?alpha=1" ovg 19.9 -->
 <div id="topo"></div><div id="escuro"></div>
 <div id="ui">
   <div class="x3" id="gancho"><span data-t="Quanto seu carro">Quanto seu carro</span><span class="o" data-t="te custou">te custou</span><span class="o" data-t="esse ano?">esse ano?</span></div>
@@ -74,14 +74,13 @@
   <div class="ov end url" data-a="E1.1" data-fx="up" style="top:975px">jarvys.com.br</div>
 </div>
 <script>
-const H = 2.85, M = 2.95, F8 = 5.75, C = 13.1, FIM = 16.6;      // gancho (clipe), fala 4b, fala 8, fecho (clipe), fim
-const GANCHO = [.1, H - .1], LOGO = M + .1, CARDS = [[M, F8 - .05], [F8 + .1, F8 + 4.65], [F8 + 4.7, C - .05]], BELL = F8 + 2.63, PL = [C + .2, FIM];
-const add = (a, o) => a.map(([w, t]) => [w, t + o]);
-const P = [...add([["Você",.14],["sabe",.41],["o",.68],["quanto",.81],["seu",1.08],["carro",1.21],["te",1.48],["custou",1.62],["esse",1.88],["ano?",2.15]], 0),
-  ...add([["No",.12],["Jarvys,",.31],["cada",.69],["gasto",1.07],["fica",1.45],["anotado.",1.83]], M),
-  ...add([["O",.13],["Jarvys",.28],["guarda",.58],["o",.89],["histórico",1.04],["das",1.64],["revisões,",1.79],["avisa",2.63],["quando",3.05],["a",3.33],["próxima",3.47],["está",3.88],["chegando",4.16],["e",4.71],["mostra",4.85],["quanto",5.12],["o",5.40],["seu",5.54],["carro",5.68],["vale",5.95],["na",6.23],["Fipe,",6.37],["todo",6.80],["mês.",7.02]], F8),
-  ...add([["Instale",.14],["agora",.575],["mesmo,",1.01],["o",1.82],["app",1.95],["é",2.21],["100%",2.34],["grátis.",2.86]], C)];
-const FALA = [[.05, 2.6], [M, M + 2.7], [F8, C - .05], [C + .05, C + 3.3]];
+const H = 2.62, C = 13.30, FIM = 17.05;      // v2 (voz clonada, narração contínua de 17,1 s): gancho até 2,62 s; fecho de 13,30 a 17,05 s
+const GANCHO = [.1, H - .08], LOGO = 2.75, CARDS = [[2.66, 5.5], [5.6, 10.0], [10.05, C - .05]], BELL = 7.9, PL = [C + .2, FIM];
+const P = [["Você",.02],["sabe",.31],["quanto",.61],["o",.90],["seu",1.05],["carro",1.20],["te",1.49],["custou",1.64],["esse",1.93],["ano?",2.23],
+  ["No",2.71],["Jarvys,",2.91],["cada",3.30],["gasto",3.69],["fica",4.09],["anotado!",4.48],
+  ["O",5.57],["Jarvys",5.72],["guarda",6.03],["o",6.34],["histórico",6.49],["das",7.11],["revisões,",7.27],["avisa",7.90],["quando",8.31],["a",8.58],["próxima",8.72],["está",9.12],["chegando",9.40],["e",9.95],["mostra",10.10],["quanto",10.66],["o",10.95],["seu",11.10],["carro",11.24],["vale",11.53],["na",11.82],["Fipe,",11.97],["todo",12.42],["mês!",12.72],
+  ["Instale",13.40],["agora",13.85],["mesmo!",14.29],["O",14.81],["app",15.02],["é",15.45],["100%",15.66],["grátis!",16.51]];
+const FALA = [[0, 2.56], [2.66, 5.35], [5.5, 13.15], [13.35, 17.0]];
 document.querySelectorAll('.ov').forEach(e => { if ((e.dataset.a || '').startsWith('E')) e.dataset.a = FIM + +e.dataset.a.slice(1); });
 K.setCaps(P.map(p => p[0]), P.map(p => p[1]), FIM - .1);
 const cap = document.querySelector('.cap');

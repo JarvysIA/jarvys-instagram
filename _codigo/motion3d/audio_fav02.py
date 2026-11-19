@@ -6,7 +6,7 @@ from scipy.io import wavfile
 
 SR = 44100
 OUT = sys.argv[1]
-DUR = 19.4
+DUR = 19.9
 N = int(DUR * SR)
 rng = np.random.default_rng(7)
 
@@ -80,15 +80,15 @@ def tec(at, g=1.0):
     tt = t_(0.09); s = np.sin(2 * np.pi * 180 * tt) * np.exp(-tt * 60)
     x = bp(rng.standard_normal(len(tt)), 900, 4000) * np.exp(-tt * 90) * .6
     place(sfx, (s + x) * g, at)
-pop(.12, 560, .35); whoosh(.5, .5, .7)
-whoosh(2.95, .5, .9); pop(3.1, 720, .45); ding(3.2, .25)
-for j in range(4): pop(3.4 + j * .42, 600 + j * 60, .3)
-whoosh(5.9, .5, .9); pop(6.05, 640, .45)
-for j in range(3): pop(6.3 + j * .5, 620 + j * 60, .3)
-ding(8.38, .5); pop(8.4, 820, .4)
-whoosh(10.5, .5, .9); pop(10.65, 640, .45); riser(10.95, 12.0, .25); coin(12.05, .5)
-whoosh(13.15, .5, .8); pop(13.5, 640, .5); coin(13.65, .5)
-E = 16.6; whoosh(E + .05, .6, .9); pop(E + .15, 700, .5); pop(E + .8, 780, .5); ding(E + 1.15, .45)
+pop(.1, 560, .35); whoosh(.5, .5, .7)
+whoosh(2.7, .5, .9); pop(2.85, 720, .45); ding(2.95, .25)
+for j in range(4): pop(3.11 + j * .42, 600 + j * 60, .3)
+whoosh(5.65, .5, .9); pop(5.8, 640, .45)
+for j in range(3): pop(6.05 + j * .5, 620 + j * 60, .3)
+ding(7.9, .5); pop(7.92, 820, .4)
+whoosh(10.1, .5, .9); pop(10.25, 640, .45); riser(10.55, 11.6, .25); coin(11.65, .5)
+whoosh(13.35, .5, .8); pop(13.7, 640, .5); coin(13.85, .5)
+E = 17.05; whoosh(E + .05, .6, .9); pop(E + .15, 700, .5); pop(E + .8, 780, .5); ding(E + 1.15, .45)
 sfx /= np.abs(sfx).max() + 1e-9
 wavfile.write(f'{OUT}/sfx.wav', SR, (np.stack([sfx, sfx], 1) * 32000 * 0.9).astype(np.int16))
 print('ok')

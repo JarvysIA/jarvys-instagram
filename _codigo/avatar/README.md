@@ -32,3 +32,12 @@ Formato barato, escolhido pelo Fernando: o avatar fala só o gancho e o fecho; o
 - Textos: `../motion3d/fav02.html` (`ALPHA=1 node cap3d.mjs "fav02.html?alpha=1" ovg 19.4`). Som: `python3 audio_fav02.py audg`; voz = som do gancho + fala 4b em 2,95 s + fala 8 em 5,75 s + som do fecho em 13,1 s (`adelay` + `amix`); `trilha-02.mp3 -ss 2 -t 19.4`.
 - Final: `2026-11/dia-27/reel-avatar-f01.mp4` (19,4 s, -14,3 LUFS).
 - Voz clonada dele na ElevenLabs: "Fernando" (07OrNOE5HHvotITtTPgi). A "Fernando Star" é do chat da loja.
+
+### F01 v2 (19/11, 0h20): voz clonada, mais animada
+
+O Fernando aprovou o vídeo e pediu outra voz: "mais animado, mais potente, menos eco", no ritmo da voz clonada. Daqui em diante é o padrão.
+
+- Narração única: `voz/f01-narracao-voz-clonada.mp3` (voz "Fernando", 07OrNOE5HHvotITtTPgi, eleven_v4, texto começando com `[excited]`, 17,1 s, 276 créditos). A etiqueta não foi lida em voz alta.
+- Trechos (s): gancho 0,02 a 2,52; "No Jarvys, cada gasto fica anotado!" 2,71 a 5,27; "O Jarvys guarda o histórico das revisões," 5,57 a 7,73; "avisa quando a próxima está chegando" 7,90 a 9,80; "e mostra" 9,95 a 10,52; "quanto o seu carro vale na Fipe," 10,66 a 12,26; "todo mês!" 12,42 a 13,09; "Instale agora mesmo!" 13,40 a 14,59; "O app é cem por cento grátis!" 14,81 a 16,93.
+- Sincronia: `clipes/f01v2-gancho.mp4` (áudio 0 a 2,62 s; 1.818) e `clipes/f01v2-fecho.mp4` (áudio 13,30 a 17,05 s; 2.424). O vídeo segue a narração inteira, sem emenda no som: gancho até 2,62 s, fundo desfocado até 13,30 s, fecho até 17,05 s.
+- Final: `2026-11/dia-27/reel-avatar-f01-v2.mp4` (19,9 s, -14,4 LUFS).
