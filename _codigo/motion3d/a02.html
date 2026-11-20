@@ -1,0 +1,140 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.lvl{font-size:34px;padding:10px 20px;border-radius:16px}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel 3D A02: O que acontece se o líquido do radiador baixa toda semana? (31 s) -->
+<div id="ui">
+  <div class="ov tt" data-a="-1" data-b="4.6" data-fx="fade" style="top:215px">O que acontece se<br>o líquido do<br>radiador baixa<br><b>toda semana?</b></div>
+  <div class="ov chip pin" id="lbPoca" data-a="1.2" data-b="4.6" data-fx="pop">💧 PINGANDO</div>
+  <div class="ov stamp" data-a="3.7" data-b="4.6" data-fx="stamp" data-rot="-6" style="top:690px"><span>Vazamento?</span></div>
+
+  <div class="ov tt m" data-a="4.7" data-b="6.6" style="top:225px">Variar um<br>pouquinho?</div>
+  <div class="ov row" data-a="5.75" data-b="6.6" style="top:430px"><span class="chip ok">✅ É NORMAL</span></div>
+
+  <div class="ov tt m" data-a="6.7" data-b="12.95" style="top:215px">Baixar <b>sempre?</b><br>Não é normal</div>
+  <div class="ov chip pin s" id="p1" data-a="8.95" data-b="12.95">MANGUEIRA</div>
+  <div class="ov chip pin s" id="p2" data-a="9.7" data-b="12.95">TAMPA</div>
+  <div class="ov chip pin s" id="p3" data-a="10.35" data-b="12.95">BOMBA D'ÁGUA</div>
+  <div class="ov chip pin s bad" id="p4" data-a="11.65" data-b="12.95" style="white-space:normal;text-align:center;line-height:1.1">JUNTA DO<br>CABEÇOTE</div>
+
+  <div class="ov tt m" data-a="13.05" data-b="16.9" style="top:215px">Com <i>pouco</i><br>líquido...</div>
+  <div class="ov row" data-a="14.65" data-b="16.9" style="top:420px"><span class="chip bad">🌡️ O MOTOR ESQUENTA</span></div>
+  <div class="ov stamp" data-a="15.6" data-b="16.9" data-fx="stamp" data-rot="-6" style="top:530px"><span style="font-size:80px">Pode estragar!</span></div>
+
+  <div class="ov tt" data-a="17.0" data-b="22.9" style="top:215px">O certo:</div>
+  <div class="ov row" data-a="18.95" data-b="22.9" style="top:345px"><span class="chip">❄️ COM O MOTOR FRIO</span></div>
+  <div class="ov row" data-a="19.9" data-b="22.9" style="top:430px"><span class="chip ok">📏 ENTRE O MIN E O MAX</span></div>
+  <div class="ov row" data-a="21.42" data-b="22.9" style="top:515px"><span class="chip bad">🚫 NUNCA ABRA QUENTE</span></div>
+  <div class="ov chip pin lvl y" id="lMax" data-a="19.9" data-b="22.9">MAX</div>
+  <div class="ov chip pin lvl y" id="lMin" data-a="19.9" data-b="22.9">MIN</div>
+
+  <div class="ov tt m" data-a="22.95" data-b="25.3" style="top:225px">Manda pra quem<br>vive <b>completando</b></div>
+  <div class="ov row" data-a="23.5" data-b="25.3" style="top:430px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+
+  <div class="ov tt m" data-a="25.35" data-b="27.75" style="top:225px">E o seu,<br><b>baixa?</b></div>
+  <div class="ov row" data-a="26.1" data-b="27.75" style="top:430px"><span class="chip bad">📉 BAIXA</span><span class="chip ok">✅ NÃO BAIXA</span></div>
+  <div class="ov row" data-a="26.88" data-b="27.75" style="top:530px"><span class="chip y">💬 COMENTA AÍ 👇</span></div>
+
+  <div class="ov end g" data-a="27.85" style="top:205px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="28.1" data-fx="up" style="top:560px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="28.55" style="top:705px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="29.0" data-fx="up" style="top:852px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .4, DUR = 31;
+const W0 = [0,.2,.32,.64,.72,1.28,1.76,2.08,2.88,3.12,3.32,4.4,4.76,4.88,5.4,5.68,6.32,6.8,7.52,8.2,8.4,8.56,9.32,9.96,10.32,10.8,10.96,11.16,11.28,11.6,11.68,12.72,12.92,13.28,13.8,14,14.28,14.8,14.96,15.2,15.6,15.76,16.64,16.8,17.6,18.08,18.187,18.24,18.64,19.24,19.4,19.52,20,20.08,20.16,20.84,21.04,21.44,21.72,22.56,22.84,22.96,23.2,23.52,23.947,24,24.96,25.04,25.12,25.76,26.48,26.84];
+const TXT = "Se o líquido do radiador baixa toda semana, pode ter vazamento. Variar um pouquinho é normal. Baixar sempre, não: pode ser mangueira, tampa, bomba d'água ou até a junta do cabeçote. Com pouco líquido, o motor esquenta e pode estragar de vez. O certo: confere com o motor frio, entre o mínimo e o máximo, e nunca abre quente. Manda pra quem vive completando o radiador. E o seu, baixa? Comenta aí.".split(' ');
+K.setCaps(TXT, W0.map(w => w + VO), 27.72);
+const ROSA = 0xff4fa3;
+const gota = (p) => { const m = box(.16, .26, .16, M(ROSA, { emissive: ROSA, emissiveIntensity: .35, transparent: true, opacity: .95 }), 0, 0, 0, p); m.castShadow = false; m.visible = false; return m; };
+// gotas que caem em ciclo a partir de um ponto (x, y, z) até y - h
+const pinga = (gs, x, y, z, h, t, t0, per = .55) => gs.forEach((m, i) => { const u = (t - t0) / per - i / gs.length; const f = ((u % 1) + 1) % 1; m.visible = t >= t0 && u >= 0; m.position.set(x, y - f * f * h, z); m.material.opacity = .95 * (1 - f * .6); });
+
+// ================= RUA (origem)
+K.ground(0, 0); box(16, .02, .25, 0xffd21f, 0, .02, 4.4);
+const car = K.carro(); car.position.set(-.6, 0, 0); car.rotation.y = -.5;
+const poca = cyl(1, 1, .03, M(ROSA, { emissive: ROSA, emissiveIntensity: .25, roughness: .3 }), 2.2, .03, .2, car, 18); poca.castShadow = false;
+const gRua = [0, 1, 2].map(() => gota(car));
+const mot = K.pessoa(car, { camisa: 0x2fae66 }); mot.position.set(3.4, 0, 2.7); mot.rotation.y = Math.PI * .92; mot.scale.setScalar(.9);
+const jug = K.galao(mot.bd, ROSA); jug.scale.setScalar(.45); jug.position.set(0, -2.3, -.1); jug.rotation.x = Math.PI;
+const jorro = box(.13, 1, .13, M(ROSA, { transparent: true, opacity: .85, emissive: ROSA, emissiveIntensity: .3 }), 2.3, 3.0, .85, car); jorro.castShadow = false;
+const mec = K.pessoa(s, { camisa: 0x0a84d6, calca: 0x14365c, bone: 0x0b1b2e }); mec.position.set(4.6, 0, 3.3); mec.rotation.y = .55;
+box(.5, .5, .06, 0xffffff, .3, 2.55, .36, mec);
+
+// ================= CIRCUITO EM CORTE (x = 200)
+const C = K.circuito(); C.g.position.set(200, .6, 0);
+const junta = box(4.9, .16, 1.72, 0x2a3340, 3.1, 6.95, -.95, C.g);   // junta do cabeçote no alto do bloco
+const vaz = [[-.6, 5.75, .5], [-4.6, 6.6, .5], [-.3, .7, .9], [5.4, 6.9, .4]].map(() => [0, 1, 2].map(() => gota(C.g)));
+
+// ================= RESERVATÓRIO DE PERTO (x = -200)
+K.ground(-200, 0, 50, 0xdfe9f2);
+const R = grp(-200, 0, 0);
+box(8, .4, 4, 0x3b4654, 0, 1.8, 0, R); box(7.6, 1.6, 3.6, 0x2a3340, 0, .8, 0, R);       // motor embaixo
+box(3.2, 4.4, 2.2, M(0xffffff, { transparent: true, opacity: .3, depthWrite: false }), 0, 4.2, 0, R).castShadow = false;
+[[-1.6, 1.1], [1.6, 1.1]].forEach(([x]) => box(.08, 4.4, .08, 0xcfd8e2, x, 4.2, 1.1, R));
+const fl = box(2.9, 1, 1.9, M(ROSA, { emissive: ROSA, emissiveIntensity: .3, roughness: .4 }), 0, 3, 0, R); fl.castShadow = false;
+const Y0 = 2.15, YMIN = 3.5, YMAX = 5.2;
+box(1.0, .08, .06, 0x0b1b2e, 1.05, YMAX, 1.13, R); box(1.0, .08, .06, 0x0b1b2e, 1.05, YMIN, 1.13, R);
+const tampa = grp(0, 6.55, 0, R); cyl(.7, .7, .5, 0x0a84d6, 0, 0, 0, tampa, 12); cyl(.45, .45, .25, 0x0a84d6, 0, .35, 0, tampa, 8);
+box(.5, .5, .5, 0x8f9aa6, -1.9, 6.0, 0, R); const mg = cyl(.28, .28, 2.2, 0x20262e, -1.2, 6.0, 0, R, 8); mg.rotation.z = Math.PI / 2;
+
+// ================= CÂMERA
+K.camKeys([
+  { t: 0, p: [10, 6.5, 19.5], l: [1.2, 2.2, 1.2] }, { t: 4.6, p: [8.4, 5.4, 15.5], l: [1.4, 1.8, 1.2], e: 'lin' },
+  { t: 4.6, p: [-195.6, 7.2, 25], l: [-200, 3.9, 0] }, { t: 6.6, p: [-196.2, 7, 23.5], l: [-200, 3.9, 0], e: 'lin' },
+  { t: 6.6, p: [201.4, 6, 40], l: [199.95, 4.6, 0] }, { t: 8.6, p: [201.1, 6, 39], l: [199.95, 4.6, 0], e: 'lin' },
+  { t: 9.2, p: [198.4, 6.2, 30], l: [198.6, 4.6, 0] }, { t: 10.0, p: [198.2, 6.2, 29], l: [198.6, 4.6, 0], e: 'lin' },
+  { t: 10.6, p: [199.6, 3.6, 24], l: [199.6, 3.2, 0] }, { t: 11.3, p: [199.6, 3.6, 23.5], l: [199.6, 3.2, 0], e: 'lin' },
+  { t: 11.9, p: [203.6, 6.4, 25], l: [203.0, 5.6, 0] }, { t: 12.95, p: [203.4, 6.4, 24], l: [203.0, 5.6, 0], e: 'lin' },
+  { t: 12.95, p: [201.4, 6, 40], l: [199.95, 4.6, 0] }, { t: 14.6, p: [201.2, 6, 38], l: [199.95, 4.6, 0], e: 'lin' },
+  { t: 15.4, p: [204.4, 5.8, 27], l: [202.9, 4.9, 0] }, { t: 16.9, p: [204.1, 5.8, 26], l: [202.9, 4.9, 0], e: 'lin' },
+  { t: 16.9, p: [-194.5, 8.6, 28], l: [-200, 3.7, 0] }, { t: 22.9, p: [-196, 8, 25.5], l: [-200, 3.7, 0], e: 'lin' },
+  { t: 22.9, p: [9, 6.8, 17.5], l: [1.4, 2.8, 1.2] }, { t: 25.3, p: [7.6, 6.2, 15.2], l: [1.4, 2.8, 1.2], e: 'lin' },
+  { t: 25.3, p: [7, 6.6, 27], l: [1.6, 2.6, 1.2] }, { t: 27.8, p: [6.2, 6.3, 24.5], l: [1.8, 2.4, 1.4], e: 'lin' },
+  { t: 27.8, p: [12.5, 9, 29], l: [.9, 3.3, 0] }, { t: 31.2, p: [11.2, 8.5, 26.5], l: [.9, 3.3, 0], e: 'lin' },
+]);
+
+// fase do líquido (determinística)
+const vel = t => t < 13 ? 1 : mix(1, .25, seg(t, 13.2, 15.4));
+const FA = [0], GI = [0], PI_ = [0]; for (let i = 1; i <= DUR * 60 + 60; i++) { const t = i / 60; FA.push(FA[i - 1] + vel(t) / 60 * .17); GI.push(GI[i - 1] + vel(t) / 60 * 6); PI_.push(PI_[i - 1] + 1 / 60 * 10); }
+const lut = (a, t) => { const x = Math.max(0, t) * 60, i = Math.min(a.length - 2, Math.floor(x)); return mix(a[i], a[i + 1], x - i); };
+const $ = id => document.getElementById(id);
+const pinE = ['p1', 'p2', 'p3', 'p4'].map($), PT = [[-1.0, 6.3], [-4.6, 7.1], [-.3, 2.55], [3.1, 7.05]], T0 = [8.95, 9.7, 10.35, 11.65];
+
+window.setT = t => {
+  const z = t < 4.6 ? 0 : t < 6.6 ? 2 : t < 16.9 ? 1 : t < 22.9 ? 2 : 0;
+  K.fundo(z == 1 ? 'linear-gradient(#123052,#0b1b2e)' : 'linear-gradient(#a9d8f8,#e6f4ff)');
+  K.zone(z == 1 ? 200 : z == 2 ? -200 : 0, 0);
+  // ---- rua
+  const abre = t < 4.6, despeja = t >= 22.9 && t < 27.8, fim = t >= 27.8;
+  car.hood(fim ? 0 : 1); mot.visible = !fim; mec.visible = fim;
+  poca.visible = abre; poca.scale.set(mix(.25, 1, seg(t, .2, 4.4)), 1, mix(.25, 1, seg(t, .2, 4.4)));
+  pinga(gRua, 2.2, 1.0, .2, .95, abre ? t : -9, .2, .5);
+  jug.visible = despeja || (t >= 25.3 && t < 27.8); jorro.visible = despeja && t < 25.3;
+  jorro.scale.set(1 + Math.sin(t * 23) * .15, 1, 1 + Math.cos(t * 19) * .15);
+  if (abre) { mot.bd.rotation.x = -.2; mot.be.rotation.x = -.2; mot.bd.rotation.z = .5; mot.be.rotation.z = -.5; mot.cab.rotation.x = .45 + Math.sin(t * 2) * .05; mot.cab.rotation.y = Math.sin(t * 1.3) * .25; }
+  else if (t < 25.3) { mot.bd.rotation.set(-2.1 + Math.sin(t * 5) * .03, 0, 0); mot.be.rotation.set(-.15, 0, 0); mot.cab.rotation.set(.25, 0, 0); }
+  else { mot.bd.rotation.set(-.4, 0, .1); mot.be.rotation.set(-.2, 0, -.6); mot.cab.rotation.set(0, Math.sin(t * 3) * .2, Math.sin(t * 2.3) * .08); }
+  if (fim) { const k = back(seg(t, 27.8, 28.3)); mec.scale.setScalar(Math.max(.001, k)); mec.bd.rotation.x = -2.7; mec.bd.rotation.z = .25 + Math.sin(t * 7) * .28; mec.cab.rotation.z = Math.sin(t * 3.5) * .06; }
+  // ---- circuito
+  C.fluxo(lut(FA, t), lut(GI, t), lut(PI_, t)); C.cor(0); C.ferrugem(0, 0, 0);
+  C.calor(seg(t, 14.4, 15.6)); C.vapor(t, seg(t, 15.0, 15.8));
+  junta.material.color.copy(K.col(0x2a3340, 0xff3b30, seg(t, 11.65, 11.9) * (1 - seg(t, 12.8, 13)) * (.6 + .4 * Math.sin(t * 14))));
+  vaz.forEach((gs, i) => { const [x, y, h] = [PT[i][0], [5.75, 6.6, .7, 6.9][i], [.5, .5, .9, .4][i]]; pinga(gs, i == 3 ? 5.4 : x, y, .45, 1.8, z == 1 && t < 12.95 ? t : -9, T0[i], .6); });
+  // ---- reservatório
+  const nivel = t < 6.6 ? mix(4.45, 4.7, .5 + .5 * Math.sin(t * 2.6)) : t < 19.4 ? mix(3.0, 2.6, seg(t, 16.9, 17.6)) : mix(2.6, 4.35, io(seg(t, 19.4, 20.6)));
+  const h = Math.max(.05, nivel - Y0); fl.scale.y = h; fl.position.y = Y0 + h / 2;
+  tampa.position.y = 6.55 + (t > 21.42 && t < 22.9 ? Math.abs(Math.sin((t - 21.42) * 9)) * .12 * (1 - seg(t, 22.0, 22.6)) : 0);
+  // ---- câmera, rótulos, textos, legenda
+  K.camAt(t, z == 1 && t > 15.4 ? .07 * seg(t, 15.4, 15.8) : 0); K.cam.updateMatrixWorld();
+  K.ui(t); K.caps(t);
+  if (z == 0 && abre) K.pin($('lbPoca'), ...K.wp(poca), 0, -30);
+  if (z == 1) pinE.forEach((e, i) => K.pin(e, 200 + PT[i][0], .6 + PT[i][1], .3, 0, -20));
+  if (z == 2) { K.pin($('lMax'), -197.9, YMAX, 1.1, 30, 30); K.pin($('lMin'), -197.9, YMIN, 1.1, 30, 30); }
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
