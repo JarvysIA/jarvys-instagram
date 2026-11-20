@@ -1,0 +1,55 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.opt{left:60px;right:60px;display:flex;justify-content:center}
+.opt .chip{font-size:46px;padding:20px 34px}
+.selo{left:0;right:0;text-align:center}
+.selo span{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:40px;padding:12px 28px;border-radius:16px;border:4px solid #0b1b2e;letter-spacing:2px}
+.ic img{width:260px;height:260px;border-radius:60px;border:8px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.35)}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel curto sem narração "Qual você faz?" 01: Aquaplanou. (12 s) -->
+<div id="ui">
+  <div class="ov selo" data-a="-1" data-b="8.6" data-fx="fade" style="top:215px"><span>QUAL VOCÊ FAZ?</span></div>
+  <div class="ov tt" data-a="-1" data-b="8.6" data-fx="fade" style="top:300px">Aquaplanou<br><b>na chuva.</b></div>
+  <div class="ov opt" data-a=".6" data-b="5.6" style="top:540px"><span class="chip">A) 🛑 FREIA FORTE</span></div>
+  <div class="ov opt" data-a="1.2" data-b="5.6" style="top:645px"><span class="chip">B) ⛽ ACELERA</span></div>
+  <div class="ov opt" data-a="1.8" data-b="5.6" style="top:750px"><span class="chip">C) 🦶 TIRA O PÉ DEVAGAR</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:540px"><span class="chip bad">A) ❌ FREIA FORTE</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:645px"><span class="chip bad">B) ❌ ACELERA</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" style="top:750px"><span class="chip ok">C) ✅ TIRA O PÉ DEVAGAR</span></div>
+  <div class="ov opt" data-a="3.2" data-b="5.5" data-fx="up" style="top:880px"><span class="chip y">⏱️ PENSA RÁPIDO...</span></div>
+  <div class="ov opt" data-a="6.5" data-b="8.6" data-fx="up" style="top:875px"><span class="chip" style="font-size:40px">🎯 VOLANTE FIRME E RETO, SEM FREAR FORTE</span></div>
+
+  <div class="ov tt m" data-a="8.7" style="top:215px">Você acertou?<br><b>Comenta aí 👇</b></div>
+  <div class="ov opt" data-a="9.1" data-fx="up" style="top:430px"><span class="chip y">📲 MANDA PRA QUEM DIRIGE NA CHUVA</span></div>
+  <div class="ov end ic" data-a="9.5" style="top:560px"><img src="icon-512.png"></div>
+  <div class="ov end" data-a="9.9" style="top:870px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="10.3" data-fx="up" style="top:1010px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const DUR = 12;
+K.ground(0, 0, 120, 0x56606c);
+for (let i = -6; i < 7; i++) box(2.2, .03, .25, 0xffffff, i * 5, .02, 0, s);
+box(80, .03, .3, 0xffd21f, 0, .02, -5.5); box(80, .03, .3, 0xffd21f, 0, .02, 5.5);
+const agua = M(0x58b8ff, { transparent: true, opacity: .55, emissive: 0x58b8ff, emissiveIntensity: .25, roughness: .1 });
+[[-6, 2.2, 9, 3.2], [7, -1.8, 10, 3], [20, 1, 12, 4], [-20, 0, 10, 3.5]].forEach(([x, z, w, d]) => { const m = box(w, .05, d, agua, x, .04, z); m.castShadow = false; });
+const cg = grp(0, 0, 0); const car = K.carro(cg); car.position.set(0, 0, 1.2);
+// spray atrás das rodas e chuva
+const spr = [...Array(14)].map(() => { const m = box(.25, .25, .25, M(0xe6f6ff, { transparent: true, opacity: .8 }), 0, 0, 0, s); m.castShadow = false; return m; });
+const rnd = i => { const x = Math.sin(i * 91.7) * 43758.5453; return x - Math.floor(x); };
+const rain = [...Array(90)].map((_, i) => { const m = box(.04, .9, .04, M(0xcfe9ff, { transparent: true, opacity: .55 }), 0, 0, 0, s); m.castShadow = false; m.userData = [rnd(i) * 30 - 15, rnd(i + 300) * 22 - 6, rnd(i + 700)]; return m; });
+K.camKeys([{ t: 0, p: [17, 11, 33], l: [0, 5.2, 1] }, { t: 8.6, p: [15, 10, 29], l: [0, 5.0, 1], e: 'lin' }, { t: 8.6, p: [-12, 12, 34], l: [0, 6.2, 1] }, { t: 12.2, p: [-11, 11.5, 32], l: [0, 6.2, 1], e: 'lin' }]);
+window.setT = t => {
+  K.fundo('linear-gradient(#5d7088,#9db0c4)'); K.zone(0, 0);
+  // o carro "flutua": desliza e gira um pouco até o acerto; depois volta reto
+  const k = t < 5.6 ? 1 : 1 - io(seg(t, 5.6, 7.2));
+  cg.rotation.y = (Math.sin(t * 1.7) * .22 + .12) * k; cg.position.z = Math.sin(t * 1.1) * .6 * k;
+  car.position.y = .05 * k * Math.abs(Math.sin(t * 6));
+  spr.forEach((m, i) => { const u = (t * 2.2 + i / spr.length) % 1, side = i % 2 ? 1 : -1; m.position.set(-3.6 - u * 3, .3 + Math.sin(u * Math.PI) * 1.2, 1.2 + side * 1.5 + side * u * .8); m.scale.setScalar(Math.max(.001, (1 - u) * 1.4)); m.material.opacity = .8 * (1 - u); });
+  rain.forEach(m => { const [x, z, o] = m.userData; const u = ((t * 1.6 + o) % 1); m.position.set(x, 12 - u * 12, z); });
+  K.camAt(t); K.cam.updateMatrixWorld(); K.ui(t); K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
