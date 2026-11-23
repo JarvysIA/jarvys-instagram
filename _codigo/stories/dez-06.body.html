@@ -1,0 +1,36 @@
+<!-- 06/12. Montar: head.html + este corpo -->
+<style>
+.ex{font-size:24px;color:var(--muted);letter-spacing:1px}
+.bigl{display:flex;align-items:center;gap:28px}
+.bigl img{width:170px;height:170px;border-radius:40px;box-shadow:0 0 60px -6px rgba(58,199,255,.7)}
+.apl{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--soft);border:3px solid rgba(58,199,255,.55);color:var(--neon);font-family:Orbitron;font-weight:700;font-size:28px;letter-spacing:5px;box-shadow:0 0 30px rgba(58,199,255,.35)}
+.sau{background:var(--card);border:3px solid var(--border);border-radius:36px;padding:34px 36px;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.sau .tp{display:flex;justify-content:space-between;align-items:baseline}
+.sau .tp b{font-size:40px}.sau .tp span{font-size:28px;color:var(--muted)}
+.sau .lb{font-family:Orbitron;font-weight:700;font-size:24px;letter-spacing:4px;color:var(--neon);margin:20px 0 10px}
+.it{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-top:2px solid rgba(255,255,255,.08);font-size:36px;font-weight:600}
+.it .pl{white-space:nowrap;font-size:28px;font-weight:700;padding:10px 20px;border-radius:999px;display:flex;align-items:center;gap:10px}
+.pl i{width:18px;height:18px;border-radius:50%;display:inline-block}
+.pl.v{background:rgba(34,197,94,.16);color:#4ade80}.pl.v i{background:#22c55e;box-shadow:0 0 14px #22c55e}
+.pl.a{background:rgba(250,204,21,.16);color:#facc15}.pl.a i{background:#facc15;box-shadow:0 0 14px #facc15}
+.pl.r{background:rgba(239,68,68,.18);color:#f87171}.pl.r i{background:#ef4444;box-shadow:0 0 14px #ef4444}
+.pl.c{background:rgba(148,163,184,.16);color:#94a3b8}.pl.c i{background:#94a3b8}
+</style>
+
+<!-- ============ 06/12 15h30 · Comece (link) · Status de Saúde no app ============ -->
+<div class="st" id="sd06">
+ <div class="dots"></div><div class="g" style="left:-300px;top:350px;width:1600px;height:1400px"></div>
+ <div class="z" style="margin-top:20px"><span class="apl">NO APP</span></div>
+ <div class="z h" style="margin-top:20px;font-size:76px">Seu carro tá<br>em dia? <span class="neon">Olha aqui.</span></div>
+ <div class="z sau" style="margin-top:34px">
+  <div class="tp"><b>Chevrolet Onix</b><span>58.940 km</span></div>
+  <div class="lb">STATUS DE SAÚDE</div>
+  <div class="it"><span>🛢️ Óleo e filtro</span><span class="pl v"><i></i>Em dia</span></div>
+  <div class="it"><span>🌬️ Filtro de ar</span><span class="pl a"><i></i>Atenção</span></div>
+  <div class="it"><span>🛑 Pastilhas de freio</span><span class="pl r"><i></i>Atrasado</span></div>
+  <div class="it"><span>❄️ Arrefecimento</span><span class="pl c"><i></i>Sem registro</span></div>
+ </div>
+ <div class="z ex" style="margin-top:12px;text-align:right">tela de exemplo</div>
+ <div class="z" style="margin-top:22px;font-size:38px;line-height:1.35;font-weight:600">Verde, amarelo e vermelho: você vê<br>na hora o que <span class="neon">tá perto de vencer.</span></div>
+ <div class="z bigl" style="margin-top:auto"><img src="icon.png"><div style="font-size:36px;line-height:1.35;font-weight:600">Crie sua conta<br><span style="color:var(--neon)">jarvys.com.br · app 100% grátis</span></div></div>
+</div>

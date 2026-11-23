@@ -1,0 +1,147 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.tag{background:#fff;color:#0b1b2e;border:6px solid #0b1b2e;border-radius:26px;padding:18px 30px;text-align:center;font-size:40px;line-height:1.1;box-shadow:0 14px 0 #0b1b2e}
+.tag small{display:block;font-size:30px;color:#5a6b7d;letter-spacing:2px}
+.tag em{display:inline-block;margin-top:10px;font-style:normal;background:#b3261e;color:#fff;border-radius:14px;padding:8px 20px;font-size:44px}
+.ou{font-size:56px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill;color:#ffd21f;align-self:center}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel 3D A03: O que acontece se você roda com o óleo vencido? (28 s) -->
+<div id="ui">
+  <div class="ov tt" data-a="-1" data-b="3.75" data-fx="fade" style="top:215px">O que acontece se<br>você roda com o<br><b>óleo vencido?</b></div>
+  <div class="ov pin" id="tag" data-a=".9" data-b="3.75" data-fx="pop"><div class="tag"><small>TROCA DE ÓLEO</small>PRÓXIMA TROCA<br><em>⛔ VENCIDA</em></div></div>
+
+  <div class="ov tt m" data-a="3.8" data-b="6.3" style="top:215px">O óleo faz uma<br><b>película</b></div>
+  <div class="ov row" data-a="4.64" data-b="6.3" style="top:420px"><span class="chip ok">🛢️ ENTRE AS PEÇAS</span></div>
+
+  <div class="ov tt m" data-a="6.32" data-b="11.2" style="top:215px"><b>Vencido</b>, ele<br>perde a proteção</div>
+  <div class="ov row" data-a="7.76" data-b="11.2" style="top:420px"><span class="chip bad">📉 PERDE AS PROPRIEDADES</span></div>
+  <div class="ov chip pin rust" id="pB" data-a="9.12" data-b="11.2" data-fx="pop">🟤 BORRA</div>
+  <div class="ov chip pin bad s" id="pC" data-a="9.88" data-b="11.2" data-fx="pop">🚫 CANAL ENTUPIDO</div>
+
+  <div class="ov tt m" data-a="11.25" data-b="15.42" style="top:215px">Atrito e<br><b>desgaste</b></div>
+  <div class="ov row" data-a="11.48" data-b="15.42" style="top:420px"><span class="chip bad">🔥 ATRITO</span><span class="chip bad">⚙️ DESGASTE</span></div>
+  <div class="ov stamp" data-a="14.72" data-b="15.42" data-fx="stamp" data-rot="-6" style="top:540px"><span style="font-size:88px">Pode fundir!</span></div>
+
+  <div class="ov tt" data-a="15.44" data-b="20.64" style="top:215px">O certo:</div>
+  <div class="ov row" data-a="16.32" data-b="20.64" style="top:345px"><span class="chip">📘 PRAZO DO MANUAL</span></div>
+  <div class="ov row" data-a="16.96" data-b="20.64" style="top:450px"><span class="chip y">🛣️ KM</span><span class="ou" style="opacity:1">OU</span><span class="chip y" id="cT">📅 TEMPO</span></div>
+  <div class="ov row" data-a="18.56" data-b="20.64" style="top:560px"><span class="chip ok">⏰ O QUE VIER PRIMEIRO</span></div>
+  <div class="ov chip pin ok" id="pF" data-a="19.76" data-b="20.64" data-fx="pop">🔩 FILTRO JUNTO</div>
+
+  <div class="ov tt m" data-a="20.68" data-b="22.66" style="top:225px">Manda pra quem<br>tá com a troca<br><b>atrasada</b></div>
+  <div class="ov row" data-a="21.2" data-b="22.66" style="top:520px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+
+  <div class="ov tt m" data-a="22.68" data-b="24.62" style="top:225px">A sua tá<br><b>em dia?</b></div>
+  <div class="ov row" data-a="23.1" data-b="24.62" style="top:430px"><span class="chip ok">✅ EM DIA</span><span class="chip bad">⏰ ATRASADA</span></div>
+  <div class="ov row" data-a="23.84" data-b="24.62" style="top:530px"><span class="chip y">💬 COMENTA AÍ 👇</span></div>
+
+  <div class="ov end g" data-a="24.7" style="top:205px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="24.95" data-fx="up" style="top:560px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="25.4" style="top:705px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="25.85" data-fx="up" style="top:852px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .4, DUR = 28;
+const W0 = [0,.2,.48,.8,.907,.96,1.16,2.04,2.187,2.24,2.32,3.36,3.44,3.8,4,4.24,4.8,4.96,5.12,5.92,6.76,6.96,7.24,7.36,8.08,8.24,8.48,8.72,9.32,9.48,9.88,10,10.853,11.08,11.76,12.64,12.773,12.88,13.56,13.76,13.96,14.32,15.04,15.28,15.4,15.64,15.92,16.44,16.56,17.2,17.6,17.96,18.04,18.16,18.44,19,19.12,19.36,19.6,20.28,20.6,20.72,20.88,21,21.08,21.2,21.36,22.28,22.4,22.6,22.72,22.92,23.44,23.76];
+const TXT = "Se você roda com o óleo vencido, olha o que acontece. O óleo faz uma película entre as peças. Vencido, ele perde as propriedades e pode virar borra, que entope os canais. Vem atrito, desgaste e, no extremo, o motor pode fundir. Troca no prazo do manual, por quilômetro ou tempo, o que vier primeiro, e o filtro junto. Manda pra quem tá com a troca atrasada. A sua tá em dia? Comenta aí.".split(' ');
+K.setCaps(TXT, W0.map(w => w + VO), 24.6);
+const OURO = 0xf2b632, PRETO = 0x2a1a0c;
+const $ = id => document.getElementById(id);
+
+// ================= RUA (origem)
+K.ground(0, 0, 160); box(16, .02, .25, 0xffd21f, 0, .02, 4.4);
+const car = K.carro(); car.position.set(-.6, 0, 0); car.rotation.y = -.5;
+const mot = K.pessoa(s, { camisa: 0xff8a3d }); mot.position.set(4.4, 0, 2.2); mot.rotation.y = -.5;
+const mec = K.pessoa(s, { camisa: 0x0a84d6, calca: 0x14365c, bone: 0x0b1b2e }); mec.position.set(4.6, 0, 3.3); mec.rotation.y = .55;
+box(.5, .5, .06, 0xffffff, .3, 2.55, .36, mec);
+const vidro = grp(1.05, 2.6, 0, car);   // ponto do para-brisa (etiqueta)
+
+// ================= MOTOR EM CORTE (x = 200), visto de frente
+K.ground(200, 0, 60, 0x0f2440);
+const E = grp(200, .4, 0);
+const oilF = M(OURO, { emissive: OURO, emissiveIntensity: .45, roughness: .3 });
+const oilC = M(OURO, { emissive: OURO, emissiveIntensity: .35, roughness: .3 });
+const metal = M(0x8f9aa6);
+const carter = box(8.4, 1.7, 2, 0x4a5563, 0, .85, 0, E);
+const poca = box(7.9, 1.0, .3, oilC, 0, .65, 1.05, E); poca.castShadow = false;
+const bloco = box(8.4, 5.4, 2, metal, 0, 4.4, 0, E);
+box(8.8, .5, 2.2, 0x6b7684, 0, 7.35, 0, E);      // cabeçote
+const XS = [-2.5, 0, 2.5];
+XS.forEach(x => box(1.9, 4.2, .1, 0x1c2733, x, 4.9, 1.02, E));
+const pist = XS.map(x => box(1.6, 1.1, .3, 0xd9e1ea, x, 5, 1.15, E));
+const film = XS.map(x => [-1, 1].map(sd => { const m = box(.12, 1.3, .32, oilF, x + sd * .86, 5, 1.12, E); m.castShadow = false; return m; }));
+const biela = XS.map(x => box(.32, 2, .2, 0xaab4bf, x, 3.4, 1.22, E));
+const vira = cyl(.35, .35, 8, 0x6b7684, 0, 2.2, 1.22, E, 10); vira.rotation.z = Math.PI / 2;
+const mancal = XS.map(x => cyl(.6, .6, .5, 0x9aa6b2, x, 2.2, 1.22, E, 10)); mancal.forEach(m => m.rotation.z = Math.PI / 2);
+// galeria do óleo: sobe pela esquerda e corre pelo alto
+box(.6, 6.4, .34, 0xdfe7ef, -4.55, 4.0, 1.05, E).castShadow = false; box(9.3, .6, .34, 0xdfe7ef, 0, 7.0, 1.05, E).castShadow = false;
+box(.34, 6.2, .36, oilC, -4.55, 4.0, 1.1, E).castShadow = false; box(9.1, .34, .36, oilC, 0, 7.0, 1.1, E).castShadow = false;
+const part = [...Array(22)].map(() => { const m = box(.22, .22, .22, M(0xfff1c4, { emissive: 0xfff1c4, emissiveIntensity: .5 }), 0, 0, 1.3, E); m.castShadow = false; return m; });
+const pathP = u => { const L1 = 6.1, L2 = 8.9, d = u * (L1 + L2); return d < L1 ? [-4.55, .95 + d, 1.3] : [-4.55 + (d - L1), 7.0, 1.3]; };
+const rnd = i => { const x = Math.sin(i * 91.7) * 43758.5453; return x - Math.floor(x); };
+const borra = [...Array(16)].map((_, i) => { const inS = i < 10; const m = box(.45 + rnd(i) * .35, .35 + rnd(i + 9) * .3, .3, M(0x3b2412, { roughness: 1 }), inS ? -3.6 + rnd(i + 3) * 7.2 : (i < 13 ? -4.55 : -3 + (i - 13) * 1.6), inS ? .35 + rnd(i + 5) * .7 : (i < 13 ? 2 + (i - 10) * 1.6 : 7.0), 1.32, E); m.castShadow = false; m.userData.t0 = 9.12 + rnd(i + 20) * 1.2; return m; });
+const fais = [...Array(14)].map(() => { const m = box(.14, .14, .14, M(0xffe066, { emissive: 0xffc400, emissiveIntensity: 1.4 }), 0, 0, 1.4, E); m.castShadow = false; return m; });
+const fumo = [...Array(8)].map(() => { const m = box(.6, .6, .6, M(0x5d6670, { transparent: true, opacity: .5 }), 0, 0, 1.4, E); m.castShadow = false; return m; });
+
+// ================= BANCADA (x = -200)
+K.ground(-200, 0, 50, 0xdfe9f2);
+const B = grp(-200, 0, 0);
+box(9, .4, 4, 0x8a5a33, 0, 2.2, 0, B); [[-4, -1.6], [4, -1.6], [-4, 1.6], [4, 1.6]].forEach(([x, z]) => box(.35, 2.2, .35, 0x6b4426, x, 1.1, z, B));
+const gal = K.galao(B, OURO); gal.position.set(-1.6, 2.4, .2); gal.scale.setScalar(1.15);
+const filt = grp(1.9, 2.4, .2, B); cyl(.85, .85, 1.7, 0x0a84d6, 0, .85, 0, filt, 14); cyl(.6, .6, .2, 0x20262e, 0, 1.8, 0, filt, 14); cyl(.87, .87, .3, 0xffd21f, 0, .5, 0, filt, 14);
+const vel2 = grp(0, 0, 0, B);
+
+// ================= CÂMERA
+K.camKeys([
+  { t: 0, p: [12.5, 7.5, 24], l: [2.1, 3.0, 1.0] }, { t: 3.75, p: [11, 7, 21.5], l: [2.1, 3.0, 1.0], e: 'lin' },
+  { t: 3.75, p: [201.2, 5.6, 41], l: [200, 4.5, 0] }, { t: 6.3, p: [200.6, 5.6, 38.5], l: [200, 4.5, 0], e: 'lin' },
+  { t: 6.3, p: [199.2, 5.4, 41], l: [200, 4.4, 0] }, { t: 11.2, p: [199.8, 5.4, 37.5], l: [200, 4.4, 0], e: 'lin' },
+  { t: 11.2, p: [200.8, 5.8, 37], l: [200, 4.7, 0] }, { t: 15.42, p: [200.3, 5.8, 34], l: [200, 4.7, 0], e: 'lin' },
+  { t: 15.42, p: [-195.5, 8.6, 25], l: [-200, 3.4, 0] }, { t: 20.64, p: [-196.6, 8, 22.5], l: [-200, 3.4, 0], e: 'lin' },
+  { t: 20.64, p: [10.5, 6.8, 19], l: [2.6, 2.8, 1.2] }, { t: 22.66, p: [9.4, 6.3, 17], l: [2.6, 2.8, 1.2], e: 'lin' },
+  { t: 22.66, p: [7, 6.6, 27], l: [1.6, 2.6, 1.2] }, { t: 24.7, p: [6.4, 6.3, 25], l: [1.8, 2.4, 1.4], e: 'lin' },
+  { t: 24.7, p: [12.5, 9, 29], l: [.9, 3.3, 0] }, { t: 28.2, p: [11.2, 8.5, 26.5], l: [.9, 3.3, 0], e: 'lin' },
+]);
+
+// fases determinísticas
+const vel = t => t < 9.9 ? 1 : mix(1, .07, seg(t, 9.9, 10.9));
+const FA = [0]; for (let i = 1; i <= DUR * 60 + 60; i++) FA.push(FA[i - 1] + vel(i / 60) / 60 * .22);
+const lut = (a, t) => { const x = Math.max(0, t) * 60, i = Math.min(a.length - 2, Math.floor(x)); return mix(a[i], a[i + 1], x - i); };
+
+window.setT = t => {
+  const z = t < 3.75 ? 0 : t < 15.42 ? 1 : t < 20.64 ? 2 : 0;
+  K.fundo(z == 1 ? 'linear-gradient(#123052,#0b1b2e)' : 'linear-gradient(#a9d8f8,#e6f4ff)');
+  K.zone(z == 1 ? 200 : z == 2 ? -200 : 0, 0);
+  // ---- rua
+  const fim = t >= 24.7; car.hood(0); mot.visible = !fim; mec.visible = fim;
+  if (t < 3.75) { mot.bd.rotation.set(-1.9, 0, .2); mot.be.rotation.set(-.1, 0, 0); mot.cab.rotation.set(.1, -.5 + Math.sin(t * 1.5) * .1, 0); }
+  else if (t < 22.66) { mot.bd.rotation.set(-2.6, 0, .15 + Math.sin(t * 6) * .25); mot.be.rotation.set(-.2, 0, 0); mot.cab.rotation.set(0, 0, Math.sin(t * 3) * .06); }
+  else { mot.bd.rotation.set(-.5, 0, .5); mot.be.rotation.set(-.5, 0, -.5); mot.cab.rotation.set(0, Math.sin(t * 2.5) * .25, 0); }
+  if (fim) { const k = back(seg(t, 24.7, 25.2)); mec.scale.setScalar(Math.max(.001, k)); mec.bd.rotation.x = -2.7; mec.bd.rotation.z = .25 + Math.sin(t * 7) * .28; mec.cab.rotation.z = Math.sin(t * 3.5) * .06; }
+  // ---- motor
+  const esc = seg(t, 6.32, 8.0), atr = seg(t, 11.3, 11.6), ext = seg(t, 13.2, 14.7);
+  const c = K.col(OURO, PRETO, esc); [oilF, oilC].forEach(m => { m.color.copy(c); m.emissive.copy(c); m.emissiveIntensity = mix(.45, .05, esc); });
+  film.forEach(p => p.forEach(m => m.scale.x = mix(1, .25, seg(t, 9.0, 10.8))));
+  const rpm = t < 13.2 ? 9 : mix(9, 2.2, seg(t, 14.4, 15.3));
+  const ang = t * rpm + (t > 14.6 ? Math.sin(t * 40) * .15 : 0);
+  pist.forEach((p, i) => { const y = 5.25 + Math.sin(ang + i * 2.09) * .75; p.position.y = y; film[i].forEach(m => m.position.y = y); const top = y - .55, bot = 2.2 + Math.cos(ang + i * 2.09) * .3; biela[i].position.y = (top + bot) / 2; biela[i].scale.y = Math.max(.2, (top - bot) / 2); });
+  vira.rotation.x = ang;
+  bloco.material.color.copy(K.col(0x8f9aa6, 0xe0402a, ext * (.75 + .25 * Math.sin(t * 9))));
+  const fa = lut(FA, t);
+  part.forEach((m, i) => { const u = ((fa + i / part.length) % 1 + 1) % 1; m.position.set(...pathP(u)); m.material.color.copy(K.col(0xfff1c4, 0x6b4a2a, esc)); m.material.emissive.copy(K.col(0xfff1c4, 0x000000, esc)); });
+  borra.forEach(m => { const k = back(seg(t, m.userData.t0, m.userData.t0 + .5)); m.scale.setScalar(Math.max(.001, k)); m.visible = t >= m.userData.t0; });
+  fais.forEach((m, i) => { const on = t > 11.48 && t < 15.42 && ((Math.floor(t * 12) + i) % 3 == 0); m.visible = on; const x = XS[i % 3] + (i % 2 ? .9 : -.9), y = pist[i % 3].position.y + (rnd(i + Math.floor(t * 12)) - .5) * 1.2; m.position.set(x + (rnd(i * 3 + Math.floor(t * 12)) - .5) * .5, y, 1.4); });
+  fumo.forEach((m, i) => { const u = ((t * .6 + i / fumo.length) % 1); m.visible = t > 13.6 && t < 15.42; m.position.set(-3 + i * .85, 7.7 + u * 3, 1.2); m.scale.setScalar(.6 + u * 1.2); m.material.opacity = .55 * (1 - u) * ext; });
+  // ---- câmera, rótulos, textos, legenda
+  K.camAt(t, z == 1 && t > 14.6 ? .09 * seg(t, 14.6, 14.9) : 0); K.cam.updateMatrixWorld();
+  K.ui(t); K.caps(t);
+  if (z == 0 && t < 3.75) K.pin($('tag'), ...K.wp(vidro), 40, -40);
+  if (z == 1) { K.pin($('pB'), 201.5, .4 + 1.0, 1.3, 0, -10); K.pin($('pC'), 200 - 4.55, .4 + 5.2, 1.3, 240, -10); }
+  if (z == 2) K.pin($('pF'), -200 + 1.9, 2.4 + 2.0, .2, 0, -20);
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>

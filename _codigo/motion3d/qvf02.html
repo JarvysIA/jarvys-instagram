@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.opt{left:60px;right:60px;display:flex;justify-content:center}
+.opt .chip{font-size:46px;padding:20px 34px}
+.selo{left:0;right:0;text-align:center}
+.selo span{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:40px;padding:12px 28px;border-radius:16px;border:4px solid #0b1b2e;letter-spacing:2px}
+.ic img{width:260px;height:260px;border-radius:60px;border:8px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.35)}
+.clic span{display:inline-block;font-size:64px;color:#0b1b2e;background:#ffd21f;border:8px solid #0b1b2e;border-radius:24px;padding:4px 26px}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel curto sem narração "Qual você faz?" 02: Bico desarmou. (12 s) -->
+<div id="ui">
+  <div class="ov selo" data-a="-1" data-b="8.6" data-fx="fade" style="top:215px"><span>QUAL VOCÊ FAZ?</span></div>
+  <div class="ov tt" data-a="-1" data-b="8.6" data-fx="fade" style="top:300px">O bico<br><b>desarmou.</b></div>
+  <div class="ov pin clic" id="clic" data-a=".35" data-b="2.6" data-fx="stamp" data-rot="-8"><span>CLIC!</span></div>
+  <div class="ov opt" data-a=".6" data-b="5.6" style="top:540px"><span class="chip">A) ⛽ COMPLETA ATÉ A BOCA</span></div>
+  <div class="ov opt" data-a="1.2" data-b="5.6" style="top:645px"><span class="chip">B) 💰 ARREDONDA O VALOR</span></div>
+  <div class="ov opt" data-a="1.8" data-b="5.6" style="top:750px"><span class="chip">C) ✋ PARA NO 1º CLIQUE</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:540px"><span class="chip bad">A) ❌ COMPLETA ATÉ A BOCA</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:645px"><span class="chip bad">B) ❌ ARREDONDA O VALOR</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" style="top:750px"><span class="chip ok">C) ✅ PARA NO 1º CLIQUE</span></div>
+  <div class="ov opt" data-a="3.2" data-b="5.5" data-fx="up" style="top:880px"><span class="chip y">⏱️ PENSA RÁPIDO...</span></div>
+  <div class="ov opt" data-a="6.5" data-b="8.6" data-fx="up" style="top:875px"><span class="chip" style="font-size:38px">🎯 O EXCESSO PODE IR PRO CÂNISTER</span></div>
+
+  <div class="ov tt m" data-a="8.7" style="top:215px">Você acertou?<br><b>Comenta aí 👇</b></div>
+  <div class="ov opt" data-a="9.1" data-fx="up" style="top:430px"><span class="chip y">📲 MANDA PRA QUEM ARREDONDA</span></div>
+  <div class="ov end ic" data-a="9.5" style="top:560px"><img src="icon-512.png"></div>
+  <div class="ov end" data-a="9.9" style="top:870px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="10.3" data-fx="up" style="top:1010px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const DUR = 12;
+K.ground(0, 0, 120, 0x9aa4ae);
+box(14, .25, 3.2, 0xd5dbe1, -3, .12, 4.6);                       // ilha da bomba
+box(16, .4, 10, 0xf4f7fa, -3, 9.2, 2); box(16, .5, .3, 0x0a84d6, -3, 8.9, 7);   // cobertura do posto
+
+const car = K.carro(); car.position.set(0, 0, 0);
+box(.6, .5, .06, 0x2a3340, -2.2, 1.95, 1.47, car);                // tampinha do tanque
+// bomba de combustível
+const bomba = grp(-6, .25, 4.6);
+box(1.6, 4.2, 1.2, 0xf4f7fa, 0, 2.1, 0, bomba); box(1.7, .5, 1.3, 0x0a84d6, 0, 4.35, 0, bomba); box(1.7, .4, 1.3, 0xffd21f, 0, .2, 0, bomba);
+box(1.2, .8, .06, 0x0b1b2e, 0, 3.2, -.62, bomba); const dig = box(.9, .25, .07, M(0x7CFF6B, { emissive: 0x7CFF6B, emissiveIntensity: .8 }), 0, 3.25, -.64, bomba);
+box(.5, .7, .3, 0x20262e, .55, 2.2, -.7, bomba);
+// pessoa e bico
+const mot = K.pessoa(s, { camisa: 0x2fae66 }); mot.position.set(-2.2, .25, 3.3); mot.rotation.y = Math.PI;
+const bico = grp(0, 0, 0, s); box(.25, .25, .9, 0x20262e, 0, 0, 0, bico); box(.12, .12, .7, 0x8f9aa6, 0, -.08, -.75, bico);
+const mang = [...Array(10)].map(() => { const m = box(.18, .18, 1, 0x20262e, 0, 0, 0, s); m.castShadow = false; return m; });
+const A = new T.Vector3(-5.45, 2.4, 3.9), V = new T.Vector3();
+const link = (m, a, b) => { m.position.copy(a).add(b).multiplyScalar(.5); m.scale.z = a.distanceTo(b); m.lookAt(b); };
+// gotas que transbordam (opção errada) e vapor pro cânister
+const gotas = [...Array(6)].map(() => { const m = box(.14, .22, .14, M(0xffd36b, { emissive: 0xffb020, emissiveIntensity: .4, transparent: true, opacity: .9 }), 0, 0, 0, s); m.castShadow = false; return m; });
+K.camKeys([{ t: 0, p: [15, 7, 15], l: [-2.8, 3.4, 2.2] }, { t: 8.6, p: [13.2, 6.6, 13.4], l: [-2.8, 3.4, 2.2], e: 'lin' }, { t: 8.6, p: [16, 9, 22], l: [-2.5, 5.4, 1.5] }, { t: 12.2, p: [15, 8.6, 20.5], l: [-2.5, 5.4, 1.5], e: 'lin' }]);
+window.setT = t => {
+  K.fundo('linear-gradient(#a9d8f8,#e6f4ff)'); K.zone(-2, 2);
+  // braço: segura o bico no tanque até a resposta; depois tira
+  const tira = seg(t, 5.8, 6.6);
+  mot.bd.rotation.set(mix(-1.45, -.3, tira), 0, mix(-.25, .1, tira)); mot.be.rotation.set(-.1, 0, 0);
+  mot.cab.rotation.set(.15, Math.sin(t * 1.3) * .15, 0);
+  mot.bd.updateMatrixWorld(true);
+  const mao = new T.Vector3(0, -1.5, 0); mot.bd.localToWorld(mao);
+  bico.position.copy(mao); bico.rotation.set(0, Math.PI, mix(.3, 1.2, tira));
+  // mangueira em curva da bomba até a mão
+  const B = mao.clone(); const P = i => { const u = i / mang.length; const p = A.clone().lerp(B, u); p.y -= Math.sin(u * Math.PI) * 1.6; return p; };
+  mang.forEach((m, i) => link(m, P(i), P(i + 1)));
+  // gotas: só no "completa até a boca" imaginado (antes da resposta), pingando do bocal
+  gotas.forEach((m, i) => { const u = ((t * 1.4 + i / gotas.length) % 1); m.visible = t > 2.2 && t < 5.6; m.position.set(-2.2 + (i % 2 ? .1 : -.1), 1.9 - u * 1.6, 1.62); m.material.opacity = .9 * (1 - u); });
+  dig.material.emissiveIntensity = t < .35 ? .8 + .3 * Math.sin(t * 40) : .8;
+  K.camAt(t); K.cam.updateMatrixWorld(); K.ui(t);
+  if (t < 2.6) K.pin(document.getElementById('clic'), -2.2, 3.4, 1.6, 60, 0);
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
