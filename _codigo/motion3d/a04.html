@@ -1,0 +1,132 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.ou{font-size:56px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill;color:#ffd21f;align-self:center}
+.stamp.w span{color:#0a84d6;border-color:#0a84d6}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel 3D A04: O que acontece se você roda com o pneu careca na chuva? (28 s) -->
+<div id="ui">
+  <div class="ov tt" data-a="-1" data-b="4.32" data-fx="fade" style="top:215px">O que acontece se<br>você roda com o<br><b>pneu careca</b><br>na chuva?</div>
+  <div class="ov chip pin bad" id="pCar" data-a=".9" data-b="4.32" data-fx="pop">🛞 PNEU CARECA</div>
+
+  <div class="ov tt m" data-a="4.32" data-b="7.12" style="top:215px">Os sulcos<br><b>tiram a água</b></div>
+  <div class="ov row" data-a="5.1" data-b="7.12" style="top:420px"><span class="chip ok">💧 A ÁGUA SAI PELOS SULCOS</span></div>
+
+  <div class="ov tt m" data-a="7.12" data-b="9.4" style="top:215px"><b>Careca,</b> ele<br>não escoa</div>
+  <div class="ov row" data-a="7.9" data-b="9.4" style="top:420px"><span class="chip bad">🚫 A ÁGUA FICA EMBAIXO</span></div>
+  <div class="ov chip pin y s" id="pW" data-a="8.3" data-b="9.4" data-fx="pop">🌊 LÂMINA D'ÁGUA</div>
+
+  <div class="ov tt m" data-a="9.4" data-b="14.16" style="top:215px">O carro<br><b>flutua</b></div>
+  <div class="ov row" data-a="10.88" data-b="14.16" style="top:420px"><span class="chip bad">⚠️ PODE PERDER O CONTROLE</span></div>
+  <div class="ov stamp w" data-a="12.8" data-b="14.16" data-fx="stamp" data-rot="-6" style="top:540px"><span style="font-size:84px">AQUAPLANAGEM</span></div>
+
+  <div class="ov tt m" data-a="14.16" data-b="21.2" style="top:215px">Olha o <b>TWI</b><br>no sulco</div>
+  <div class="ov chip pin y" id="pT" data-a="14.5" data-b="21.2" data-fx="pop">TWI</div>
+  <div class="ov chip pin" id="pM" data-a="17.12" data-b="21.2" data-fx="pop">📏 1,6 mm</div>
+  <div class="ov row" data-a="18.96" data-b="21.2" style="top:420px"><span class="chip">⚖️ O MÍNIMO DA LEI</span></div>
+  <div class="ov stamp" data-a="20.08" data-b="21.2" data-fx="stamp" data-rot="-5" style="top:540px"><span style="font-size:80px">HORA DE TROCAR</span></div>
+
+  <div class="ov tt m" data-a="21.2" data-b="22.92" style="top:225px">Manda pra quem<br>tá com<br><b>pneu liso</b></div>
+  <div class="ov row" data-a="21.6" data-b="22.92" style="top:520px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+
+  <div class="ov tt m" data-a="22.92" data-b="24.8" style="top:225px">O seu<br><b>tá como?</b></div>
+  <div class="ov row" data-a="23.3" data-b="24.8" style="top:430px"><span class="chip ok">✅ EM DIA</span><span class="chip bad">⚠️ NO LIMITE</span></div>
+  <div class="ov row" data-a="24.0" data-b="24.8" style="top:530px"><span class="chip y">💬 COMENTA AÍ 👇</span></div>
+
+  <div class="ov end g" data-a="24.85" style="top:205px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="25.1" data-fx="up" style="top:560px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="25.55" style="top:705px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="26.0" data-fx="up" style="top:852px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .4, DUR = 28;
+const W0 = [0,.24,.48,.8,.907,.96,1.28,1.68,1.84,2.56,2.693,2.76,2.92,3.92,4.12,4.64,5.04,5.12,5.36,5.8,5.92,6.72,7.44,7.6,7.76,8.6,8.72,9,9.56,9.68,10.08,10.16,10.48,10.8,11.08,11.2,12.08,12.2,12.4,13.76,13.947,14,14.56,14.72,15.44,15.76,16.28,16.72,18.36,18.56,18.92,19.04,19.68,19.88,20,20.8,21.04,21.16,21.36,21.48,21.6,21.88,22.52,22.64,22.88,23.12,23.6,23.96];
+const TXT = "Se você roda com o pneu careca na chuva, olha o que acontece. Os sulcos tiram a água debaixo do pneu. Careca, ele não escoa: o carro flutua na água e você pode perder o controle. É a aquaplanagem. Olha o TWI no sulco: chegou nele, sobrou 1,6 mm, o mínimo da lei. Hora de trocar. Manda pra quem tá com pneu liso. O seu tá como? Comenta aí.".split(' ');
+K.setCaps(TXT, W0.map(w => w + VO), 24.75);
+const $ = id => document.getElementById(id);
+const rnd = i => { const x = Math.sin(i * 91.7) * 43758.5453; return x - Math.floor(x); };
+const AGUA = () => M(0x58b8ff, { transparent: true, opacity: .55, emissive: 0x58b8ff, emissiveIntensity: .25, roughness: .1 });
+
+// ================= RUA MOLHADA (origem)
+K.ground(0, 0, 160, 0x56606c);
+const faixas = [...Array(14)].map((_, i) => box(2.2, .03, .25, 0xffffff, (i - 7) * 5, .02, 0, s));
+box(160, .03, .3, 0xffd21f, 0, .02, -5.5); box(160, .03, .3, 0xffd21f, 0, .02, 5.5);
+[[-6, 2.2, 9, 3.2], [7, -1.8, 10, 3], [20, 1, 12, 4], [-20, 0, 10, 3.5]].forEach(([x, z, w, d]) => { const m = box(w, .05, d, AGUA(), x, .04, z); m.castShadow = false; });
+const cg = grp(0, 0, 0); const car = K.carro(cg); car.position.set(0, 0, 1.2);
+const roda = grp(2, .72, 2.7, cg);   // roda dianteira do lado da câmera (ponto do rótulo)
+const spr = [...Array(14)].map(() => { const m = box(.25, .25, .25, M(0xe6f6ff, { transparent: true, opacity: .8 }), 0, 0, 0, s); m.castShadow = false; return m; });
+const rain = [...Array(90)].map((_, i) => { const m = box(.04, .9, .04, M(0xcfe9ff, { transparent: true, opacity: .55 }), 0, 0, 0, s); m.castShadow = false; m.userData = [rnd(i) * 34 - 17, rnd(i + 300) * 24 - 6, rnd(i + 700)]; return m; });
+
+// ================= RAIO-X DO PNEU (x = 200), visto de lado
+K.ground(200, 0, 60, 0x0f2440);
+const pista = box(40, .3, 6, 0x2a3646, 200, .15, 0);
+const lam = box(40, .14, 5, AGUA(), 200, .37, 0); lam.castShadow = false;
+const marcas = [...Array(8)].map((_, i) => box(1.6, .05, .3, 0xffffff, 200 - 18 + i * 5, .34, 2.6));
+const RW = grp(200, 2.95, 0);                         // roda
+const rodaG = grp(0, 0, 0, RW);
+const pneu = cyl(2.3, 2.3, 2.0, 0x20262e, 0, 0, 0, rodaG, 28); pneu.rotation.x = Math.PI / 2;
+const aro = cyl(1.35, 1.35, 2.06, 0xcfd8e2, 0, 0, 0, rodaG, 16); aro.rotation.x = Math.PI / 2;
+const cubo = cyl(.45, .45, 2.12, 0x6b7684, 0, 0, 0, rodaG, 10); cubo.rotation.x = Math.PI / 2;
+for (let i = 0; i < 5; i++) { const a = i / 5 * Math.PI * 2; const r = box(.3, 1.0, .1, 0x8f9aa6, Math.cos(a) * .85, Math.sin(a) * .85, 1.06, rodaG); r.rotation.z = a - Math.PI / 2; }
+const NB = 20, RB = 2.42;
+const blocos = [...Array(NB)].map((_, i) => { const a = i / NB * Math.PI * 2; const b = box(.5, .34, 2.0, 0x2c333c, Math.cos(a) * RB, Math.sin(a) * RB, 0, rodaG); b.rotation.z = a + Math.PI / 2; b.userData.a = a; return b; });
+const gotas = [...Array(26)].map((_, i) => { const m = box(.22, .22, .22, M(0x9fd8ff, { emissive: 0x58b8ff, emissiveIntensity: .4, transparent: true, opacity: .9 }), 0, 0, 0, s); m.castShadow = false; m.userData.o = rnd(i + 50); m.userData.z = (rnd(i + 90) - .5) * 2.4; return m; });
+const cunha = box(2.4, .5, 2.2, AGUA(), 200 + 2.1, .5, 0); cunha.castShadow = false;
+
+// ================= TWI de perto (x = -200): banda de rodagem em corte
+K.ground(-200, 0, 60, 0xdfe9f2);
+const P = grp(-200, 0, 0);
+box(7.8, 1.2, 3.2, 0x3a424c, 0, .6, 0, P);                                   // carcaça
+const BX = [-3.15, -1.05, 1.05, 3.15];
+const tb = BX.map(x => box(1.3, 1, 3.2, 0x2c333c, x, 1.2 + 1.5, 0, P));        // blocos (altura animada)
+const twi = box(.8, .6, 1.0, 0xffb020, 0, 1.5, 0, P);                          // ressalto TWI no sulco do meio
+const marcaTop = box(.08, .6, .08, 0x3ac7ff, .55, 1.5, 1.7, P);               // régua do 1,6 mm
+box(.3, .06, .08, 0x3ac7ff, .55, 1.2, 1.7, P); box(.3, .06, .08, 0x3ac7ff, .55, 1.8, 1.7, P);
+
+// ================= CÂMERA
+K.camKeys([
+  { t: 0, p: [17, 11, 33], l: [0, 3.0, 1] }, { t: 4.32, p: [15, 10, 29], l: [0, 2.9, 1], e: 'lin' },
+  { t: 4.32, p: [205, 6.6, 33], l: [200, 3.2, 0] }, { t: 9.4, p: [203.5, 6.3, 30], l: [200, 3.1, 0], e: 'lin' },
+  { t: 9.4, p: [-12, 12, 34], l: [0, 4.0, 1] }, { t: 14.16, p: [-11, 11.5, 31], l: [0, 3.9, 1], e: 'lin' },
+  { t: 14.16, p: [-198.2, 5.0, 16], l: [-200, 2.3, 0] }, { t: 21.2, p: [-198.8, 4.8, 14.5], l: [-200, 2.2, 0], e: 'lin' },
+  { t: 21.2, p: [12, 8, 25], l: [0.3, 2.3, 1.5] }, { t: 22.92, p: [11, 7.5, 23], l: [0.3, 2.3, 1.5], e: 'lin' },
+  { t: 22.92, p: [-10, 8.5, 26], l: [0, 2.7, 1.2] }, { t: 24.8, p: [-9, 8, 24], l: [0, 2.7, 1.2], e: 'lin' },
+  { t: 24.8, p: [14, 10, 31], l: [0, 4.0, 0] }, { t: 28.2, p: [12.5, 9.5, 28.5], l: [0, 4.0, 0], e: 'lin' },
+]);
+
+window.setT = t => {
+  const z = (t >= 4.32 && t < 9.4) ? 1 : (t >= 14.16 && t < 21.2) ? 2 : 0;
+  K.fundo(z == 1 ? 'linear-gradient(#123052,#0b1b2e)' : z == 2 ? 'linear-gradient(#a9d8f8,#e6f4ff)' : 'linear-gradient(#5d7088,#9db0c4)');
+  K.zone(z == 1 ? 200 : z == 2 ? -200 : 0, 0);
+  // ---- rua: o carro anda; na aquaplanagem desliza e gira
+  const des = (t >= 9.4 && t < 14.16) ? seg(t, 9.4, 10.4) : 0;
+  cg.rotation.y = (Math.sin(t * 1.7) * .26 + .14) * des; cg.position.z = Math.sin(t * 1.1) * .7 * des;
+  car.position.y = .05 * des * Math.abs(Math.sin(t * 6));
+  faixas.forEach((m, i) => { m.position.x = (((i * 5 - t * 9) % 70) + 70) % 70 - 35; });
+  spr.forEach((m, i) => { const u = (t * 2.2 + i / spr.length) % 1, side = i % 2 ? 1 : -1, k = t < 9.4 ? .55 : 1; m.position.set(-3.6 - u * 3 * k, .3 + Math.sin(u * Math.PI) * 1.2 * k, 1.2 + side * 1.5 + side * u * .8); m.scale.setScalar(Math.max(.001, (1 - u) * 1.4 * k)); m.material.opacity = .8 * (1 - u); });
+  rain.forEach(m => { const [x, zz, o] = m.userData; const u = ((t * 1.6 + o) % 1); m.position.set(x, 12 - u * 12, zz); });
+  // ---- raio-x: roda girando; com sulco a água sai, careca ela fica embaixo e a roda sobe
+  const gasto = seg(t, 7.2, 8.2);
+  rodaG.rotation.z = -t * 3.2;
+  blocos.forEach(b => { b.scale.x = mix(1, 1.62, gasto); b.scale.y = mix(1, .55, gasto); const r = mix(RB, 2.36, gasto); b.position.set(Math.cos(b.userData.a) * r, Math.sin(b.userData.a) * r, 0); b.material.color.copy(K.col(0x2c333c, 0x4a525c, gasto)); });
+  const sobe = seg(t, 8.0, 8.9);
+  RW.position.y = 2.95 + .5 * out(sobe) + (sobe > 0 ? Math.sin(t * 9) * .04 : 0);
+  cunha.scale.set(1, mix(.2, 1.6, sobe), 1); cunha.position.y = .37 + .25 * mix(.2, 1.6, sobe);
+  marcas.forEach((m, i) => { m.position.x = 200 - 20 + (((i * 5 - t * 7) % 40) + 40) % 40; });
+  const jato = 1 - gasto;
+  gotas.forEach((m, i) => { const u = ((t * 1.3 + m.userData.o) % 1); m.visible = jato > .05; m.position.set(200 - .6 - u * 5.2, .5 + Math.sin(u * Math.PI) * 2.6, m.userData.z * (1 + u)); m.scale.setScalar(Math.max(.001, jato * (1 - u * .6))); });
+  // ---- TWI: o pneu gasta até o nível do ressalto
+  const h = mix(3, .6, io(seg(t, 15.84, 17.0)));
+  tb.forEach(b => { b.scale.y = h; b.position.y = 1.2 + h / 2; });
+  // ---- câmera, rótulos, textos, legenda
+  K.camAt(t, (t > 9.4 && t < 14.16) ? .05 : 0); K.cam.updateMatrixWorld();
+  K.ui(t); K.caps(t);
+  if (z == 0 && t < 4.32) K.pin($('pCar'), ...K.wp(roda), 0, -40);
+  if (z == 1) K.pin($('pW'), 200 + 2.1, 1.0, 1.2, -60, -70);
+  if (z == 2) { K.pin($('pT'), -200, 1.85, .5, -150, -20); K.pin($('pM'), -200 + .55, 1.8, 1.7, 170, 10); }
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>

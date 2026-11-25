@@ -1,0 +1,70 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.opt{left:60px;right:60px;display:flex;justify-content:center}
+.opt .chip{font-size:44px;padding:20px 32px}
+.selo{left:0;right:0;text-align:center}
+.selo span{display:inline-block;background:#ffd21f;color:#0b1b2e;font-size:40px;padding:12px 28px;border-radius:16px;border:4px solid #0b1b2e;letter-spacing:2px}
+.ic img{width:260px;height:260px;border-radius:60px;border:8px solid #fff;box-shadow:0 18px 50px rgba(11,27,46,.35)}
+.pn{left:150px;right:150px;height:230px;background:#0b1118;border:8px solid #0b1b2e;border-radius:40px;box-shadow:0 16px 0 #0b1b2e,inset 0 0 40px rgba(0,0,0,.8);display:flex;align-items:center;justify-content:space-around;padding:0 30px}
+.gg{width:170px;height:170px;border-radius:50%;border:8px solid #2a3646;position:relative}
+.gg i{position:absolute;left:50%;top:50%;width:70px;height:7px;background:#e24b3b;border-radius:4px;transform-origin:0 50%}
+.gg b{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#7d8b99;font-size:22px}
+#bat{width:150px;height:110px;filter:drop-shadow(0 0 22px rgba(255,59,48,.9))}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel curto sem narração "Qual você faz?" 03: A luz da bateria acendeu. (12 s) -->
+<div id="ui">
+  <div class="ov selo" data-a="-1" data-b="8.6" data-fx="fade" style="top:215px"><span>QUAL VOCÊ FAZ?</span></div>
+  <div class="ov tt" data-a="-1" data-b="8.6" data-fx="fade" style="top:300px">A luz da bateria<br><b>acendeu.</b></div>
+  <div class="ov opt" data-a=".6" data-b="5.6" style="top:540px"><span class="chip">A) 🚗 SEGUE, É SÓ A BATERIA</span></div>
+  <div class="ov opt" data-a="1.2" data-b="5.6" style="top:645px"><span class="chip">B) 🔋 TROCA A BATERIA DEPOIS</span></div>
+  <div class="ov opt" data-a="1.8" data-b="5.6" style="top:750px"><span class="chip">C) 🌡️ OLHA A TEMPERATURA E PARA</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:540px"><span class="chip bad">A) ❌ SEGUE, É SÓ A BATERIA</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" data-fx="fade" style="top:645px"><span class="chip bad">B) ❌ TROCA A BATERIA DEPOIS</span></div>
+  <div class="ov opt" data-a="5.6" data-b="8.6" style="top:750px"><span class="chip ok">C) ✅ OLHA A TEMPERATURA E PARA</span></div>
+  <div class="ov opt" data-a="3.2" data-b="5.5" data-fx="up" style="top:880px"><span class="chip y">⏱️ PENSA RÁPIDO...</span></div>
+  <div class="ov opt" data-a="6.3" data-b="8.6" data-fx="up" style="top:870px"><span class="chip" style="font-size:36px">🔌 A LUZ AVISA ALTERNADOR OU CORREIA</span></div>
+  <div class="ov opt" data-a="6.9" data-b="8.6" data-fx="up" style="top:960px"><span class="chip" style="font-size:36px">🌡️ CORREIA ROMPIDA PODE FERVER O MOTOR</span></div>
+  <div class="ov pn" data-a="-1" data-b="6.25" data-fx="fade" style="top:960px">
+    <div class="gg"><i id="pt1" style="transform:rotate(200deg)"></i><b>km/h</b></div>
+    <svg id="bat" viewBox="0 0 150 110"><rect x="10" y="22" width="130" height="80" rx="10" fill="#ff3b30"/><rect x="28" y="8" width="24" height="16" rx="3" fill="#ff3b30"/><rect x="98" y="8" width="24" height="16" rx="3" fill="#ff3b30"/><rect x="30" y="56" width="26" height="9" fill="#0b1118"/><rect x="96" y="56" width="26" height="9" fill="#0b1118"/><rect x="104.5" y="47.5" width="9" height="26" fill="#0b1118"/></svg>
+    <div class="gg"><i id="pt2" style="transform:rotate(170deg)"></i><b>°C</b></div>
+  </div>
+
+  <div class="ov tt m" data-a="8.7" style="top:215px">Você acertou?<br><b>Comenta aí 👇</b></div>
+  <div class="ov opt" data-a="9.1" data-fx="up" style="top:430px"><span class="chip y">📲 MANDA PRA QUEM IGNORA LUZ</span></div>
+  <div class="ov end ic" data-a="9.5" style="top:560px"><img src="icon-512.png"></div>
+  <div class="ov end" data-a="9.9" style="top:870px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="10.3" data-fx="up" style="top:1010px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const DUR = 12;
+const $ = id => document.getElementById(id);
+K.ground(0, 0, 160, 0x56606c);
+const faixas = [...Array(16)].map((_, i) => box(2.2, .03, .25, 0xffffff, (i - 8) * 5, .02, 0, s));
+box(160, .03, .3, 0xffd21f, 0, .02, -5.5); box(160, .03, .3, 0xffd21f, 0, .02, 5.5);
+box(160, .04, 4, 0x6b747e, 0, .02, 7.6);                       // acostamento
+const cg = grp(0, 0, 0); const car = K.carro(cg); car.position.set(0, 0, 0);
+const pisca = [box(.3, .32, .3, M(0xffb020, { emissive: 0xffb020, emissiveIntensity: 1.2 }), 3.16, 1.45, 1.3, car), box(.3, .32, .3, M(0xffb020, { emissive: 0xffb020, emissiveIntensity: 1.2 }), -3.16, 1.45, 1.3, car)];
+K.camKeys([{ t: 0, p: [17, 9, 34], l: [0, 6.4, 2] }, { t: 8.6, p: [16, 8.5, 33], l: [0, 6.4, 3.5], e: 'lin' }, { t: 8.6, p: [-12, 8, 34], l: [0, 7.0, 3.5] }, { t: 12.2, p: [-11, 7.5, 32], l: [0, 7.0, 3.5], e: 'lin' }]);
+window.setT = t => {
+  K.fundo('linear-gradient(#e59a5c,#f7d3a8)'); K.zone(0, 0);
+  // o carro anda; depois da resposta encosta no acostamento e para
+  const enc = io(seg(t, 5.9, 7.8));
+  const v = 9 * (1 - enc);
+  const dist = t < 5.9 ? t * 9 : 5.9 * 9 + (t - 5.9) * 9 - 9 * (Math.min(t, 7.8) - 5.9) * .5 - (t > 7.8 ? 9 * (t - 7.8) * .5 : 0);
+  faixas.forEach((m, i) => { m.position.x = (((i * 5 - dist) % 80) + 80) % 80 - 40; });
+  cg.position.z = mix(0, 3.6, enc); cg.rotation.y = -Math.sin(enc * Math.PI) * .18;
+  car.position.y = v > .5 ? .03 * Math.abs(Math.sin(t * 9)) : 0;
+  pisca.forEach(m => m.visible = t > 5.9 && Math.floor(t * 2.5) % 2 == 0);
+  // luz da bateria piscando forte no começo e depois acesa; temperatura sobe devagar
+  const on = t < 1.2 ? (Math.floor(t * 6) % 2 == 0) : true;
+  $('bat').style.opacity = on ? 1 : .15;
+  $('pt1').style.transform = `rotate(${200 + 60 * (1 - enc) + Math.sin(t * 3) * 2}deg)`;
+  $('pt2').style.transform = `rotate(${170 + 70 * seg(t, 1.5, 6)}deg)`;
+  K.camAt(t); K.cam.updateMatrixWorld(); K.ui(t); K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
