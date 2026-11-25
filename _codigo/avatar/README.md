@@ -41,3 +41,23 @@ O Fernando aprovou o vídeo e pediu outra voz: "mais animado, mais potente, meno
 - Trechos (s): gancho 0,02 a 2,52; "No Jarvys, cada gasto fica anotado!" 2,71 a 5,27; "O Jarvys guarda o histórico das revisões," 5,57 a 7,73; "avisa quando a próxima está chegando" 7,90 a 9,80; "e mostra" 9,95 a 10,52; "quanto o seu carro vale na Fipe," 10,66 a 12,26; "todo mês!" 12,42 a 13,09; "Instale agora mesmo!" 13,40 a 14,59; "O app é cem por cento grátis!" 14,81 a 16,93.
 - Sincronia: `clipes/f01v2-gancho.mp4` (áudio 0 a 2,62 s; 1.818) e `clipes/f01v2-fecho.mp4` (áudio 13,30 a 17,05 s; 2.424). O vídeo segue a narração inteira, sem emenda no som: gancho até 2,62 s, fundo desfocado até 13,30 s, fecho até 17,05 s.
 - Final: `2026-11/dia-27/reel-avatar-f01-v2.mp4` (19,9 s, -14,4 LUFS).
+
+## Quadro inicial novo, com a logo do Jarvys na camisa (25/11/2026)
+
+- `fernando-avatar-recorte-logo.png`: o recorte com a logo do Jarvys (ícone de 176 px com borda clara, girado 3 graus, sombra leve) no lugar do remendo do peito (centro em x 693, y 818 do recorte). Montagem local com PIL, sem redesenho por IA.
+- `fernando-avatar-jarvys-v2.png` (1080x1920) e `fernando-avatar-jarvys-v2-720.png` (720x1280): o recorte com a logo sobre a garagem. **É o quadro inicial dos vídeos novos.** No flow é o nó PUDFAEYEUbVVTzQAbSXp.
+- O fecho reaproveitado (`clipes/f01v2-fecho.mp4`) foi gerado com o quadro antigo, sem a logo: a placa "Instale agora", em 1.270 px, cobre o peito, então a diferença não aparece.
+- No clipe do gancho do F02 a logo acompanha o corpo e as mãos passam na frente dela sem defeito; as mãos saíram com a cor certa.
+
+## F02, "Antes de aprovar o orçamento, pergunta isso" (25/11/2026)
+
+Primeiro reel do avatar com gancho de dica. Mesmo modelo do F01 v2.
+
+- Narração única: `voz/f02-narracao-voz-clonada.mp3` (voz "Fernando", eleven_v4, `[excited]` no começo, 19,6 s, 304 créditos, geração 0sKzrhvXkNeY9Xk4RWBA).
+- Trechos de fala (s, pela energia do áudio): "Eu tenho oficina." 0,02 a 1,20; "Antes de aprovar um orçamento, pergunta isso aqui!" 1,40 a 4,00 (pausa depois de "orçamento," em 2,87 a 2,99); "Um:" 4,46; pergunta 1 de 5,16 a 7,58; "Dois:" 8,00; pergunta 2 de 8,84 a 9,92; "Três:" 10,34; pergunta 3 de 11,08 a 13,02; "Oficina séria responde na hora!" 13,40 a 15,42; "E guarda tudo no Jarvys:" 15,72 a 17,10; "o histórico do carro fica na sua mão." 17,40 a 19,42.
+- Gancho: `voz/f02-clonada-gancho.mp3` (0 a 2,94 s da narração; o mp3 mede 2,98 s e foi cobrado como 3 s) e `clipes/f02-gancho.mp4` (HeyGen Avatar 4, expressive, 9:16, 1080p, 1.818 créditos, geração RdCqabjvjQfA9WXCMnbO). Cortar o gancho numa pausa abaixo de 3,0 s e deixar o resto da frase sobre a primeira placa barateia o clipe.
+- Vídeo base (`clipes/f02-base.mp4`, fora do git): gancho até 2,94 s + `fundo-garagem-desfocado.jpg` com zoom lento por 16,66 s + `clipes/f01v2-fecho.mp4` (3,75 s), a 30 quadros por segundo, crf 12.
+- Voz: a narração inteira (cortada em 19,58 s) + `voz/f01-clonada-fecho.mp3` em 19,60 s. As duas medem -21,6 LUFS, não precisa igualar.
+- Textos: `../motion3d/fav03.html` (`ALPHA=1 node cap3d.mjs "fav03.html?alpha=1" ovh 26.2`, em duas metades ao mesmo tempo). Som: `python3 audio_fav03.py audh`; `trilha-02.mp3 -ss 2 -t 26.2`.
+- Final: `2026-11/dia-27/reel-avatar-f02.mp4` (26,2 s, -14,4 LUFS).
+- Conferência da fala: o transcritor local ouviu "posso ver aqui essa velha" no trecho "posso ver a peça velha?" (o resto bateu). A legenda e o cartão mostram a frase certa. Se o Fernando achar que não dá para entender, regravar só a narração (304) e reaproveitar o gancho, que não inclui esse trecho.
