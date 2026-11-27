@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="kit3d.css">
+<style>
+.pn{left:250px;right:250px;height:200px;background:#0b1118;border:8px solid #0b1b2e;border-radius:40px;box-shadow:0 16px 0 #0b1b2e,inset 0 0 40px rgba(0,0,0,.8);display:flex;align-items:center;justify-content:space-around;padding:0 24px}
+.gg{width:140px;height:140px;border-radius:50%;border:7px solid #2a3646;position:relative}
+.gg i{position:absolute;left:50%;top:50%;width:58px;height:6px;background:#e24b3b;border-radius:4px;transform-origin:0 50%}
+.chk{width:150px;height:105px;filter:drop-shadow(0 0 22px rgba(255,170,0,.95))}
+.ou{font-size:56px;-webkit-text-stroke:10px #0b1b2e;paint-order:stroke fill;color:#ffd21f;align-self:center}
+</style></head><body>
+<script src="node_modules/three/build/three.min.js"></script>
+<script src="kit3d.js"></script>
+<!-- Reel 3D A05: O que acontece se você ignora a luz da injeção? (30 s) -->
+<div id="ui">
+  <div class="ov tt" data-a="-1" data-b="3.58" data-fx="fade" style="top:215px">O que acontece se<br>você ignora a<br><b>luz da injeção?</b></div>
+  <div class="ov pn" id="pn" data-a="-1" data-b="3.58" data-fx="fade" style="top:575px">
+    <div class="gg"><i id="pt1" style="transform:rotate(200deg)"></i></div>
+    <svg class="chk luz" viewBox="0 0 150 105"><path d="M30 30h22v-10h34v10h14l10 12h14v-12h10v46h-10v-12h-14l-10 18h-48l-10-12h-12v12h-10v-40h10v12h12z" fill="#ffaa00"/></svg>
+    <div class="gg"><i id="pt2" style="transform:rotate(250deg)"></i></div>
+  </div>
+
+  <div class="ov tt m" data-a="3.6" data-b="8.82" style="top:215px">Ela avisa:<br><b>problema no motor</b></div>
+  <div class="ov chip y" data-a="6.24" data-b="8.82" style="top:410px;left:150px">⚡ VELA</div>
+  <div class="ov chip y" data-a="6.72" data-b="8.82" style="top:410px;left:560px">🌀 BOBINA</div>
+  <div class="ov chip y" data-a="7.32" data-b="8.82" style="top:510px;left:150px">💧 BICO</div>
+  <div class="ov chip y" data-a="7.92" data-b="8.82" style="top:510px;left:560px">📡 SENSOR</div>
+
+  <div class="ov tt m" data-a="8.84" data-b="11.06" style="top:215px">A central<br>entra em</div>
+  <div class="ov stamp" data-a="10.08" data-b="11.06" data-fx="stamp" data-rot="-5" style="top:430px"><span style="font-size:76px;color:#e08a00;border-color:#e08a00">Modo de<br>emergência</span></div>
+  <div class="ov chip pin" id="pE" data-a="9.2" data-b="10.06" data-fx="pop">🧠 CENTRAL DO MOTOR</div>
+
+  <div class="ov tt m" data-a="11.08" data-b="16.9" style="top:215px">Anda, mas<br>anda <b>mancando</b></div>
+  <div class="ov row" data-a="13.88" data-b="16.9" style="top:420px"><span class="chip bad">📉 MENOS FORÇA</span></div>
+  <div class="ov row" data-a="14.96" data-b="16.9" style="top:525px"><span class="chip bad">⛽ MAIS CONSUMO</span></div>
+  <div class="ov row" data-a="15.84" data-b="16.9" style="top:630px"><span class="chip bad">💨 MAIS POLUIÇÃO</span></div>
+
+  <div class="ov tt m" data-a="16.92" data-b="19.38" style="top:215px">Com o <b>tempo</b>...</div>
+  <div class="ov stamp" data-a="17.84" data-b="19.38" data-fx="stamp" data-rot="-6" style="top:400px"><span style="font-size:80px">Pode danificar<br>o motor</span></div>
+
+  <div class="ov tt m" data-a="19.4" data-b="23.06" style="top:215px">Dá pra rodar<br>até a <b>oficina</b></div>
+  <div class="ov row" data-a="21.28" data-b="23.06" style="top:430px"><span class="chip ok">🔧 MAS LEVA LOGO</span></div>
+  <div class="ov chip pin y" id="pS" data-a="22.24" data-b="23.06" data-fx="pop">🔍 SCANNER</div>
+
+  <div class="ov tt m" data-a="23.08" data-b="24.74" style="top:225px">Manda pra quem<br>tá com a<br><b>luz acesa</b></div>
+  <div class="ov row" data-a="23.5" data-b="24.74" style="top:520px"><span class="chip y">📲 ENVIA ESSE VÍDEO</span></div>
+
+  <div class="ov tt m" data-a="24.76" data-b="26.82" style="top:225px">A sua já<br><b>acendeu?</b></div>
+  <div class="ov row" data-a="25.32" data-b="26.82" style="top:430px"><span class="chip ok">✅ NUNCA</span><span class="chip bad">⚠️ JÁ ACENDEU</span></div>
+  <div class="ov row" data-a="26.04" data-b="26.82" style="top:530px"><span class="chip y">💬 COMENTA AÍ 👇</span></div>
+
+  <div class="ov end g" data-a="26.85" style="top:205px"><img src="icon-512.png"></div>
+  <div class="ov end sub" data-a="27.1" data-fx="up" style="top:560px">Dúvida do carro?<br>Pergunta pro Dr. Jarvys.</div>
+  <div class="ov end" data-a="27.55" style="top:705px"><span class="btn">App 100% grátis</span></div>
+  <div class="ov end url" data-a="28.0" data-fx="up" style="top:852px">jarvys.com.br</div>
+</div>
+<script>
+const { T, s, seg, io, out, back, mix, box, cyl, grp, M } = K;
+const VO = .4, DUR = 30;
+const W0 = [0.137, 0.24, 0.56, 0.907, 0.96, 1.16, 1.24, 2, 2.16, 2.213, 2.36, 3.2, 3.52, 3.8, 3.92, 4.12, 4.52, 4.76, 5.333, 5.52, 5.84, 6.32, 6.92, 7.36, 7.52, 8.44, 8.56, 9.04, 9.24, 9.4, 9.56, 9.68, 10.68, 10.8, 11.12, 11.72, 12, 12.16, 13.08, 13.48, 14.08, 14.32, 14.56, 15.28, 15.44, 15.76, 16.52, 16.64, 16.84, 17.24, 17.44, 18, 18.08, 19, 19.2, 19.36, 19.6, 19.72, 19.76, 20.64, 20.88, 21.12, 21.44, 21.6, 21.787, 21.84, 22.68, 22.92, 23, 23.2, 23.32, 23.38, 23.42, 23.72, 24.36, 24.48, 24.76, 24.92, 25.64, 25.96];
+const TXT = "Se voc\u00ea ignora a luz da inje\u00e7\u00e3o, olha o que acontece. Ela avisa que tem problema no motor: pode ser vela, bobina, bico ou sensor. A central entra em modo de emerg\u00eancia. O carro anda, mas anda mancando: perde for\u00e7a, gasta mais combust\u00edvel e polui mais. Com o tempo, pode danificar o motor. D\u00e1 pra rodar at\u00e9 a oficina, mas leva logo pra passar o scanner. Manda pra quem t\u00e1 com a luz acesa. A sua j\u00e1 acendeu? Comenta a\u00ed.".split(" ");
+K.setCaps(TXT, W0.map(w => w + VO), 26.8);
+const OURO = 0xf2b632, PRETO = 0x2a1a0c;
+const $ = id => document.getElementById(id);
+
+// ================= RUA (origem)
+K.ground(0, 0, 160, 0x56606c);
+const faixas = [...Array(16)].map((_, i) => box(2.2, .03, .25, 0xffffff, (i - 8) * 5, .02, 0, s));
+box(160, .03, .3, 0xffd21f, 0, .02, -5.5); box(160, .03, .3, 0xffd21f, 0, .02, 5.5);
+const cg = grp(0, 0, 0); const car = K.carro(cg);
+const fum = [...Array(9)].map(() => box(.6, .6, .6, M(0x3a3f46, { transparent: true, opacity: .7 }), 0, 0, 0, s));
+const mec = K.pessoa(s, { camisa: 0x0a84d6, calca: 0x14365c, bone: 0x0b1b2e }); mec.position.set(5.4, 0, 2.4); mec.rotation.y = -1.2;
+const scan = grp(0, 0, 0, mec.bd); box(.75, 1.0, .18, 0x20262e, 0, -1.55, .25, scan); const tela = box(.6, .6, .05, M(0x38bdf8, { emissive: 0x38bdf8, emissiveIntensity: .9 }), 0, -1.45, .35, scan);
+const cabo = box(.08, .08, 1, 0xffd21f, 0, 0, 0, s);
+
+// ================= MOTOR EM CORTE (x = 200), visto de frente
+K.ground(200, 0, 60, 0x0f2440);
+const E = grp(200, .4, 0);
+const oilF = M(OURO, { emissive: OURO, emissiveIntensity: .45, roughness: .3 });
+const oilC = M(OURO, { emissive: OURO, emissiveIntensity: .35, roughness: .3 });
+const metal = M(0x8f9aa6);
+const carter = box(8.4, 1.7, 2, 0x4a5563, 0, .85, 0, E);
+const poca = box(7.9, 1.0, .3, oilC, 0, .65, 1.05, E); poca.castShadow = false;
+const bloco = box(8.4, 5.4, 2, metal, 0, 4.4, 0, E);
+box(8.8, .5, 2.2, 0x6b7684, 0, 7.35, 0, E);      // cabeçote
+const XS = [-2.5, 0, 2.5];
+XS.forEach(x => box(1.9, 4.2, .1, 0x1c2733, x, 4.9, 1.02, E));
+const pist = XS.map(x => box(1.6, 1.1, .3, 0xd9e1ea, x, 5, 1.15, E));
+const film = XS.map(x => [-1, 1].map(sd => { const m = box(.12, 1.3, .32, oilF, x + sd * .86, 5, 1.12, E); m.castShadow = false; return m; }));
+const biela = XS.map(x => box(.32, 2, .2, 0xaab4bf, x, 3.4, 1.22, E));
+const vira = cyl(.35, .35, 8, 0x6b7684, 0, 2.2, 1.22, E, 10); vira.rotation.z = Math.PI / 2;
+const mancal = XS.map(x => cyl(.6, .6, .5, 0x9aa6b2, x, 2.2, 1.22, E, 10)); mancal.forEach(m => m.rotation.z = Math.PI / 2);
+// galeria do óleo: sobe pela esquerda e corre pelo alto
+box(.6, 6.4, .34, 0xdfe7ef, -4.55, 4.0, 1.05, E).castShadow = false; box(9.3, .6, .34, 0xdfe7ef, 0, 7.0, 1.05, E).castShadow = false;
+box(.34, 6.2, .36, oilC, -4.55, 4.0, 1.1, E).castShadow = false; box(9.1, .34, .36, oilC, 0, 7.0, 1.1, E).castShadow = false;
+const part = [...Array(22)].map(() => { const m = box(.22, .22, .22, M(0xfff1c4, { emissive: 0xfff1c4, emissiveIntensity: .5 }), 0, 0, 1.3, E); m.castShadow = false; return m; });
+const pathP = u => { const L1 = 6.1, L2 = 8.9, d = u * (L1 + L2); return d < L1 ? [-4.55, .95 + d, 1.3] : [-4.55 + (d - L1), 7.0, 1.3]; };
+const rnd = i => { const x = Math.sin(i * 91.7) * 43758.5453; return x - Math.floor(x); };
+const borra = [...Array(16)].map((_, i) => { const inS = i < 10; const m = box(.45 + rnd(i) * .35, .35 + rnd(i + 9) * .3, .3, M(0x3b2412, { roughness: 1 }), inS ? -3.6 + rnd(i + 3) * 7.2 : (i < 13 ? -4.55 : -3 + (i - 13) * 1.6), inS ? .35 + rnd(i + 5) * .7 : (i < 13 ? 2 + (i - 10) * 1.6 : 7.0), 1.32, E); m.castShadow = false; m.userData.t0 = 9.12 + rnd(i + 20) * 1.2; return m; });
+const fais = [...Array(14)].map(() => { const m = box(.14, .14, .14, M(0xffe066, { emissive: 0xffc400, emissiveIntensity: 1.4 }), 0, 0, 1.4, E); m.castShadow = false; return m; });
+const fumo = [...Array(8)].map(() => { const m = box(.6, .6, .6, M(0x5d6670, { transparent: true, opacity: .5 }), 0, 0, 1.4, E); m.castShadow = false; return m; });
+
+
+// ================= CENTRAL (x = -200)
+K.ground(-200, 0, 50, 0x0f2440);
+const C = grp(-200, 0, 0);
+box(6, .8, 4, 0x9aa6b2, 0, 2.4, 0, C); box(6.2, .25, 4.2, 0x6b7684, 0, 2.95, 0, C);
+for (let i = 0; i < 5; i++) box(.25, .6, 4, 0x7d8996, -2.4 + i * 1.2, 3.3, 0, C);
+box(1.6, .7, .9, 0x20262e, 3.4, 2.4, 0, C);
+const fios = [0xe24b3b, 0xffd21f, 0x38bdf8, 0x22c55e].map((c, i) => box(4, .18, .18, c, 6.2, 2.2 + i * .15, -.3 + i * .2, C));
+const led = box(.5, .2, .5, M(0xffaa00, { emissive: 0xffaa00, emissiveIntensity: 1.5 }), -2, 3.15, 1.4, C);
+box(2, .05, 1.2, 0x1c2733, .8, 3.11, 1.2, C);
+
+// ================= CÂMERA
+K.camKeys([
+  { t: 0, p: [17, 8, 30], l: [0, 2.6, 1] }, { t: 3.58, p: [16, 7.6, 28], l: [0, 2.6, 1], e: 'lin' },
+  { t: 3.58, p: [201.2, 5.6, 41], l: [200, 4.5, 0] }, { t: 8.82, p: [200.4, 5.6, 37], l: [200, 4.5, 0], e: 'lin' },
+  { t: 8.82, p: [-189, 14, 30], l: [-199.5, 4.2, 0] }, { t: 11.06, p: [-190, 13, 27], l: [-199.5, 4.2, 0], e: 'lin' },
+  { t: 11.06, p: [-14, 7.5, 27], l: [0, 1.6, 1] }, { t: 16.9, p: [-12, 7, 24.5], l: [0, 1.6, 1], e: 'lin' },
+  { t: 16.9, p: [200.8, 5.8, 37], l: [200, 4.7, 0] }, { t: 19.38, p: [200.3, 5.8, 34], l: [200, 4.7, 0], e: 'lin' },
+  { t: 19.38, p: [17, 7, 22], l: [3, 1.6, 1] }, { t: 23.06, p: [15, 6.6, 19.5], l: [3, 1.6, 1], e: 'lin' },
+  { t: 23.06, p: [11, 7.5, 25], l: [1, 1.4, 1] }, { t: 24.74, p: [10, 7.2, 23], l: [1, 1.4, 1], e: 'lin' },
+  { t: 24.74, p: [-9, 7.5, 25], l: [0, 1.4, 1] }, { t: 26.82, p: [-8, 7.2, 23], l: [0, 1.4, 1], e: 'lin' },
+  { t: 26.82, p: [12.5, 9, 29], l: [.9, 3.3, 0] }, { t: 30.2, p: [11.2, 8.5, 26.5], l: [.9, 3.3, 0], e: 'lin' },
+]);
+
+window.setT = t => {
+  const z = (t >= 3.58 && t < 8.82) || (t >= 16.9 && t < 19.38) ? 1 : (t >= 8.82 && t < 11.06) ? 2 : 0;
+  K.fundo(z ? 'linear-gradient(#123052,#0b1b2e)' : 'linear-gradient(#a9d8f8,#e6f4ff)');
+  K.zone(z == 1 ? 200 : z == 2 ? -200 : 0, 0);
+  // ---- rua: anda; mancando de 11 a 17; parado na oficina (19,4 a 23)
+  const ofi = t >= 19.38 && t < 23.06, manc = t >= 11.06 && t < 16.9;
+  const v = ofi ? 0 : manc ? 2.2 + 1.6 * Math.max(0, Math.sin(t * 5)) : 6;
+  const dist = t * 6 - (Math.min(Math.max(t, 11.06), 16.9) - 11.06) * 3;
+  faixas.forEach((m, i) => { m.position.x = (((i * 5 - (ofi ? 0 : dist)) % 80) + 80) % 80 - 40; });
+  car.hood(ofi ? io(seg(t, 19.5, 20.2)) : 0);
+  car.position.y = v > .5 ? .03 * Math.abs(Math.sin(t * 9)) : 0;
+  car.rotation.z = manc ? .05 * Math.max(0, Math.sin(t * 5 + 1)) - .02 : 0;
+  fum.forEach((m, i) => { const u = (t * .8 + i / fum.length) % 1; const on = manc || (t >= 23.06 && t < 26.82); m.visible = on; m.position.set(-3.6 - u * 4, .7 + u * 1.6, -.9 + Math.sin(i * 1.9) * .4); m.scale.setScalar(.5 + u * 1.6); m.material.opacity = .75 * (1 - u); });
+  mec.visible = ofi || t >= 26.82;
+  if (mec.visible) { const k = back(seg(t, ofi ? 19.4 : 26.82, (ofi ? 19.4 : 26.82) + .5)); mec.scale.setScalar(Math.max(.001, k)); mec.bd.rotation.set(-1.3, 0, .1); mec.be.rotation.set(-.3, 0, 0); mec.cab.rotation.set(.25, Math.sin(t * 2) * .15, 0); }
+  scan.visible = ofi; cabo.visible = ofi && t > 20.2;
+  if (cabo.visible) { const a = new THREE.Vector3(); tela.getWorldPosition(a); const b = new THREE.Vector3(2.6, 1.9, .9); const m = a.clone().add(b).multiplyScalar(.5); cabo.position.copy(m); cabo.scale.z = a.distanceTo(b); cabo.lookAt(b); }
+  tela.material.emissiveIntensity = .6 + .4 * Math.sin(t * 8);
+  // ---- painel
+  document.querySelector('.luz').style.opacity = t < 1.3 ? (Math.floor(t * 6) % 2 ? .15 : 1) : 1;
+  $('pt1').style.transform = `rotate(${200 + 70 + Math.sin(t * 3) * 3}deg)`;
+  // ---- motor (falha de ignição e, depois, motor sofrendo)
+  const ext = t >= 16.9 ? seg(t, 17.2, 18.4) : 0;
+  const rpm = t < 16.9 ? 9 : mix(9, 3, seg(t, 18.2, 19));
+  const ang = t * rpm + (Math.floor(t * 4) % 3 == 0 ? Math.sin(t * 50) * .12 : 0);
+  pist.forEach((p, i) => { const y = 5.25 + Math.sin(ang + i * 2.09) * .75; p.position.y = y; film[i].forEach(m => m.position.y = y); const top = y - .55, bot = 2.2 + Math.cos(ang + i * 2.09) * .3; biela[i].position.y = (top + bot) / 2; biela[i].scale.y = Math.max(.2, (top - bot) / 2); });
+  vira.rotation.x = ang;
+  bloco.material.color.copy(K.col(0x8f9aa6, 0xe0402a, ext * (.75 + .25 * Math.sin(t * 9))));
+  part.forEach((m, i) => { const u = ((t * .22 + i / part.length) % 1 + 1) % 1; m.position.set(...pathP(u)); });
+  borra.forEach(m => m.visible = false);
+  // faísca da vela falhando: aparece em 2 cilindros e falta no do meio
+  fais.forEach((m, i) => { const cyl_ = i % 3, on = z == 1 && cyl_ != 1 && ((Math.floor(t * 10) + i) % 2 == 0); m.visible = on; m.position.set(XS[cyl_] + (rnd(i + Math.floor(t * 12)) - .5) * .6, 7.0 + (rnd(i * 3 + Math.floor(t * 12)) - .5) * .4, 1.4); });
+  fumo.forEach((m, i) => { const u = ((t * .6 + i / fumo.length) % 1); m.visible = t > 17.4 && t < 19.38; m.position.set(-3 + i * .85, 7.7 + u * 3, 1.2); m.scale.setScalar(.6 + u * 1.2); m.material.opacity = .55 * (1 - u) * ext; });
+  // ---- central: LED âmbar piscando
+  led.material.emissiveIntensity = Math.floor(t * 4) % 2 ? .2 : 1.8;
+  // ---- câmera, rótulos, textos, legenda
+  K.camAt(t, z == 1 && t > 18.2 ? .07 * seg(t, 18.2, 18.5) : 0); K.cam.updateMatrixWorld();
+  K.ui(t); K.caps(t);
+  if (z == 2) K.pin($('pE'), -200 + 0, 3.4, 0, 0, -20);
+  if (ofi) { const a = new THREE.Vector3(); tela.getWorldPosition(a); K.pin($('pS'), a.x, a.y + 1.2, a.z, 0, -10); }
+  K.render();
+};
+window.setT(0); window.READY = true;
+</script></body></html>
