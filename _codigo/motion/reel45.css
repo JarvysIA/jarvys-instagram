@@ -1,0 +1,14 @@
+/* ===== reel 45: Tá caro? pastilha de freio de R$ 900 (série Tá caro?; base do reel 41) ===== */
+.e45pad{position:absolute;opacity:0}
+@keyframes wear45{from{height:var(--h0)}to{height:var(--h1)}}
+.e45rng{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:800;font-size:118px;line-height:1;letter-spacing:-3px;color:var(--ok);text-shadow:0 0 50px rgba(65,214,134,.5);white-space:nowrap}
+.e45lab{position:absolute;left:0;right:0;text-align:center;font-size:44px;font-weight:700;color:var(--muted);white-space:nowrap;opacity:0}
+.e45disc{position:absolute;opacity:0}
+.e45spin{transform-box:view-box;transform-origin:250px 250px;animation:rot40 6s linear infinite}
+.e45cal{position:absolute;opacity:0}
+@keyframes cal45{0%{opacity:0;transform:translateX(160px)}100%{opacity:1;transform:translateX(0)}}
+.e45eng{position:absolute;font-family:Orbitron;font-weight:700;font-size:30px;letter-spacing:3px;color:#ffe28a;white-space:nowrap;opacity:0}
+.e45car{position:absolute;opacity:0}
+.e45wh{animation:wh45 1s ease-in-out infinite alternate}
+@keyframes wh45{from{filter:drop-shadow(0 0 6px rgba(65,214,134,.4))}to{filter:drop-shadow(0 0 26px rgba(65,214,134,.95))}}
+.e45ck{position:absolute;width:84px;height:84px;border-radius:50%;background:var(--ok);color:#06210f;font-size:50px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(65,214,134,.6);opacity:0}
